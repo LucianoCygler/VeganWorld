@@ -20,6 +20,7 @@ export default function rootReducer (state = initialState, action) {
 
         case FILTER_PRICE_PRODUCT:
             return { ...state, filteredProducts: [action.payload]};
+        default:
+                return
     }
-
 }
