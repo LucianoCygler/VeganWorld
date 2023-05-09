@@ -8,10 +8,10 @@ const client = require("./routerCliente");
 const product = require("./routerProduct");
 
 
-router.use("/admin",admin);
-router.use("/client",client);
-router.use("/product",product);
+router.use("/admin", admin);
+router.use("/client", client);
+router.use("/product", product);
 
-module.exports = router
+module.exports = router;
 
 
