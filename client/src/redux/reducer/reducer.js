@@ -2,7 +2,7 @@ import {
     ADD_CART,
     FILTER_NAME_PRODUCT,
     FILTER_PRICE_PRODUCT
-} from "../Actions/Types/Types";
+} from "../actions/Types/Types";
 
 const initialState = {
     products: [],
@@ -21,4 +21,5 @@ export default function rootReducer (state = initialState, action) {
         case FILTER_PRICE_PRODUCT:
             return { ...state, filteredProducts: [action.payload]};
     }
+
 }
