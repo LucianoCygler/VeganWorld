@@ -1,6 +1,16 @@
 import style from "./LoginSignup.module.css";
+import { useState } from "react";
 
 const LoginSignup = () => {
+
+  const username = "Diegotorres";
+  const password = "Veganworld"
+
+  
+
+
+
+
   return (
     <div className={style.container}>
       <form className={style.form}>
