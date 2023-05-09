@@ -13,9 +13,9 @@ function HomePage() {
 
     return(
         <div className={style.body}>
-            <h1>Welcome to VeganWorld!</h1>
+            <h1 className={style.h1}>Welcome to VeganWorld!</h1>
             <p>Here, you'll find the best vegan food in town.</p>
-            <img src="https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg" />
+            <img className={style.img} src="https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg" />
             <a href="/menu">View our menu</a>
         </div>
     )
