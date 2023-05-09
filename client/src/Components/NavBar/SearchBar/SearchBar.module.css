@@ -1,0 +1,31 @@
+/************************************* DIVS ********************************/
+.mainContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.divLeft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 15px;
+}
+
+.divMid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-right: 15px;
+}
+
+/************************************* ELEMENTOS **********************************/
+
