@@ -2,16 +2,12 @@ const { Router } = require("express");
 
 const router = Router();
 
+const adminRouter = require("./routerAdmin");
+// const clientRouter = require("./routerCliente");
+// const productRouter = require("./routerProduct");
 
-const admin = require("./routerAdmin");
-const client = require("./routerCliente");
-const product = require("./routerProduct");
-
-
-router.use("/admin", admin);
-router.use("/client", client);
-router.use("/product", product);
+router.use("/admin", adminRouter);
+// router.use("/client", clientRouter);
+// router.use("/product", productRouter);
 
 module.exports = router;
-
-

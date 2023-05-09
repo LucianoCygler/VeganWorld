@@ -7,6 +7,7 @@ const ClientModel = require("./models/Client");
 const ProductModel = require("./models/Product");
 const OrderModel = require("./models/Order");
 const FacturaModel = require("./models/Factura");
+const AdminModel = require("./models/Admin");
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
@@ -20,6 +21,8 @@ ClientModel(sequelize);
 ProductModel(sequelize);
 OrderModel(sequelize);
 FacturaModel(sequelize);
+AdminModel(sequelize);
+
 const { Client, Product, Order, Factura } = sequelize.models;
 
 Client.hasMany(Order);
@@ -34,6 +37,9 @@ Order.hasMany(Product);
 
 Order.hasOne(Factura);
 Factura.hasOne(Order);
+
+Client.hasMany(Factura);
+Factura.belongsTo(Client);
 
 module.exports = {
   ...sequelize.models,
