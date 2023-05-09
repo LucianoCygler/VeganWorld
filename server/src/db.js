@@ -3,6 +3,11 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT } = process.env;
 
 const { Sequelize } = require("sequelize");
 
+const ClientModel = require("./models/Client");
+const ProductModel = require("./models/Product");
+const OrderModel = require("./models/Order");
+const FacturaModel = require("./models/Factura");
+
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
   {
@@ -10,19 +15,28 @@ const sequelize = new Sequelize(
     native: false,
   }
 );
-const { Admin, Cliente, Producto, Pedido, Factura } = sequelize.models;
 
-Cliente.hasMany(Pedido, { foreignKey: "id_cliente" });
-Pedido.belongsTo(Cliente, { foreignKey: "id_cliente" });
+ClientModel(sequelize);
+ProductModel(sequelize);
+OrderModel(sequelize);
+FacturaModel(sequelize);
+const { Client, Product, Order, Factura } = sequelize.models;
 
-Producto.hasMany(Pedido, { foreignKey: "id_producto" });
-Pedido.hasMany(Producto, { foreignKey: "id_producto" });
+Client.hasMany(Order);
+Order.belongsTo(Client, {
+  through: "client_order",
+});
 
-Factura.belongsTo(Pedido, { foreignKey: "id_factura" });
-Pedido.belongsTo(Factura, { foreignKey: "id_factura" });
+Product.belongsToMany(Order, {
+  through: "product_order",
+});
+Order.hasMany(Product);
+
+Order.hasOne(Factura);
+Factura.hasOne(Order);
 
 module.exports = {
   ...sequelize.models,
-  conn,
-  sequelize,
+
+  conn: sequelize,
 };
