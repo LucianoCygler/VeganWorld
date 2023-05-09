@@ -1,23 +1,19 @@
 import './App.css';
 import { Routes, Route, useLocation } from "react-router-dom";
-// import { useEffect, useState } from 'react';
+// import axios from "axios";
 import { HomePage, LandingPage, Detail, Cart } from "./Views/index";
-import { NavBar } from "./Components/index";
+import Navbar from './Components/NavBar/NavBar';
 
 function App() {
-
-  //************************************* OCULTAR / MOSTRAR NAVBAR *********************************/
   const location = useLocation();
-  const showNav = location.pathname !== "/";
-
   return (
     <div className="App">
-      {showNav && <NavBar />}
+      {location.pathname !== "/" && <Navbar />}
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/Home" element={<HomePage />} />
-        <Route path="/Detail" element={<Detail />} />
-        <Route path="/Cart" element={<Cart />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/detail" element={<Detail />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>
   );
