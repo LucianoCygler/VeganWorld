@@ -13,9 +13,24 @@ function Cart() {
                     {cart.map(product => {
                         return (
                             <div className={styles.productsContainer} key={product.id}>
-                                <h2 className={styles.subTittle}>
-                                    {product.name}
-                                </h2>
+                                <div className={styles.flexContainer}>
+                                    <h2 className={styles.subTittle}>
+                                        {product.name}
+                                    </h2>
+                                </div>
+                                <div className={styles.flexContainer}>
+                                    <h2 className={styles.subTittle}>
+                                        {product.price}
+                                    </h2>
+                                </div>
+                                <div className={styles.flexContainer}>
+                                    <h2 className={styles.subTittle}>
+                                        {product.description}
+                                    </h2>
+                                </div>
+                                <div className={styles.flexContainer}>
+                                    <img src={product.image} alt={product.name} className={styles.image} />
+                                </div>
                             </div>
                         )
                     })}
