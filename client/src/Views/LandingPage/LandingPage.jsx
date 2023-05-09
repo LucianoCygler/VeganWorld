@@ -1,9 +1,11 @@
 
 import style from "./LandingPage.module.css"
-import LoginSignup from "./Login/LoginSignup"
+import LoginSignup from "../../Components/Form/Login/LoginSignup"
 
 
 const LandingPage = ()=>{
+
+    
 
 return (
     <div className= {style.parent}>
@@ -20,6 +22,11 @@ return (
 
     <div className={style.div3}>
         <LoginSignup/>
+    </div>
+
+    <div className={style.div4}>
+    Aqui va pie de pagina
+
     </div>
 
     </div>
