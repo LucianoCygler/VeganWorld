@@ -1,9 +1,17 @@
-const { handlerAdmin } = require("../handlers");
-
+const getAdminsHandler = require("../handlers/admin/getAdminsHandler");
+const getOneAdminHandler = require("../handlers/admin/getOneAdminHandler");
+const createAdminHandler = require("../handlers/admin/createAdminHandler");
+const deleteAdminHandler = require("../handlers/admin/deleteAdminHandler");
 const { Router } = require("express");
 
-const admin = Router();
+const adminRouter = Router();
 
-admin.get("/", handlerAdmin);
+adminRouter.get("/", getAdminsHandler);
 
-module.exports = admin;
+adminRouter.get("/:id", getOneAdminHandler);
+
+adminRouter.post("/", createAdminHandler);
+
+adminRouter.delete("/:id", deleteAdminHandler);
+
+module.exports = adminRouter;
