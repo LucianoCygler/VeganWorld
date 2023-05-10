@@ -1,3 +1,4 @@
+export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS"
 export const ADD_CART = "ADD_CART";
 export const STATE_LOGIN = "STATE_LOGIN";
 export const FILTER_NAME_PRODUCT = "FILTER_NAME_PRODUCT";
