@@ -1,41 +1,25 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { filterNameProduct } from "../../../redux/actions/actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import styles from "./SearchBar.module.css";
 
 function SearchBar() {
-    const [ inputValue, setInputValue ] = useState("");
+    const [isSearching, setIsSearching] = useState(false);
+    const dispatch = useDispatch(); 
 
-    const handleInputChange = (event) => {
-        setInputValue(event.target.value);
+    const handleSearch = (event) => {
+        const inputValue = event.target.value;
+        dispatch(filterNameProduct(inputValue));
     }
 
-    const handleSearch = () => {
-        setInputValue("");
-    }
     return (
         <div className={styles.mainContainer}>
-            <div className={styles.divLeft}>
-                <NavLink to="/Home" className={styles.link}>
-                    Home
-                </NavLink>
-                <NavLink to="/Cart" className={styles.link}>
-                    Cart
-                </NavLink>
-            </div>
-            <div className={styles.divMid}>
-                <h1 className={styles.tittle}>
-                    VeganWorld!
-                </h1>
-            </div>
-            <div className={styles.divRight}>
-                <input className={styles.inputClass} type="search" value={inputValue} placeholder="Search a product..." onChange={handleInputChange} />
-                <button className={styles.buttonClass} onClick={handleSearch} >
-                    Search
-                </button>
-                <NavLink to="/" className={styles.buttonClass}>
-                    Logout
-                </NavLink>
-            </div>
+            <nav>
+                <input className={`${styles.inputClass} ${isSearching ? styles.show: styles.hidden}`} type="search" placeholder="Search a product..." onChange={handleSearch} />
+                <FontAwesomeIcon icon={faMagnifyingGlass}  onMouseEnter={() => setIsSearching(true)} onMouseLeave={() => setIsSearching(false)} />
+            </nav>
         </div>
     )
 }
