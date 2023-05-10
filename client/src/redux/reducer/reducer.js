@@ -26,7 +26,6 @@ export default function rootReducer (state = initialState, action) {
 
         case STATE_LOGIN:
             return {...state, access: action.payload}
-
         default:
             return
     }
