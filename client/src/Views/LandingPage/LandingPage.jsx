@@ -5,15 +5,16 @@ import CustomerComments from "../../Components/Comments/Comments"
 import { getCustomerComments } from "../../redux/actions/actions"
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
+import logo from "./img/logo4.png"
 
 
 const LandingPage = ()=>{
 
     const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     dispatch(getCustomerComments())
-    // }, [])
+    useEffect(() => {
+        dispatch(getCustomerComments())
+    }, [])
     
 
 return (
@@ -32,11 +33,11 @@ return (
 
     <div className={style.div4}>
         
-            <div> <img src="" alt="LOGO" />  </div>
+            <div> <img src={logo} alt="LOGO" style={{height: "55px", width: "180px" }}/>  </div>
 
-            <div> Hecho con 💚. VeganWorld © 2023 | Todos los derechos reservados.</div>
+            <div style={{color: "white"}}> Hecho con 💚. VeganWorld © 2023 | Todos los derechos reservados.</div>
 
-            <div> ¿Consultas y dudas? Escríbenos a cohorte36@soyVegan.com </div>
+            <div style={{color: "white"}}> ¿Consultas y dudas? Escríbenos a cohorte36@soyVegan.com </div>
     
 
     </div>

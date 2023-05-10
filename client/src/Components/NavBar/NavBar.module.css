@@ -10,7 +10,8 @@
     border-radius: 15px;
     max-width: 85%;
     margin-left: 110px;
-    margin-top: 5px;
+    margin-top: 15px;
+    padding: 20px;
 }
 
 .divLeft {
@@ -25,6 +26,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    right: 43%;
+    position: fixed;
 }
 
 .divRight {
