@@ -28,10 +28,7 @@ function SearchBar() {
                 </h1>
             </div>
             <div className={styles.divRight}>
-                <input className={styles.inputClass} type="search" value={inputValue} placeholder="Search a product..." onChange={handleInputChange} />
-                <button className={styles.buttonClass} onClick={handleSearch} >
-                    Search
-                </button>
+                <input className={styles.inputClass} type="search" placeholder="Search a product..." onChange={handleSearch} />
                 <NavLink to="/" className={styles.buttonClass}>
                     Logout
                 </NavLink>
