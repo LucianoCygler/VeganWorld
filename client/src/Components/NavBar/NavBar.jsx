@@ -1,13 +1,32 @@
 import React from "react";
 import SearchBar from "./SearchBar/SearchBar";
+import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse, faCartShopping, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import styles from "./NavBar.module.css";
 
 function NavBar() {
     return (
-        <div className={styles.mainDiv}>
-            <nav className={styles.navbar}>
+        <div className={styles.mainContainer}>
+            <div className={styles.divLeft}>
+                <NavLink to="/Home" className={styles.link}>
+                    <FontAwesomeIcon icon={faHouse} className={styles.fontAwesome} />
+                </NavLink>
+                <NavLink to="/Cart" className={styles.link}>
+                    <FontAwesomeIcon icon={faCartShopping} className={styles.fontAwesome} />
+                </NavLink>
+            </div>
+            <div className={styles.divMid}>
+                <h1 className={styles.tittle}>
+                    VeganWorld!
+                </h1>
+            </div>
+            <div className={styles.divRight}>
                 <SearchBar />
-            </nav>
+                <NavLink to="/" className={styles.link}>
+                    <FontAwesomeIcon icon={faRightFromBracket} className={styles.fontAwesome} />
+                </NavLink>
+            </div>
         </div>
     )
 }
