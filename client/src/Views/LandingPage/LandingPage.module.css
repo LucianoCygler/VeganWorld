@@ -1,3 +1,6 @@
+.body{
+    height: 100%;
+}
 .parent {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -16,6 +19,9 @@
 
 .div1{
     background-color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .div2{
@@ -26,4 +32,11 @@
 
 .div4{
     background-color: rgb(43, 42, 42);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.div4_footer{
+    display: flex;
+    justify-content: space-around;
 }
