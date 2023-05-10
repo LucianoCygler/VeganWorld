@@ -13,6 +13,8 @@ const initialState = {
     cart: [],
     customerComments : [],
     access: false,
+    currentPage: 0,
+    itemsPerPage: 3,
 }
 
 export default function rootReducer (state = initialState, action) {
