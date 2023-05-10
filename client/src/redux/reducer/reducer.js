@@ -3,7 +3,8 @@ import {
     ADD_CART,
     FILTER_NAME_PRODUCT,
     FILTER_PRICE_PRODUCT,
-    STATE_LOGIN
+    STATE_LOGIN,
+    COMMENTS_CUSTOMER
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -30,6 +31,10 @@ export default function rootReducer (state = initialState, action) {
 
         case STATE_LOGIN:
             return {...state, access: action.payload}
+
+        case COMMENTS_CUSTOMER:
+            return {...state, customerComments: [...action.payload]}
+
         default:
             return {...state}
     }

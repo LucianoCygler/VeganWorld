@@ -5,16 +5,27 @@ import {
     ADD_CART,
     FILTER_NAME_PRODUCT, 
     FILTER_PRICE_PRODUCT,
-    STATE_LOGIN
+    STATE_LOGIN,
+    COMMENTS_CUSTOMER
 } from "./Types/Types";
 
 const URL_MOCKY  = "https://run.mocky.io/v3/5c43f655-9150-4673-a3fe-387e9f1d03b1"
+const URL_COMMENTS = "https://run.mocky.io/v3/e59ec4e9-ca13-4a15-9763-0058eb2684d6"
 
 export const getAllProducts = () => {
 	return async function (dispatch) {
 		const res = await axios.get(URL_MOCKY);
         const products = res.data
 		return dispatch({ type: GET_ALL_PRODUCTS, payload: products });
+	};
+};
+
+export const getCustomerComments = () => {
+	return async function (dispatch) {
+		const res = await axios.get(URL_COMMENTS);
+        const comm = res.data
+        console.log(comm);
+		return dispatch({ type: COMMENTS_CUSTOMER, payload: comm });
 	};
 };
 
@@ -36,3 +47,4 @@ export const filterPriceProduct = (product) => ({
 export const changeStateLogin = (boolean) => {
     return { type: STATE_LOGIN, payload: boolean}
 }
+
