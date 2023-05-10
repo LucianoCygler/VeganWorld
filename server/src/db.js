@@ -11,7 +11,7 @@ const AdminModel = require("./models/Admin");
 const ReviewModel = require("./models/Review");
 
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/VeganWorld`,
   {
     logging: false,
     native: false,
@@ -28,16 +28,14 @@ ReviewModel(sequelize);
 const { Client, Product, Order, Factura, Review } = sequelize.models;
 
 Client.hasMany(Order);
-Order.belongsTo(Client, {
-  through: "client_order",
-});
+Order.belongsTo(Client);
 
 Product.belongsToMany(Order, {
   through: "product_order",
 });
 Order.hasMany(Product);
 
-Order.hasOne(Factura);
+Order.belongsTo(Factura);
 Factura.hasOne(Order);
 
 Client.hasMany(Factura);

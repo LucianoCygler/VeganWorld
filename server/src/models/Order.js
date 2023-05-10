@@ -7,8 +7,14 @@ module.exports = (sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
+
     estado: {
       type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "Pendiente",
+    },
+    productos: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
     importe: {
