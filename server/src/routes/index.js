@@ -6,10 +6,12 @@ const adminRouter = require("./routerAdmin");
 const reviewRouter = require("./routerReview");
 const clientRouter = require("./routerCliente");
 const productRouter = require("./routerProduct");
-const orderRouter = require("./orderRouter");
+
+
+const orderRouter = require("./routerOrder");
+
+
 const facturaRouter = require("./routerFactura");
-
-
 
 router.use("/admin", adminRouter);
 router.use("/review", reviewRouter);
