@@ -20,6 +20,8 @@
 
 .div2{
     background-color: rgb(221, 98, 40);
+    display: flex;
+    justify-content: center;
 }
 
 .div4{
