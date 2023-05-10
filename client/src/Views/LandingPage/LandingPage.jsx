@@ -1,6 +1,7 @@
 
 import style from "./LandingPage.module.css"
 import LoginSignup from "../../Components/Form/Login/LoginSignup"
+import CustomerComments from "./Extras/Comments"
 
 
 const LandingPage = ()=>{
@@ -16,8 +17,7 @@ return (
     </div>
 
     <div className={style.div2}>
-    Aqui ira los comentarios
-
+        <CustomerComments/>
     </div>
 
     <div className={style.div3}>

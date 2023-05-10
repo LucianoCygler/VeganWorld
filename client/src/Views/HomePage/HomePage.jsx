@@ -1,14 +1,17 @@
 import React from "react";
+// import {useSelector} from "react-redux";
 import style from "./HomePage.module.css"
-// import { useState } from "react";
-
+import { useState } from "react";
+import Pagination from "../../Components/Pagination/Pagination";
 
 function HomePage() {
     // const dispatch = useDispatch();
     // const { products } = useSelector(state => state);
-    // const [currentPage, setCurrentPage] = useState(0);
     // const [orderBy, setOrderBy] = useState("name");
     // const [sortBy, setSortBy] = useState("ASC");
+
+    const [currentPage, setCurrentPage] = useState(0);
+    const itemsPerPage = 3;
     const veganMeals = [
         {
             id: 1,
@@ -72,43 +75,57 @@ function HomePage() {
             description: "Una sopa cremosa de lentejas y espinacas, con un toque de jengibre y comino. Servida con pan integral.",
             price: 100,
             weight: "300g",
-            image: "https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg"        },
+            image: "https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg"
+        },
         {
             id: 9,
             name: "Ensalada de tofu y frutos secos",
             description: "Ensalada fresca de tofu, lechuga, zanahoria y frutos secos con aderezo de mostaza y miel.",
             price: 120,
             weight: "250g",
-            image: "https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg"        },
+            image: "https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg"
+        },
         {
             id: 10,
             name: "Curry de calabaza y garbanzos",
             description: "Un delicioso curry vegano de calabaza y garbanzos con arroz integral y un toque de cilantro fresco.",
             price: 180,
             weight: "300g",
-            image: "https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg"          },
-          {
+            image: "https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg"
+        },
+        {
             id: 11,
             name: "Hamburguesa de tofu y remolacha",
             description: "Acompañada de lechuga, tomate y mayonesa vegana en pan integral.",
             price: 150,
             weight: "200g",
-            image: "https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg"          },
-          {
+            image: "https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg"
+        },
+        {
             id: 12,
             name: "Tarta de chocolate y almendras",
             description: "Un postre vegano irresistible, con un toque de vainilla y servida con una bola de helado vegano.",
             price: 90,
             weight: "150g",
-            image: "https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg"          },
+            image: "https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg"
+        },
     ];
+
+    const startIndex = currentPage * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentItems = veganMeals.slice(startIndex, endIndex);
+
+    const totalPages = Math.ceil(veganMeals.length / itemsPerPage);
+
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber - 1);
+    };
 
     return (
         <div className={style.body}>
-            <h1 className={style.h1}>Welcome to VeganWorld!</h1>
-            <h1 className={style.h1}>Here, you'll find the best vegan food in town.</h1>
+            <h1 className={style.h1}>The best vegan food in town!</h1>
             <div className={style.cardContainer}>
-                {veganMeals.map((meal) => (
+                {currentItems.map((meal) => (
                     <div key={meal.id} className={style.card}>
                         <img src={meal.image} alt={meal.name} className={style.img} />
                         <div className={style.cardBody}>
@@ -119,8 +136,16 @@ function HomePage() {
                     </div>
                 ))}
             </div>
+            <Pagination
+                goToPrevPage={() => setCurrentPage(currentPage - 1)}
+                goToNextPage={() => setCurrentPage(currentPage + 1)}
+                goToPage={(page) => setCurrentPage(page)}
+                lastPage={() => setCurrentPage(totalPages)}
+                onChange={handlePageChange}
+            />
         </div>
     );
 }
+
 
 export default HomePage;
