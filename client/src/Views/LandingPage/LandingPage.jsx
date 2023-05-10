@@ -2,10 +2,18 @@
 import style from "./LandingPage.module.css"
 import LoginSignup from "../../Components/Form/Login/LoginSignup"
 import CustomerComments from "../../Components/Comments/Comments"
+import { getCustomerComments } from "../../redux/actions/actions"
+import { useDispatch } from "react-redux"
+import { useEffect } from "react"
 
 
 const LandingPage = ()=>{
 
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getCustomerComments())
+    }, [])
     
 
 return (
