@@ -1,4 +1,5 @@
 import {
+    GET_ALL_PRODUCTS,
     ADD_CART,
     FILTER_NAME_PRODUCT,
     FILTER_PRICE_PRODUCT,
@@ -14,6 +15,9 @@ const initialState = {
 
 export default function rootReducer (state = initialState, action) {
     switch (action.type){
+        case GET_ALL_PRODUCTS:
+            return { ...state, products: [...action.payload] };
+
         case ADD_CART:
             return { ...state, cart: [action.payload] };
         
@@ -27,6 +31,6 @@ export default function rootReducer (state = initialState, action) {
             return {...state, access: action.payload}
 
         default:
-            return
+            return {...state}
     }
 }
