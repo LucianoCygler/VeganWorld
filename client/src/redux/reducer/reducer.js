@@ -37,6 +37,8 @@ export default function rootReducer (state = initialState, action) {
         case COMMENTS_CUSTOMER:
             return {...state, customerComments: [...action.payload]}
 
+            
+
         default:
             return {...state}
     }
