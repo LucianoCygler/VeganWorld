@@ -1,23 +1,30 @@
-
-const { Router } = require("express")
-const getProductsHandler = require("../handlers/product/getProductsHandler")
-const getOneProductHandler = require("../handlers/product/getOneProductHandler")
-const createProductHandler = require("../handlers/product/createProductHandler")
-const deleteProductHandler = require("../handlers/product/deleteProductHandler")
-const putProductHandler = require("../handlers/product/putProductHandler")
+const { Router } = require("express");
 
 
-const productRouter = Router()
 
-productRouter.get("/",getProductsHandler)
 
-productRouter.get("/:id",getOneProductHandler)
+const productRouter = Router();
 
-productRouter.post("/",createProductHandler)
+const getProductsHandler = require("../handlers/product/getProductsHandler");
+const getOneProductHandler = require("../handlers/product/getOneProductHandler");
+const createProductHandler = require("../handlers/product/createProductHandler");
+const deleteProductHandler = require("../handlers/product/deleteProductHandler");
+const updateProductHandler = require("../handlers/product/updateProductHandler");
 
-productRouter.delete("/:id",deleteProductHandler)
 
-productRouter.put("/:id",putProductHandler)
+productRouter.get("/", getProductsHandler);
+
+productRouter.get("/:id", getOneProductHandler);
+
+productRouter.post("/", createProductHandler);
+
+productRouter.delete("/:id", deleteProductHandler);
+
+productRouter.delete("/:id", deleteProductHandler);
+
+productRouter.patch("/:id", updateProductHandler);
+
+
 
 
 module.exports = productRouter
