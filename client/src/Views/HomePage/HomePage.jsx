@@ -17,9 +17,11 @@ function HomePage() {
         dispatch(getAllProducts())
     },[])
 
-
+    
     const [currentPage, setCurrentPage] = useState(0);
+
     const itemsPerPage = 3;
+
     const startIndex = currentPage * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const currentItems = products.slice(startIndex, endIndex);
