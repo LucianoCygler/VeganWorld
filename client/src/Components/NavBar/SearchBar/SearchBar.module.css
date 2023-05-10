@@ -30,11 +30,12 @@
 /************************************* ELEMENTOS **********************************/
 
 .link {
-
+    text-align: center;
 }
 
 .tittle {
-
+    font-size: 15px;
+    text-shadow: 0 0 5px #fff;
 }
 
 .inputClass {
