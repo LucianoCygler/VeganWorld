@@ -1,4 +1,4 @@
 export const ADD_CART = "ADD_CART";
-
+export const STATE_LOGIN = "STATE_LOGIN";
 export const FILTER_NAME_PRODUCT = "FILTER_NAME_PRODUCT";
 export const FILTER_PRICE_PRODUCT = "FILTER_PRICE_PRODUCT";
