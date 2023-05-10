@@ -35,8 +35,9 @@ const LoginSignup = () => {
     if (username === login.username && password === login.password) {
       dispatch(changeStateLogin(true))
       navigate("/Home")
+    }else{
+      throw new Error("Error en la información introducida")
     }
-    return ("Error en la información introducida")
   }
 
 
