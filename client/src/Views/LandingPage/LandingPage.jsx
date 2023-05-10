@@ -14,7 +14,6 @@ return (
     <div className= {style.div1}>
     "hello"
     </div>
-
     <div className={style.div2}>
         <CustomerComments/>
     </div>
