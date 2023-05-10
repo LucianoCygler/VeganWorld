@@ -10,7 +10,7 @@ function SearchBar() {
     }
 
     const handleSearch = () => {
-        setInputValue("");
+        setInputValue("f");
     }
     return (
         <div className={styles.mainContainer}>
