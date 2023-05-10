@@ -23,9 +23,6 @@ const LoginSignup = () => {
     password : ""
   })
 
-
-
-
   const handleInputChange = (event)=>{
     setLogin({...login, [event.target.name]: event.target.value})
   }
