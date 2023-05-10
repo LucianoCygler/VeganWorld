@@ -117,7 +117,7 @@ function HomePage() {
             <h1 className={style.h1}>Here, you'll find the best vegan food in town.</h1>
             <div className={style.cardContainer}>
                 {products.map((meal) => (
-                    <NavLink className={style.card} to={`/Detail/${meal.id}`} style={{textDecoration:'none'}}> //Este navlink envolveria la card del producto
+                    <NavLink className={style.card} to={`/Detail/${meal.id}`} style={{textDecoration:'none'}}>
                     <div key={meal.id}  >
                         <img src={meal.image} alt={meal.name} className={style.img} />
                         <div className={style.cardBody}>
