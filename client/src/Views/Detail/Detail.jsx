@@ -5,8 +5,8 @@ import styles from "./Detail.module.css";
 function Detail() {
     return (
         <div className={styles.mainContainer}>
-            <h1>Nombre del producto</h1>
-            <img src="" alt="" />
+            <div>PRUEBA</div>
+            <div>PRUEBA</div>
             <NavLink to="/home" className={styles.link} >
                 {"<"}
             </NavLink>
