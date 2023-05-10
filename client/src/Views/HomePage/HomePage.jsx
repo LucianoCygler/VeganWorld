@@ -1,14 +1,25 @@
 import React from "react";
-// import {useSelector} from "react-redux";
 import style from "./HomePage.module.css"
+import { NavLink } from "react-router-dom";
+// import { useState } from "react";
+import {getAllProducts} from "../../redux/actions/actions"
+import { useDispatch, useSelector } from "react-redux";
+
 import { useState } from "react";
 import Pagination from "../../Components/Pagination/Pagination";
 
 function HomePage() {
-    // const dispatch = useDispatch();
-    // const { products } = useSelector(state => state);
+    const dispatch = useDispatch();
+    const { products } = useSelector(state => state);
+    // const [currentPage, setCurrentPage] = useState(0);
     // const [orderBy, setOrderBy] = useState("name");
     // const [sortBy, setSortBy] = useState("ASC");
+   
+
+    useEffect(()=>{
+        dispatch(getAllProducts())
+    },[])
+
 
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 3;
@@ -125,8 +136,9 @@ function HomePage() {
         <div className={style.body}>
             <h1 className={style.h1}>The best vegan food in town!</h1>
             <div className={style.cardContainer}>
-                {currentItems.map((meal) => (
-                    <div key={meal.id} className={style.card}>
+                {products.map((meal) => (
+                    <NavLink className={style.card} to={`/Detail/${meal.id}`} style={{textDecoration:'none'}}>
+                    <div key={meal.id}  >
                         <img src={meal.image} alt={meal.name} className={style.img} />
                         <div className={style.cardBody}>
                             <h2 className={style.cardTitle}>{meal.name}</h2>
@@ -134,6 +146,7 @@ function HomePage() {
                             <p className={style.cardPrice}>{`$${meal.price}`}</p>
                         </div>
                     </div>
+                    </NavLink>
                 ))}
             </div>
             <Pagination
