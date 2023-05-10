@@ -11,7 +11,7 @@ const AdminModel = require("./models/Admin");
 const ReviewModel = require("./models/Review");
 
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/VeganWorld`,
   {
     logging: false,
     native: false,
