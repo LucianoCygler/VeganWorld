@@ -1,6 +1,5 @@
 const createClient = require("../../controllers/client/createClient");
 const getClientByEmail = require("../../controllers/client/getClientByEmail");
-
 const createClientHandler = async (req, res) => {
   const {
     email,
@@ -37,5 +36,4 @@ const createClientHandler = async (req, res) => {
     res.status(500).send(`${error.message}`);
   }
 };
-
 module.exports = createClientHandler;

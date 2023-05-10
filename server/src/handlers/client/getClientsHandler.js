@@ -1,17 +1,11 @@
 const getAllClients = require("../../controllers/client/getAllClients");
 const getClientByName = require("../../controllers/client/getClientByName");
-const getClientByEmail = require("../../controllers/client/getClientByEmail");
 
 const getClientsHandler = async (req, res) => {
-  const { nombre, email } = req.query;
-
+  const { nombre } = req.query;
   try {
     if (nombre) {
       const client = await getClientByName(nombre);
-      return res.status(200).send(client);
-    }
-    if (email) {
-      const client = await getClientByEmail(email);
       return res.status(200).send(client);
     }
     const allClients = await getAllClients();

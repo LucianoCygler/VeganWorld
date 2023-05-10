@@ -4,6 +4,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { HomePage, LandingPage, Detail, Cart } from "./Views/index";
 import { NavBar } from "./Components/index";
 
+
 function App() {
 
   //************************************* OCULTAR / MOSTRAR NAVBAR *********************************/
