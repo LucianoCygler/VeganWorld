@@ -9,6 +9,7 @@ const initialState = {
     products: [],
     filteredProducts: [],
     cart: [],
+    customerComments : [],
     access: false,
 }
 
@@ -25,7 +26,6 @@ export default function rootReducer (state = initialState, action) {
 
         case STATE_LOGIN:
             return {...state, access: action.payload}
-
         default:
             return
     }

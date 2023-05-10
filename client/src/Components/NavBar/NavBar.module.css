@@ -1,4 +1,9 @@
-.mainDiv {
+/************************************* DIVS ********************************/
+
+.mainContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #fff;
     border: 2px solid #8c00ff;
     box-shadow: 0 0 15px #001aff;
@@ -6,4 +11,36 @@
     max-width: 85%;
     margin-left: 110px;
     margin-top: 5px;
+}
+
+.divLeft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 15px;
+}
+
+.divMid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-right: 15px;
+}
+
+/************************* ELEMENTS *************/
+
+.fontAwesome {
+    transition: transform 0.5s;
+}
+
+.fontAwesome:hover {
+    transform: scaleX(-1);
 }

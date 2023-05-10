@@ -9,7 +9,7 @@ const LoginSignup = () => {
 
 
   /* PUERBA USERNAME Y PASSWORD */
-  const username = "cohorte38";
+  const username = "cohorte36";
   const password = "veganworld"
   /* */
 
@@ -33,7 +33,7 @@ const LoginSignup = () => {
       dispatch(changeStateLogin(true))
       navigate("/Home")
     }else{
-      throw new Error("Error en la información introducida")
+      throw alert("Error en la información introducida")
     }
   }
 
