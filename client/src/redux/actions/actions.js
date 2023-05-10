@@ -2,6 +2,7 @@ import axios from "axios";
 
 import { 
     GET_ALL_PRODUCTS,
+    GET_PRODUCT_BY_ID,
     ADD_CART,
     FILTER_NAME_PRODUCT, 
     FILTER_PRICE_PRODUCT,
@@ -19,6 +20,14 @@ export const getAllProducts = () => {
 		return dispatch({ type: GET_ALL_PRODUCTS, payload: products });
 	};
 };
+
+export const getProductById = (id) =>{
+    return async function (dispatch) {
+        const res = await axios.get(URL_MOCKY);
+        const product = res.data.filter(product => product.id === id)
+        return dispatch({type: GET_PRODUCT_BY_ID, payload: product})
+    }
+}
 
 export const getCustomerComments = () => {
 	return async function (dispatch) {

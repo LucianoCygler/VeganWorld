@@ -1,5 +1,6 @@
 import {
     GET_ALL_PRODUCTS,
+    GET_PRODUCT_BY_ID,
     ADD_CART,
     FILTER_NAME_PRODUCT,
     FILTER_PRICE_PRODUCT,
@@ -10,6 +11,7 @@ import {
 const initialState = {
     products: [],
     filteredProducts: [],
+    product:[],
     cart: [],
     customerComments : [],
     access: false,
@@ -21,6 +23,9 @@ export default function rootReducer (state = initialState, action) {
     switch (action.type){
         case GET_ALL_PRODUCTS:
             return { ...state, products: [...action.payload] };
+        
+        case GET_PRODUCT_BY_ID:
+            return { ...state, product: action.payload };
 
         case ADD_CART:
             return { ...state, cart: [action.payload] };
