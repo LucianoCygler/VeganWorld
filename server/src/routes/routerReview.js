@@ -1,22 +1,20 @@
+const { Router } = require("express");
+const getReviewHandler = require("../handlers/review/getReviewHandler");
+const getOneReviewHandler = require("../handlers/review/getOneReview");
+const createReviewHandler = require("../handlers/review/createReviewHandler");
+const deleteReviewHandler = require("../handlers/review/deleteReviewHandler");
+const updateReviewHandler = require("../handlers/review/updateReviewhandler");
 
-const { Router } = require("express")
-const getReviewHandler = require("../handlers/review/getReviewHandler")
-const getOneReviewHandler = require("../handlers/review/getOneReview")
-const createReviewHandler = require("../handlers/review/ceateReviewHandler")
-const deleteReviewHandler = require("../handlers/review/deleteReviewHandler")
-const updateReviewHandler = require("../handlers/review/updateReviewhandler")
+const reviewRouter = Router();
 
+reviewRouter.get("/", getReviewHandler);
 
-const reviewRouter = Router()
+reviewRouter.get("/:id", getOneReviewHandler);
 
-reviewRouter.get("/",getReviewHandler)
+reviewRouter.post("/", createReviewHandler);
 
-reviewRouter.get("/:id",getOneReviewHandler)
+reviewRouter.delete("/:id", deleteReviewHandler);
 
-reviewRouter.post("/",createReviewHandler)
+reviewRouter.patch("/:id", updateReviewHandler);
 
-reviewRouter.delete("/:id",deleteReviewHandler)
-
-reviewRouter.patch("/:id",updateReviewHandler)
-
-module.exports = reviewRouter
+module.exports = reviewRouter;
