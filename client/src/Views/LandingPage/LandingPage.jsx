@@ -1,7 +1,7 @@
 
 import style from "./LandingPage.module.css"
 import LoginSignup from "../../Components/Form/Login/LoginSignup"
-import CustomerComments from "./Extras/Comments"
+import CustomerComments from "../../Components/Comments/Comments"
 
 
 const LandingPage = ()=>{
@@ -10,10 +10,9 @@ const LandingPage = ()=>{
 
 return (
     <div className= {style.parent}>
+
     <div className= {style.div1}>
-
     "hello"
-
     </div>
 
     <div className={style.div2}>
