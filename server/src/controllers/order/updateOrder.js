@@ -1,6 +1,6 @@
 const { Order } = require("../../db");
 
-const updateOrder = async (importe, productos) => {
+const updateOrder = async (id, importe, productos) => {
   const order = await Order.findOne({ where: { id } });
   if (!order) {
     throw new Error(`No se encontró un order con el id ${id}`);
