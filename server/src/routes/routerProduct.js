@@ -1,14 +1,23 @@
-const { handlerProduct } = require("../handlers")
+
 const { Router } = require("express")
+const getProductsHandler = require("../handlers/product/getProductsHandler")
+const getOneProductHandler = require("../handlers/product/getOneProductHandler")
+const createProductHandler = require("../handlers/product/createProductHandler")
+const deleteProductHandler = require("../handlers/product/deleteProductHandler")
+const putProductHandler = require("../handlers/product/putProductHandler")
 
 
-const product = Router()
+const productRouter = Router()
 
-product.get("/",handlerProduct)
+productRouter.get("/",getProductsHandler)
 
-// products.get("/:id",getProductId)
-// products.post("/",creatProduct)
-// products.put("/:id")
+productRouter.get("/:id",getOneProductHandler)
+
+productRouter.post("/",createProductHandler)
+
+productRouter.delete("/:id",deleteProductHandler)
+
+productRouter.put("/:id",putProductHandler)
 
 
-module.exports = product
+module.exports = productRouter
