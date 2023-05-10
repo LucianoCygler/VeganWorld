@@ -11,9 +11,9 @@ const LandingPage = ()=>{
 
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getCustomerComments())
-    }, [])
+    // useEffect(() => {
+    //     dispatch(getCustomerComments())
+    // }, [])
     
 
 return (
