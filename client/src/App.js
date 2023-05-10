@@ -1,6 +1,5 @@
 import './App.css';
 import { Routes, Route, useLocation } from "react-router-dom";
-// import { useEffect, useState } from 'react';
 import { HomePage, LandingPage, Detail, Cart } from "./Views/index";
 import { NavBar } from "./Components/index";
 
