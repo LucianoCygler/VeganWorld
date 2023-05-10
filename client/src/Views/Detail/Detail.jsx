@@ -6,6 +6,7 @@ function Detail() {
     return (
         <div className={styles.mainContainer}>
             <div>PRUEBA</div>
+            <div>PRUEBA</div>
             <NavLink to="/home" className={styles.link} >
                 {"<"}
             </NavLink>
