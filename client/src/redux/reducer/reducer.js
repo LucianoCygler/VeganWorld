@@ -9,6 +9,7 @@ const initialState = {
     products: [],
     filteredProducts: [],
     cart: [],
+    customerComments : [],
     access: false,
 }
 
