@@ -1,8 +1,21 @@
-const { handlerClient } = require("../handlers");
+const createClientHandler = require("../handlers/client/createClientHandler");
+const deleteClientHandler = require("../handlers/client/deleteClientHandler");
+const getClientsHandler = require("../handlers/client/getClientsHandler");
+const getOneClientHandler = require("../handlers/client/getOneClientHandler");
+const updateClientHandler = require("../handlers/client/updateClientHandler");
+
 const { Router } = require("express");
 
-const client = Router();
+const clientRouter = Router();
 
-client.get("/", handlerClient);
+clientRouter.get("/", getClientsHandler);
 
-module.exports = client;
+clientRouter.get("/:id", getOneClientHandler);
+
+clientRouter.post("/", createClientHandler);
+
+clientRouter.delete("/:id", deleteClientHandler);
+
+clientRouter.patch("/:id", updateClientHandler);
+
+module.exports = clientRouter;

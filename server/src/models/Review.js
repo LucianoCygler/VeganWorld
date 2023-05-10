@@ -1,34 +1,19 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define("Product", {
+  sequelize.define("Review", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    nombre: {
+    titulo: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     descripcion: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    precio: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    stock: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    imagen: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      validate: {
-        isUrl: true,
-      },
     },
   });
 };
