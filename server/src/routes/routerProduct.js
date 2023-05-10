@@ -1,14 +1,24 @@
-const { handlerProduct } = require("../handlers")
+
 const { Router } = require("express")
 
-
-const product = Router()
-
-product.get("/",handlerProduct)
-
-// products.get("/:id",getProductId)
-// products.post("/",creatProduct)
-// products.put("/:id")
+const getProductsHandler = require("../handlers/product/getProductsHandler")
+const getOneProductHandler = require("../handlers/product/getOneProductHandler")
+const createProductHandler = require("../handlers/product/createProductHandler")
+const deleteProductHandler = require("../handlers/product/deleteProductHandler")
+const updateProductHandler = require("../handlers/product/updateProductHandler")
 
 
-module.exports = product
+const productRouter = Router()
+
+productRouter.get("/",getProductsHandler)
+
+productRouter.get("/:id",getOneProductHandler)
+
+productRouter.post("/",createProductHandler)
+
+productRouter.delete("/:id",deleteProductHandler)
+
+productRouter.patch("/:id",updateProductHandler)
+
+
+module.exports = productRouter
