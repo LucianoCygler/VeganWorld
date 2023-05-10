@@ -1,10 +1,11 @@
 
 const { Router } = require("express")
+
 const getProductsHandler = require("../handlers/product/getProductsHandler")
 const getOneProductHandler = require("../handlers/product/getOneProductHandler")
 const createProductHandler = require("../handlers/product/createProductHandler")
 const deleteProductHandler = require("../handlers/product/deleteProductHandler")
-const putProductHandler = require("../handlers/product/putProductHandler")
+const updateProductHandler = require("../handlers/product/updateProductHandler")
 
 
 const productRouter = Router()
@@ -17,7 +18,7 @@ productRouter.post("/",createProductHandler)
 
 productRouter.delete("/:id",deleteProductHandler)
 
-productRouter.put("/:id",putProductHandler)
+productRouter.patch("/:id",updateProductHandler)
 
 
 module.exports = productRouter

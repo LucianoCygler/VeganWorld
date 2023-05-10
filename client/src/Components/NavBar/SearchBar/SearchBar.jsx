@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { filterNameProduct } from "../../../redux/actions/actions";
 import styles from "./SearchBar.module.css";
 
 function SearchBar() {
-    const [ inputValue, setInputValue ] = useState("");
+    const dispatch = useDispatch();
 
-    const handleInputChange = (event) => {
-        setInputValue(event.target.value);
-    }
+    const handleSearch = (event) => {
+        const inputValue = event.target.value;
+        dispatch(filterNameProduct(inputValue));
+    };
 
-    const handleSearch = () => {
-        setInputValue("");
-    }
     return (
         <div className={styles.mainContainer}>
             <div className={styles.divLeft}>
@@ -28,10 +28,7 @@ function SearchBar() {
                 </h1>
             </div>
             <div className={styles.divRight}>
-                <input className={styles.inputClass} type="search" value={inputValue} placeholder="Search a product..." onChange={handleInputChange} />
-                <button className={styles.buttonClass} onClick={handleSearch} >
-                    Search
-                </button>
+                <input className={styles.inputClass} type="search" placeholder="Search a product..." onChange={handleSearch} />
                 <NavLink to="/" className={styles.buttonClass}>
                     Logout
                 </NavLink>
