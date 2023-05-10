@@ -28,16 +28,14 @@ ReviewModel(sequelize);
 const { Client, Product, Order, Factura, Review } = sequelize.models;
 
 Client.hasMany(Order);
-Order.belongsTo(Client, {
-  through: "client_order",
-});
+Order.belongsTo(Client);
 
 Product.belongsToMany(Order, {
   through: "product_order",
 });
 Order.hasMany(Product);
 
-Order.hasOne(Factura);
+Order.belongsTo(Factura);
 Factura.hasOne(Order);
 
 Client.hasMany(Factura);
