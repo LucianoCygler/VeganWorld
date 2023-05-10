@@ -15,7 +15,7 @@ function HomePage() {
 
     useEffect(()=>{
         dispatch(getAllProducts())
-    },[])
+    },[dispatch])
 
     
     const [currentPage, setCurrentPage] = useState(0);
