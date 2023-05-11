@@ -1,15 +1,12 @@
 import style from "./Comments.module.css";
-import { useSelector } from "react-redux";
 
-const CustomerComments = () => {
-  const customerComments = useSelector((state) => state.customerComments);
+const CustomerComments = ({commentsToShow}) => {
 
   return (
     <div className={style.divComments}>
-      {customerComments.map((custom) => {
+      {commentsToShow.map((custom) => {
         return (
           <>
-            <div>{custom.image}</div>
             <div>{custom.comment}</div>
             <div>{custom.nombre}</div>
           </>

@@ -7,6 +7,7 @@ import {
 	FILTER_PRICE_PRODUCT,
 	STATE_LOGIN,
 	COMMENTS_CUSTOMER,
+    SET_PAGE
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -17,7 +18,7 @@ const initialState = {
 	customerComments: [],
 	access: false,
 	currentPage: 0,
-	itemsPerPage: 3,
+	itemsPerPage: 1,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -56,7 +57,10 @@ export default function rootReducer(state = initialState, action) {
 		case COMMENTS_CUSTOMER:
 			return { ...state, customerComments: [...action.payload] };
 
+        case SET_PAGE:
+            return{...state, currentPage: action.payload }
+
 		default:
-			return { ...state };
+			return { ...state};
 	}
 }
