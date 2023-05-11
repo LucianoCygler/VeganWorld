@@ -7,7 +7,11 @@ import {
 	FILTER_PRICE_PRODUCT,
 	STATE_LOGIN,
 	COMMENTS_CUSTOMER,
-    SET_PAGE
+	SET_PAGE,
+	CREATE_ORDER_SUCCESS,
+	CREATE_ORDER_ERROR,
+	GET_ORDERS,
+	GET_ORDER_BY_ID
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -19,6 +23,9 @@ const initialState = {
 	access: false,
 	currentPage: 0,
 	itemsPerPage: 1,
+	orders: [],
+	order: [],
+	success: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -39,7 +46,7 @@ export default function rootReducer(state = initialState, action) {
 		case ADD_CART:
 			if (!state.cart.hasOwnProperty(action.payload.name)) {
 				alert("producto anadido");
-				return { ...state, cart: {...state.cart, [action.payload.name]: action.payload, quanty: action.quanty }};
+				return { ...state, cart: { ...state.cart, [action.payload.name]: action.payload, quantity: action.quantity } };
 			} else {
 				alert("el producto ya esta en el carrito");
 				return { ...state };
@@ -57,10 +64,18 @@ export default function rootReducer(state = initialState, action) {
 		case COMMENTS_CUSTOMER:
 			return { ...state, customerComments: [...action.payload] };
 
-        case SET_PAGE:
-            return{...state, currentPage: action.payload }
+		case SET_PAGE:
+			return { ...state, currentPage: [action.payload] };
+		case CREATE_ORDER_SUCCESS:
+			return { ...state, success: [action.payload] };
+		case CREATE_ORDER_ERROR:
+			return { ...state, success: [action.payload] };
+		case GET_ORDERS:
+			return { ...state, orders: [action.payload] };
+		case GET_ORDER_BY_ID:
+			return { ...state, order: [action.payload] };
 
 		default:
-			return { ...state};
+			return { ...state };
 	}
 }

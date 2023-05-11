@@ -61,7 +61,7 @@ const LoginSignup = () => {
           value={login.username}/>
 
           <input 
-          type="text" 
+          type="password" 
           className={style.input} 
           placeholder="Password" 
           onChange={handleInputChange} 
