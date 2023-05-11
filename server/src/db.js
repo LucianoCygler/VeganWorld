@@ -32,8 +32,12 @@ Order.belongsTo(Client);
 
 Product.belongsToMany(Order, {
   through: "product_order",
+  foreignKey: "product_id",
 });
-Order.hasMany(Product);
+Order.belongsToMany(Product, {
+  through: "product_order",
+  foreignKey: "order_id",
+});
 
 Order.belongsTo(Factura);
 Factura.hasOne(Order);
