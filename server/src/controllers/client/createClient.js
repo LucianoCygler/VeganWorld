@@ -1,4 +1,6 @@
 const { Client } = require("../../db");
+const bcrypt = require("bcrypt");
+
 async function createClient(
   email,
   contraseña,
@@ -10,9 +12,12 @@ async function createClient(
   edad,
   dni
 ) {
+  const saltRounds = 10;
+  const hashedPassword = await bcrypt.hash(contraseña, saltRounds);
+
   const client = await Client.create({
     email,
-    contraseña,
+    contraseña: hashedPassword,
     nombre,
     apellido,
     ciudad,

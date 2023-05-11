@@ -1,9 +1,49 @@
-.mainDiv {
+/************************************* DIVS ********************************/
+
+.mainContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #fff;
     border: 2px solid #8c00ff;
     box-shadow: 0 0 15px #001aff;
     border-radius: 15px;
     max-width: 85%;
     margin-left: 110px;
-    margin-top: 5px;
+    margin-top: 15px;
+    padding: 20px;
+}
+
+.divLeft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 15px;
+}
+
+.divMid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 43%;
+    position: fixed;
+}
+
+.divRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-right: 15px;
+}
+
+/************************* ELEMENTS *************/
+
+.fontAwesome {
+    transition: transform 0.5s;
+}
+
+.fontAwesome:hover {
+    transform: scaleX(-1);
 }

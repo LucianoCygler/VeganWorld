@@ -28,3 +28,35 @@
 }
 
 /************************************* ELEMENTOS **********************************/
+
+.link {
+    text-align: center;
+}
+
+.tittle {
+    font-size: 15px;
+    text-shadow: 0 0 5px #fff;
+}
+
+.inputClass {
+    width: 0;
+    position: relative;
+    opacity: 0;
+    right: 5px;
+    transition: all 0.5s ease;
+}
+
+.inputClass.show{
+    width: 200px;
+    right: 5px;
+    opacity: 1;
+}
+
+.fontAwesome {
+    transition: transform 0.5s;
+}
+
+.fontAwesome:hover {
+    transform: scaleX(-1);
+}
+

@@ -18,20 +18,32 @@ const createClientHandler = async (req, res) => {
       return res
         .status(409)
         .json({ error: "Ya existe un usuario con ese email" });
+    } else if (
+      !client &&
+      email &&
+      contraseña &&
+      nombre &&
+      apellido &&
+      ciudad &&
+      direccion &&
+      telefono &&
+      edad
+    ) {
+      const newClient = await createClient(
+        email,
+        contraseña,
+        nombre,
+        apellido,
+        ciudad,
+        direccion,
+        telefono,
+        edad,
+        dni
+      );
+      res.status(200).send(newClient);
+    } else {
+      return res.status(400).send("Faltan ingresar datos");
     }
-
-    const newClient = await createClient(
-      email,
-      contraseña,
-      nombre,
-      apellido,
-      ciudad,
-      direccion,
-      telefono,
-      edad,
-      dni
-    );
-    res.status(200).send(newClient);
   } catch (error) {
     res.status(500).send(`${error.message}`);
   }
