@@ -14,9 +14,6 @@ function SearchBar() {
         dispatch(filterNameProduct(inputValue));
     }
 
-    const handleSearch = () => {
-        setInputValue("");
-    }
     return (
         <div className={styles.mainContainer}>
             <nav>
