@@ -29,6 +29,7 @@ export const getAllProducts = () => {
             alert(error.message);
         }
     };
+
 };
 
 export const getProductById = (id) => {
