@@ -1,6 +1,5 @@
 
 import style from "./LandingPage.module.css"
-import LoginSignup from "../../Components/Form/Login/LoginSignup"
 import CustomerComments from "../../Components/Comments/Comments"
 import { getCustomerComments, changePage } from "../../redux/actions/actions"
 import { useDispatch, useSelector } from "react-redux"
@@ -49,7 +48,7 @@ return (
     </div>
 
     <div className={style.div3}>
-        <LoginSignup/>
+        
     </div>
 
     <div className={style.div4}>
