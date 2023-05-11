@@ -1,7 +1,7 @@
 const { Product } = require("../../db");
 
-const orderProductByName = (nombre, allProducts) => {
-  return nombre;
+const orderProductByName = (nombreOrder, orderedProduct) => {
+  return nombreOrder;
 };
 
 module.exports = orderProductByName;

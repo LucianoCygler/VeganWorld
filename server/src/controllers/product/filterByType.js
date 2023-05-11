@@ -1,6 +1,6 @@
 const { Product } = require("../../db");
 
-const orderProductByTipo = (tipo, allProducts) => {
+const orderProductByTipo = (tipo, orderedProduct) => {
   return tipo;
 };
 
