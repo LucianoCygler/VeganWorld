@@ -2,11 +2,14 @@ import axios from "axios";
 
 import { 
     GET_ALL_PRODUCTS,
+    GET_PRODUCT_BY_ID,
+    CLEAN_DETAIL,
     ADD_CART,
     FILTER_NAME_PRODUCT, 
     FILTER_PRICE_PRODUCT,
     STATE_LOGIN,
-    COMMENTS_CUSTOMER
+    COMMENTS_CUSTOMER,
+    SET_PAGE
 } from "./Types/Types";
 
 const URL_MOCKY  = "https://run.mocky.io/v3/5c43f655-9150-4673-a3fe-387e9f1d03b1"
@@ -20,6 +23,17 @@ export const getAllProducts = () => {
 	};
 };
 
+export const getProductById = (id) =>{
+    return async function (dispatch) {
+        const res = await axios.get(URL_MOCKY);
+        const product = res.data.filter(product => product.id == id)
+        return dispatch({type: GET_PRODUCT_BY_ID, payload: product})
+    }
+}
+
+export const cleanDetail = () => ({type: CLEAN_DETAIL})
+
+
 export const getCustomerComments = () => {
 	return async function (dispatch) {
 		const res = await axios.get(URL_COMMENTS);
@@ -29,9 +43,10 @@ export const getCustomerComments = () => {
 	};
 };
 
-export const addCartProduct = (product) => ({
+export const addCartProduct = (product, quanty) => ({
     type: ADD_CART,
-    payload: product
+    payload: product,
+    quanty: quanty 
 });
 
 export const filterNameProduct = (product) => ({
@@ -46,5 +61,10 @@ export const filterPriceProduct = (product) => ({
 
 export const changeStateLogin = (boolean) => {
     return { type: STATE_LOGIN, payload: boolean}
+}
+
+
+export const changePage = (number)=>{
+    return { type: SET_PAGE, payload: number}
 }
 

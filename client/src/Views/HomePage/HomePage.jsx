@@ -15,11 +15,13 @@ function HomePage() {
 
     useEffect(()=>{
         dispatch(getAllProducts())
-    },[])
+    },[dispatch])
 
-
+    
     const [currentPage, setCurrentPage] = useState(0);
+
     const itemsPerPage = 3;
+
     const startIndex = currentPage * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const currentItems = products.slice(startIndex, endIndex);
