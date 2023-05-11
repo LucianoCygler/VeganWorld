@@ -3,6 +3,7 @@ import axios from "axios";
 import { 
     GET_ALL_PRODUCTS,
     GET_PRODUCT_BY_ID,
+    CLEAN_DETAIL,
     ADD_CART,
     FILTER_NAME_PRODUCT, 
     FILTER_PRICE_PRODUCT,
@@ -24,10 +25,13 @@ export const getAllProducts = () => {
 export const getProductById = (id) =>{
     return async function (dispatch) {
         const res = await axios.get(URL_MOCKY);
-        const product = res.data.filter(product => product.id === id)
+        const product = res.data.filter(product => product.id == id)
         return dispatch({type: GET_PRODUCT_BY_ID, payload: product})
     }
 }
+
+export const cleanDetail = () => ({type: CLEAN_DETAIL})
+
 
 export const getCustomerComments = () => {
 	return async function (dispatch) {
@@ -38,9 +42,10 @@ export const getCustomerComments = () => {
 	};
 };
 
-export const addCartProduct = (product) => ({
+export const addCartProduct = (product, quanty) => ({
     type: ADD_CART,
-    payload: product
+    payload: product,
+    quanty: quanty 
 });
 
 export const filterNameProduct = (product) => ({
