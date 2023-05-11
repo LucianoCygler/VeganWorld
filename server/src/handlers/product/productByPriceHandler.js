@@ -1,4 +1,4 @@
-const orderProductByTipo = require("../../controllers/product/filterByType");
+const orderProductByTipo = require("../../controllers/product/filterProductByType");
 const orderProductByPrice = require("../../controllers/product/orderProductByPrice");
 const orderProductByName = require("../../controllers/product/orderProductByName");
 const getAllProducts = require("../../controllers/product/getAllProducts");
