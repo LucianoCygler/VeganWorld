@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { getAllProducts } from "../../redux/actions/actions"
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import Pagination from "../../Components/Pagination/Pagination";
+import { Pagination } from "../../Components/index";
 
 function HomePage() {
     const dispatch = useDispatch();
