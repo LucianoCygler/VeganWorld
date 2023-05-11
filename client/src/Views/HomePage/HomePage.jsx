@@ -3,8 +3,7 @@ import style from "./HomePage.module.css"
 import { getAllProducts } from "../../redux/actions/actions"
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import Pagination from "../../Components/Pagination/Pagination";
-import Products from "../../Components/Products/Products";
+import { Pagination } from "../../Components/index";
 
 function HomePage() {
     const dispatch = useDispatch();
