@@ -8,7 +8,8 @@ import {
     FILTER_NAME_PRODUCT, 
     FILTER_PRICE_PRODUCT,
     STATE_LOGIN,
-    COMMENTS_CUSTOMER
+    COMMENTS_CUSTOMER,
+    SET_PAGE
 } from "./Types/Types";
 
 const URL_MOCKY  = "https://run.mocky.io/v3/5c43f655-9150-4673-a3fe-387e9f1d03b1"
@@ -60,5 +61,10 @@ export const filterPriceProduct = (product) => ({
 
 export const changeStateLogin = (boolean) => {
     return { type: STATE_LOGIN, payload: boolean}
+}
+
+
+export const changePage = (number)=>{
+    return { type: SET_PAGE, payload: number}
 }
 
