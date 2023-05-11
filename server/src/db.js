@@ -50,6 +50,9 @@ Factura.belongsTo(Client);
 Product.hasMany(Review);
 Review.belongsTo(Product);
 
+Client.hasMany(Review);
+Review.belongsTo(Client);
+
 module.exports = {
   ...sequelize.models,
 
