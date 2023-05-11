@@ -9,7 +9,9 @@ const getClientCheckedHandler = async (req, res) => {
       else if (!client)
         return res
           .status(400)
-          .send("Dirección de correo electrónico desconocida");
+          .send(
+            "Dirección de correo electrónico desconocida o contraseña incorrecta"
+          );
     } else {
       return res.status(400).send("Faltan ingresar datos");
     }
