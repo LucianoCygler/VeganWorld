@@ -1,6 +1,7 @@
 import {
     GET_ALL_PRODUCTS,
     GET_PRODUCT_BY_ID,
+    CLEAN_DETAIL,
     ADD_CART,
     FILTER_NAME_PRODUCT,
     FILTER_PRICE_PRODUCT,
@@ -25,10 +26,13 @@ export default function rootReducer (state = initialState, action) {
             return { ...state, products: [...action.payload] };
         
         case GET_PRODUCT_BY_ID:
-            return { ...state, product: action.payload };
+            return { ...state, product: [...action.payload] };
+
+        case CLEAN_DETAIL:
+            return {...state, product: []}
 
         case ADD_CART:
-            return { ...state, cart: [action.payload] };
+            return { ...state, cart: [...state.cart, action.payload] };
         
         case FILTER_NAME_PRODUCT:
             return { ...state, filteredProducts: [...action.payload]};
