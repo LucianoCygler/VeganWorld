@@ -33,10 +33,12 @@ Order.belongsTo(Client);
 Product.belongsToMany(Order, {
   through: "product_order",
   foreignKey: "product_id",
+  as: "orders",
 });
 Order.belongsToMany(Product, {
   through: "product_order",
   foreignKey: "order_id",
+  as: "products",
 });
 
 Order.belongsTo(Factura);

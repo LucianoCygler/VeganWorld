@@ -6,10 +6,18 @@ async function createOrder(importe, cliente_id, productos) {
 
   const direccion = await getDireccion(cliente_id);
 
+  const productosNames = await Promise.all(
+    productos.map(async (productoID) => {
+      const productDB = await Product.findOne({ where: { id: productoID } });
+      return productDB.nombre;
+    })
+  );
+
   const order = await Order.create({
     importe,
     fecha,
     direccion,
+    productos: productosNames,
   });
 
   await order.setClient(cliente_id);

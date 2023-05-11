@@ -19,6 +19,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      productos: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false,
+      },
 
       importe: {
         type: DataTypes.DECIMAL(10, 2),
