@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import style from "./HomePage.module.css"
-import { NavLink } from "react-router-dom";
 import { getAllProducts } from "../../redux/actions/actions"
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
@@ -35,20 +34,7 @@ function HomePage() {
     return (
         <div className={style.body}>
             <h1 className={style.h1}>The best vegan food in town!</h1>
-            <div className={style.cardContainer}>
-                {currentItems.map((meal) => (
-                    <NavLink className={style.card} to={`/Detail/${meal.id}`} style={{textDecoration:'none'}}>
-                    <div key={meal.id}  >
-                        <img src={meal.image} alt={meal.name} className={style.img} />
-                        <div className={style.cardBody}>
-                            <h2 className={style.cardTitle}>{meal.name}</h2>
-                            <p className={style.cardDescription}>{meal.description}</p>
-                            <p className={style.cardPrice}>{`$${meal.price}`}</p>
-                        </div>
-                    </div>
-                    </NavLink>
-                ))}
-            </div>
+            <Products currentItems={currentItems} />
             <Pagination
                 goToPrevPage={() => setCurrentPage(currentPage - 1)}
                 goToNextPage={() => setCurrentPage(currentPage + 1)}
