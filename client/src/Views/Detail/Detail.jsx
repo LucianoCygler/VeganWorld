@@ -27,22 +27,22 @@ function Detail() {
 
 	return (
 		<>
-			{product?.name ? (
+			{product?.nombre ? (
 				<div
 					className={styles.mainContainer}
 					style={{ backgroundColor: "rgba(42, 66, 49, 0.5)" }}
 				>
-					<h1>{product.name}</h1>
+					<h1>{product.nombre}</h1>
 					<img
-						src={product.image}
-						alt={product.name}
+						src={product.imagen}
+						alt={product.nombre}
 						style={{ maxWidth: "300px" }}
 					/>
 
 					<div>&#11088;&#11088;&#11088;&#11088;&#11088;</div>
-					<p>{product.description}</p>
+					<p>{product.descripcion}</p>
 					<div>
-						Precio unitario: <span>${product.price}</span>
+						Precio unitario: <span>${product.precio}</span>
 					</div>
 					<div>Precio al mayor:</div>
 					<div>
