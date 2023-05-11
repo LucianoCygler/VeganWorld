@@ -1,26 +1,30 @@
-const {
-  orderProductByPrice,
-  orderProductByTipo,
-  orderProductByName,
-} = require("../../controllers/product/orderByPriceProduct");
+const orderProductByTipo = require("../../controllers/product/filterProductByType");
+const orderProductByPrice = require("../../controllers/product/orderProductByPrice");
+const orderProductByName = require("../../controllers/product/orderProductByName");
+const getAllProducts = require("../../controllers/product/getAllProducts");
 
-const orderProductHandler = async (req, res) => {
-  const { precio, tipo, nombre } = req.query;
+const orderFilterProductHandler = async (req, res) => {
+  //        asc o des -  ?   - asc o desc
+  const { precioOrder, tipo, nombreOrder } = req.query;
+  const orderedProduct = await getAllProducts();
+  console.log(precioOrder);
+  console.log(orderedProduct);
+
   try {
-    if (precio) {
-      const orderedProduct = await orderProductByPrice(precio);
-      return res.send(orderedProduct);
-    }
     if (tipo) {
-      const orderedProduct = await orderProductByTipo(tipo);
-      return res.send(orderedProduct);
+      orderedProduct = await orderProductByTipo(tipo, orderedProduct);
     }
-    if (nombre) {
-      const orderedProduct = await orderProductByName(nombre);
-      return res.send(orderedProduct);
+    if (precioOrder) {
+      orderedProduct = await orderProductByPrice(precioOrder, orderedProduct);
     }
+
+    if (nombreOrder) {
+      orderedProduct = await orderProductByName(nombreOrder, orderedProduct);
+    }
+
+    res.status(200).send(orderedProduct);
   } catch (error) {
     res.status(500).send(`${error.message}`);
   }
 };
-module.exports = orderProductHandler;
+module.exports = orderFilterProductHandler;
