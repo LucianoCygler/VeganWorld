@@ -42,9 +42,10 @@ export const getCustomerComments = () => {
 	};
 };
 
-export const addCartProduct = (product) => ({
+export const addCartProduct = (product, quanty) => ({
     type: ADD_CART,
-    payload: product
+    payload: product,
+    quanty: quanty 
 });
 
 export const filterNameProduct = (product) => ({
