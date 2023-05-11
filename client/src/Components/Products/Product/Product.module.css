@@ -1,0 +1,39 @@
+/********************************** DIVS **********************/
+
+.mainContainer {
+    /* color: #04ffff; */
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px 3px #5e9a22;
+    width: auto;
+    height: 100%;
+    margin: 5px 20px;
+    max-width: 1000px;
+    background-color: #b9db9a;
+    border: 2px solid #74af31;
+}
+
+.favoriteContainer {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    background-color: rgb(0, 0, 0, 0);
+}
+
+/************************************ ELEMENTS **********************************/
+
+.image {
+    width: 75%;
+    padding: 1px;
+    object-fit: cover;
+    margin: 1px;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0px 0px 15px #e757ec;
+}
+
+.subtittle {
+    text-align: center;
+    overflow: hidden;
+    cursor: pointer;
+}
