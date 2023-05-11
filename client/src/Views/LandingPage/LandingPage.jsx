@@ -2,20 +2,39 @@
 import style from "./LandingPage.module.css"
 import LoginSignup from "../../Components/Form/Login/LoginSignup"
 import CustomerComments from "../../Components/Comments/Comments"
-import { getCustomerComments } from "../../redux/actions/actions"
-import { useDispatch } from "react-redux"
+import { getCustomerComments, changePage } from "../../redux/actions/actions"
+import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import logo from "./img/logo4.png"
 
 
 const LandingPage = ()=>{
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const currentPage = useSelector((state)=> state.currentPage)
+    const itemsPerPage = useSelector((state)=> state.itemsPerPage)
+    const customerComments = useSelector((state)=> state.customerComments)
+
+    const start = currentPage * itemsPerPage;
+    const end = start + itemsPerPage;
+
+    const commentsToShow = customerComments.slice(start, end);
+
 
     useEffect(() => {
         dispatch(getCustomerComments())
     }, [])
     
+
+
+    const handlePagePrev = ()=>{
+        dispatch(changePage(currentPage-1))
+    }
+    
+    const handlePageNext = ()=>{
+        dispatch(changePage(currentPage+1))
+    }
+
 
 return (
     <div className= {style.parent}>
@@ -24,7 +43,9 @@ return (
     VEGAN WORLD
     </div>
     <div className={style.div2}>
-        <CustomerComments/>
+        <button onClick={handlePagePrev} disabled={currentPage === 0}>{"<-"}</button>
+        <CustomerComments commentsToShow = {commentsToShow}/>
+        <button onClick={handlePageNext} disabled={end > customerComments.length - 1}>{"->"}</button>
     </div>
 
     <div className={style.div3}>
