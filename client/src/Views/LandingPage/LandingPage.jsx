@@ -1,7 +1,7 @@
 
 import style from "./LandingPage.module.css"
 import CustomerComments from "../../Components/Comments/Comments"
-import { getCustomerComments, changePage } from "../../redux/actions/actions"
+import { changePage } from "../../redux/actions/actions"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import logo from "./img/logo4.png"
@@ -20,10 +20,6 @@ const LandingPage = ()=>{
     const commentsToShow = customerComments.slice(start, end);
 
 
-    useEffect(() => {
-        dispatch(getCustomerComments())
-    }, [])
-    
 
 
     const handlePagePrev = ()=>{
