@@ -13,8 +13,6 @@ productRouter.get("/", getProductsHandler);
 
 productRouter.get("/:id", getOneProductHandler);
 
-productRouter.get("/orderAndFilters", orderFilterProductHandler);
-
 productRouter.post("/", createProductHandler);
 
 productRouter.delete("/:id", deleteProductHandler);
