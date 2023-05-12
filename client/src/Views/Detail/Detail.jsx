@@ -12,13 +12,14 @@ function Detail() {
 	const { id } = useParams();
 
 	const dispatch = useDispatch();
+	
 	const [product] = useSelector((state) => state.product);
 
-    const [quantity , setQuantity] = useState(1)
+	const [quantity, setQuantity] = useState(1);
+
 	const handleClick = () => dispatch(addCartProduct(product, quantity));
 
-    const handleChange = (event) => setQuantity(event.target.value);
-
+	const handleChange = (event) => setQuantity(event.target.value);
 
 	useEffect(() => {
 		dispatch(getProductById(id));
@@ -56,7 +57,16 @@ function Detail() {
 						<button>Ir al carrito</button>
 					</NavLink>
 
-          <input type="number" name="quantity" id="" style={{width:'3rem'}} value={quantity} min={1} max={10} onChange={handleChange}/>
+					<input
+						type="number"
+						name="quantity"
+						id=""
+						style={{ width: "3rem" }}
+						value={quantity}
+						min={1}
+						max={10}
+						onChange={handleChange}
+					/>
 
 					<button onClick={handleClick}>Añade al carrito</button>
 				</div>
