@@ -1,11 +1,54 @@
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getClientOrders } from "../../redux/actions/actions";
+import OrderDetail from "../../Components/OrderDetail/OrderDetail";
+import "./MyOrders.css";
 
+const MyOrders = () => {
+  const clientOrders = useSelector((state) => state.clientOrders);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const dispatch = useDispatch();
 
-const MyOrders = ()=>{
-    return (
+  useEffect(() => {
+    const client_id = 2;
+    dispatch(getClientOrders(client_id));
+  }, [dispatch]);
+
+  const showPopupHandler = (order) => {
+    setSelectedOrder(order);
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setSelectedOrder(null);
+    setIsPopupOpen(false);
+  };
+
+  return (
+    <>
+      <h1>Aquí se muestran las órdenes del cliente logueado</h1>
+      <div className="orders-container">
+        {clientOrders?.map((order, index) => (
+          <div
+            key={index}
+            className="order-card"
+            onClick={() => showPopupHandler(order)}
+          >
+            <p>Pedido {index + 1}</p>
+          </div>
+        ))}
+      </div>
+      {isPopupOpen && (
         <>
-            <h1>Aca se muestran las Orders del cliente logeaedo</h1>
+          <div className="overlay" onClick={closePopup} />
+          <div className="popup-container">
+            <OrderDetail order={selectedOrder} closePopup={closePopup} />
+          </div>
         </>
-    );
-}
+      )}
+    </>
+  );
+};
 
 export default MyOrders;

@@ -11,7 +11,7 @@ import {
   GET_CUSTOMER_COMMENTS,
   SET_PAGE,
   CREATE_ORDER,
-  GET_ORDERS,
+  GET_CLIENT_ORDERS,
   GET_ORDER_BY_ID,
   VALIDATE_LOGIN,
   REGISTER_USER,
@@ -30,7 +30,8 @@ import {
   CREATE_FAVORITE,
   DELETE_FAVORITE,
   DROP_PRODUCT,
-  GET_CLIENT_ORDERS,
+
+  
 
 } from "./Types/Types";
 
@@ -80,7 +81,7 @@ export const addCartProduct = (product, quantity) => ({
   quantity: quantity,
 });
 
-export const dropProduct = (id)=>({type: DROP_PRODUCT, payload: id})
+export const dropProduct = (id) => ({ type: DROP_PRODUCT, payload: id });
 
 export const filterNameProduct = (product) => ({
   type: FILTER_NAME_PRODUCT,

@@ -7,12 +7,16 @@ import {
   FILTER_PRICE_PRODUCT,
   STATE_LOGIN,
   SET_PAGE,
-  CREATE_ORDER,
-  GET_ORDERS,
+
+
+  GET_CLIENT_ORDERS,
   GET_ORDER_BY_ID,
   GET_CUSTOMER_COMMENTS,
-	DROP_PRODUCT,
+  CREATE_ORDER,
+  DROP_PRODUCT,
+  DELETE_ORDER,
   GET_CLIENT_REVIEWS,
+
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -28,7 +32,9 @@ const initialState = {
   order: {},
   success: [],
   user: {},
+  clientOrders: [],
   reviews: [],
+
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -51,30 +57,36 @@ export default function rootReducer(state = initialState, action) {
     case CLEAN_DETAIL:
       return { ...state, product: [] };
 
-      case ADD_CART:
-        if (!state.cart.hasOwnProperty(action.payload.nombre)) {
-          alert("producto anadido");
-          return {
-            ...state,
-            cart: [...state.cart,
-              {
-                [action.payload.nombre]: {
-                  id: action.payload.id,
-                  precio: action.payload.precio,
-                  cantidad: action.quantity,
-                  importe: action.payload.precio * action.quantity,
-                  imagen: action.payload.imagen
-                },
+    case ADD_CART:
+      if (!state.cart.hasOwnProperty(action.payload.nombre)) {
+        alert("producto anadido");
+        return {
+          ...state,
+          cart: [
+            ...state.cart,
+            {
+              [action.payload.nombre]: {
+                id: action.payload.id,
+                precio: action.payload.precio,
+                cantidad: action.quantity,
+                importe: action.payload.precio * action.quantity,
+                imagen: action.payload.imagen,
               },
-            ],
-          };
-        } else {
-          alert("el producto ya esta en el carrito");
-          return { ...state };
-        }
-  
-      case DROP_PRODUCT:
-        return {...state, cart: state.cart.filter(product => Object.values(product)[0].id !== action.payload )}
+            },
+          ],
+        };
+      } else {
+        alert("el producto ya esta en el carrito");
+        return { ...state };
+      }
+
+    case DROP_PRODUCT:
+      return {
+        ...state,
+        cart: state.cart.filter(
+          (product) => Object.values(product)[0].id !== action.payload
+        ),
+      };
 
     case FILTER_NAME_PRODUCT:
       return { ...state, filteredProducts: [...action.payload] };
@@ -90,14 +102,25 @@ export default function rootReducer(state = initialState, action) {
 
     case SET_PAGE:
       return { ...state, currentPage: [action.payload] };
+
     case CREATE_ORDER:
       return { ...state, success: [action.payload] };
-    //case CREATE_ORDER_ERROR:
-    //  return { ...state, success: [action.payload] };
-    case GET_ORDERS:
-      return { ...state, orders: [action.payload] };
+
+    case GET_CLIENT_ORDERS:
+      return { ...state, clientOrders: action.payload };
+
     case GET_ORDER_BY_ID:
       return { ...state, order: [action.payload] };
+
+    case DELETE_ORDER:
+      const orderId = action.payload;
+      const updatedOrders = state.clientOrders.filter(
+        (order) => order.id !== orderId
+      );
+      return {
+        ...state,
+        clientOrders: updatedOrders,
+      };
 
     default:
       return { ...state };
