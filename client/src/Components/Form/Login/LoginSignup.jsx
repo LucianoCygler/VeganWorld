@@ -20,8 +20,8 @@ const LoginSignup = () => {
 
 
   const [login, setLogin] = useState({
-    username : "",
-    password : ""
+    email : "",
+    contraseña : ""
   })
 
   const handleInputChange = (event)=>{
@@ -44,17 +44,15 @@ const LoginSignup = () => {
   
     try {
       const verified = await axios.post("http://localhost:3001/client/checkclient/", login)
-      console.log(verified);
-      if (verified) {
-        navigate("/Home")
+      const verifydata =verified.data
+
+      if (verifydata) {
+        navigate("/")
       }
     } catch (error) {
-      alert(error.response.data.error);
+      alert(error.response.error);
     }
-      
-
-
-
+  
   }
 
 
@@ -73,7 +71,7 @@ const LoginSignup = () => {
           className={style.input} 
           placeholder="Username" 
           onChange={handleInputChange} 
-          name="username"
+          name="email"
           value={login.username}/>
 
           <input 
@@ -81,7 +79,7 @@ const LoginSignup = () => {
           className={style.input} 
           placeholder="Password" 
           onChange={handleInputChange} 
-          name="password"
+          name="contraseña"
           value={login.password}/>
 
           <button className={style.btn} onClick={handleButtonAccess}>Login</button>
