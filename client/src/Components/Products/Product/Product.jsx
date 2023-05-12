@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Product.module.css";
 
-function Product ({ name, image, price, stock, description, id}) {
+function Product ({ nombre, imagen, precio, stock, descripcion, id}) {
     const [isFav, setIsFav] = useState(false);
-    const product = { name, image, price, stock, description, id };
+    const product = { nombre, imagen, precio, stock, descripcion, id };
 
     const handleFavorite = () => {
         if(isFav) {
@@ -31,11 +31,11 @@ function Product ({ name, image, price, stock, description, id}) {
                     </div>
                 )}
                 <NavLink className={styles.card} to={`/Detail/${product.id}`} style={{textDecoration:'none'}}>
-                    <h2 className={styles.subtittle}>{product.name}</h2>
-                    <img className={styles.image} src={product.image} alt={product.name} />
+                    <h2 className={styles.subtitle}>{product.nombre}</h2>
+                    <img className={styles.image} src={product.imagen} alt={product.nombre} />
                     <h2 className={styles.subtittle}>{product.stock}</h2>
-                    <h2 className={styles.subtittle}>{product.price}</h2>
-                    <h2 className={styles.subtittle}>{product.description}</h2>
+                    <h2 className={styles.subtitle}>{product.precio}</h2>
+                    <h2 className={styles.subtitle}>{product.descripcion}</h2>
                 </NavLink>
             </div> 
         </div>

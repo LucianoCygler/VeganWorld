@@ -34,6 +34,7 @@ function HomePage() {
                 goToNextPage={() => setCurrentPage(currentPage + 1)}
                 goToPage={(page) => setCurrentPage(page)}
                 currentPage={currentPage}
+                lastPage={totalPages}
             />
         </div>
     );

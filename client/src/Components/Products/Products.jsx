@@ -7,10 +7,10 @@ function Products ({ currentItems }) {
 
     return (
         <div className={styles.mainContainer}>
-            {product.length && product.map(({ name, id, description, stock, price, image }) => {
+            {product.length && product.map(({ nombre, id, descripcion, stock, precio, imagen }) => {
                 return (
                     <div className={styles.cardContainer} key={id}>
-                        <Product id={id} name={name} description={description} stock={stock} price={price} image={image} />
+                        <Product id={id} nombre={nombre} descripcion={descripcion} stock={stock} precio={precio} imagen={imagen} />
                     </div>
                 )
             })}
