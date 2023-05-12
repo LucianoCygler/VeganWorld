@@ -9,6 +9,9 @@ const OrderModel = require("./models/Order");
 const FacturaModel = require("./models/Factura");
 const AdminModel = require("./models/Admin");
 const ReviewModel = require("./models/Review");
+const FavoriteModel = require("./models/Favorite");
+const PageReviewModel = require("./models/PageReview");
+
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/VeganWorld`,
@@ -24,8 +27,12 @@ OrderModel(sequelize);
 FacturaModel(sequelize);
 AdminModel(sequelize);
 ReviewModel(sequelize);
+FavoriteModel(sequelize);
+PageReviewModel(sequelize);
 
-const { Client, Product, Order, Factura, Review } = sequelize.models;
+const { Client, Product, Order, Factura, Review, PageReview ,Favorite} =
+  sequelize.models;
+
 
 Client.hasMany(Order);
 Order.belongsTo(Client);
@@ -52,6 +59,17 @@ Review.belongsTo(Product);
 
 Client.hasMany(Review);
 Review.belongsTo(Client);
+
+
+Client.hasMany(Favorite);
+Favorite.belongsTo(Client);
+
+Product.hasMany(Favorite);
+Favorite.belongsTo(Product);
+
+Client.hasMany(PageReview);
+PageReview.belongsTo(Client);
+
 
 module.exports = {
   ...sequelize.models,
