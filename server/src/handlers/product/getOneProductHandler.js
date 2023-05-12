@@ -8,6 +8,10 @@ const getOneProductHandler = async (req, res) => {
       return;
     }
     const product = await getOneProduct(id);
+    if (!product)
+      throw new Error(
+        `El producto id ${id} no se encontró en la base de datos`
+      );
     res.status(200).send(product);
   } catch (error) {
     res.status(500).send(`${error.message}`);

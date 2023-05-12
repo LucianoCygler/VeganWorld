@@ -1,14 +1,17 @@
-const {Router} = require("express")
-const getAllFavoriteHandler = require("../handlers/favorite/getAllFavoriteHandler")
-const createFavoriteHandler = require("../handlers/favorite/createFavoriteHandler")
-const deleteFavoriteHandler = require("../handlers/favorite/deleteFavoriteHandler")
+const { Router } = require("express");
+const getAllFavoriteHandler = require("../handlers/favorite/getAllFavoriteHandler");
+const createFavoriteHandler = require("../handlers/favorite/createFavoriteHandler");
+const deleteFavoriteHandler = require("../handlers/favorite/deleteFavoriteHandler");
+const getClientFavoritesHandler = require("../handlers/favorite/getClientFavoritesHandler");
 
-const favoriteRouter = Router()
+const favoriteRouter = Router();
 
-favoriteRouter.get("/",getAllFavoriteHandler)
+favoriteRouter.get("/", getAllFavoriteHandler);
 
-favoriteRouter.post("/",createFavoriteHandler)
+favoriteRouter.post("/", createFavoriteHandler);
 
-favoriteRouter.delete("/:id",deleteFavoriteHandler)
+favoriteRouter.delete("/:id", deleteFavoriteHandler);
 
-module.exports =  favoriteRouter
+favoriteRouter.get("/client/:id", getClientFavoritesHandler);
+
+module.exports = favoriteRouter;
