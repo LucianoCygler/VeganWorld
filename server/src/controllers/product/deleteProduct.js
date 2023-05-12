@@ -1,12 +1,12 @@
 const { Product } = require("../../db");
 
- const  deleteProduct = async(id) => {
+const deleteProduct = async (id) => {
   const product = await Product.findOne({ where: { id } });
   if (!product) {
-    throw new Error(`No se encontró product con el id ${id}`);
+    throw new Error(`Product with the ID ${id} was not found.`);
   }
   await product.destroy();
-  return `El Producto con el id ${id} fue eliminado correctamente`;
-}
+  return `The product with ID ${id} was successfully deleted`;
+};
 
 module.exports = deleteProduct;

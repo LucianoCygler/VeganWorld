@@ -11,7 +11,7 @@ const createFavorite = async (client_id, product_id) => {
     await favorite.setClient(client_id);
     await favorite.setProduct(product_id);
     return favorite;
-  } else throw new Error("El id del cliente o del producto es erroneo");
+  } else throw new Error("The ID of the customer or the product is incorrect.");
 };
 
 module.exports = createFavorite;
