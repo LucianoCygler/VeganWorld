@@ -31,11 +31,11 @@ function Product ({ nombre, imagen, precio, stock, descripcion, id}) {
                     </div>
                 )}
                 <NavLink className={styles.card} to={`/Detail/${product.id}`} style={{textDecoration:'none'}}>
-                    <h2 className={styles.subtittle}>{product.nombre}</h2>
-                    <img className={styles.imagen} src={product.imagen} alt={product.nombre} />
+                    <h2 className={styles.subtitle}>{product.nombre}</h2>
+                    <img className={styles.image} src={product.imagen} alt={product.nombre} />
                     <h2 className={styles.subtittle}>{product.stock}</h2>
-                    <h2 className={styles.subtittle}>{product.precio}</h2>
-                    <h2 className={styles.subtittle}>{product.descripcion}</h2>
+                    <h2 className={styles.subtitle}>{product.precio}</h2>
+                    <h2 className={styles.subtitle}>{product.descripcion}</h2>
                 </NavLink>
             </div> 
         </div>
