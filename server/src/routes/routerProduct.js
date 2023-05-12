@@ -7,7 +7,6 @@ const getOneProductHandler = require("../handlers/product/getOneProductHandler")
 const createProductHandler = require("../handlers/product/createProductHandler");
 const deleteProductHandler = require("../handlers/product/deleteProductHandler");
 const updateProductHandler = require("../handlers/product/updateProductHandler");
-const orderFilterProductHandler = require("../handlers/product/productByPriceHandler");
 
 productRouter.get("/", getProductsHandler);
 

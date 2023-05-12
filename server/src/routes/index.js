@@ -17,7 +17,7 @@ router.use("/client", clientRouter);
 router.use("/product", productRouter);
 router.use("/order", orderRouter);
 router.use("/factura", facturaRouter);
-router.use("/favorite",favoriteRouter);
+router.use("/favorite", favoriteRouter);
 router.use("/pagereview", pageReviewRouter);
 
 module.exports = router;
