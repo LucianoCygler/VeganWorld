@@ -6,16 +6,13 @@ import {
   FILTER_NAME_PRODUCT,
   FILTER_PRICE_PRODUCT,
   STATE_LOGIN,
-  COMMENTS_CUSTOMER,
   SET_PAGE,
-  CREATE_ORDER_SUCCESS,
-  CREATE_ORDER_ERROR,
+  CREATE_ORDER,
   GET_ORDERS,
   GET_ORDER_BY_ID,
   GET_CUSTOMER_COMMENTS,
-  CREATE_ORDER,
 	DROP_PRODUCT,
-
+  GET_CLIENT_REVIEWS,
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -31,10 +28,16 @@ const initialState = {
   order: {},
   success: [],
   user: {},
+  reviews: [],
 };
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
+    case GET_CLIENT_REVIEWS:
+      return {
+        ...state,
+        reviews: [...action.payload],
+      };
     case GET_ALL_PRODUCTS:
       return {
         ...state,
@@ -89,8 +92,8 @@ export default function rootReducer(state = initialState, action) {
       return { ...state, currentPage: [action.payload] };
     case CREATE_ORDER:
       return { ...state, success: [action.payload] };
-    case CREATE_ORDER_ERROR:
-      return { ...state, success: [action.payload] };
+    //case CREATE_ORDER_ERROR:
+    //  return { ...state, success: [action.payload] };
     case GET_ORDERS:
       return { ...state, orders: [action.payload] };
     case GET_ORDER_BY_ID:
