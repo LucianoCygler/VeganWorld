@@ -14,6 +14,7 @@ import {
   CREATE_ORDER_ERROR,
   GET_ORDERS,
   GET_ORDER_BY_ID,
+  DROP_PRODUCT,
 } from "./Types/Types";
 
 const URL_SERVIDOR = "http://localhost:3001";
@@ -57,6 +58,8 @@ export const addCartProduct = (product, quantity) => ({
   payload: product,
   quantity: quantity,
 });
+
+export const dropProduct = (id)=>({type: DROP_PRODUCT, payload: id})
 
 export const filterNameProduct = (product) => ({
   type: FILTER_NAME_PRODUCT,
