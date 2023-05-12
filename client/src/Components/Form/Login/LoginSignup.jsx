@@ -50,7 +50,7 @@ const LoginSignup = () => {
         navigate("/")
       }
     } catch (error) {
-      alert(error.response.error);
+      alert(error.message);
     }
   
   }
