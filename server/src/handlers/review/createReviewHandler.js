@@ -1,8 +1,11 @@
 const createReview = require("../../controllers/review/createReview");
+const getOneClient = require("../../controllers/client/getOneClient");
 
 const createReviewHandler = async (req, res) => {
   const { titulo, descripcion, cliente_id, product_id } = req.body;
   try {
+    const client = await getOneClient(cliente_id);
+    if (!client) throw new Error(`Client id ${cliente_id} doesn´t exist`);
     const newReview = await createReview(
       titulo,
       descripcion,
