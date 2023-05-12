@@ -14,6 +14,8 @@ import {
   GET_ORDER_BY_ID,
   GET_CUSTOMER_COMMENTS,
   CREATE_ORDER,
+	DROP_PRODUCT,
+
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -46,21 +48,30 @@ export default function rootReducer(state = initialState, action) {
     case CLEAN_DETAIL:
       return { ...state, product: [] };
 
-    case ADD_CART:
-      if (!state.cart.hasOwnProperty(action.payload.name)) {
-        alert("producto anadido");
-        return {
-          ...state,
-          cart: {
-            ...state.cart,
-            [action.payload.name]: action.payload,
-            quantity: action.quantity,
-          },
-        };
-      } else {
-        alert("el producto ya esta en el carrito");
-        return { ...state };
-      }
+      case ADD_CART:
+        if (!state.cart.hasOwnProperty(action.payload.nombre)) {
+          alert("producto anadido");
+          return {
+            ...state,
+            cart: [...state.cart,
+              {
+                [action.payload.nombre]: {
+                  id: action.payload.id,
+                  precio: action.payload.precio,
+                  cantidad: action.quantity,
+                  importe: action.payload.precio * action.quantity,
+                  imagen: action.payload.imagen
+                },
+              },
+            ],
+          };
+        } else {
+          alert("el producto ya esta en el carrito");
+          return { ...state };
+        }
+  
+      case DROP_PRODUCT:
+        return {...state, cart: state.cart.filter(product => Object.values(product)[0].id !== action.payload )}
 
     case FILTER_NAME_PRODUCT:
       return { ...state, filteredProducts: [...action.payload] };

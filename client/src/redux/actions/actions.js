@@ -30,6 +30,8 @@ import {
   GET_FAVORITES,
   CREATE_FAVORITE,
   DELETE_FAVORITE,
+  DROP_PRODUCT,
+
 } from "./Types/Types";
 
 const URL_SERVIDOR = "http://localhost:3001";
@@ -77,6 +79,8 @@ export const addCartProduct = (product, quantity) => ({
   payload: product,
   quantity: quantity,
 });
+
+export const dropProduct = (id)=>({type: DROP_PRODUCT, payload: id})
 
 export const filterNameProduct = (product) => ({
   type: FILTER_NAME_PRODUCT,
