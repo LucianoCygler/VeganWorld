@@ -45,20 +45,19 @@ export default function rootReducer(state = initialState, action) {
       return { ...state, product: [] };
 
       case ADD_CART:
-        if (!state.cart.hasOwnProperty(action.payload.nombre)) {
+        if (state.cart && !state.cart.find(action.payload.id)) {
           alert("producto anadido");
           return {
             ...state,
             cart: [...state.cart,
-              {
-                [action.payload.nombre]: {
+                {
                   id: action.payload.id,
+                  nombre: action.payload.nombre,
                   precio: action.payload.precio,
                   cantidad: action.quantity,
                   importe: action.payload.precio * action.quantity,
                   imagen: action.payload.imagen
                 },
-              },
             ],
           };
         } else {
@@ -66,8 +65,8 @@ export default function rootReducer(state = initialState, action) {
           return { ...state };
         }
   
-      case DROP_PRODUCT:
-        return {...state, cart: state.cart.filter(product => Object.values(product)[0].id !== action.payload )}
+    case DROP_PRODUCT:
+      return {...state, cart: [...state.cart.filter(product => Number(product.id) !== Number(action.payload) )]}
 
     case FILTER_NAME_PRODUCT:
       return { ...state, filteredProducts: [...action.payload] };

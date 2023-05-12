@@ -49,7 +49,7 @@ function Detail() {
 						Stock:<span></span>
 					</div>
 					<div></div>
-					<NavLink to="/Home" className={styles.link}>
+					<NavLink to="/" className={styles.link}>
 						<button>Atras</button>
 					</NavLink>
 					<NavLink to={"/Cart"}>
