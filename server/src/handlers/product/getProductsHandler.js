@@ -14,7 +14,7 @@ const getProductsHandler = async (req, res) => {
       return res.status(200).send(product);
     }
     if (filterByType) {
-      orderedProduct = await filterProductByType(filterByType, orderedProduct);
+      orderedProduct = await filterProductByType(filterByType);
     }
     if (sortByPrice) {
       orderedProduct = await orderProductByPrice(sortByPrice, orderedProduct);
@@ -26,7 +26,7 @@ const getProductsHandler = async (req, res) => {
 
     res.status(200).send(orderedProduct);
   } catch (error) {
-    res.status(500).send(`${error.message}`);
+    res.status(500).send({ error: `${error.message}` });
   }
 };
 module.exports = getProductsHandler;
