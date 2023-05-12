@@ -8,11 +8,13 @@ function App() {
 
   //************************************* OCULTAR / MOSTRAR NAVBAR *********************************/
   const location = useLocation();
-  const showNav = location.pathname !== "/login";
 
+  const showNav = location.pathname !== "/login";
+  const showNav2 = location.pathname !== "/register";
   return (
     <div className="App">
-      {showNav && <NavBar />}
+      {showNav ||showNav2 ? "" : <NavBar />}
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/Login" element={<Login/>} />

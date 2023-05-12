@@ -11,10 +11,9 @@ const Register = () =>{
     return (
 
     <div> 
-        <div>
+        
         <RegisterUser/>
         
-        </div>
     </div>
 
     )
