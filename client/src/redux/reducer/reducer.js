@@ -7,8 +7,6 @@ import {
   FILTER_PRICE_PRODUCT,
   STATE_LOGIN,
   SET_PAGE,
-
-
   GET_CLIENT_ORDERS,
   GET_ORDER_BY_ID,
   GET_CUSTOMER_COMMENTS,
@@ -16,7 +14,7 @@ import {
   DROP_PRODUCT,
   DELETE_ORDER,
   GET_CLIENT_REVIEWS,
-
+  UPDATE_REVIEW,
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -34,7 +32,6 @@ const initialState = {
   user: {},
   clientOrders: [],
   reviews: [],
-
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -117,9 +114,24 @@ export default function rootReducer(state = initialState, action) {
       const updatedOrders = state.clientOrders.filter(
         (order) => order.id !== orderId
       );
+
+    case UPDATE_REVIEW:
+      const { id, titulo, descripcion } = action.payload;
+      const fecha = new Date().toISOString().slice(0, 10);
+      const updatedReviews = state.reviews.map((review) => {
+        if (review.id === id) {
+          return {
+            ...review,
+            titulo,
+            descripcion,
+            fecha,
+          };
+        }
+        return review;
+      });
       return {
         ...state,
-        clientOrders: updatedOrders,
+        reviews: updatedReviews,
       };
 
     default:
