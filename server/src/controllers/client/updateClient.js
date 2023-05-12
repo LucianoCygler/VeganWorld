@@ -14,7 +14,7 @@ const updateClient = async (
 ) => {
   const clientById = await Client.findByPk(id);
   if (!clientById)
-    throw new Error({ error: `No se encontro cliente con el id ${id} ` });
+    throw new Error({ error: `No customer was found with the ID ${id}. ` });
   if (email) clientById.email = email;
   if (contraseña) clientById.contraseña = contraseña;
   if (nombre) clientById.nombre = nombre;
