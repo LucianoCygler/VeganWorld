@@ -6,7 +6,6 @@ import {
 	FILTER_NAME_PRODUCT,
 	FILTER_PRICE_PRODUCT,
 	STATE_LOGIN,
-	COMMENTS_CUSTOMER,
 	SET_PAGE,
 	CREATE_ORDER_SUCCESS,
 	CREATE_ORDER_ERROR,
@@ -97,9 +96,6 @@ export default function rootReducer(state = initialState, action) {
 			return { ...state, orders: [action.payload] };
 		case GET_ORDER_BY_ID:
 			return { ...state, order: [action.payload] };
-
-		case COMMENTS_CUSTOMER:
-			return { ...state, customerComments: [action.payload] };
 
 		case CREATE_ORDER_SUCCESS:
 			return { ...state, success: [action.payload] };
