@@ -44,7 +44,9 @@ const LoginSignup = () => {
   }
 
 
-
+  const handleOnClick = ()=>{
+    navigate("/Register")
+  }
 
   return (
     <div className={style.container}>
@@ -61,7 +63,7 @@ const LoginSignup = () => {
           value={login.username}/>
 
           <input 
-          type="text" 
+          type="password" 
           className={style.input} 
           placeholder="Password" 
           onChange={handleInputChange} 
@@ -72,7 +74,7 @@ const LoginSignup = () => {
           <span className={style.switch}>
             Don't have an account?
             <label htmlFor="signup_toggle" className={style.signup_tog}>
-              <span>Sign Up</span>
+              <span onClick={handleOnClick}>Sign Up</span>
             </label>
           </span>
         </div>
