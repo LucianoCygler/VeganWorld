@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route, useLocation } from "react-router-dom";
-import { HomePage, LandingPage, Detail, Cart } from "./Views/index";
+import { HomePage, Detail, Cart, Login, Register } from "./Views/index";
 import { NavBar } from "./Components/index";
 
 
@@ -8,16 +8,20 @@ function App() {
 
   //************************************* OCULTAR / MOSTRAR NAVBAR *********************************/
   const location = useLocation();
-  const showNav = location.pathname !== "/";
 
+  const showNav = location.pathname !== "/login";
+  const showNav2 = location.pathname !== "/register";
   return (
     <div className="App">
-      {showNav && <NavBar />}
+      {showNav ||showNav2 ? "" : <NavBar />}
+
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/Home" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/Login" element={<Login/>} />
+        <Route path="/Register" element={<Register />} />
         <Route path="/Detail/:id" element={<Detail />} />
         <Route path="/Cart" element={<Cart />} />
+
       </Routes>
     </div>
   );
