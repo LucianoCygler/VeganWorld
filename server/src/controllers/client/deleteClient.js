@@ -3,10 +3,10 @@ const { Client } = require("../../db");
 async function deleteClient(id) {
   const client = await Client.findOne({ where: { id } });
   if (!client) {
-    throw new Error(`No se encontró un cliente con el id ${id}`);
+    throw new Error(`A customer with the ID ${id} was not found.`);
   }
   await client.destroy();
-  return `el cliente con el id ${id} fue eliminado correctamente`;
+  return `The customer with ID ${id} was successfully deleted.`;
 }
 
 module.exports = deleteClient;
