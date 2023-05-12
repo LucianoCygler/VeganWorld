@@ -56,7 +56,7 @@ function Detail() {
 						<button>Ir al carrito</button>
 					</NavLink>
 
-                        <input type="number" name="quantity" id="" style={{width:'3rem'}} value={quantity} min={1} max={10} onChange={handleChange}/>
+          <input type="number" name="quantity" id="" style={{width:'3rem'}} value={quantity} min={1} max={10} onChange={handleChange}/>
 
 					<button onClick={handleClick}>Añade al carrito</button>
 				</div>

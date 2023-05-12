@@ -9,7 +9,7 @@ function NavBar() {
     return (
         <div className={styles.mainContainer}>
             <div className={styles.divLeft}>
-                <NavLink to="/Home" className={styles.link}>
+                <NavLink to="/" className={styles.link}>
                     <FontAwesomeIcon icon={faHouse} className={styles.fontAwesome} />
                 </NavLink>
                 <NavLink to="/Cart" className={styles.link}>
