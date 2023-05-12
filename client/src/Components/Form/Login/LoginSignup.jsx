@@ -3,6 +3,7 @@ import { useState } from "react";
 import {  useDispatch } from 'react-redux'
 import { changeStateLogin } from "../../../redux/actions/actions";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 const LoginSignup = () => {
@@ -28,19 +29,32 @@ const LoginSignup = () => {
   }
 
 
-  const accessVerified = (login) =>{
-    if (username === login.username && password === login.password) {
-      dispatch(changeStateLogin(true))
-      navigate("/Home")
-    }else{
-      throw alert("Error en la información introducida")
-    }
-  }
+  // const accessVerified = (login) =>{
+  //   if (username === login.username && password === login.password) {
+  //     dispatch(changeStateLogin(true))
+  //     navigate("/Home")
+  //   }else{
+  //     throw alert("Error en la información introducida")
+  //   }
+  // }
 
 
-  const handleButtonAccess = (event)=>{
+  const handleButtonAccess = async (event)=>{
     event.preventDefault();
-    accessVerified(login)
+  
+    try {
+      const verified = await axios.post("http://localhost:3001/client/checkclient/", login)
+      console.log(verified);
+      if (verified) {
+        navigate("/Home")
+      }
+    } catch (error) {
+      alert(error.response.data.error);
+    }
+      
+
+
+
   }
 
 
