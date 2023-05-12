@@ -14,7 +14,7 @@ async function createOrder(importe, cliente_id, productos) {
 
   await order.setClient(cliente_id);
 
-  for (const productoId of productos) {
+  for (const productoId of productos){
     const producto = await Product.findByPk(productoId);
     if (producto) {
       await order.addProduct(producto);
