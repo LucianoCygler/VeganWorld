@@ -3,6 +3,7 @@ import { useState } from "react";
 import {  useDispatch } from 'react-redux'
 import { changeStateLogin } from "../../../redux/actions/actions";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 const LoginSignup = () => {
@@ -19,8 +20,8 @@ const LoginSignup = () => {
 
 
   const [login, setLogin] = useState({
-    username : "",
-    password : ""
+    email : "",
+    contraseña : ""
   })
 
   const handleInputChange = (event)=>{
@@ -28,19 +29,30 @@ const LoginSignup = () => {
   }
 
 
-  const accessVerified = (login) =>{
-    if (username === login.username && password === login.password) {
-      dispatch(changeStateLogin(true))
-      navigate("/Home")
-    }else{
-      throw alert("Error en la información introducida")
-    }
-  }
+  // const accessVerified = (login) =>{
+  //   if (username === login.username && password === login.password) {
+  //     dispatch(changeStateLogin(true))
+  //     navigate("/Home")
+  //   }else{
+  //     throw alert("Error en la información introducida")
+  //   }
+  // }
 
 
-  const handleButtonAccess = (event)=>{
+  const handleButtonAccess = async (event)=>{
     event.preventDefault();
-    accessVerified(login)
+  
+    try {
+      const verified = await axios.post("http://localhost:3001/client/checkclient/", login)
+      const verifydata =verified.data
+
+      if (verifydata) {
+        navigate("/")
+      }
+    } catch (error) {
+      alert(error.response.error);
+    }
+  
   }
 
 
@@ -59,7 +71,7 @@ const LoginSignup = () => {
           className={style.input} 
           placeholder="Username" 
           onChange={handleInputChange} 
-          name="username"
+          name="email"
           value={login.username}/>
 
           <input 
@@ -67,7 +79,7 @@ const LoginSignup = () => {
           className={style.input} 
           placeholder="Password" 
           onChange={handleInputChange} 
-          name="password"
+          name="contraseña"
           value={login.password}/>
 
           <button className={style.btn} onClick={handleButtonAccess}>Login</button>
