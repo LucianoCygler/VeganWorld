@@ -27,7 +27,6 @@
     justify-content: center;
     align-items: center;
     right: 43%;
-    position: fixed;
 }
 
 .divRight {
@@ -47,3 +46,4 @@
 .fontAwesome:hover {
     transform: scaleX(-1);
 }
+
