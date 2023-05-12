@@ -1,7 +1,17 @@
 
 
 
+
+
+
+
+
 const RegisterUser = () => {
+
+
+
+
+
   return (
     <form >
       <div class="parent">
