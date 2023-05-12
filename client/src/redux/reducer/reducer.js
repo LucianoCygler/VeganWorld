@@ -12,6 +12,8 @@ import {
   CREATE_ORDER_ERROR,
   GET_ORDERS,
   GET_ORDER_BY_ID,
+  GET_CUSTOMER_COMMENTS,
+  CREATE_ORDER,
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -26,6 +28,7 @@ const initialState = {
   orders: [],
   order: {},
   success: [],
+  user: {},
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -68,12 +71,12 @@ export default function rootReducer(state = initialState, action) {
     case STATE_LOGIN:
       return { ...state, access: action.payload };
 
-    case COMMENTS_CUSTOMER:
+    case GET_CUSTOMER_COMMENTS:
       return { ...state, customerComments: [action.payload] };
 
     case SET_PAGE:
       return { ...state, currentPage: [action.payload] };
-    case CREATE_ORDER_SUCCESS:
+    case CREATE_ORDER:
       return { ...state, success: [action.payload] };
     case CREATE_ORDER_ERROR:
       return { ...state, success: [action.payload] };
