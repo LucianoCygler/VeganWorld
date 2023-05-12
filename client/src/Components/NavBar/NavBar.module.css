@@ -26,7 +26,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    right: 43%;
 }
 
 .divRight {
@@ -47,3 +46,7 @@
     transform: scaleX(-1);
 }
 
+.tittle {
+    position: absolute;
+    left: 43%;
+}
