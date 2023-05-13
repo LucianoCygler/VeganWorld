@@ -10,7 +10,7 @@
   position: fixed;
   padding: 20px;
   margin-top: 0;
-  z-index: 9999;
+  z-index: 999;
 }
 
 .divLeft {
