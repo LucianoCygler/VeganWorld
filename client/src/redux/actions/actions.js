@@ -35,6 +35,7 @@ import {
 
 const URL_SERVIDOR = "http://localhost:3001";
 
+/*TODOS LOS PRODUCTOS*/
 export const getAllProducts = () => {
   return async function (dispatch) {
     try {
@@ -47,6 +48,7 @@ export const getAllProducts = () => {
   };
 };
 
+/*OBTENER PRODUCTO POR ID*/
 export const getProductById = (id_product) => {
   return async function (dispatch) {
     try {
@@ -59,8 +61,12 @@ export const getProductById = (id_product) => {
   };
 };
 
+
+/* LIMPIAR DETAILS */
 export const cleanDetail = () => ({ type: CLEAN_DETAIL });
 
+
+/* OBETENER COMENTARIOS DE LOS CLIENTES */
 export const getCustomerComments = () => {
   return async function (dispatch) {
     try {
@@ -73,28 +79,35 @@ export const getCustomerComments = () => {
   };
 };
 
+/* AÑADIR PRODUCTO A LA CART, PRODUCTO Y CANTIDAD */
 export const addCartProduct = (product, quantity) => ({
   type: ADD_CART,
   payload: product,
   quantity: quantity,
 });
 
+/* ELIMINAR PRODUCTO POR ID */
 export const dropProduct = (id)=>({type: DROP_PRODUCT, payload: id})
 
+
+/* FILTRAR NOMBRE DE PRODUCTO */
 export const filterNameProduct = (product) => ({
   type: FILTER_NAME_PRODUCT,
   payload: product,
 });
 
+/* FILTRAR POR PRECIO DEL PRODUCTO */
 export const filterPriceProduct = (product) => ({
   type: FILTER_PRICE_PRODUCT,
   payload: product,
 });
 
+//!CAMBIA ESTADO LOGIN
 export const changeStateLogin = (boolean) => {
   return { type: STATE_LOGIN, payload: boolean };
 };
 
+//! CAMBIAR PAGINA 
 export const changePage = (number) => {
   return { type: SET_PAGE, payload: number };
 };
@@ -118,6 +131,7 @@ export const changePage = (number) => {
 //   productos: [1,3,2],
 // };
 
+/* CREAR ORDEN */
 export const createOrder = (order) => {
   return async function (dispatch) {
     try {
@@ -130,6 +144,7 @@ export const createOrder = (order) => {
   };
 };
 
+/* OBTENER LAS ORDENES DEL CLIENTE POR ID */
 export const getClientOrders = (id_client) => {
   //El id del cliente
   return async function (dispatch) {
@@ -143,6 +158,7 @@ export const getClientOrders = (id_client) => {
   };
 };
 
+/* OBTENER DETALLES DE LAS ORDENES POR ID */
 export const getOrderDetail = (id_order) => {
   return async function (dispatch) {
     try {
@@ -155,6 +171,7 @@ export const getOrderDetail = (id_order) => {
   };
 };
 
+/* VALIDACION DEL LOGIN */
 export const validateLogin = (user) => {
   return async function (dispatch) {
     try {
@@ -162,11 +179,12 @@ export const validateLogin = (user) => {
       const userDB = res.data;
       return dispatch({ type: VALIDATE_LOGIN, payload: userDB });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
 
+/* REGISTRAR USUARIO */
 export const registerUser = (user) => {
   return async function (dispatch) {
     try {
@@ -179,6 +197,7 @@ export const registerUser = (user) => {
   };
 };
 
+/* ELIMINAR ORDEN POR ID */
 export const deleteOrder = (order_id) => {
   return async function (dispatch) {
     try {
@@ -191,6 +210,7 @@ export const deleteOrder = (order_id) => {
   };
 };
 
+/* MODIFICAR ORDEN POR ID */
 export const updateOrder = (order_id) => {
   return async function (dispatch) {
     try {
@@ -203,6 +223,7 @@ export const updateOrder = (order_id) => {
   };
 };
 
+/* OBTENER INFO DEL CLIENTE */
 export const getClientData = (client_id) => {
   return async function (dispatch) {
     try {
@@ -215,6 +236,7 @@ export const getClientData = (client_id) => {
   };
 };
 
+/* MODIFICAR DATA DEL CLIENTE */
 export const updateClientData = (client_id, newData) => {
   return async function (dispatch) {
     try {
@@ -230,6 +252,7 @@ export const updateClientData = (client_id, newData) => {
   };
 };
 
+/* ELIMINAR CLIENTE */
 export const deleteClient = (client_id) => {
   return async function (dispatch) {
     try {
@@ -242,6 +265,7 @@ export const deleteClient = (client_id) => {
   };
 };
 
+/* CREAR COMENTARIO DE CLIENTE */
 export const createReview = (newReview) => {
   return async function (dispatch) {
     try {
@@ -254,6 +278,7 @@ export const createReview = (newReview) => {
   };
 };
 
+/* MODIFICAR COMENTAROP */
 export const updateReview = (review__id, newReview) => {
   return async function (dispatch) {
     try {
@@ -269,6 +294,7 @@ export const updateReview = (review__id, newReview) => {
   };
 };
 
+/* ELIMINAR COMENTARIO */
 export const deleteReview = (review__id) => {
   return async function (dispatch) {
     try {
@@ -281,6 +307,7 @@ export const deleteReview = (review__id) => {
   };
 };
 
+// OBTENER COMENTARIOS DEL CLIENTE POR ID
 export const getClientReviews = (id_client) => {
   return async function (dispatch) {
     try {
@@ -293,6 +320,8 @@ export const getClientReviews = (id_client) => {
   };
 };
 
+
+/* OBTENER COMENTARIO DE CLIENTE POR ID  */
 export const getClientReview = (id_review) => {
   return async function (dispatch) {
     try {
@@ -305,6 +334,8 @@ export const getClientReview = (id_review) => {
   };
 };
 
+
+//ORDENAMIENTO Y FILTRADO
 export const orderAndFilter = (filterByType, sortByName, sortByPrice) => {
   return async function (dispatch) {
     try {
@@ -319,6 +350,7 @@ export const orderAndFilter = (filterByType, sortByName, sortByPrice) => {
   };
 };
 
+//OBTENER FAVORITOS
 export const getFavorites = (id_client) => {
   return async function (dispatch) {
     try {
@@ -333,6 +365,8 @@ export const getFavorites = (id_client) => {
   };
 };
 
+
+//CREAR FAVORITOS
 export const createFavorite = (favorite) => {
   return async function (dispatch) {
     try {
@@ -345,6 +379,8 @@ export const createFavorite = (favorite) => {
   };
 };
 
+
+//ELIMINAR FAVORITOS
 export const deleteFavorite = (favorite_id) => {
   return async function (dispatch) {
     try {

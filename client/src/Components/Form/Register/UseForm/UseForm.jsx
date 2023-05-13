@@ -23,13 +23,13 @@ const useForm = (initialForm, validationsForm) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3001/pokemons/", register)
+      .post("http://localhost:3001/client", register)
       .then((res) => {
         alert(res.data.message);
         setRegister(initialForm);
       })
       .catch((error) => {
-        alert(error.response.data.error);
+        alert(error.response.data);
       });
   };
 
@@ -37,7 +37,6 @@ const useForm = (initialForm, validationsForm) => {
     handleChange,
     handleBlur,
     handleSubmit,
-    setRegister,
     register,
     error
   }

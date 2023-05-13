@@ -1,7 +1,7 @@
 import style from "./LoginSignup.module.css";
 import { useState } from "react";
 import {  useDispatch } from 'react-redux'
-import { changeStateLogin } from "../../../redux/actions/actions";
+import { changeStateLogin, validateLogin } from "../../../redux/actions/actions";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -39,20 +39,29 @@ const LoginSignup = () => {
   // }
 
 
+  // const handleButtonAccess = async (event)=>{
+  //   event.preventDefault();
+  //   try {
+  //     const verified = await axios.post("http://localhost:3001/client/checkclient/", login)
+  //     const verifydata =verified.data
+
+  //     if (verifydata) {
+  //       navigate("/Home")
+  //     }
+  //   } catch (error) {
+  //     alert(error.response.data.error);
+  //   }
+  // }
+
+
   const handleButtonAccess = async (event)=>{
     event.preventDefault();
-  
-    try {
-      const verified = await axios.post("http://localhost:3001/client/checkclient/", login)
-      const verifydata =verified.data
 
-      if (verifydata) {
-        navigate("/")
-      }
-    } catch (error) {
-      alert(error.message);
+    const response = await dispatch(validateLogin(login));
+    console.log(response);
+    if (typeof response === "object"){
+      navigate("/")
     }
-  
   }
 
 
