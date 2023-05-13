@@ -1,71 +1,138 @@
 import React from "react";
 import styles from "./Cart.module.css";
+import swal from 'sweetalert';
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { dropProduct } from "../../redux/actions/actions"
+import {
+	createOrder,
+	decrementProduct,
+	dropProduct,
+	incrementProduct,
+} from "../../redux/actions/actions";
 
 function Cart() {
-    const cart = useSelector((state) => state.cart);
-    const dispatch = useDispatch()
-    
-    const handleClick = (event)=>{
-        const name = event.target.name
-        const id = event.target.value
-        if(name === 'clear'){
-            console.log(id);
-            dispatch(dropProduct(id))
-        }else if (name === 'postOrder'){
-            dispatch(dropProduct(id))
-        }else{
-            fetch.post('http://localhost:3001/product')
-        }
+	const cart = useSelector((state) => state.cart);
+	const dispatch = useDispatch();
 
-    }   
-    return (
-        <div className={styles.mainContainer}>
-            <h1 className={styles.tittle} >Cart</h1>
-            {cart.length > 0 ? (
-                <div className={styles.container}>
-                    <button onClick={handleClick} name="pay" >Pagar</button>
-                    <button onClick={handleClick} name="postOrder" >Crear orden</button>
-                    <hr />
-                    {cart.map((product, index) => {
-                        return (
-                            <>
-                            <div className={styles.productsContainer} key={index}>
-                                <button name="clear" value={product.id} onClick={handleClick}>X</button>
-                                <img src={product.imagen} alt="" style={{width:"150px"}}/>
+	const handleClick = (event) => {
+		const name = event.target.name;
+		const id = event.target.value;
+		switch (name) {
+			case "clear":
+				return dispatch(dropProduct(id));
+			case "play":
+				return alert("ir al metodo de pago");
+			case "postOrder":
+				let importeTotal = 0;
+				cart.forEach((product) => (importeTotal += product.importe));
+				const order = {
+					cliente_id: 1,
+					importe: importeTotal,
+					productos: cart.map((product) => product.id),
+				};
+				swal({
+					title: "Orden Creada",
+					text: "Puedes encontrar tus ordenes en MyOrders!",
+					icon: "success",
+				});
+				return dispatch(createOrder(order));
+			// case "increment":
+			// 	return dispatch(incrementProduct(id));
+			// case "decrement":
+			// 	return dispatch(decrementProduct(id));
+			default:
+				return;
+		}
+	};
 
-                                <div className={styles.flexContainer}>
-                                    <h2 className={styles.subTittle}>
-                                        {product.nombre}
-                                    </h2>
-                                </div>
-                                <div className={styles.flexContainer}>
-                                    <h2 className={styles.subTittle}>
-                                        {product.precio}
-                                    </h2>
-                                </div>
-                                <div>
-                                    <h4>
-                                        Cantidad: <span>{product.cantidad}</span>
-                                    </h4>
-                                </div>
-                                <div className={styles.flexContainer}>
-                                    <h2 className={styles.subTittle}>
-                                       Total: $ {product.importe}
-                                    </h2>
-                                </div>
-                            </div>
-                            </>
-                        )
-                    })}
-                </div>
-            ) : (
-                <h2 className={styles.subTittle}>There is nothing in your car...</h2>
-            )}
-        </div>
-    )
+	return (
+		<div className={styles.mainContainer}>
+			<div className={styles.tittle}>
+			<h1 >Cart</h1>
+
+			</div>
+
+			{cart.length > 0 ? (
+				// <div className={styles.container}>
+				<>
+					
+					{cart.map((product, index) => {
+						return (
+							<>
+								<div className={styles.productsContainer} key={index} style={{ gridRow: `${index + 1}` }}>
+									{/*<div>
+										 <button name="increment" onClick={handleClick}>
+											+
+										</button>
+										<button name="decrement" onClick={handleClick}>
+											-
+										</button> 
+									</div>
+									<div className={styles.flexContainer}>
+										<h2 className={styles.subTittle}>
+											Total: $ {product.importe}
+										</h2>
+									</div>*/}
+
+									<div className={styles.imagen}>
+										<img
+											src={product.imagen}
+											alt=""
+											style={{ width: "150px" }}
+										/>
+									</div>
+
+									<div className={styles.nombre}>
+										<p className={styles.subTittle}>{product.nombre}</p>
+									</div>
+
+									<div className={styles.precio}>
+										<p className={styles.subTittle}>{product.precio}</p>
+									</div>
+
+									<div className={styles.qty}>
+										<p>
+											Cantidad: <span>{product.cantidad}</span>
+										</p>
+									</div>
+
+									<div className={styles.delete}>
+										<button
+											name="clear"
+											value={product.id}
+											onClick={handleClick}
+										>
+											X
+										</button>
+										
+									</div>
+								</div>
+							</>
+						);
+					})}
+				</>
+			) : (
+				// </div>
+				<h2 className={styles.subTittle}>There is nothing in your car...</h2>
+				)}
+			<div className={styles.orderSumary}>
+				<div className={styles.subtotal}>
+					<h4>suma de precio de productos</h4>
+				</div>
+				<div className={styles.titleOrder}>
+					<h2>Order Sumary</h2>
+				</div>
+				<div className={styles.btnOrder}>
+				<button onClick={handleClick} name="pay">
+						Pagar
+					</button>
+					<button onClick={handleClick} name="postOrder">
+						Crear orden
+					</button>
+				</div>
+				<div className={styles.orderTotal}></div>
+			</div>
+		</div>
+	);
 }
 
 export default Cart;

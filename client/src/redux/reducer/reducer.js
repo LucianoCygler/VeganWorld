@@ -1,3 +1,4 @@
+import swal from "sweetalert";
 import {
   GET_ALL_PRODUCTS,
   GET_PRODUCT_BY_ID,
@@ -116,14 +117,16 @@ export default function rootReducer(state = initialState, action) {
     case GET_CUSTOMER_COMMENTS:
       return { ...state, customerComments: [action.payload] };
 
+
     case SET_PAGE:
       return { ...state, currentPage: [action.payload] };
 
     case CREATE_ORDER:
       return { ...state, success: [action.payload] };
-
+      
     case GET_ORDER_BY_ID:
       return { ...state, order: [action.payload] };
+      
     case SET_PAGE:
       return { ...state, currentPage: [action.payload] };
 
@@ -141,6 +144,7 @@ export default function rootReducer(state = initialState, action) {
       const updatedOrders = state.clientOrders.filter(
         (order) => order.id !== orderId
       );
+
 
     case UPDATE_REVIEW:
       const { id, titulo, descripcion } = action.payload;
