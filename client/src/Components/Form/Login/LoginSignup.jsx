@@ -65,9 +65,11 @@ const LoginSignup = () => {
             Login
           </button>
           <span className={style.switch}>
-            Don't have an account?
+            Don't have an account?{"        "}
             <label htmlFor="signup_toggle" className={style.signup_tog}>
-              <span onClick={handleOnClick}>Sign Up</span>
+              <span className={style.signup} onClick={handleOnClick}>
+                Sign Up
+              </span>
             </label>
           </span>
         </div>
