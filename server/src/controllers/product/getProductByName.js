@@ -1,10 +1,13 @@
 const { Product } = require("../../db");
+
 async function getProductByName(nombre) {
   const product = await Product.findOne({
-    where: {  nombre },
+    where: { nombre },
   });
 
-  if ( !product ) {throw new Error(`El nombre ${nombre} no se encontró en la base de datos`)};
+  if (!product) {
+    throw new Error(`The name ${nombre} was not found in the database.`);
+  }
 
   return product;
 }

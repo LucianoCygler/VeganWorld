@@ -1,11 +1,12 @@
-const { Favorite } = require("../../db");
+const { Favorite, Product } = require("../../db");
 
-async function getClientFavorite(id) {
+async function getClientFavorites(id) {
   const clientFavorites = await Favorite.findAll({
     where: { ClientId: id },
+    include: Product, // Incluye el modelo Product en la consulta
   });
 
   return clientFavorites;
 }
 
-module.exports = getClientFavorite;
+module.exports = getClientFavorites;

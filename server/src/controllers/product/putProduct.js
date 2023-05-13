@@ -1,12 +1,12 @@
 const { Product } = require("../../db");
 
-const updateProduct = async (nombre, descripcion, precio, stock) => {
+const updateProduct = async (nombre, descripcion, precio, stock, id) => {
   const putProduct = await Product.findByPk(id);
 
-  if (!putProduct) throw Error(`el id:${id}no existe`);
+  if (!putProduct) throw Error(`The ID: ${id} does not exist`);
 
   if (!nombre || !descripcion || !precio || !stock) {
-    throw Error(`fallo la accion `);
+    throw Error(`Data is missing for updating `);
   }
   await Product.update(
     {
@@ -21,7 +21,7 @@ const updateProduct = async (nombre, descripcion, precio, stock) => {
       },
     }
   );
-  return `${nombre} se actualizo`;
+  return `${nombre}, It has been updated`;
 };
 
-module.exports = { updateProduct, };
+module.exports = updateProduct;
