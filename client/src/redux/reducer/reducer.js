@@ -17,6 +17,10 @@ import {
   GET_CLIENT_REVIEWS,
   UPDATE_REVIEW,
   VALIDATE_LOGIN,
+  ORDER_FILTER,
+  SET_PRODUCT_SEARCH,
+  CREATE_FAVORITE,
+  GET_CLIENT_FAVORITE,
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -34,6 +38,8 @@ const initialState = {
   user: {},
   clientOrders: [],
   reviews: [],
+  favorite: [],
+  favorites: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -107,9 +113,6 @@ export default function rootReducer(state = initialState, action) {
         ],
       };
 
-    case FILTER_NAME_PRODUCT:
-      return { ...state, filteredProducts: [...action.payload] };
-
     case GET_CUSTOMER_COMMENTS:
       return { ...state, customerComments: [action.payload] };
 
@@ -158,6 +161,26 @@ export default function rootReducer(state = initialState, action) {
         reviews: updatedReviews,
       };
 
+    case ORDER_FILTER:
+      return {
+        ...state,
+        products: action.payload,
+      };
+    case SET_PRODUCT_SEARCH:
+      return {
+        ...state,
+        products: action.payload,
+      };
+    case CREATE_FAVORITE:
+      return {
+        ...state,
+        favorite: action.payload,
+      };
+    case GET_CLIENT_FAVORITE:
+      return {
+        ...state,
+        favorites: [...action.payload],
+      };
     default:
       return { ...state };
   }

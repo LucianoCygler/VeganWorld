@@ -3,78 +3,78 @@ import styles from "./Detail.module.css";
 import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-	getProductById,
-	cleanDetail,
-	addCartProduct,
+  getProductById,
+  cleanDetail,
+  addCartProduct,
 } from "../../redux/actions/actions";
 
 function Detail() {
-	const { id } = useParams();
+  const { id } = useParams();
 
-	const dispatch = useDispatch();
-	
-	const [product] = useSelector((state) => state.product);
+  const dispatch = useDispatch();
 
-	const [quantity, setQuantity] = useState(1);
+  const [product] = useSelector((state) => state.product);
 
-	const handleClick = () => dispatch(addCartProduct(product, quantity));
+  const [quantity, setQuantity] = useState(1);
 
-	const handleChange = (event) => setQuantity(event.target.value);
+  const handleClick = () => dispatch(addCartProduct(product, quantity));
 
-	useEffect(() => {
-		dispatch(getProductById(id));
-		return () => dispatch(cleanDetail());
-	}, [id]);
+  const handleChange = (event) => setQuantity(event.target.value);
 
-	return (
-		<>
-			{product?.nombre ? (
-				<div
-					className={styles.mainContainer}
-					style={{ backgroundColor: "rgba(42, 66, 49, 0.5)" }}
-				>
-					<h1>{product.nombre}</h1>
-					<img
-						src={product.imagen}
-						alt={product.nombre}
-						style={{ maxWidth: "300px" }}
-					/>
+  useEffect(() => {
+    dispatch(getProductById(id));
+    return () => dispatch(cleanDetail());
+  }, [id]);
 
-					<div>&#11088;&#11088;&#11088;&#11088;&#11088;</div>
-					<p>{product.descripcion}</p>
-					<div>
-						Precio unitario: <span>${product.precio}</span>
-					</div>
-					<div>Precio al mayor:</div>
-					<div>
-						Stock:<span></span>
-					</div>
-					<div></div>
-					<NavLink to="/" className={styles.link}>
-						<button>Atras</button>
-					</NavLink>
-					<NavLink to={"/Cart"}>
-						<button>Ir al carrito</button>
-					</NavLink>
+  return (
+    <>
+      {product?.nombre ? (
+        <div
+          className={styles.mainContainer}
+          style={{ backgroundColor: "rgba(42, 66, 49, 0.5)" }}
+        >
+          <h1>{product.nombre}</h1>
+          <img
+            src={product.imagen}
+            alt={product.nombre}
+            style={{ maxWidth: "300px" }}
+          />
 
-					<input
-						type="number"
-						name="quantity"
-						id=""
-						style={{ width: "3rem" }}
-						value={quantity}
-						min={1}
-						max={10}
-						onChange={handleChange}
-					/>
+          <div>&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+          <p>{product.descripcion}</p>
+          <div>
+            Precio: <span>${product.precio}</span>
+          </div>
+          {/* <div>Precio al mayor:</div> */}
+          <div>
+            <span></span>
+          </div>
+          <div></div>
+          <NavLink to="/" className={styles.link}>
+            <button>Atras</button>
+          </NavLink>
+          <NavLink to={"/Cart"}>
+            <button>Ir al carrito</button>
+          </NavLink>
 
-					<button onClick={handleClick}>Añade al carrito</button>
-				</div>
-			) : (
-				<h1>LOADING...</h1>
-			)}
-		</>
-	);
+          <input
+            type="number"
+            name="quantity"
+            id=""
+            style={{ width: "3rem" }}
+            value={quantity}
+            min={1}
+            max={10}
+            onChange={handleChange}
+          />
+
+          <button onClick={handleClick}>Añade al carrito</button>
+        </div>
+      ) : (
+        <h1>LOADING...</h1>
+      )}
+    </>
+  );
 }
 
 export default Detail;

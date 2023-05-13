@@ -1,33 +1,21 @@
-.container{
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 80px  0 400px 0 ;
+  padding-top: 20em;
 
- 
- 
- 
   text-transform: capitalize;
 
- 
   color: darkred;
 }
 
-
-
-.c{
- margin-top:  200px;
+.c {
+  margin-top: 200px;
   border-radius: 0.75em;
   box-shadow: 9px 13px 13px 3px rgba(13, 81, 108, 0.94);
-  
 
   width: 500px;
- 
+
   height: 460px;
   text-transform: capitalize;
-
- 
-  
-
- 
 }

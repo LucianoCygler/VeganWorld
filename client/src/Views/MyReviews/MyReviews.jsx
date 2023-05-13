@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getClientReviews, deleteReview } from "../../redux/actions/actions";
 import ReviewDetail from "../../Components/ReviewDetail/ReviewDetail";
-import "./MyReviews.css";
+import styles from "./MyReviews.module.css";
 
 const MyReviews = () => {
   const dispatch = useDispatch();
@@ -35,17 +35,17 @@ const MyReviews = () => {
 
   return (
     <>
-      <h1>Your reviews</h1>
-      <div className="reviews-container">
+      <div className={styles.reviewscontainer}>
+        <h1>REVIEWS</h1>
         {reviews.length > 0 ? (
           reviews.map((review) => (
             <div
               key={review.id}
-              className="review-card"
+              className={styles.reviewcard}
               onClick={() => showPopupHandler(review)}
             >
-              <div className="card-content">
-                <h2 className="card-title">{review.titulo}</h2>
+              <div className={styles.cardcontent}>
+                <h2 className={styles.cardtitle}>{review.titulo}</h2>
               </div>
             </div>
           ))
@@ -58,8 +58,8 @@ const MyReviews = () => {
       </div>
       {isPopupOpen && (
         <>
-          <div className="overlay" onClick={closePopup} />
-          <div className="popup-container">
+          <div className={styles.overlay} onClick={closePopup} />
+          <div className={styles.popupcontainer}>
             <ReviewDetail
               review={selectedReview}
               closePopup={closePopup}

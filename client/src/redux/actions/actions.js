@@ -30,6 +30,8 @@ import {
   CREATE_FAVORITE,
   DELETE_FAVORITE,
   DROP_PRODUCT,
+  SET_PRODUCT_SEARCH,
+  GET_CLIENT_FAVORITE,
 } from "./Types/Types";
 
 const URL_SERVIDOR = "http://localhost:3001";
@@ -46,6 +48,13 @@ export const getAllProducts = () => {
     }
   };
 };
+
+export function setProductSearch(searchResult) {
+  return {
+    type: SET_PRODUCT_SEARCH,
+    payload: searchResult,
+  };
+}
 
 /*OBTENER PRODUCTO POR ID*/
 export const getProductById = (id_product) => {
@@ -379,6 +388,19 @@ export const deleteFavorite = (favorite_id) => {
       const res = await axios.delete(`${URL_SERVIDOR}/favorite/${favorite_id}`);
       const favoriteDB = res.data;
       return dispatch({ type: DELETE_FAVORITE, payload: favoriteDB });
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
+};
+
+//ELIMINAR FAVORITOS
+export const getClientFavorites = (client_id) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${URL_SERVIDOR}/client/${client_id}`);
+      const favorites = res.data;
+      return dispatch({ type: GET_CLIENT_FAVORITE, payload: favorites });
     } catch (error) {
       alert(error.response.data);
     }
