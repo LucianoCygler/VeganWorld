@@ -121,10 +121,6 @@ export const filterPriceProduct = (product) => ({
   payload: product,
 });
 
-//!CAMBIA ESTADO LOGIN
-export const changeStateLogin = (boolean) => {
-  return { type: STATE_LOGIN, payload: boolean };
-};
 
 //! CAMBIAR PAGINA
 export const changePage = (number) => {

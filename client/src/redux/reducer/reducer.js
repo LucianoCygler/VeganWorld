@@ -113,13 +113,13 @@ export default function rootReducer(state = initialState, action) {
         alert("el producto ya esta en el carrito");
         return { ...state };
       }
-    case DROP_PRODUCT:
-      return {
-        ...state,
-        cart: state.cart.filter(
-          (product) => Object.values(product)[0].id !== action.payload
-        ),
-      };
+    // case DROP_PRODUCT:
+    //   return {
+    //     ...state,
+    //     cart: state.cart.filter(
+    //       (product) => Object.values(product)[0].id !== action.payload
+    //     ),
+    //   };
 
     case DROP_PRODUCT:
       return {
@@ -143,23 +143,14 @@ export default function rootReducer(state = initialState, action) {
     case GET_ORDER_BY_ID:
       return { ...state, order: [action.payload] };
 
-    case SET_PAGE:
-      return { ...state, currentPage: [action.payload] };
-
-    case CREATE_ORDER:
-      return { ...state, success: [action.payload] };
-
     case GET_CLIENT_ORDERS:
       return { ...state, clientOrders: action.payload };
 
-    case GET_ORDER_BY_ID:
-      return { ...state, order: [action.payload] };
-
-    case DELETE_ORDER:
-      const orderId = action.payload;
-      const updatedOrders = state.clientOrders.filter(
-        (order) => order.id !== orderId
-      );
+    // case DELETE_ORDER:
+    //   const orderId = action.payload;
+    //   const updatedOrders = state.clientOrders.filter(
+    //     (order) => order.id !== orderId
+    //   );
 
     case UPDATE_REVIEW:
       const { id, titulo, descripcion } = action.payload;
