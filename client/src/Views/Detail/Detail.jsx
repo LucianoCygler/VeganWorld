@@ -36,34 +36,29 @@ function Detail() {
 	}, [id]);
 
 	return (
-		<>
+		<div className={styles.mainContainer}>
 			{product?.nombre ? (
-				<div
-					className={styles.mainContainer}
-					// style={{ backgroundColor: "rgba(42, 66, 49, 0.5)" }}
-				>
+			<div className={styles.container}>
+				<div className={styles.divLink}>
+					<NavLink to="/" className={styles.linkBack}>
+						<button className={styles.buttonBack}>Atras</button>
+					</NavLink>
+				</div>
+				<img src={product.imagen} alt={product.nombre} style={{ maxWidth: "300px" }} className={styles.image}/>
+				<div className={styles.descriptionDiv}>
 					<h1>{product.nombre}</h1>
-					<img
-						src={product.imagen}
-						alt={product.nombre}
-						style={{ maxWidth: "300px" }}
-					/>
-					<p>{product.descripcion}</p>
-					<div>
-						Precio: <span>${product.precio}</span>
+					<p className={styles.p}>{product.descripcion}</p>
+					<div className={styles.priceDiv}>
+						Precio: <span className={styles.spanPrice}>${product.precio}</span>
 					</div>
-					{/* <div>Precio al mayor:</div> */}
+						{/* <div>REVIEW:</div> */}
 					<div>
 						<span></span>
 					</div>
 					<div></div>
-					<NavLink to="/" className={styles.link}>
-						<button>Atras</button>
-					</NavLink>
-					<NavLink to={"/Cart"}>
-						<button>Ir al carrito</button>
-					</NavLink>
-
+					{/* <NavLink to={"/Cart"}>
+						<button className={styles.button}>Ir al carrito</button>
+					</NavLink> */}
 					<input
 						type="number"
 						name="quantity"
@@ -73,16 +68,18 @@ function Detail() {
 						min={1}
 						max={10}
 						onChange={handleChange}
+						className={styles.input}
 					/>
 
-					<button onClick={handleClick}>Add to cart</button>
+					<button className={styles.button} onClick={handleClick}>Add to cart</button>
 				</div>
+			</div>
 			) : (
-        <div style={{paddingTop:"150px"}}>
-          <Ring size={200} lineWeight={5} speed={2} color="rgba(29, 103, 88, 0.6)" />
-        </div>
+        	<div className={styles.alertDiv} style={{paddingTop:"150px"}}>
+          		<Ring className={styles.alert} size={200} lineWeight={5} speed={2} color="rgba(29, 103, 88, 0.6)" />
+        	</div>
 			)}
-		</>
+		</div>
 	);
 }
 
