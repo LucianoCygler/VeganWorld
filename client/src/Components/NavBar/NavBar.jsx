@@ -10,10 +10,12 @@ import {
 import styles from "./NavBar.module.css";
 import { logoutUser } from "../../redux/actions/actions";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 function NavBar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+
   const handleLogout = () => {
     dispatch(logoutUser());
   };
@@ -43,6 +45,13 @@ function NavBar() {
         </div>
 
         <SearchBar />
+        {isAuthenticated ? (
+          ""
+        ) : (
+          <Link to="/login" className="link-login">
+            <button className={styles.buttonlogin}>Login</button>
+          </Link>
+        )}
         <NavLink to="/" className={styles.link}>
           <FontAwesomeIcon
             onClick={handleLogout}

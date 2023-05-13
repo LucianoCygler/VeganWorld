@@ -5,11 +5,12 @@
   justify-content: space-between;
   align-items: center;
   background-color: #1c6758;
-  box-shadow: 0 0 15px #3d8361;
+  box-shadow: 0 0 15px #3d836105;
   width: 100%;
   position: fixed;
   padding: 20px;
   margin-top: 0;
+  z-index: 9999;
 }
 
 .divLeft {
@@ -59,6 +60,43 @@
 }
 
 .tittle {
+  color: whitesmoke;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
   position: absolute;
   left: 43%;
+}
+/* Estilos del botón */
+.buttonlogin {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #55756c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.buttonlogin:hover {
+  background-color: #99c4b8;
+}
+
+.buttonlogin:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(103, 137, 131, 0.5);
+}
+
+/* Estilos del enlace */
+.linklogin {
+  text-decoration: none;
+}
+
+/* Estilos del enlace cuando está desactivado */
+.linklogin:link,
+.linklogin:visited {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
