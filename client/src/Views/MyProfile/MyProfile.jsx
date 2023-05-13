@@ -59,7 +59,7 @@ const MyData = () => {
   return (
     <div className={style.container}>
       {editMode ? (
-        <>
+        <div className={style.edit}>
           First Name:
           <input
             type="text"
@@ -109,7 +109,7 @@ const MyData = () => {
             </>
           )}
           <button onClick={handleSaveUser}>Save Data</button>
-        </>
+        </div>
       ) : (
         <div className={style.c}>
           <h1>My Profile</h1>
