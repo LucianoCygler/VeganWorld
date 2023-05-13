@@ -17,6 +17,8 @@ import {
 	DROP_PRODUCT,
 	INCREMENT_PRODUCT,
 	DECREMENT_PRODUCT,
+  GET_CLIENT_ORDERS,
+  DELETE_ORDER,
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -32,6 +34,7 @@ const initialState = {
 	order: {},
 	success: [],
 	user: {},
+  clientOrders: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -96,31 +99,32 @@ export default function rootReducer(state = initialState, action) {
 		case FILTER_NAME_PRODUCT:
 			return { ...state, filteredProducts: [...action.payload] };
 
-		case GET_CUSTOMER_COMMENTS:
-			return { ...state, customerComments: [action.payload] };
+    case SET_PAGE:
+      return { ...state, currentPage: [action.payload] };
 
-		case SET_PAGE:
-			return { ...state, currentPage: [action.payload] };
+    case CREATE_ORDER:
+      return { ...state, success: [action.payload] };
 
-		case CREATE_ORDER:
-			return { ...state, success: [action.payload] };
+    case CREATE_ORDER_ERROR:
+      return { ...state, success: [action.payload] };
 
-		case CREATE_ORDER_ERROR:
-			return { ...state, success: [action.payload] };
+    case GET_CLIENT_ORDERS:
+      return { ...state, clientOrders: action.payload };
 
-		case GET_ORDERS:
-			return { ...state, orders: [action.payload] };
+    case GET_ORDER_BY_ID:
+      return { ...state, order: [action.payload] };
 
-		case GET_ORDER_BY_ID:
-			return { ...state, order: [action.payload] };
+    case DELETE_ORDER:
+      const orderId = action.payload;
+      const updatedOrders = state.clientOrders.filter(
+        (order) => order.id !== orderId
+      );
+      return {
+        ...state,
+        clientOrders: updatedOrders,
+      };
 
-		case CREATE_ORDER_SUCCESS:
-			return { ...state, success: [action.payload] };
-
-
-
-
-		default:
-			return { ...state };
-	}
+    default:
+      return { ...state };
+  }
 }
