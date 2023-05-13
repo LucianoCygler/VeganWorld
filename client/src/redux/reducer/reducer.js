@@ -14,7 +14,8 @@ import {
 	GET_CUSTOMER_COMMENTS,
 	CREATE_ORDER,
 	DROP_PRODUCT,
-
+	INCREMENT_PRODUCT,
+	DECREMENT_PRODUCT,
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -48,8 +49,7 @@ export default function rootReducer(state = initialState, action) {
 			return { ...state, product: [] };
 
 		case ADD_CART:
-			if (!state.cart.find(action.payload.name)) {
-
+			if (!state.cart.find((product) => product.id === action.payload.id)) {
 				alert("producto anadido");
 				return {
 					...state,
@@ -79,6 +79,14 @@ export default function rootReducer(state = initialState, action) {
 					),
 				],
 			};
+
+		// case INCREMENT_PRODUCT:
+		// 	const getProduct = state.cart.filter(product => product.id == action.payload)
+		// 	console.log(getProduct);
+		// 	return { ...state, cart: [...state.cart.filter(product => product.id !== action.payload), productEdit] };
+
+		// case DECREMENT_PRODUCT:
+		// 	return { ...state, cart: [...state.cart, state.cart] };
 
 		case FILTER_NAME_PRODUCT:
 			return { ...state, filteredProducts: [...action.payload] };
