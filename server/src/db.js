@@ -12,7 +12,6 @@ const ReviewModel = require("./models/Review");
 const FavoriteModel = require("./models/Favorite");
 const PageReviewModel = require("./models/PageReview");
 
-
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/VeganWorld`,
   {
@@ -30,9 +29,8 @@ ReviewModel(sequelize);
 FavoriteModel(sequelize);
 PageReviewModel(sequelize);
 
-const { Client, Product, Order, Factura, Review, PageReview ,Favorite} =
+const { Client, Product, Order, Factura, Review, PageReview, Favorite } =
   sequelize.models;
-
 
 Client.hasMany(Order);
 Order.belongsTo(Client);
@@ -60,16 +58,14 @@ Review.belongsTo(Product);
 Client.hasMany(Review);
 Review.belongsTo(Client);
 
-
 Client.hasMany(Favorite);
-Favorite.belongsTo(Client);
+Favorite.belongsTo(Client, { foreignKey: "client_id" });
 
 Product.hasMany(Favorite);
-Favorite.belongsTo(Product);
+Favorite.belongsTo(Product, { foreignKey: "product_id" });
 
 Client.hasMany(PageReview);
 PageReview.belongsTo(Client);
-
 
 module.exports = {
   ...sequelize.models,

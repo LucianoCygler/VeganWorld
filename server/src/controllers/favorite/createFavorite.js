@@ -1,17 +1,31 @@
-const { Favorite } = require("../../db");
-const getOneClient = require("../client/getOneClient");
-const getOneProduct = require("../product/getOneProduct");
+const { Favorite, Product, Client } = require("../../db");
 
 const createFavorite = async (client_id, product_id) => {
-  const client = await getOneClient(client_id);
-  const product = await getOneProduct(product_id);
-  if (client && product) {
-    const favorite = await Favorite.create();
+  const client = await Client.findByPk(client_id);
+  if (!client) throw new Error("El ID del cliente es incorrecto.");
 
-    await favorite.setClient(client_id);
-    await favorite.setProduct(product_id);
-    return favorite;
-  } else throw new Error("The ID of the customer or the product is incorrect.");
+  const product = await Product.findByPk(product_id);
+  if (!product) throw new Error("El ID del producto es incorrecto.");
+
+  // Verificar si el favorito ya existe para el cliente y producto específicos
+  const existingFavorite = await Favorite.findOne({
+    where: {
+      client_id: client_id,
+      product_id: product_id,
+    },
+  });
+
+  if (existingFavorite) {
+    throw new Error(
+      "Este favorito ya existe para el cliente y producto específicos."
+    );
+  }
+
+  const favorite = await Favorite.create();
+  await favorite.setClient(client);
+  await favorite.setProduct(product);
+
+  return favorite;
 };
 
 module.exports = createFavorite;
