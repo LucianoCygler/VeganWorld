@@ -30,6 +30,11 @@ import {
   CREATE_FAVORITE,
   DELETE_FAVORITE,
   DROP_PRODUCT,
+
+  INCREMENT_PRODUCT,
+  DECREMENT_PRODUCT
+
+
 } from "./Types/Types";
 
 const URL_SERVIDOR = "http://localhost:3001";
@@ -84,9 +89,14 @@ export const addCartProduct = (product, quantity) => ({
 });
 
 /* ELIMINAR PRODUCTO POR ID */
-export const dropProduct = (id) => ({ type: DROP_PRODUCT, payload: id });
 
-/* FILTRAR NOMBRE DE PRODUCTO */
+export const dropProduct = (id)=>({type: DROP_PRODUCT, payload: id})
+
+export const incrementProduct = (id) => ({type:INCREMENT_PRODUCT, payload: id})
+
+export const decrementProduct = (id) => ({type:DECREMENT_PRODUCT, payload: id})
+
+
 export const filterNameProduct = (product) => ({
   type: FILTER_NAME_PRODUCT,
   payload: product,
