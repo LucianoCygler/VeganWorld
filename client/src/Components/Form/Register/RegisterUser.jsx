@@ -17,7 +17,7 @@ const initialForm = {
 const validationsForm = (initialForm) => {
   let errors = {};
 
-  const regexname = /^[a-zA-Z]+$/;
+  const regexname = /^[a-zA-Z ]+$/;
 
   if (!initialForm.nombre.trim()) {
     errors.nombre = "El campo del nombre es requerido";
