@@ -16,7 +16,6 @@ function NavBar() {
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logoutUser());
-    navigate("/Login");
   };
   return (
     <div className={styles.mainContainer}>
