@@ -30,16 +30,12 @@ import {
   CREATE_FAVORITE,
   DELETE_FAVORITE,
   DROP_PRODUCT,
-
   SET_PRODUCT_SEARCH,
   GET_CLIENT_FAVORITE,
-
-
   INCREMENT_PRODUCT,
-  DECREMENT_PRODUCT
-
-
-
+  DECREMENT_PRODUCT,
+  LOGIN,
+  LOGOUT,
 } from "./Types/Types";
 
 const URL_SERVIDOR = "http://localhost:3001";
@@ -102,12 +98,17 @@ export const addCartProduct = (product, quantity) => ({
 
 /* ELIMINAR PRODUCTO POR ID */
 
-export const dropProduct = (id)=>({type: DROP_PRODUCT, payload: id})
+export const dropProduct = (id) => ({ type: DROP_PRODUCT, payload: id });
 
-export const incrementProduct = (id) => ({type:INCREMENT_PRODUCT, payload: id})
+export const incrementProduct = (id) => ({
+  type: INCREMENT_PRODUCT,
+  payload: id,
+});
 
-export const decrementProduct = (id) => ({type:DECREMENT_PRODUCT, payload: id})
-
+export const decrementProduct = (id) => ({
+  type: DECREMENT_PRODUCT,
+  payload: id,
+});
 
 export const filterNameProduct = (product) => ({
   type: FILTER_NAME_PRODUCT,
@@ -417,5 +418,17 @@ export const getClientFavorites = (client_id) => {
     } catch (error) {
       alert(error.response.data);
     }
+  };
+};
+
+export const loginUser = () => {
+  return {
+    type: LOGIN,
+  };
+};
+
+export const logoutUser = () => {
+  return {
+    type: LOGOUT,
   };
 };

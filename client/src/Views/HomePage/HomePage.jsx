@@ -20,7 +20,7 @@ function HomePage() {
 
   const [currentPage, setCurrentPage] = useState(0);
 
-  const itemsPerPage = 10;
+  const itemsPerPage = 12;
 
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;

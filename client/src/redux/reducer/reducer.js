@@ -22,6 +22,8 @@ import {
   SET_PRODUCT_SEARCH,
   CREATE_FAVORITE,
   GET_CLIENT_FAVORITE,
+  LOGOUT,
+  LOGIN,
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -30,7 +32,6 @@ const initialState = {
   product: [],
   cart: [],
   customerComments: [],
-  access: false,
   currentPage: 0,
   itemsPerPage: 1,
   orders: [],
@@ -41,6 +42,7 @@ const initialState = {
   reviews: [],
   favorite: [],
   favorites: [],
+  isAuthenticated: false,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -72,6 +74,21 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         user: action.payload,
       };
+    case LOGIN:
+      return {
+        ...state,
+        isAuthenticated: true,
+        // Reset other relevant authentication state properties upon logout
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: {},
+        // Reset other relevant authentication state properties upon logout
+      };
+    // Other authentication-related action cases
+
     case CLEAN_DETAIL:
       return { ...state, product: [] };
 
@@ -117,16 +134,15 @@ export default function rootReducer(state = initialState, action) {
     case GET_CUSTOMER_COMMENTS:
       return { ...state, customerComments: [action.payload] };
 
-
     case SET_PAGE:
       return { ...state, currentPage: [action.payload] };
 
     case CREATE_ORDER:
       return { ...state, success: [action.payload] };
-      
+
     case GET_ORDER_BY_ID:
       return { ...state, order: [action.payload] };
-      
+
     case SET_PAGE:
       return { ...state, currentPage: [action.payload] };
 
@@ -144,7 +160,6 @@ export default function rootReducer(state = initialState, action) {
       const updatedOrders = state.clientOrders.filter(
         (order) => order.id !== orderId
       );
-
 
     case UPDATE_REVIEW:
       const { id, titulo, descripcion } = action.payload;
