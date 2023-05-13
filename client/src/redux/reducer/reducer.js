@@ -120,6 +120,20 @@ export default function rootReducer(state = initialState, action) {
 		case GET_CUSTOMER_COMMENTS:
 			return { ...state, customerComments: [action.payload] };
 
+		case SET_PAGE:
+			return { ...state, currentPage: [action.payload] };
+
+		case CREATE_ORDER:
+			return { ...state, success: [action.payload] };
+
+		case CREATE_ORDER_ERROR:
+			return { ...state, success: [action.payload] };
+
+		case GET_ORDERS:
+			return { ...state, orders: [action.payload] };
+
+		case GET_ORDER_BY_ID:
+			return { ...state, order: [action.payload] };
     case SET_PAGE:
       return { ...state, currentPage: [action.payload] };
 
