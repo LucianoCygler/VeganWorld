@@ -1,13 +1,13 @@
 const createFavorite = require("../../controllers/favorite/createFavorite");
 
-
 const createFavoriteHandler = async (req, res) => {
-  const { product_id, client_id } = req.body;
+  const { client_id, product_id } = req.body;
   try {
-    const newFavorite = await createFavorite(product_id, client_id);
+    const newFavorite = await createFavorite(client_id, product_id);
+
     res.status(200).send(newFavorite);
   } catch (error) {
-    res.status(500).send(`${error.message}`); 
+    res.status(500).send(`${error.message}`);
   }
 };
 

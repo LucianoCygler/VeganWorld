@@ -1,7 +1,7 @@
 .contenedor {
   display: grid;
   grid-template-columns: repeat(
-    6,
+    2,
     1fr
   ); /* Configura 6 columnas de tamaño igual */
   justify-content: center;
