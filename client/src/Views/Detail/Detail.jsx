@@ -48,8 +48,6 @@ function Detail() {
 						alt={product.nombre}
 						style={{ maxWidth: "300px" }}
 					/>
-
-					<div>&#11088;&#11088;&#11088;&#11088;&#11088;</div>
 					<p>{product.descripcion}</p>
 					<div>
 						Precio: <span>${product.precio}</span>
