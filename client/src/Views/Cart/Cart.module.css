@@ -19,15 +19,19 @@
 }
 
 .productsContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "imagen imagen nombre qty delete"
-    "imagen imagen precio . .";
-  grid-area: productsContainer;
+
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	gap: 0px 0px;
+	grid-auto-flow: row;
+	grid-template-areas:
+		"imagen imagen nombre qty delete"
+		"imagen imagen precio . ."
+		"imagen imagen . . .";
+	grid-area: productsContainer;
+	justify-content: center;
+
   align-items: center;
   border-bottom: 1px solid rgba(128, 128, 128, 0.459);
 }
@@ -52,6 +56,14 @@
   grid-area: delete;
 }
 
+.btnDelete {
+	background:none;
+	border: none;
+	height: 2rem;
+}
+.delete:hover{
+	cursor: pointer;
+}
 .orderSumary {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
