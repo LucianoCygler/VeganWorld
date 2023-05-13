@@ -1,5 +1,4 @@
 const createProduct = require("../../controllers/product/createProduct");
-const getProductByName = require("../../controllers/product/getProductByName");
 
 const createProductHandler = async (req, res) => {
   const { nombre, tipo, descripcion, precio, stock, imagen } = req.body;

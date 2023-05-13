@@ -15,5 +15,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    fecha: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
   });
 };

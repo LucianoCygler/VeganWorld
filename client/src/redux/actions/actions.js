@@ -78,7 +78,7 @@ export const addCartProduct = (product, quantity) => ({
   quantity: quantity,
 });
 
-export const dropProduct = (id)=>({type: DROP_PRODUCT, payload: id})
+export const dropProduct = (id) => ({ type: DROP_PRODUCT, payload: id });
 
 export const filterNameProduct = (product) => ({
   type: FILTER_NAME_PRODUCT,

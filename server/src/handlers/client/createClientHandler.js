@@ -1,5 +1,6 @@
 const createClient = require("../../controllers/client/createClient");
 const getClientByEmail = require("../../controllers/client/getClientByEmail");
+
 const createClientHandler = async (req, res) => {
   const {
     email,
@@ -17,7 +18,7 @@ const createClientHandler = async (req, res) => {
     if (client) {
       return res
         .status(409)
-        .json({ error: "Ya existe un usuario con ese email" });
+        .json({ error: "There is already a user with that email." });
     } else if (
       !client &&
       email &&
@@ -42,7 +43,7 @@ const createClientHandler = async (req, res) => {
       );
       res.status(200).send(newClient);
     } else {
-      return res.status(400).send("Faltan ingresar datos");
+      return res.status(400).send("Some data is missing.");
     }
   } catch (error) {
     res.status(500).send(`${error.message}`);

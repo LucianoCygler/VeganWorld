@@ -12,6 +12,9 @@ function Cart() {
         const name = event.target.name
         const id = event.target.value
         if(name === 'clear'){
+            console.log(id);
+            dispatch(dropProduct(id))
+        }else if (name === 'postOrder'){
             dispatch(dropProduct(id))
         }else{
             fetch.post('http://localhost:3001/product')
@@ -23,35 +26,34 @@ function Cart() {
             <h1 className={styles.tittle} >Cart</h1>
             {cart.length > 0 ? (
                 <div className={styles.container}>
-                    <button onClick={handleClick}>Pagar</button>
+                    <button onClick={handleClick} name="pay" >Pagar</button>
+                    <button onClick={handleClick} name="postOrder" >Crear orden</button>
                     <hr />
                     {cart.map((product, index) => {
-                        // console.log(product);
-                        // console.log(Object.values(product)[0].id);
                         return (
                             <>
                             <div className={styles.productsContainer} key={index}>
-                                <button name="clear" value={Number(Object.values(product)[0].id)}>X</button>
-                                <img src={Object.values(product)[0].imagen} alt="" style={{width:"150px"}}/>
+                                <button name="clear" value={product.id} onClick={handleClick}>X</button>
+                                <img src={product.imagen} alt="" style={{width:"150px"}}/>
 
                                 <div className={styles.flexContainer}>
                                     <h2 className={styles.subTittle}>
-                                        {Object.keys(product)}
+                                        {product.nombre}
                                     </h2>
                                 </div>
                                 <div className={styles.flexContainer}>
                                     <h2 className={styles.subTittle}>
-                                        {Object.values(product)[0].precio}
+                                        {product.precio}
                                     </h2>
                                 </div>
                                 <div>
                                     <h4>
-                                        Cantidad: <span>{Object.values(product)[0].cantidad}</span>
+                                        Cantidad: <span>{product.cantidad}</span>
                                     </h4>
                                 </div>
                                 <div className={styles.flexContainer}>
                                     <h2 className={styles.subTittle}>
-                                       Total: $ {Object.values(product)[0].importe}
+                                       Total: $ {product.importe}
                                     </h2>
                                 </div>
                             </div>
