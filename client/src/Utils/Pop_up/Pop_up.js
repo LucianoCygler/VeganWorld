@@ -1,7 +1,6 @@
 import Swal from "sweetalert2";
 
 const Pop_up = (icon, tittle, text) => {
-	console.log(icon, tittle, text);
 	const Toast = Swal.mixin({
 		toast: true,
 		position: "top-end",

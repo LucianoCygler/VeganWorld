@@ -194,7 +194,7 @@ export const validateLogin = (user) => {
       const userDB = res.data;
       return dispatch({ type: VALIDATE_LOGIN, payload: userDB });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
@@ -293,7 +293,7 @@ export const createReview = (newReview) => {
   };
 };
 
-/* MODIFICAR COMENTAROP */
+/* MODIFICAR COMENTARIO */
 export const updateReview = (review__id, newReview) => {
   return async function (dispatch) {
     try {

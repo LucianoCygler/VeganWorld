@@ -23,15 +23,16 @@ const LoginSignup = () => {
   };
 
 
-  const handleButtonAccess = (event) => {
+  const handleButtonAccess = async (event) => {
     event.preventDefault();
+    const response = await dispatch(validateLogin(login));
 
-    const response = dispatch(validateLogin(login));
     if (typeof response === "object") {
       dispatch(loginUser());
       navigate("/");
     }
   };
+
 
   const handleOnClick = () => {
     navigate("/Register");
