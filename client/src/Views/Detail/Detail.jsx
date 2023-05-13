@@ -7,6 +7,7 @@ import {
   cleanDetail,
   addCartProduct,
 } from "../../redux/actions/actions";
+import Pop_up from "../../Utils/Pop_up/Pop_up";
 
 function Detail() {
   const { id } = useParams();
@@ -17,7 +18,13 @@ function Detail() {
 
   const [quantity, setQuantity] = useState(1);
 
-  const handleClick = () => dispatch(addCartProduct(product, quantity));
+  const handleClick = () => {
+   try {
+    dispatch(addCartProduct(product, quantity));
+    Pop_up("success", "Product added", "You can find your products in Cart!")
+  } catch ({message}) {
+    Pop_up("info", "Product added", message )
+  }};
 
   const handleChange = (event) => setQuantity(event.target.value);
 

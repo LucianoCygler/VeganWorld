@@ -1,4 +1,3 @@
-import swal from "sweetalert";
 import {
   GET_ALL_PRODUCTS,
   GET_PRODUCT_BY_ID,
@@ -93,8 +92,7 @@ export default function rootReducer(state = initialState, action) {
       return { ...state, product: [] };
 
     case ADD_CART:
-      if (!state.cart.find(action.payload.name)) {
-        alert("producto anadido");
+      if (!state.cart.find(product => product.id === action.payload.id)) {
         return {
           ...state,
           cart: [
@@ -110,8 +108,7 @@ export default function rootReducer(state = initialState, action) {
           ],
         };
       } else {
-        alert("el producto ya esta en el carrito");
-        return { ...state };
+        throw Error('You product is already in Cart!')
       }
     // case DROP_PRODUCT:
     //   return {
