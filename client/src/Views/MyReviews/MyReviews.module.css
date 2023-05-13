@@ -1,11 +1,13 @@
-.reviews-container {
+.reviewscontainer {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  padding-top: 10em;
 }
 
-.review-card {
+.reviewcard {
   /* Estilos de la tarjeta */
   width: 250px;
   min-height: 100px; /* Ajusta la altura mínima de la tarjeta */
@@ -15,20 +17,20 @@
   cursor: pointer;
 }
 
-.card-content {
+.cardcontent {
   text-align: center;
 }
 
-.card-title {
+.cardtitle {
   font-size: 18px;
   font-weight: bold;
 }
 
-.card-description {
+.carddescription {
   margin-top: 10px;
 }
 
-.popup-container {
+.popupcontainer {
   position: fixed;
   top: 50%;
   left: 50%;

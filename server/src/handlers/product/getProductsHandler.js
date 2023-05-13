@@ -11,6 +11,7 @@ const getProductsHandler = async (req, res) => {
 
     if (nombre) {
       const product = await getProductByName(nombre);
+      if (!product) throw new Error("Error");
       return res.status(200).send(product);
     }
     if (filterByType) {
