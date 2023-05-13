@@ -1,97 +1,120 @@
+.contenedorprincipal {
+  padding-top: 10em;
+  background-color: #4ca379;
+}
+
 .form {
-    display: grid;
-    place-items: center;
-    height: 100%;
-    gap: 20px;
-    width: 100%;
-    max-width: 400px;
-    padding: 65px 45px;
-    border-radius: 15px;
-    box-shadow: 2px 2px 10px rgb(43, 197, 12),
-    -1px -1px 5px rgba(27, 218, 20, 0.6);
-    transition: all 1s ease;
-    margin: 0 auto; /* Centrar horizontalmente */
-  }
-  
-  .form {
+  background-color: #f7f7f7;
+  color: black;
+  display: grid;
+  place-items: center;
+  height: 100%;
+  gap: 20px;
+  width: 100%;
+  max-width: 400px;
+  padding: 65px 45px;
+  border-radius: 15px;
+  box-shadow: 2px 2px 10px rgb(17, 70, 6), -1px -1px 5px rgba(14, 67, 12, 0.6);
+  transition: all 1s ease;
+  margin: 0 auto; /* Centrar horizontalmente */
+}
 
+.form {
+  position: inherit;
+  max-width: 400px;
+  transition: all 1s ease;
+}
 
-    max-width: 400px;
+.form div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  border-radius: 15px;
+}
 
+.form div:nth-child(odd) {
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, min-content);
+}
 
-    box-shadow: 2px 2px 10px rgb(55, 189, 14),
-    -1px -1px 5px rgba(15, 212, 8, 0.6);
-    transition: all 1s ease;
-  }
-  
-  .form div {
-    display: grid;
-    gap: 20px;
-    width: 100%;
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
-    border-radius: 15px;
-  }
-  
-  .form div:nth-child(odd) {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, min-content);
-  }
-  
-  .form_details {
-    font-size: 25px;
-    font-weight: 600;
-    padding-bottom: 10px;
-  }
-  
-  .input {
-    width: 100%;
-    min-height: 45px;
-    color: #fff;
-    outline: none;
-    transition: 0.35s;
-    padding: 0px 7px;
-    background-color: #212121;
-    border-radius: 6px;
-    border: 2px solid #212121;
-    box-shadow: 6px 6px 10px rgba(0,0,0,1),
+.form_details {
+  font-size: 25px;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+
+.input {
+  width: 100%;
+  min-height: 45px;
+  color: #fff;
+  outline: none;
+  transition: 0.35s;
+  background-color: #3d8361;
+  border-radius: 6px;
+  border: 2px solid #3d8361;
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
     1px 1px 10px rgba(255, 255, 255, 0.6);
-  }
-  
-  .input::placeholder {
-    color: #999;
-  }
-  
-  .input:focus::placeholder {
-    transition: 0.3s;
-    opacity: 0;
-  }
-  
-  .input:focus {
-    transform: scale(1.05);
-    box-shadow: 6px 6px 10px rgba(0,0,0,1),
-    1px 1px 10px rgba(255, 255, 255, 0.6),
-    inset 2px 2px 10px rgba(0,0,0,1),
+}
+
+.input::placeholder {
+  color: #d6cda4;
+}
+
+.input:focus::placeholder {
+  transition: 0.3s;
+  opacity: 0;
+}
+
+.input:focus {
+  transform: scale(1.05);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
+    1px 1px 10px rgba(255, 255, 255, 0.6), inset 2px 2px 10px rgba(0, 0, 0, 1),
     inset -1px -1px 5px rgba(255, 255, 255, 0.6);
-  }
-  
-  .btn {
-    padding: 10px 35px;
-    cursor: pointer;
-    background-color: #212121;
-    border-radius: 6px;
-    border: 2px solid #212121;
-    box-shadow: 6px 6px 10px rgba(0,0,0,1),
+}
+
+.btn {
+  padding: 10px 35px;
+  cursor: pointer;
+  background-color: #3d8361;
+  border-radius: 6px;
+  border: 2px solid #3d8361;
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
     1px 1px 10px rgba(255, 255, 255, 0.6);
-    color: #fff;
-    font-size: 15px;
-    font-weight: bold;
-    transition: 0.35s;
-  }
-  
-  .btn:hover {
-    transform: scale(1.05);
-    box-shadow: 6px 6px 10px rgba(0,0,0,1),
+  color: #eef2e6;
+  font-size: 15px;
+  font-weight: bold;
+  transition: 0.35s;
+}
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
     1px 1px 10px rgba(255, 255, 255, 0.6);
-  }
-  
+  background-color: #eef2e6;
+  border: 2px solid #eef2e6;
+  color: #1c6758;
+}
+
+.buttonlogin {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #55756c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.buttonlogin:hover {
+  background-color: #99c4b8;
+}
+
+.buttonlogin:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(103, 137, 131, 0.5);
+}
