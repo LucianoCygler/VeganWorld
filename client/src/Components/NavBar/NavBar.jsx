@@ -8,8 +8,16 @@ import {
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./NavBar.module.css";
-
+import { logoutUser } from "../../redux/actions/actions";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 function NavBar() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    navigate("/Login");
+  };
   return (
     <div className={styles.mainContainer}>
       <div className={styles.divLeft}>
@@ -38,6 +46,7 @@ function NavBar() {
         <SearchBar />
         <NavLink to="/" className={styles.link}>
           <FontAwesomeIcon
+            onClick={handleLogout}
             icon={faRightFromBracket}
             className={styles.fontAwesome}
           />

@@ -6,12 +6,14 @@ import {
   updateClientData,
 } from "../../redux/actions/actions";
 import style from "./MyProfile.module.css";
+import { useNavigate } from "react-router-dom";
 const MyData = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const { nombre, apellido, email, direccion, telefono, dni, ciudad, id } =
     user;
-
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
   const [editMode, setEditMode] = useState(false);
   const [editedName, setEditedName] = useState(nombre || "");
   const [editedSurname, setEditedSurname] = useState(apellido || "");
@@ -47,8 +49,12 @@ const MyData = () => {
   };
 
   useEffect(() => {
-    const userId = 1;
-    dispatch(getClientData(userId));
+    if (isAuthenticated === false) {
+      navigate("/login");
+    } else {
+      const userId = 1;
+      dispatch(getClientData(userId));
+    }
   }, [dispatch, id]);
   return (
     <div className={style.container}>

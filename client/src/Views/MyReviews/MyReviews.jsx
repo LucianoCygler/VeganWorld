@@ -3,19 +3,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { getClientReviews, deleteReview } from "../../redux/actions/actions";
 import ReviewDetail from "../../Components/ReviewDetail/ReviewDetail";
 import styles from "./MyReviews.module.css";
+import { useNavigate } from "react-router-dom";
 
 const MyReviews = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const reviews = useSelector((state) => state.reviews);
   const [selectedReview, setSelectedReview] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
 
   const clientId = 1;
   // const user = useSelector((state)=>state.user);
   //! Se usa el estado global de los datos del usuario en lugar de la const clientId
   useEffect(() => {
-    dispatch(getClientReviews(clientId));
-  }, [dispatch]);
+    if (isAuthenticated === false) {
+      navigate("/login");
+    } else {
+      dispatch(getClientReviews(clientId));
+    }
+  }, [dispatch, clientId]);
 
   const showPopupHandler = (review) => {
     setSelectedReview(review);
