@@ -6,6 +6,7 @@ import {
   FILTER_NAME_PRODUCT,
   FILTER_PRICE_PRODUCT,
   STATE_LOGIN,
+  GET_CLIENT_DATA,
   SET_PAGE,
   GET_CLIENT_ORDERS,
   GET_ORDER_BY_ID,
@@ -15,6 +16,7 @@ import {
   DELETE_ORDER,
   GET_CLIENT_REVIEWS,
   UPDATE_REVIEW,
+
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -32,15 +34,24 @@ const initialState = {
   user: {},
   clientOrders: [],
   reviews: [],
+
 };
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
+
+    case GET_CLIENT_DATA:
+      return{
+        ...state,
+        user: action.payload
+      }
+
     case GET_CLIENT_REVIEWS:
       return {
         ...state,
         reviews: [...action.payload],
       };
+
     case GET_ALL_PRODUCTS:
       return {
         ...state,
