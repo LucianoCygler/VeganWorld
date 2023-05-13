@@ -1,4 +1,3 @@
-import swal from "sweetalert";
 import {
   GET_ALL_PRODUCTS,
   GET_PRODUCT_BY_ID,
@@ -102,8 +101,7 @@ export default function rootReducer(state = initialState, action) {
 			return { ...state, products: filterProducts };
 =======
     case ADD_CART:
-      if (!state.cart.find(action.payload.name)) {
-        alert("producto anadido");
+      if (!state.cart.find(product => product.id === action.payload.id)) {
         return {
           ...state,
           cart: [
@@ -119,9 +117,9 @@ export default function rootReducer(state = initialState, action) {
           ],
         };
       } else {
-        alert("el producto ya esta en el carrito");
-        return { ...state };
+        throw Error('You product is already in Cart!')
       }
+<<<<<<< HEAD
     case DROP_PRODUCT:
       return {
         ...state,
@@ -130,6 +128,15 @@ export default function rootReducer(state = initialState, action) {
         ),
       };
 >>>>>>> d3ba4b30520251f1cde1c2be8cbcb8fe372a5a24
+=======
+    // case DROP_PRODUCT:
+    //   return {
+    //     ...state,
+    //     cart: state.cart.filter(
+    //       (product) => Object.values(product)[0].id !== action.payload
+    //     ),
+    //   };
+>>>>>>> 2a0dbc53d9058072f63c4e6f6ed8e6d57d68d781
 
     case DROP_PRODUCT:
       return {
@@ -153,23 +160,14 @@ export default function rootReducer(state = initialState, action) {
     case GET_ORDER_BY_ID:
       return { ...state, order: [action.payload] };
 
-    case SET_PAGE:
-      return { ...state, currentPage: [action.payload] };
-
-    case CREATE_ORDER:
-      return { ...state, success: [action.payload] };
-
     case GET_CLIENT_ORDERS:
       return { ...state, clientOrders: action.payload };
 
-    case GET_ORDER_BY_ID:
-      return { ...state, order: [action.payload] };
-
-    case DELETE_ORDER:
-      const orderId = action.payload;
-      const updatedOrders = state.clientOrders.filter(
-        (order) => order.id !== orderId
-      );
+    // case DELETE_ORDER:
+    //   const orderId = action.payload;
+    //   const updatedOrders = state.clientOrders.filter(
+    //     (order) => order.id !== orderId
+    //   );
 
     case UPDATE_REVIEW:
       const { id, titulo, descripcion } = action.payload;

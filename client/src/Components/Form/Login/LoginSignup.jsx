@@ -2,21 +2,15 @@ import style from "./LoginSignup.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
-  changeStateLogin,
   validateLogin,
   loginUser,
 } from "../../../redux/actions/actions";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 
 const LoginSignup = () => {
-  /* PUERBA USERNAME Y PASSWORD */
-  const username = "cohorte36";
-  const password = "veganworld";
-  /* */
 
   const dispatch = useDispatch();
-  // const access = useSelector((state)=> state.access);
   const navigate = useNavigate();
 
   const [login, setLogin] = useState({
@@ -28,28 +22,6 @@ const LoginSignup = () => {
     setLogin({ ...login, [event.target.name]: event.target.value });
   };
 
-  // const accessVerified = (login) =>{
-  //   if (username === login.username && password === login.password) {
-  //     dispatch(changeStateLogin(true))
-  //     navigate("/Home")
-  //   }else{
-  //     throw alert("Error en la información introducida")
-  //   }
-  // }
-
-  // const handleButtonAccess = async (event)=>{
-  //   event.preventDefault();
-  //   try {
-  //     const verified = await axios.post("http://localhost:3001/client/checkclient/", login)
-  //     const verifydata =verified.data
-
-  //     if (verifydata) {
-  //       navigate("/Home")
-  //     }
-  //   } catch (error) {
-  //     alert(error.response.data.error);
-  //   }
-  // }
 
   const handleButtonAccess = (event) => {
     event.preventDefault();
