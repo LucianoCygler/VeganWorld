@@ -1,21 +1,23 @@
 import React from "react";
 import styles from "./Cart.module.css";
 import Swal from "sweetalert2";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faRecycle } from "@fortawesome/free-solid-svg-icons";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
-	createOrder,
-	decrementProduct,
-	dropProduct,
-	incrementProduct,
+  createOrder,
+  decrementProduct,
+  dropProduct,
+  incrementProduct,
 } from "../../redux/actions/actions";
 import Pop_up from "../../Utils/Pop_up/Pop_up";
 import { NavLink } from "react-router-dom";
 
 function Cart() {
-	const cart = useSelector((state) => state.cart);
-	const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
 	const handleClick = (event) => {
 		const name = event.target.name;
@@ -66,6 +68,7 @@ function Cart() {
 									style={{ gridRow: `${index + 1}` }}
 								>
 									{/*<div>
+
 										<button name="increment" onClick={handleClick}>
 											+
 										</button>
@@ -79,27 +82,27 @@ function Cart() {
 										</h2>
 									</div>*/}
 
-									<div className={styles.imagen}>
-										<img
-											src={product.imagen}
-											alt=""
-											style={{ width: "150px" }}
-										/>
-									</div>
+                  <div className={styles.imagen}>
+                    <img
+                      src={product.imagen}
+                      alt=""
+                      style={{ width: "150px" }}
+                    />
+                  </div>
 
-									<div className={styles.nombre}>
-										<p className={styles.subTittle}>{product.nombre}</p>
-									</div>
+                  <div className={styles.nombre}>
+                    <p className={styles.subTittle}>{product.nombre}</p>
+                  </div>
 
-									<div className={styles.precio}>
-										<p className={styles.subTittle}>{product.precio}</p>
-									</div>
+                  <div className={styles.precio}>
+                    <p className={styles.subTittle}>{product.precio}</p>
+                  </div>
 
-									<div className={styles.qty}>
-										<p>
-											Cantidad: <span>{product.cantidad}</span>
-										</p>
-									</div>
+                  <div className={styles.qty}>
+                    <p>
+                      Cantidad: <span>{product.cantidad}</span>
+                    </p>
+                  </div>
 
 									<div className={styles.delete}>
 									<button
@@ -142,6 +145,7 @@ function Cart() {
 			)}
 		</div>
 	);
+
 }
 
 export default Cart;
