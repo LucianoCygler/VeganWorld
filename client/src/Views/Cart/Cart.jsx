@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Cart.module.css";
-import swal from 'sweetalert';
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -74,7 +73,7 @@ function Cart() {
 							<>
 								<div className={styles.productsContainer} key={index} style={{ gridRow: `${index + 1}` }}>
 									{/*<div>
-										 <button name="increment" onClick={handleClick}>
+										<button name="increment" onClick={handleClick}>
 											+
 										</button>
 										<button name="decrement" onClick={handleClick}>
