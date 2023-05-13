@@ -24,6 +24,7 @@ import {
   GET_CLIENT_FAVORITE,
   LOGOUT,
   LOGIN,
+  DELETE_FAVORITE,
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -40,7 +41,6 @@ const initialState = {
   user: {},
   clientOrders: [],
   reviews: [],
-  favorite: [],
   favorites: [],
   isAuthenticated: false,
 };
@@ -193,7 +193,15 @@ export default function rootReducer(state = initialState, action) {
     case CREATE_FAVORITE:
       return {
         ...state,
-        favorite: action.payload,
+        favorites: [...state.favorites, action.payload],
+      };
+    case DELETE_FAVORITE:
+      const filtered = state.favorites.filter(
+        (favorite) => favorite.id !== action.payload
+      );
+      return {
+        ...state,
+        favorites: filtered,
       };
     case GET_CLIENT_FAVORITE:
       return {

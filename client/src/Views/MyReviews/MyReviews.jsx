@@ -37,7 +37,6 @@ const MyReviews = () => {
   const handleDeleteReview = (reviewId) => {
     dispatch(deleteReview(reviewId));
     alert("Review deleted");
-    window.location.reload();
   };
 
   return (

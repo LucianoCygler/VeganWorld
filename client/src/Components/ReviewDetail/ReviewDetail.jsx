@@ -26,7 +26,6 @@ const ReviewDetail = ({ review, closePopup }) => {
   const handleDeleteReview = () => {
     dispatch(deleteReview(id));
     alert("Review deleted");
-    window.location.reload();
   };
 
   const handleEditReview = () => {
@@ -41,7 +40,7 @@ const ReviewDetail = ({ review, closePopup }) => {
     dispatch(updateReview(id, newReview));
     alert("Review updated");
     setEditMode(false);
-    window.location.reload();
+    closePopup();
   };
 
   return (
