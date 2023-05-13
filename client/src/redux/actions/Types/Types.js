@@ -11,12 +11,6 @@ export const CREATE_ORDER_SUCCESS = "CREATE_ORDER_SUCCESS";
 export const CREATE_ORDER_ERROR = "CREATE_ORDER_ERROR";
 export const GET_ORDERS = "GET_ORDERS";
 export const GET_ORDER_BY_ID = "GET_ORDER_BY_ID";
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 8c77e9a (dando estilo a cart)
 export const CREATE_ORDER = "CREATE_ORDER";
 export const GET_CLIENT_ORDERS = "GET_CLIENT_ORDERS";
 export const VALIDATE_LOGIN = "VALIDATE_LOGIN";
