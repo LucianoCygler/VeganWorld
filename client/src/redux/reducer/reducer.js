@@ -91,7 +91,7 @@ export default function rootReducer(state = initialState, action) {
     case CLEAN_DETAIL:
       return { ...state, product: [] };
 
-<<<<<<< HEAD
+
 		case FILTER_NAME_PRODUCT:
 			const filterProducts = state.products.filter((product) => {
 				const productName = product.nombre.toLowerCase();
@@ -99,7 +99,7 @@ export default function rootReducer(state = initialState, action) {
 				return productName.includes(action.payload.toLowerCase());
 			});
 			return { ...state, products: filterProducts };
-=======
+
     case ADD_CART:
       if (!state.cart.find(product => product.id === action.payload.id)) {
         return {
@@ -119,24 +119,6 @@ export default function rootReducer(state = initialState, action) {
       } else {
         throw Error('You product is already in Cart!')
       }
-<<<<<<< HEAD
-    case DROP_PRODUCT:
-      return {
-        ...state,
-        cart: state.cart.filter(
-          (product) => Object.values(product)[0].id !== action.payload
-        ),
-      };
->>>>>>> d3ba4b30520251f1cde1c2be8cbcb8fe372a5a24
-=======
-    // case DROP_PRODUCT:
-    //   return {
-    //     ...state,
-    //     cart: state.cart.filter(
-    //       (product) => Object.values(product)[0].id !== action.payload
-    //     ),
-    //   };
->>>>>>> 2a0dbc53d9058072f63c4e6f6ed8e6d57d68d781
 
     case DROP_PRODUCT:
       return {
