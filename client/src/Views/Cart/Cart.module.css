@@ -1,86 +1,84 @@
 .mainContainer {
-
   display: flex;
   flex-direction: column;
   padding-top: 8em;
 
-  margin-top: 4rem;
   margin-right: 2rem;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr 1fr;
-	grid-auto-columns: 1fr;
-	gap: 0px 0px;
-	grid-auto-flow: row;
-	grid-template-areas:
-  "tittle tittle tittle"
-  "productsContainer productsContainer orderSumary"
-  ". . orderSumary"
-  ". . orderSumary";
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-auto-columns: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "tittle tittle tittle"
+    "productsContainer productsContainer orderSumary"
+    ". . orderSumary"
+    ". . orderSumary";
   grid-area: tittle;
 }
 
 .productsContainer {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr;
-	gap: 0px 0px;
-	grid-auto-flow: row;
-	grid-template-areas:
-		"imagen imagen nombre qty delete"
-		"imagen imagen precio . .";
-	grid-area: productsContainer;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "imagen imagen nombre qty delete"
+    "imagen imagen precio . .";
+  grid-area: productsContainer;
   align-items: center;
   border-bottom: 1px solid rgba(128, 128, 128, 0.459);
 }
 
 .imagen {
-	grid-area: imagen;
+  grid-area: imagen;
 }
 
 .nombre {
-	grid-area: nombre;
+  grid-area: nombre;
 }
 
 .precio {
-	grid-area: precio;
+  grid-area: precio;
 }
 
 .qty {
-	grid-area: qty;
+  grid-area: qty;
 }
 
 .delete {
-	grid-area: delete;
+  grid-area: delete;
 }
 
 .orderSumary {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr 1fr;
-	gap: 0px 0px;
-	grid-auto-flow: row;
-	grid-template-areas:
-		"titleOrder titleOrder titleOrder"
-		"subtotal subtotal subtotal"
-		"orderTotal orderTotal orderTotal"
-		"btnOrder btnOrder btnOrder";
-	grid-area: orderSumary;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "titleOrder titleOrder titleOrder"
+    "subtotal subtotal subtotal"
+    "orderTotal orderTotal orderTotal"
+    "btnOrder btnOrder btnOrder";
+  grid-area: orderSumary;
   background-color: rgba(236, 235, 169, 0.568);
 }
 
 .subtotal {
-	grid-area: subtotal;
+  grid-area: subtotal;
 }
 
 .titleOrder {
-	grid-area: titleOrder;
+  grid-area: titleOrder;
 }
 
 .btnOrder {
-	grid-area: btnOrder;
+  grid-area: btnOrder;
 }
 
 .orderTotal {
-	grid-area: orderTotal;
+  grid-area: orderTotal;
 }
