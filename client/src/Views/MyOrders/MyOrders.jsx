@@ -6,12 +6,17 @@ import "./MyOrders.css";
 
 const MyOrders = () => {
   const clientOrders = useSelector((state) => state.clientOrders);
+
+  const user = useSelector((state) => state.user);
+
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const client_id = 2;
+
+    const client_id = user.id;
+
     dispatch(getClientOrders(client_id));
   }, [dispatch]);
 

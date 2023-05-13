@@ -30,8 +30,10 @@ import {
   CREATE_FAVORITE,
   DELETE_FAVORITE,
   DROP_PRODUCT,
+
   INCREMENT_PRODUCT,
   DECREMENT_PRODUCT
+
 
 } from "./Types/Types";
 
@@ -45,7 +47,7 @@ export const getAllProducts = () => {
       const products = res.data;
       dispatch({ type: GET_ALL_PRODUCTS, payload: products });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
@@ -58,15 +60,13 @@ export const getProductById = (id_product) => {
       const product = res.data;
       dispatch({ type: GET_PRODUCT_BY_ID, payload: product });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
 
-
 /* LIMPIAR DETAILS */
 export const cleanDetail = () => ({ type: CLEAN_DETAIL });
-
 
 /* OBETENER COMENTARIOS DE LOS CLIENTES */
 export const getCustomerComments = () => {
@@ -76,7 +76,7 @@ export const getCustomerComments = () => {
       const comm = res.data;
       dispatch({ type: GET_CUSTOMER_COMMENTS, payload: comm });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
@@ -89,11 +89,13 @@ export const addCartProduct = (product, quantity) => ({
 });
 
 /* ELIMINAR PRODUCTO POR ID */
+
 export const dropProduct = (id)=>({type: DROP_PRODUCT, payload: id})
 
 export const incrementProduct = (id) => ({type:INCREMENT_PRODUCT, payload: id})
 
 export const decrementProduct = (id) => ({type:DECREMENT_PRODUCT, payload: id})
+
 
 export const filterNameProduct = (product) => ({
   type: FILTER_NAME_PRODUCT,
@@ -111,7 +113,7 @@ export const changeStateLogin = (boolean) => {
   return { type: STATE_LOGIN, payload: boolean };
 };
 
-//! CAMBIAR PAGINA 
+//! CAMBIAR PAGINA
 export const changePage = (number) => {
   return { type: SET_PAGE, payload: number };
 };
@@ -143,7 +145,7 @@ export const createOrder = (order) => {
       const newOrder = res.data;
       return dispatch({ type: CREATE_ORDER, payload: newOrder });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
@@ -157,7 +159,7 @@ export const getClientOrders = (id_client) => {
       const orders = res.data;
       return dispatch({ type: GET_CLIENT_ORDERS, payload: orders });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
@@ -170,7 +172,7 @@ export const getOrderDetail = (id_order) => {
       const order = res.data;
       return dispatch({ type: GET_ORDER_BY_ID, payload: order });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
@@ -183,7 +185,7 @@ export const validateLogin = (user) => {
       const userDB = res.data;
       return dispatch({ type: VALIDATE_LOGIN, payload: userDB });
     } catch (error) {
-      alert(error.response.data);
+      alert(error.message);
     }
   };
 };
@@ -196,7 +198,7 @@ export const registerUser = (user) => {
       const userDB = res.data;
       return dispatch({ type: REGISTER_USER, payload: userDB });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
@@ -209,7 +211,7 @@ export const deleteOrder = (order_id) => {
       const orderDB = res.data;
       return dispatch({ type: DELETE_ORDER, payload: orderDB });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
@@ -222,7 +224,7 @@ export const updateOrder = (order_id) => {
       const orderDB = res.data;
       return dispatch({ type: UPDATE_ORDER, payload: orderDB });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
@@ -235,7 +237,7 @@ export const getClientData = (client_id) => {
       const clientDB = res.data;
       return dispatch({ type: GET_CLIENT_DATA, payload: clientDB });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
@@ -251,7 +253,7 @@ export const updateClientData = (client_id, newData) => {
       const clientDataDB = res.data;
       return dispatch({ type: UPDATE_CLIENT_DATA, payload: clientDataDB });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
@@ -264,7 +266,7 @@ export const deleteClient = (client_id) => {
       const clientDB = res.data;
       return dispatch({ type: DELETE_CLIENT, payload: clientDB });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
@@ -277,7 +279,7 @@ export const createReview = (newReview) => {
       const reviewDB = res.data;
       return dispatch({ type: CREATE_REVIEW, payload: reviewDB });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
@@ -293,7 +295,7 @@ export const updateReview = (review__id, newReview) => {
       const reviewDB = res.data;
       return dispatch({ type: UPDATE_REVIEW, payload: reviewDB });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
@@ -306,7 +308,7 @@ export const deleteReview = (review__id) => {
       const reviewDB = res.data;
       return dispatch({ type: DELETE_REVIEW, payload: reviewDB });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
@@ -319,11 +321,10 @@ export const getClientReviews = (id_client) => {
       const reviewsDB = res.data;
       return dispatch({ type: GET_CLIENT_REVIEWS, payload: reviewsDB });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
-
 
 /* OBTENER COMENTARIO DE CLIENTE POR ID  */
 export const getClientReview = (id_review) => {
@@ -333,11 +334,10 @@ export const getClientReview = (id_review) => {
       const reviewDB = res.data;
       return dispatch({ type: GET_CLIENT_REVIEW, payload: reviewDB });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
-
 
 //ORDENAMIENTO Y FILTRADO
 export const orderAndFilter = (filterByType, sortByName, sortByPrice) => {
@@ -349,7 +349,7 @@ export const orderAndFilter = (filterByType, sortByName, sortByPrice) => {
       const filterProducts = res.data;
       return dispatch({ type: ORDER_FILTER, payload: filterProducts });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
@@ -364,11 +364,10 @@ export const getFavorites = (id_client) => {
       const clientFavorites = res.data;
       return dispatch({ type: GET_FAVORITES, payload: clientFavorites });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
-
 
 //CREAR FAVORITOS
 export const createFavorite = (favorite) => {
@@ -378,11 +377,10 @@ export const createFavorite = (favorite) => {
       const favoriteDB = res.data;
       return dispatch({ type: CREATE_FAVORITE, payload: favoriteDB });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
-
 
 //ELIMINAR FAVORITOS
 export const deleteFavorite = (favorite_id) => {
@@ -392,7 +390,7 @@ export const deleteFavorite = (favorite_id) => {
       const favoriteDB = res.data;
       return dispatch({ type: DELETE_FAVORITE, payload: favoriteDB });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data);
     }
   };
 };
