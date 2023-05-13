@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Cart.module.css";
+import swal from 'sweetalert';
 import { useDispatch, useSelector } from "react-redux";
 import {
 	createOrder,
@@ -28,6 +29,11 @@ function Cart() {
 					importe: importeTotal,
 					productos: cart.map((product) => product.id),
 				};
+				swal({
+					title: "Orden Creada",
+					text: "Puedes encontrar tus ordenes en MyOrders!",
+					icon: "success",
+				});
 				return dispatch(createOrder(order));
 			// case "increment":
 			// 	return dispatch(incrementProduct(id));

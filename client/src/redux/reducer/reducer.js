@@ -1,3 +1,4 @@
+import swal from "sweetalert";
 import {
 	GET_ALL_PRODUCTS,
 	GET_PRODUCT_BY_ID,
@@ -50,7 +51,11 @@ export default function rootReducer(state = initialState, action) {
 
 		case ADD_CART:
 			if (!state.cart.find((product) => product.id === action.payload.id)) {
-				alert("producto anadido");
+				swal({
+					title: "Producto anadido",
+					text: "Puedes encontrar tus producto en Cart!",
+					icon: "success",
+				});
 				return {
 					...state,
 					cart: [

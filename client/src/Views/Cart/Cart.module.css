@@ -23,9 +23,9 @@
 	grid-auto-flow: row;
 	grid-template-areas:
 		"imagen imagen nombre qty delete"
-		"imagen imagen precio . ."
-		"imagen imagen . . .";
+		"imagen imagen precio . .";
 	grid-area: productsContainer;
+  align-items: center;
   border-bottom: 1px solid rgba(128, 128, 128, 0.459);
 }
 
