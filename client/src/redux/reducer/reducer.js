@@ -81,7 +81,12 @@ export default function rootReducer(state = initialState, action) {
 			};
 
 		case FILTER_NAME_PRODUCT:
-			return { ...state, filteredProducts: [...action.payload] };
+			const filterProducts = state.products.filter((product) => {
+				const productName = product.nombre.toLowerCase();
+				if(action.payload === "") return state.products;
+				return productName.includes(action.payload.toLowerCase());
+			});
+			return { ...state, products: filterProducts };
 
 		case GET_CUSTOMER_COMMENTS:
 			return { ...state, customerComments: [action.payload] };
