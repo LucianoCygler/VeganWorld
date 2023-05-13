@@ -30,11 +30,12 @@ import {
   CREATE_FAVORITE,
   DELETE_FAVORITE,
   DROP_PRODUCT,
-
+  SET_PRODUCT_SEARCH,
+  GET_CLIENT_FAVORITE,
   INCREMENT_PRODUCT,
-  DECREMENT_PRODUCT
-
-
+  DECREMENT_PRODUCT,
+  LOGIN,
+  LOGOUT,
 } from "./Types/Types";
 
 const URL_SERVIDOR = "http://localhost:3001";
@@ -51,6 +52,13 @@ export const getAllProducts = () => {
     }
   };
 };
+
+export function setProductSearch(searchResult) {
+  return {
+    type: SET_PRODUCT_SEARCH,
+    payload: searchResult,
+  };
+}
 
 /*OBTENER PRODUCTO POR ID*/
 export const getProductById = (id_product) => {
@@ -90,12 +98,17 @@ export const addCartProduct = (product, quantity) => ({
 
 /* ELIMINAR PRODUCTO POR ID */
 
-export const dropProduct = (id)=>({type: DROP_PRODUCT, payload: id})
+export const dropProduct = (id) => ({ type: DROP_PRODUCT, payload: id });
 
-export const incrementProduct = (id) => ({type:INCREMENT_PRODUCT, payload: id})
+export const incrementProduct = (id) => ({
+  type: INCREMENT_PRODUCT,
+  payload: id,
+});
 
-export const decrementProduct = (id) => ({type:DECREMENT_PRODUCT, payload: id})
-
+export const decrementProduct = (id) => ({
+  type: DECREMENT_PRODUCT,
+  payload: id,
+});
 
 export const filterNameProduct = (product) => ({
   type: FILTER_NAME_PRODUCT,
@@ -108,10 +121,6 @@ export const filterPriceProduct = (product) => ({
   payload: product,
 });
 
-//!CAMBIA ESTADO LOGIN
-export const changeStateLogin = (boolean) => {
-  return { type: STATE_LOGIN, payload: boolean };
-};
 
 //! CAMBIAR PAGINA
 export const changePage = (number) => {
@@ -392,5 +401,30 @@ export const deleteFavorite = (favorite_id) => {
     } catch (error) {
       alert(error.response.data);
     }
+  };
+};
+
+//ELIMINAR FAVORITOS
+export const getClientFavorites = (client_id) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${URL_SERVIDOR}/client/${client_id}`);
+      const favorites = res.data;
+      return dispatch({ type: GET_CLIENT_FAVORITE, payload: favorites });
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
+};
+
+export const loginUser = () => {
+  return {
+    type: LOGIN,
+  };
+};
+
+export const logoutUser = () => {
+  return {
+    type: LOGOUT,
   };
 };

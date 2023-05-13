@@ -1,4 +1,9 @@
 .mainContainer {
+
+  display: flex;
+  flex-direction: column;
+  padding-top: 8em;
+
   margin-top: 4rem;
   margin-right: 2rem;
 	display: grid;

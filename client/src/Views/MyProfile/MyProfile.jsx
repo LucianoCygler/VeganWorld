@@ -6,20 +6,22 @@ import {
   updateClientData,
 } from "../../redux/actions/actions";
 import style from "./MyProfile.module.css";
+import { useNavigate } from "react-router-dom";
 const MyData = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const { nombre, apellido, email, direccion, telefono, dni, ciudad, id } =
     user;
-
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
   const [editMode, setEditMode] = useState(false);
-  const [editedName, setEditedName] = useState(nombre);
-  const [editedSurname, setEditedSurname] = useState(apellido);
-  const [editedEmail, setEditedEmail] = useState(email);
-  const [editedPhone, setEditedPhone] = useState(telefono);
-  const [editedCity, setEditedCity] = useState(ciudad);
-  const [editedDNI, setEditedDNI] = useState(dni);
-  const [editedAdress, setEditedAdress] = useState(direccion);
+  const [editedName, setEditedName] = useState(nombre || "");
+  const [editedSurname, setEditedSurname] = useState(apellido || "");
+  const [editedEmail, setEditedEmail] = useState(email || "");
+  const [editedPhone, setEditedPhone] = useState(telefono || "");
+  const [editedCity, setEditedCity] = useState(ciudad || "");
+  const [editedDNI, setEditedDNI] = useState(dni || "");
+  const [editedAdress, setEditedAdress] = useState(direccion || "");
 
   const handleEditUser = () => {
     setEditMode(true);
@@ -47,20 +49,24 @@ const MyData = () => {
   };
 
   useEffect(() => {
-    const userId = 1
-    dispatch(getClientData(userId));
+    if (isAuthenticated === false) {
+      navigate("/login");
+    } else {
+      const userId = 1;
+      dispatch(getClientData(userId));
+    }
   }, [dispatch, id]);
   return (
     <div className={style.container}>
       {editMode ? (
         <>
-        Name:
+          First Name:
           <input
             type="text"
             value={editedName}
             onChange={(e) => setEditedName(e.target.value)}
           />
-          Sername:
+          Surname:
           <input
             type="text"
             value={editedSurname}
@@ -90,20 +96,18 @@ const MyData = () => {
             value={editedAdress}
             onChange={(e) => setEditedAdress(e.target.value)}
           />
-
-{!dni ? (
+          {!dni ? (
             " "
           ) : (
-         <>
-          DNI:
-          <input
-            type="text"
-            value={editedDNI}
-            onChange={(e) => setEditedDNI(e.target.value)}
-          />
-         </>
+            <>
+              DNI:
+              <input
+                type="text"
+                value={editedDNI}
+                onChange={(e) => setEditedDNI(e.target.value)}
+              />
+            </>
           )}
-
           <button onClick={handleSaveUser}>Save Data</button>
         </>
       ) : (

@@ -18,6 +18,12 @@ import {
   GET_CLIENT_REVIEWS,
   UPDATE_REVIEW,
   VALIDATE_LOGIN,
+  ORDER_FILTER,
+  SET_PRODUCT_SEARCH,
+  CREATE_FAVORITE,
+  GET_CLIENT_FAVORITE,
+  LOGOUT,
+  LOGIN,
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -26,7 +32,6 @@ const initialState = {
   product: [],
   cart: [],
   customerComments: [],
-  access: false,
   currentPage: 0,
   itemsPerPage: 1,
   orders: [],
@@ -35,6 +40,9 @@ const initialState = {
   user: {},
   clientOrders: [],
   reviews: [],
+  favorite: [],
+  favorites: [],
+  isAuthenticated: false,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -66,6 +74,21 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         user: action.payload,
       };
+    case LOGIN:
+      return {
+        ...state,
+        isAuthenticated: true,
+        // Reset other relevant authentication state properties upon logout
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: {},
+        // Reset other relevant authentication state properties upon logout
+      };
+    // Other authentication-related action cases
+
     case CLEAN_DETAIL:
       return { ...state, product: [] };
 
@@ -90,13 +113,13 @@ export default function rootReducer(state = initialState, action) {
         alert("el producto ya esta en el carrito");
         return { ...state };
       }
-    case DROP_PRODUCT:
-      return {
-        ...state,
-        cart: state.cart.filter(
-          (product) => Object.values(product)[0].id !== action.payload
-        ),
-      };
+    // case DROP_PRODUCT:
+    //   return {
+    //     ...state,
+    //     cart: state.cart.filter(
+    //       (product) => Object.values(product)[0].id !== action.payload
+    //     ),
+    //   };
 
     case DROP_PRODUCT:
       return {
@@ -108,40 +131,26 @@ export default function rootReducer(state = initialState, action) {
         ],
       };
 
-    case FILTER_NAME_PRODUCT:
-      return { ...state, filteredProducts: [...action.payload] };
-
     case GET_CUSTOMER_COMMENTS:
       return { ...state, customerComments: [action.payload] };
 
-
     case SET_PAGE:
       return { ...state, currentPage: [action.payload] };
 
     case CREATE_ORDER:
       return { ...state, success: [action.payload] };
-      
+
     case GET_ORDER_BY_ID:
       return { ...state, order: [action.payload] };
-      
-    case SET_PAGE:
-      return { ...state, currentPage: [action.payload] };
-
-    case CREATE_ORDER:
-      return { ...state, success: [action.payload] };
 
     case GET_CLIENT_ORDERS:
       return { ...state, clientOrders: action.payload };
 
-    case GET_ORDER_BY_ID:
-      return { ...state, order: [action.payload] };
-
-    case DELETE_ORDER:
-      const orderId = action.payload;
-      const updatedOrders = state.clientOrders.filter(
-        (order) => order.id !== orderId
-      );
-
+    // case DELETE_ORDER:
+    //   const orderId = action.payload;
+    //   const updatedOrders = state.clientOrders.filter(
+    //     (order) => order.id !== orderId
+    //   );
 
     case UPDATE_REVIEW:
       const { id, titulo, descripcion } = action.payload;
@@ -162,6 +171,26 @@ export default function rootReducer(state = initialState, action) {
         reviews: updatedReviews,
       };
 
+    case ORDER_FILTER:
+      return {
+        ...state,
+        products: action.payload,
+      };
+    case SET_PRODUCT_SEARCH:
+      return {
+        ...state,
+        products: action.payload,
+      };
+    case CREATE_FAVORITE:
+      return {
+        ...state,
+        favorite: action.payload,
+      };
+    case GET_CLIENT_FAVORITE:
+      return {
+        ...state,
+        favorites: [...action.payload],
+      };
     default:
       return { ...state };
   }

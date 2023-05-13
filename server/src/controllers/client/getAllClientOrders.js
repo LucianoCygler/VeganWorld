@@ -1,4 +1,4 @@
-const { Order, Product } = require("../../db");
+const { Order } = require("../../db");
 
 async function getAllClientOrders(id) {
   const allClientOrders = await Order.findAll({
