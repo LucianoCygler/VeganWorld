@@ -113,20 +113,6 @@ function Cart() {
 										</p>
 										<div>
 											<button
-												name="increment"
-												onClick={() => {
-													const updatedCart = [...updateCart];
-													updatedCart[index].cantidad += 1;
-													updatedCart[index].importe =
-														updatedCart[index].precio *
-														updatedCart[index].cantidad;
-													setUpdateCart(updatedCart);
-												}}
-											>
-												+
-											</button>
-											<span>{` `}</span>
-											<button
 												name="decrement"
 												onClick={() => {
 													const updatedCart = [...updateCart];
@@ -140,6 +126,20 @@ function Cart() {
 												}}
 											>
 												-
+											</button>
+											<span>{` `}</span>
+											<button
+												name="increment"
+												onClick={() => {
+													const updatedCart = [...updateCart];
+													updatedCart[index].cantidad += 1;
+													updatedCart[index].importe =
+														updatedCart[index].precio *
+														updatedCart[index].cantidad;
+													setUpdateCart(updatedCart);
+												}}
+											>
+												+
 											</button>
 										</div>
 									</div>
