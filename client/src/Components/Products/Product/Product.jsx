@@ -60,22 +60,27 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
 
   return (
     <div className={styles.mainContainer}>
+      {isFav ? (
+        <div className={styles.favoriteContainer}>
+          <button className={styles.favButton} onClick={handleFavorite}>
+            ❤️
+          </button>
+        </div>
+      ) : (
+        <div className={styles.favoriteContainer}>
+          <button className={styles.favButton} onClick={handleFavorite}>
+            🤍
+          </button>
+        </div>
+      )}
+      <NavLink
+        className={styles.card}
+        to={`/Detail/${product.id}`}
+        style={{ textDecoration: "none" }}
+        >
       <div>
         {isAuthenticated ? (
           <div>
-            {isFav ? (
-              <div className={styles.favoriteContainer}>
-                <button className={styles.favButton} onClick={handleFavorite}>
-                  ❤️
-                </button>
-              </div>
-            ) : (
-              <div className={styles.favoriteContainer}>
-                <button className={styles.favButton} onClick={handleFavorite}>
-                  🤍
-                </button>
-              </div>
-            )}
           </div>
         ) : (
           ""
@@ -83,11 +88,6 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
 
         <div>
           {" "}
-          <NavLink
-            className={styles.card}
-            to={`/Detail/${product.id}`}
-            style={{ textDecoration: "none" }}
-          >
             <h2 className={styles.subtitle}>{product.nombre}</h2>
             <img
               className={styles.image}
@@ -97,9 +97,9 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
 
             <h2 className={styles.subtitle}>${product.precio} </h2>
             <h2 className={styles.subtitle}>{product.descripcion}</h2>
-          </NavLink>
         </div>
       </div>
+      </NavLink>
     </div>
   );
 }

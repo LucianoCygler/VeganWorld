@@ -17,6 +17,11 @@ function Detail() {
 
 	const [quantity, setQuantity] = useState(1);
 
+  useEffect(() => {
+    dispatch(getProductById(id));
+    return () => dispatch(cleanDetail());
+  }, [id]);
+
 	const handleClick = () => {
 		try {
 			dispatch(addCartProduct(product, quantity));
@@ -56,7 +61,6 @@ function Detail() {
 						</div>
 						<div className={styles.detailDiv}>
 							<h1 className={styles.h1}>{product.nombre}</h1>
-							<h2>★★★★</h2>
 							<h3 className={styles.p}>{product.descripcion}</h3>
 							<div className={styles.priceDiv}>
 								<h2 className={styles.price}>Precio: <span className={styles.spanPrice}>${product.precio}</span></h2>
@@ -79,5 +83,4 @@ function Detail() {
 		</div>
 	);
 }
-
 export default Detail;
