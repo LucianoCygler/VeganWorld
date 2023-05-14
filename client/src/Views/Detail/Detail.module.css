@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Raleway";
-  src: url("./Raleway/Raleway-VariableFont_wght.ttf") format("truetype");
+  src: url("../../Utils/Raleway/Raleway-VariableFont_wght.ttf") format("truetype");
 }
 
 .mainContainer {
@@ -133,6 +133,7 @@
   display: flex;
   background-color: #3D8361;
 }
+
 
 .price {
   display: flex;

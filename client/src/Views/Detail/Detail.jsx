@@ -17,6 +17,11 @@ function Detail() {
 
 	const [quantity, setQuantity] = useState(1);
 
+  useEffect(() => {
+    dispatch(getProductById(id));
+    return () => dispatch(cleanDetail());
+  }, [id]);
+
 	const handleClick = () => {
 		try {
 			dispatch(addCartProduct(product, quantity));
@@ -78,5 +83,4 @@ function Detail() {
 		</div>
 	);
 }
-
 export default Detail;
