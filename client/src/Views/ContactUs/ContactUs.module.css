@@ -4,6 +4,9 @@
   justify-content: center;
   align-items: center;
   padding-top: -4em;
+
+background-color: #d6cda4;
+
 }
 
 .ma{
@@ -127,7 +130,8 @@
   transition: all 0.4s ease; 
 }
 .create:hover{
-  background-color: rgb(79, 87, 94);
+  background-color:  #1c6758;
+
   border: 2px solid rgb(255, 229, 229);
   font-size: 34px;
   color: rgb(214, 187, 187);
@@ -151,3 +155,4 @@
   border-radius: 10px;
   margin-bottom: 1rem;
 } */
+

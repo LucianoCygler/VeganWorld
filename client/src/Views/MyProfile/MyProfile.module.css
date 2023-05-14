@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 20em;
+  padding-top: 0.1em;
 
   text-transform: capitalize;
 
@@ -15,10 +15,29 @@
 .c {
   margin-top: 200px;
   border-radius: 0.75em;
-  box-shadow: 9px 13px 13px 3px rgba(13, 81, 108, 0.94);
+  box-shadow: 13px 13px 13px 13px rgba(8, 8, 8, 0.94);
 
-  width: 500px;
+  width: 700px;
 
-  height: 460px;
+  height: 560px;
   text-transform: capitalize;
+}
+
+.save{
+  width: 30%;
+  height: 50px;
+  font-size: 18px;
+  
+  color: rgb(0, 0, 0);
+  /* margin-bottom: 21% ; */
+  
+  transition: all 0.8s ease; 
+}
+.save:hover{
+  background-color: #1c6758;
+  border: 2px solid rgb(255, 229, 229);
+  font-size: 29px;
+  color: rgb(255, 255, 255);
+  text-transform: uppercase;
+  cursor: pointer; 
 }
