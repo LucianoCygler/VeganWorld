@@ -18,6 +18,7 @@ import {
   DELETE_ORDER,
   UPDATE_ORDER,
   GET_CLIENT_DATA,
+  CLAEN_CLIENT_ID,
   UPDATE_CLIENT_DATA,
   DELETE_CLIENT,
   CREATE_REVIEW,
@@ -250,6 +251,10 @@ export const getClientData = (client_id) => {
     }
   };
 };
+
+export const  cleanClient_Id = () => {
+  return  ({type: CLAEN_CLIENT_ID })
+}
 
 /* MODIFICAR DATA DEL CLIENTE */
 export const updateClientData = (client_id, newData) => {

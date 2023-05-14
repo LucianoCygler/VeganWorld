@@ -51,6 +51,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         user: action.payload,
       };
+    case GET_CLIENT_DATA:
+      return {
+        ...state,
+        user: {},
+      };
 
     case GET_CLIENT_REVIEWS:
       return {
