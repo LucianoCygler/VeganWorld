@@ -24,6 +24,7 @@
   background-color: #3d8361b4;
   color: azure;
   font-weight: bold;
+
 	display: grid;
   min-height: 130px;
 	grid-template-columns: 1fr 1fr 300px 1fr 1fr;

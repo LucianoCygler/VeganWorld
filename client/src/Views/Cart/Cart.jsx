@@ -154,6 +154,7 @@ function Cart() {
 											<div className={styles.icon}>
 												<FontAwesomeIcon icon={faRecycle} spin size="2xl" />
 											</div>
+
 										</button>
 									</div>
 								</div>
