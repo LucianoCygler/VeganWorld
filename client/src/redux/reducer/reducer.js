@@ -91,17 +91,16 @@ export default function rootReducer(state = initialState, action) {
     case CLEAN_DETAIL:
       return { ...state, product: [] };
 
-
-		case FILTER_NAME_PRODUCT:
-			const filterProducts = state.products.filter((product) => {
-				const productName = product.nombre.toLowerCase();
-				if(action.payload === "") return state.products;
-				return productName.includes(action.payload.toLowerCase());
-			});
-			return { ...state, products: filterProducts };
+    case FILTER_NAME_PRODUCT:
+      const filterProducts = state.products.filter((product) => {
+        const productName = product.nombre.toLowerCase();
+        if (action.payload === "") return state.products;
+        return productName.includes(action.payload.toLowerCase());
+      });
+      return { ...state, products: filterProducts };
 
     case ADD_CART:
-      if (!state.cart.find(product => product.id === action.payload.id)) {
+      if (!state.cart.find((product) => product.id === action.payload.id)) {
         return {
           ...state,
           cart: [
@@ -117,7 +116,7 @@ export default function rootReducer(state = initialState, action) {
           ],
         };
       } else {
-        throw Error('You product is already in Cart!')
+        throw Error("You product is already in Cart!");
       }
 
     case DROP_PRODUCT:

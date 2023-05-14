@@ -40,3 +40,4 @@ export const INCREMENT_PRODUCT = "INCREMENT_PRODUCT";
 export const DECREMENT_PRODUCT = "DECREMENT_PRODUCT";
 export const LOGOUT = "LOGOUT";
 export const LOGIN = "LOGIN";
+export const ADD_PRODUCT_TO_CART = "LOGIN";
