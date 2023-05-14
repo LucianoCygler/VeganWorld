@@ -1,71 +1,136 @@
+@font-face {
+  font-family: "Raleway";
+  src: url("../../../../../../../../../Downloads/Raleway/Raleway-Italic-VariableFont_wght.ttf") format("truetype");
+}
 /* DIVS */
 
 .mainContainer {
   display: flex;
   justify-content: center;
+  font-family: "Raleway";
+  /* text-shadow: 0 0 5px #ff02d5; */
+}
+
+.imageDiv{
+  width: 30%;
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-start;
   align-items: center;
-  flex-direction: row;
 }
 
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  margin-top: 150px;
+  margin-top: 100px;
   background-color: #3D8361;
+  max-width: 800px;
+  height: auto;
 }
 
 .descriptionDiv{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
 }
 
 .divLink {
   display: flex;
-  top: 0;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
   position: relative;
 }
 
-.priceDiv {
-
+.detailDiv {
+  display: flex;
+  flex-direction: column;
+  margin-left: 200px;
 }
 
-.alertDiv {
+.linkContainer {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
 
+.priceDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.productValue{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ELEMENTS */
 
 .image {
-
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  margin-left: 150px;
+  margin-bottom: 5px;
+  border-radius: 15px;
+  margin-top: -40px;
 }
 
 .p {
-
+  display: flex;
+  flex-direction: row;
 }
 
 .spanPrice {
-
-}
-
-.link {
-
+  margin-left: 180px;
 }
 
 .linkBack {
   display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100px;
+  text-decoration: none;
+  color: black;
+  margin-left: 15px;
+  transition: transform 0.3s ease;
 }
 
-.buttonBack {
+.linkBack:hover {
+  transform: scale(1.1);
+}
+
+.button {
   display: flex;
-  position: relative;
-  
+  justify-content: center;
+  align-items: center;
+  margin-left: 80px;
 }
 
 .input {
-
+  display: flex;
+  background-color: #3D8361;
 }
 
-.alert {
+.price {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+}
 
+.quantitySpan {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.quantityButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-left: 5px;
 }
