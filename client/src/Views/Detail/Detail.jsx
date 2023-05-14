@@ -42,12 +42,54 @@ function Detail() {
 	}, [id]);
 
 	return (
+
 		<div className={styles.mainContainer}>
 			<div className={styles.container}>
 				<div className={styles.linkContainer}>
 					<Link to="/" className={styles.linkBack}>
 						<FontAwesomeIcon icon={faArrowLeftLong} />	
 					</Link>
+
+		<>
+			{product?.imagen ? (
+				<div
+					className={styles.mainContainer}
+				>
+					<h1>{product.nombre}</h1>
+					<img
+						src={product.imagen}
+						alt={product.nombre}
+						style={{ maxWidth: "300px" }}
+					/>
+					<p>{product.descripcion}</p>
+					<div>
+						Precio: <span>${product.precio}</span>
+					</div>
+					{/* <div>Precio al mayor:</div> */}
+					<div>
+						<span></span>
+					</div>
+					<div></div>
+					<NavLink to="/" className={styles.link}>
+						<button>Atras</button>
+					</NavLink>
+					<NavLink to={"/Cart"}>
+						<button>Ir al carrito</button>
+					</NavLink>
+
+					<input
+						type="number"
+						name="quantity"
+						id=""
+						style={{ width: "3rem" }}
+						value={quantity}
+						min={1}
+						max={10}
+						onChange={handleChange}
+					/>
+
+					<button onClick={handleClick}>Add to cart</button>
+
 				</div>
 				{product?.nombre ? (
 					<div className={styles.descriptionDiv}>
