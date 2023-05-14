@@ -2,11 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 20em;
 
   text-transform: capitalize;
-
-  color: darkred;
+  color: #EEF2E6;
 }
 .edit {
   display: flex;
@@ -15,10 +13,23 @@
 .c {
   margin-top: 200px;
   border-radius: 0.75em;
-  box-shadow: 9px 13px 13px 3px rgba(13, 81, 108, 0.94);
+  box-shadow: 9px 13px 13px 3px #1C6758;
 
   width: 500px;
-
+  background-color: #3D8361;
   height: 460px;
   text-transform: capitalize;
+}
+
+.button {
+  color: #EEF2E6;
+  border: transparent;
+  background-color: #1C6758;
+  border-radius: 15px;
+  transition: transform 0.4s ease-in-out;
+  box-shadow: 0 0 15px 5px #1C6758;
+}
+
+.button:hover {
+  transform: scale(1.1);
 }

@@ -126,7 +126,7 @@ const MyData = () => {
             {telefono}
           </p>
           <p>
-            <span style={{ fontWeight: "bold" }}> Phone Number: </span>
+            <span style={{ fontWeight: "bold" }}> Direction: </span>
             {direccion}
           </p>
           <p>
@@ -140,7 +140,7 @@ const MyData = () => {
               <span style={{ fontWeight: "bold" }}> DNI: </span> {dni}
             </p>
           )}
-          <button onClick={handleEditUser}>Edit User</button>
+          <button className={style.button} onClick={handleEditUser}>Edit User</button>
         </div>
       )}
     </div>
