@@ -60,6 +60,19 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
 
   return (
     <div className={styles.mainContainer}>
+      {isFav ? (
+        <div className={styles.favoriteContainer}>
+          <button className={styles.favButton} onClick={handleFavorite}>
+            ❤️
+          </button>
+        </div>
+      ) : (
+        <div className={styles.favoriteContainer}>
+          <button className={styles.favButton} onClick={handleFavorite}>
+            🤍
+          </button>
+        </div>
+      )}
       <NavLink
         className={styles.card}
         to={`/Detail/${product.id}`}
@@ -68,19 +81,6 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
       <div>
         {isAuthenticated ? (
           <div>
-            {isFav ? (
-              <div className={styles.favoriteContainer}>
-                <button className={styles.favButton} onClick={handleFavorite}>
-                  ❤️
-                </button>
-              </div>
-            ) : (
-              <div className={styles.favoriteContainer}>
-                <button className={styles.favButton} onClick={handleFavorite}>
-                  🤍
-                </button>
-              </div>
-            )}
           </div>
         ) : (
           ""
