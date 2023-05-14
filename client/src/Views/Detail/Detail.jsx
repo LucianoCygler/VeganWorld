@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Ring } from "@uiball/loaders";
 import styles from "./Detail.module.css";
-import { Link, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductById, cleanDetail, addCartProduct } from "../../redux/actions/actions";
+import {
+	getProductById,
+	cleanDetail,
+	addCartProduct,
+} from "../../redux/actions/actions";
 import Pop_up from "../../Utils/Pop_up/Pop_up";
-import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Detail() {
 	const { id } = useParams();
@@ -26,15 +28,7 @@ function Detail() {
 		}
 	};
 
-	const handleDecrement = () => {
-		setQuantity(quantity > 1 ? quantity - 1 : 1);
-	}
-
-	const handleIncrement = () => {
-		if(quantity < 10){
-			setQuantity(quantity + 1);
-		}
-	}
+	const handleChange = (event) => setQuantity(event.target.value);
 
 	useEffect(() => {
 		dispatch(getProductById(id));

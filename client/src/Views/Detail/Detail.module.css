@@ -1,9 +1,3 @@
-@font-face {
-  font-family: "Raleway";
-  src: url("../../../../../../../../../Downloads/Raleway/Raleway-Italic-VariableFont_wght.ttf") format("truetype");
-}
-/* DIVS */
-
 .mainContainer {
   display: flex;
   justify-content: center;
