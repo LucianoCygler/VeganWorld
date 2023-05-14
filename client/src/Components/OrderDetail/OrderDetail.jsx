@@ -62,11 +62,8 @@ const OrderDetail = ({ order, closePopup }) => {
         >
           Productos:
         </span>
-        {Object.entries(countProducts).map(([producto, cantidad]) => (
-          <span key={producto}>
-            {cantidad} {producto}{" "}
-          </span>
-        ))}
+
+        <span> {productos} </span>
       </div>
       <div style={{ marginBottom: "10px" }}>
         <span
