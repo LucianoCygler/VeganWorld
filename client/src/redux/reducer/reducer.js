@@ -23,6 +23,7 @@ import {
   GET_CLIENT_FAVORITE,
   LOGOUT,
   LOGIN,
+  DELETE_FAVORITE,
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -39,7 +40,6 @@ const initialState = {
   user: {},
   clientOrders: [],
   reviews: [],
-  favorite: [],
   favorites: [],
   isAuthenticated: false,
 };
@@ -50,6 +50,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         user: action.payload,
+      };
+    case GET_CLIENT_DATA:
+      return {
+        ...state,
+        user: {},
       };
 
     case GET_CLIENT_REVIEWS:
@@ -91,17 +96,16 @@ export default function rootReducer(state = initialState, action) {
     case CLEAN_DETAIL:
       return { ...state, product: [] };
 
-
-		case FILTER_NAME_PRODUCT:
-			const filterProducts = state.products.filter((product) => {
-				const productName = product.nombre.toLowerCase();
-				if(action.payload === "") return state.products;
-				return productName.includes(action.payload.toLowerCase());
-			});
-			return { ...state, products: filterProducts };
+    case FILTER_NAME_PRODUCT:
+      const filterProducts = state.products.filter((product) => {
+        const productName = product.nombre.toLowerCase();
+        if (action.payload === "") return state.products;
+        return productName.includes(action.payload.toLowerCase());
+      });
+      return { ...state, products: filterProducts };
 
     case ADD_CART:
-      if (!state.cart.find(product => product.id === action.payload.id)) {
+      if (!state.cart.find((product) => product.id === action.payload.id)) {
         return {
           ...state,
           cart: [
@@ -117,7 +121,7 @@ export default function rootReducer(state = initialState, action) {
           ],
         };
       } else {
-        throw Error('You product is already in Cart!')
+        throw Error("You product is already in Cart!");
       }
 
     case DROP_PRODUCT:
@@ -183,7 +187,15 @@ export default function rootReducer(state = initialState, action) {
     case CREATE_FAVORITE:
       return {
         ...state,
-        favorite: action.payload,
+        favorites: [...state.favorites, action.payload],
+      };
+    case DELETE_FAVORITE:
+      const filtered = state.favorites.filter(
+        (favorite) => favorite.id !== action.payload
+      );
+      return {
+        ...state,
+        favorites: filtered,
       };
     case GET_CLIENT_FAVORITE:
       return {

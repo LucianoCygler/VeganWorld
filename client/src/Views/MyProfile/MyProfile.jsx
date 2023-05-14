@@ -4,6 +4,7 @@ import {
   getClientData,
   deleteClient,
   updateClientData,
+  cleanClient_Id,
 } from "../../redux/actions/actions";
 import style from "./MyProfile.module.css";
 import { useNavigate } from "react-router-dom";
@@ -51,9 +52,12 @@ const MyData = () => {
     if (isAuthenticated === false) {
       navigate("/login");
     } else {
-      const userId = 1;
-      dispatch(getClientData(userId));
+     
+      dispatch(getClientData(user));
     }
+    return () => {
+      dispatch( cleanClient_Id ())
+     }
   }, [dispatch, id]);
   return (
     <div className={style.container}>
@@ -107,7 +111,9 @@ const MyData = () => {
               />
             </>
           )}
-          <button onClick={handleSaveUser}>Save Data</button>
+            <button className={style.save} onClick={handleSaveUser}>Save Data
+        </button>
+          {/* <button onClick={handleSaveUser}>Save Data</button> */}
         </div>
       ) : (
         <div className={style.c}>
@@ -139,7 +145,7 @@ const MyData = () => {
               <span style={{ fontWeight: "bold" }}> DNI: </span> {dni}
             </p>
           )}
-          <button onClick={handleEditUser}>Edit User</button>
+          <button className={style.save}  onClick={handleEditUser}>Edit User</button>
         </div>
       )}
     </div>

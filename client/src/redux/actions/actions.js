@@ -18,6 +18,7 @@ import {
   DELETE_ORDER,
   UPDATE_ORDER,
   GET_CLIENT_DATA,
+  CLAEN_CLIENT_ID,
   UPDATE_CLIENT_DATA,
   DELETE_CLIENT,
   CREATE_REVIEW,
@@ -251,6 +252,10 @@ export const getClientData = (client_id) => {
   };
 };
 
+export const  cleanClient_Id = () => {
+  return  ({type: CLAEN_CLIENT_ID })
+}
+
 /* MODIFICAR DATA DEL CLIENTE */
 export const updateClientData = (client_id, newData) => {
   return async function (dispatch) {
@@ -379,7 +384,7 @@ export const getFavorites = (id_client) => {
 };
 
 //CREAR FAVORITOS
-export const createFavorite = (favorite) => {
+export const createFavoriteAction = (favorite) => {
   return async function (dispatch) {
     try {
       const res = await axios.post(`${URL_SERVIDOR}/favorite`, favorite);
@@ -392,12 +397,12 @@ export const createFavorite = (favorite) => {
 };
 
 //ELIMINAR FAVORITOS
-export const deleteFavorite = (favorite_id) => {
+export const deleteFavoriteAction = (product_id) => {
   return async function (dispatch) {
     try {
-      const res = await axios.delete(`${URL_SERVIDOR}/favorite/${favorite_id}`);
-      const favoriteDB = res.data;
-      return dispatch({ type: DELETE_FAVORITE, payload: favoriteDB });
+      const res = await axios.delete(`${URL_SERVIDOR}/favorite/${product_id}`);
+      const favorite = res.data;
+      return dispatch({ type: DELETE_FAVORITE, payload: favorite.id });
     } catch (error) {
       alert(error.response.data);
     }
@@ -405,10 +410,12 @@ export const deleteFavorite = (favorite_id) => {
 };
 
 //ELIMINAR FAVORITOS
-export const getClientFavorites = (client_id) => {
+export const getClientAllFavorites = (client_id) => {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${URL_SERVIDOR}/client/${client_id}`);
+      const res = await axios.get(
+        `${URL_SERVIDOR}/favorite/client/${client_id}`
+      );
       const favorites = res.data;
       return dispatch({ type: GET_CLIENT_FAVORITE, payload: favorites });
     } catch (error) {

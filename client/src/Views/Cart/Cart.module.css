@@ -1,86 +1,134 @@
+@font-face {
+  font-family: "Raleway";
+  src: url("../../Utils/Raleway/Raleway-Italic-VariableFont_wght.ttf") format("truetype");
+}
+
 .mainContainer {
-
-  display: flex;
-  flex-direction: column;
+  font-family: "Raleway";
   padding-top: 8em;
-
-  margin-top: 4rem;
-  margin-right: 2rem;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr 1fr;
-	grid-auto-columns: 1fr;
-	gap: 0px 0px;
-	grid-auto-flow: row;
-	grid-template-areas:
-  "tittle tittle tittle"
-  "productsContainer productsContainer orderSumary"
-  ". . orderSumary"
-  ". . orderSumary";
-  grid-area: tittle;
+  margin-right: 10%;
+  display: grid;
+  grid-template-columns: repeat(3, 0.3fr);
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-auto-columns: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "productsContainer productsContainer orderSumary"
+    ". . orderSumary"
+    ". . orderSumary";
+    justify-content: space-evenly;
 }
 
 .productsContainer {
+  background-color: #3d8361b4;
+  color: azure;
+  font-weight: bold;
+
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr;
+  min-height: 130px;
+	grid-template-columns: 1fr 1fr 300px 1fr 1fr;
+	grid-template-rows: 1fr 1fr  ;
 	gap: 0px 0px;
 	grid-auto-flow: row;
 	grid-template-areas:
 		"imagen imagen nombre qty delete"
 		"imagen imagen precio . .";
+
 	grid-area: productsContainer;
+	justify-content: center;
   align-items: center;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.459);
+  border-bottom: 1px solid rgb(128, 128, 128);
+  box-shadow: 0px 0px 8px #3d8361b4;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
 }
 
 .imagen {
-	grid-area: imagen;
+  grid-area: imagen;
 }
 
 .nombre {
-	grid-area: nombre;
+  grid-area: nombre;
 }
 
 .precio {
-	grid-area: precio;
+  grid-area: precio;
 }
 
 .qty {
-	grid-area: qty;
+  grid-area: qty;
 }
 
 .delete {
-	grid-area: delete;
+	height: 4rem;
+  grid-area: delete;
 }
 
+.btnDelete {
+	background:gainsboro;
+	border: none;
+	height: 4rem;
+  z-index: 2;
+}
+
+.delete:hover{
+	cursor: pointer;
+}
+
+.icon{
+  z-index: -1;
+}
 .orderSumary {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr 1fr;
-	gap: 0px 0px;
-	grid-auto-flow: row;
-	grid-template-areas:
-		"titleOrder titleOrder titleOrder"
-		"subtotal subtotal subtotal"
-		"orderTotal orderTotal orderTotal"
-		"btnOrder btnOrder btnOrder";
-	grid-area: orderSumary;
+  color: darkcyan;
+  text-shadow: 0px 0px 2px whitesmoke;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "titleOrder titleOrder titleOrder"
+    "subtotal subtotal subtotal"
+    "orderTotal orderTotal orderTotal"
+    "btnOrder btnOrder btnOrder";
+  grid-area: orderSumary;
   background-color: rgba(236, 235, 169, 0.568);
+  box-shadow: 0px 0px 8px #76aa91b4;
+  border-radius: 20px;
+
 }
 
 .subtotal {
-	grid-area: subtotal;
+  grid-area: subtotal;
 }
 
 .titleOrder {
-	grid-area: titleOrder;
+  grid-area: titleOrder;
 }
 
 .btnOrder {
-	grid-area: btnOrder;
+  grid-area: btnOrder;
 }
 
 .orderTotal {
-	grid-area: orderTotal;
+  grid-area: orderTotal;
+}
+
+.mount{
+  color: darkcyan;
+}
+
+.btnGenerate{
+  width: 80%;
+  height: 3rem;
+  border-radius: 5px;
+  background-color: #1c6758;
+  color: aliceblue;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+.btnGenerate:hover{
+  cursor: pointer;
 }
