@@ -3,7 +3,7 @@ import styles from "./Cart.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faRecycle } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { createOrder, dropProduct } from "../../redux/actions/actions";
+import { createOrder, dropProduct, newCart } from "../../redux/actions/actions";
 import Pop_up from "../../Utils/Pop_up/Pop_up";
 import { NavLink } from "react-router-dom";
 
@@ -68,6 +68,7 @@ function Cart() {
 	};
 
 	useEffect(() => {
+		dispatch(newCart(updateCart))
 		setSubTotal(subTotalF());
 		!cart && setUpdateCart(localStorage.getItem('cart'))
 		return ()=>{
