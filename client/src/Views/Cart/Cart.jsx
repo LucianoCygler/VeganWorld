@@ -69,6 +69,10 @@ function Cart() {
 
 	useEffect(() => {
 		setSubTotal(subTotalF());
+		!cart && setUpdateCart(localStorage.getItem('cart'))
+		return ()=>{
+			localStorage.setItem('cart', updateCart )
+		}
 	}, [updateCart]);
 
 	return (
@@ -111,7 +115,7 @@ function Cart() {
 										<p>
 											Qty: <span>{product.cantidad}</span>
 										</p>
-										<div>
+										<div className={styles.btnsQty}>
 											<button
 												name="decrement"
 												onClick={() => {

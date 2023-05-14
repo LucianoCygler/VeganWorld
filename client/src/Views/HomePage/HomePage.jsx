@@ -13,6 +13,7 @@ function HomePage() {
   const [sortByPrice, setSortByPrice] = useState("");
   useEffect(() => {
     dispatch(getAllProducts());
+
   }, []);
   useEffect(() => {
     dispatch(orderAndFilter(filterByType, sortByName, sortByPrice));

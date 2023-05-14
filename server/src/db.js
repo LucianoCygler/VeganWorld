@@ -59,10 +59,10 @@ Client.hasMany(Review);
 Review.belongsTo(Client);
 
 Client.hasMany(Favorite);
-Favorite.belongsTo(Client, { foreignKey: "ClientId" });
+Favorite.belongsTo(Client, { foreignKey: "client_id" });
 
 Product.hasMany(Favorite);
-Favorite.belongsTo(Product, { foreignKey: "ProductId" });
+Favorite.belongsTo(Product, { foreignKey: "product_id" });
 
 Client.hasMany(PageReview);
 PageReview.belongsTo(Client);

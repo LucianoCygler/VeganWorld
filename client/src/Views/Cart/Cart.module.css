@@ -66,6 +66,24 @@
   grid-area: delete;
 }
 
+.btnsQty button{
+  font-weight: bold;
+  font-size: 1.3rem;
+  background: none;
+  border: none;
+  color: azure;
+  font-weight: bold;
+}
+
+.btnsQty button:hover{
+  cursor: pointer;
+}
+
+.btnsQty button:active{
+  color: brown;
+  transform: scale(1.6);
+}
+
 .btn {
   background-color: transparent;
   position: relative;
