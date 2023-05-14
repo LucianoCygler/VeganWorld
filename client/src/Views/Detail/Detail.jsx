@@ -37,10 +37,9 @@ function Detail() {
 
 	return (
 		<>
-			{product?.nombre ? (
+			{product?.imagen ? (
 				<div
 					className={styles.mainContainer}
-					// style={{ backgroundColor: "rgba(42, 66, 49, 0.5)" }}
 				>
 					<h1>{product.nombre}</h1>
 					<img
