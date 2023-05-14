@@ -66,20 +66,51 @@
   grid-area: delete;
 }
 
-.btnDelete {
-	background:gainsboro;
-	border: none;
-	height: 4rem;
-  z-index: 2;
+.btn {
+  background-color: transparent;
+  position: relative;
+  border: none;
 }
 
-.delete:hover{
-	cursor: pointer;
+.btn::after {
+  content: 'delete';
+  position: absolute;
+  top: -130%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+  height: fit-content;
+  background-color: rgb(168, 7, 7);
+  padding: 4px 8px;
+  border-radius: 5px;
+  transition: .2s linear;
+  transition-delay: .2s;
+  color: white;
+  text-transform: uppercase;
+  font-size: 12px;
+  opacity: 0;
+  visibility: hidden;
 }
 
-.icon{
-  z-index: -1;
+.icon {
+  transform: scale(1.2);
+  transition: .2s linear;
 }
+
+.btn:hover > .icon {
+  transform: scale(1.5);
+}
+
+.btn:hover > .icon path {
+  fill: rgb(168, 7, 7);
+}
+
+.btn:hover::after {
+  visibility: visible;
+  opacity: 1;
+  top: -160%;
+}
+
 .orderSumary {
   color: darkcyan;
   text-shadow: 0px 0px 2px whitesmoke;
