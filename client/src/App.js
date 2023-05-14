@@ -10,7 +10,8 @@ function App() {
   //************************************* OCULTAR / MOSTRAR NAVBAR *********************************/
   const location = useLocation();
 
-  const showNav = location.pathname !== "/login" || location.pathname !== "/register";
+  const showNav = location.pathname !== "/login";
+  const showNav2 = location.pathname !== "/register";
 
   return (
     <div className="App">
