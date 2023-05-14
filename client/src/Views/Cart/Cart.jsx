@@ -70,10 +70,6 @@ function Cart() {
 	useEffect(() => {
 		dispatch(newCart(updateCart))
 		setSubTotal(subTotalF());
-		!cart && setUpdateCart(localStorage.getItem('cart'))
-		return ()=>{
-			localStorage.setItem('cart', updateCart )
-		}
 	}, [updateCart]);
 
 	return (
