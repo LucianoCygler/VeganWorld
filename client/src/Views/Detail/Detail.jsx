@@ -3,45 +3,43 @@ import { Ring } from "@uiball/loaders";
 import styles from "./Detail.module.css";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getProductById,
-  cleanDetail,
-  addCartProduct,
-} from "../../redux/actions/actions";
+import { getProductById, cleanDetail, addCartProduct } from "../../redux/actions/actions";
 import Pop_up from "../../Utils/Pop_up/Pop_up";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Detail() {
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const [product] = useSelector((state) => state.product);
-  const [quantity, setQuantity] = useState(1);
-  const handleClick = () => {
-    try {
-      dispatch(addCartProduct(product, quantity));
-      Pop_up("success", "Product added", "You can find your products in Cart!");
-    } catch ({ message }) {
-      Pop_up("info", "Product added", message);
-    }
-  };
+	const { id } = useParams();
 
-  const handleDecrement = () => {
-    setQuantity(quantity > 1 ? quantity - 1 : 1);
-  };
+	const dispatch = useDispatch();
 
-  const handleIncrement = () => {
-    if (quantity < 10) {
-      setQuantity(quantity + 1);
-    }
-  };
+	const [product] = useSelector((state) => state.product);
+
+	const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     dispatch(getProductById(id));
     return () => dispatch(cleanDetail());
   }, [id]);
 
-	const handleChange = (event) => setQuantity(event.target.value);
+	const handleClick = () => {
+		try {
+			dispatch(addCartProduct(product, quantity));
+			Pop_up("success", "Product added", "You can find your products in Cart!");
+		} catch ({ message }) {
+			Pop_up("info", "Product added", message);
+		}
+	};
+
+	const handleDecrement = () => {
+		setQuantity(quantity > 1 ? quantity - 1 : 1);
+	}
+
+	const handleIncrement = () => {
+		if(quantity < 10){
+			setQuantity(quantity + 1);
+		}
+	}
 
 	useEffect(() => {
 		dispatch(getProductById(id));
