@@ -3,20 +3,16 @@ import styles from "./Cart.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faRecycle } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import {
-	createOrder,
-	decrementProduct,
-	dropProduct,
-	incrementProduct,
-} from "../../redux/actions/actions";
+import { createOrder, dropProduct } from "../../redux/actions/actions";
 import Pop_up from "../../Utils/Pop_up/Pop_up";
 import { NavLink } from "react-router-dom";
 
-
-
 function Cart() {
 	const { user, cart } = useSelector((state) => state);
-	const [subTotal, setSubTotal] = useState(0)
+
+	const [subTotal, setSubTotal] = useState(0);
+
+	const [updateCart, setUpdateCart] = useState(cart);
 
 	function products() {
 		const idsProductos = [];
@@ -32,10 +28,9 @@ function Cart() {
 
 	function subTotalF() {
 		let subTotalP = 0;
-		cart.forEach((product) => (subTotalP += product.importe));
-		return subTotalP
+		updateCart.forEach((product) => (subTotalP += product.importe));
+		return subTotalP;
 	}
-
 
 	const dispatch = useDispatch();
 
@@ -53,34 +48,34 @@ function Cart() {
 					importe: subTotalF(),
 					productos: products(),
 				};
-				Pop_up(
-					"success",
-					"Order Ceated",
-					"You can find your orders in MyOrders!"
-				);
-				return dispatch(createOrder(order));
-			// case "increment":
-			// 	return dispatch(incrementProduct(id));
-			// case "decrement":
-			// 	return dispatch(decrementProduct(id));
+				try {
+					dispatch(createOrder(order));
+					Pop_up(
+						"success",
+						"Order Ceated",
+						"You can find your orders in MyOrders!"
+					);
+				} catch ({ message }) {
+					Pop_up("error", "Fail to Create Order", message);
+				}
+				break;
+			case "delete":
+				setUpdateCart(updateCart.filter((product) => product.id != id));
+				break;
 			default:
 				return;
 		}
 	};
 
-	useEffect(()=>{
-		
-		setSubTotal(subTotalF())
-	
-	},[cart])
+	useEffect(() => {
+		setSubTotal(subTotalF());
+	}, [updateCart]);
 
 	return (
 		<div className={styles.mainContainer}>
-
-			{cart.length > 0 ? (
-				// <div className={styles.container}>
+			{updateCart.length > 0 ? (
 				<>
-					{cart.map((product, index) => {
+					{updateCart.map((product, index) => {
 						return (
 							<>
 								<div
@@ -88,20 +83,11 @@ function Cart() {
 									key={index}
 									style={{ gridRow: `${index + 1}` }}
 								>
-									{/*<div>
-
-										<button name="increment" onClick={handleClick}>
-											+
-										</button>
-										<button name="decrement" onClick={handleClick}>
-											-
-										</button> 
-									</div>
 									<div className={styles.flexContainer}>
-										<h2 className={styles.subTittle}>
-											Total: $ {product.importe}
-										</h2>
-									</div>*/}
+										<h3 className={styles.subTittle}>
+											subTotal: $ {product.importe}
+										</h3>
+									</div>
 
 									<div className={styles.imagen}>
 										<img
@@ -116,29 +102,60 @@ function Cart() {
 									</div>
 
 									<div className={styles.precio}>
-										<p className={styles.subTittle}>{product.precio}</p>
+										<p className={styles.subTittle}>
+											Price: $ {product.precio}
+										</p>
 									</div>
 
 									<div className={styles.qty}>
 										<p>
-											Cantidad: <span>{product.cantidad}</span>
+											Qty: <span>{product.cantidad}</span>
 										</p>
+										<div>
+											<button
+												name="increment"
+												onClick={() => {
+													const updatedCart = [...updateCart];
+													updatedCart[index].cantidad += 1;
+													updatedCart[index].importe =
+														updatedCart[index].precio *
+														updatedCart[index].cantidad;
+													setUpdateCart(updatedCart);
+												}}
+											>
+												+
+											</button>
+											<span>{` `}</span>
+											<button
+												name="decrement"
+												onClick={() => {
+													const updatedCart = [...updateCart];
+													if (updatedCart[index].cantidad > 1) {
+														updatedCart[index].cantidad -= 1;
+														updatedCart[index].importe =
+															updatedCart[index].precio *
+															updatedCart[index].cantidad;
+													}
+													setUpdateCart(updatedCart);
+												}}
+											>
+												-
+											</button>
+										</div>
 									</div>
 
 									<div className={styles.delete}>
-										<button>
-											<FontAwesomeIcon
-												icon={faRecycle}
-												name="clear"
-												value={product.id}
-												onClick={handleClick}
-											/>
+										<button
+											className={styles.btnDelete}
+											name="delete"
+											value={product.id}
+											onClick={handleClick}
+										>
+											<div className={styles.icon}>
+												<FontAwesomeIcon icon={faRecycle} spin size="2xl" />
+											</div>
+
 										</button>
-									</div>
-									<div>
-										<NavLink>
-											<p>Edit</p>
-										</NavLink>
 									</div>
 								</div>
 							</>
@@ -146,7 +163,9 @@ function Cart() {
 					})}
 					<div className={styles.orderSumary}>
 						<div className={styles.subtotal}>
-							<h3 className={styles.mount}>{`Total	.	. . . . . . . . . . . . . . . . . . . $ ${subTotal}`}</h3>
+							<h3
+								className={styles.mount}
+							>{`Total	.	. . . . . . . . . . . . . . . . . . . $ ${subTotal}`}</h3>
 						</div>
 						<div className={styles.titleOrder}>
 							<h2>Order Sumary</h2>
@@ -155,15 +174,25 @@ function Cart() {
 							{/* <button onClick={handleClick} name="pay">
 								Pagar
 							</button> */}
-							<button className={styles.btnGenerate} onClick={handleClick} name="postOrder">
-								Generate order
-							</button>
+							{user.id ? (
+								<button
+									className={styles.btnGenerate}
+									onClick={handleClick}
+									name="postOrder"
+									disabled={!user.id}
+								>
+									Generate order
+								</button>
+							) : (
+								<NavLink to={"/Login"}>
+									<p>Login</p>
+								</NavLink>
+							)}
 						</div>
 						<div className={styles.orderTotal}></div>
 					</div>
 				</>
 			) : (
-				// </div>
 				<h2 className={styles.subTittle}>There is nothing in your car...</h2>
 			)}
 		</div>
