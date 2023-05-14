@@ -11,11 +11,9 @@ function HomePage() {
   const [filterByType, setFilterByType] = useState("");
   const [sortByName, setSortByName] = useState("");
   const [sortByPrice, setSortByPrice] = useState("");
+ 
   useEffect(() => {
-    dispatch(getAllProducts());
-
-  }, []);
-  useEffect(() => {
+    !products.length > 0 && dispatch(getAllProducts());
     dispatch(orderAndFilter(filterByType, sortByName, sortByPrice));
   }, [filterByType, sortByName, sortByPrice]);
 
