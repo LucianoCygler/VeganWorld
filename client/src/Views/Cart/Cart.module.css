@@ -1,6 +1,10 @@
+@font-face {
+  font-family: "Raleway";
+  src: url("../../Utils/Raleway/Raleway-Italic-VariableFont_wght.ttf") format("truetype");
+}
+
 .mainContainer {
-  display: flex;
-  flex-direction: column;
+  font-family: "Raleway";
   padding-top: 8em;
   margin-right: 10%;
   display: grid;
@@ -13,24 +17,31 @@
     "productsContainer productsContainer orderSumary"
     ". . orderSumary"
     ". . orderSumary";
-    justify-content: center;
-
+    justify-content: space-evenly;
 }
 
 .productsContainer {
+  background-color: #3d8361b4;
+  color: azure;
+  font-weight: bold;
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr;
+  min-height: 130px;
+	grid-template-columns: 1fr 1fr 300px 1fr 1fr;
+	grid-template-rows: 1fr 1fr  ;
 	gap: 0px 0px;
 	grid-auto-flow: row;
 	grid-template-areas:
 		"imagen imagen nombre qty delete"
-		"imagen imagen precio . ."
-		"imagen imagen . . .";
+		"imagen imagen precio . .";
+
 	grid-area: productsContainer;
 	justify-content: center;
   align-items: center;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.459);
+  border-bottom: 1px solid rgb(128, 128, 128);
+  box-shadow: 0px 0px 8px #3d8361b4;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
 }
 
 .imagen {
@@ -50,16 +61,23 @@
 }
 
 .delete {
+	height: 4rem;
   grid-area: delete;
 }
 
 .btnDelete {
-	background:none;
+	background:gainsboro;
 	border: none;
-	height: 2rem;
+	height: 4rem;
+  z-index: 2;
 }
+
 .delete:hover{
 	cursor: pointer;
+}
+
+.icon{
+  z-index: -1;
 }
 .orderSumary {
   color: darkcyan;
@@ -76,6 +94,9 @@
     "btnOrder btnOrder btnOrder";
   grid-area: orderSumary;
   background-color: rgba(236, 235, 169, 0.568);
+  box-shadow: 0px 0px 8px #76aa91b4;
+  border-radius: 20px;
+
 }
 
 .subtotal {
