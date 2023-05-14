@@ -62,7 +62,7 @@ function Detail() {
 								<h2 className={styles.price}>Precio: <span className={styles.spanPrice}>${product.precio}</span></h2>
 							</div>
 							<div className={styles.productValue}>
-								<h2>Cantidad:</h2>
+								<h2 className={styles.h1}>Cantidad:</h2>
 								<h3 className={styles.quantitySpan}>{quantity}</h3>
 								<button className={styles.quantityButton} onClick={handleDecrement}>-</button>
 								<button className={styles.quantityButton} onClick={handleIncrement}>+</button>
