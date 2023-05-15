@@ -19,5 +19,9 @@ module.exports = (sequelize) => {
       type: DataTypes.DATEONLY,
       allowNull: false,
     },
+    cliente_nombre: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   });
 };

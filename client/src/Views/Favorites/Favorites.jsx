@@ -27,7 +27,7 @@ const Favorites = () => {
       </div>
       {favorites && favorites.length > 0 ? (
         favorites.map((favorite) => (
-          <div className={styles.card} key={favorite.id}>
+          <div className={styles.cardad} key={favorite.id}>
             {favorite.Product && (
               <>
                 <h2 className={styles.h2}>{favorite.Product.nombre}</h2>
