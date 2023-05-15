@@ -93,6 +93,7 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
         className={styles.card}
         to={`/Detail/${id}`}
         style={{ textDecoration: "none" }}
+
       >
         <div>
           <div>
@@ -102,6 +103,7 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
             <h2 className={styles.subtitle}>${precio} </h2>
             {/* <h2 className={styles.subtitle}>{product.descripcion}</h2> */}
           </div>
+
         </div>
       </NavLink>
     </div>

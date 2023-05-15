@@ -34,7 +34,7 @@ const MyOrders = () => {
   };
 
   return (
-    <>
+    <div className={styles.mainContainer}>
       <div className={styles.orderscontainer}>
         <h1>ORDERS</h1>
         {clientOrders?.map((order, index) => (
@@ -55,7 +55,7 @@ const MyOrders = () => {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 

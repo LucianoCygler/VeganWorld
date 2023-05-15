@@ -8,6 +8,7 @@ import {
 } from "../../redux/actions/actions";
 import style from "./MyProfile.module.css";
 import { useNavigate } from "react-router-dom";
+
 const MyData = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const MyData = () => {
   const [editedPhone, setEditedPhone] = useState(telefono || "");
   const [editedCity, setEditedCity] = useState(ciudad || "");
   const [editedDNI, setEditedDNI] = useState(dni || "");
-  const [editedAdress, setEditedAdress] = useState(direccion || "");
+  const [editedAddress, setEditedAddress] = useState(direccion || "");
 
   const handleEditUser = () => {
     setEditMode(true);
@@ -41,7 +42,8 @@ const MyData = () => {
       email: editedEmail,
       ciudad: editedCity,
       telefono: editedPhone,
-      direccion: editedAdress,
+      direccion: editedAddress,
+      DNI: editedDNI,
     };
     dispatch(updateClientData(id, newUser));
     alert("Client Data updated");
@@ -105,6 +107,7 @@ const MyData = () => {
             />
           </div>
           <div className={style.divFlex}>
+
             <h3 className={style.h3}>Adress</h3>
             <input
               className={style.input6}
@@ -112,6 +115,7 @@ const MyData = () => {
               value={editedAdress}
               onChange={(e) => setEditedAdress(e.target.value)}
             />
+
           </div>
           {/* {!dni ? (
             " "
