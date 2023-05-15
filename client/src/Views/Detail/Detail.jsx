@@ -29,7 +29,7 @@ function Detail() {
   }, [dispatch]);
   useEffect(() => {
     dispatch(getProductReviews(product_id));
-  }, [dispatch]);
+  }, [productReviews]);
 
   const handleClick = () => {
     try {

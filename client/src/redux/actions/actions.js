@@ -398,7 +398,7 @@ export const createFavoriteAction = (favorite) => {
       const favoriteDB = res.data;
       return dispatch({ type: CREATE_FAVORITE, payload: favoriteDB });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
     }
   };
 };
@@ -411,7 +411,7 @@ export const deleteFavoriteAction = (product_id) => {
       const favorite = res.data;
       return dispatch({ type: DELETE_FAVORITE, payload: favorite.id });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
     }
   };
 };
