@@ -1,5 +1,3 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.min.js";
 import React, { useEffect, useState } from "react";
 import { Ring } from "@uiball/loaders";
 import styles from "./Detail.module.css";

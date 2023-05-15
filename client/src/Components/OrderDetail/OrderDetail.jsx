@@ -37,41 +37,45 @@ const OrderDetail = ({ order, closePopup }) => {
   return (
     <div ref={popupRef} className={styles.mainContainer}>
       <div className={styles.buttonDiv}>
-        <button className={styles.closeButton} onClick={closePopup}>X</button>
         {estado === "Pendiente" && (
           <button className={styles.buttonCancel} onClick={handleCancelOrder}>Cancelar Pedido</button>
         )}
+        <button className={styles.closeButton} onClick={closePopup}>X</button>
       </div>
       <div className={styles.flexContainer}>
-        <span className={styles.span}>
-          Estado:
-        </span>
-        <span className={styles.spanEstados1}>{estado}</span>
+        <div className={styles.flexWrap}>
+          <span className={styles.span}>
+            Estado:
+          </span>
+        </div>
+        <div className={styles.flexWrap}>
+          <span className={styles.spanEstados}>{estado}</span>
+        </div>
       </div>
       <div className={styles.flexContainer}>
         <span className={styles.span}>
           Productos:
         </span>
 
-        <span className={styles.spanEstados2}>{productos}</span>
+        <span className={styles.spanEstados}>{productos}</span>
       </div>
       <div className={styles.flexContainer}>
         <span className={styles.span}>
           Dirección:
         </span>
-        <span className={styles.spanEstados3}>{direccion}</span>
+        <span className={styles.spanEstados}>{direccion}</span>
       </div>
       <div className={styles.flexContainer}>
         <span className={styles.span} >
           Importe:
         </span>
-        <span className={styles.spanEstados4}>${importe}</span>
+        <span className={styles.spanEstados}>${importe}</span>
       </div>
       <div className={styles.flexContainer}>
         <span className={styles.span}>
           Fecha de creación:
         </span>
-        <span className={styles.spanEstados5}>{fecha}</span>
+        <span className={styles.spanEstados}>{fecha}</span>
       </div>
 
     </div>
