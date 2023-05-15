@@ -5,6 +5,7 @@ import {
   GET_PRODUCT_BY_ID,
   CLEAN_DETAIL,
   ADD_CART,
+  UPDATE_CART,
   FILTER_NAME_PRODUCT,
   FILTER_PRICE_PRODUCT,
   STATE_LOGIN,
@@ -97,8 +98,12 @@ export const addCartProduct = (product, quantity) => ({
   quantity: quantity,
 });
 
-/* ELIMINAR PRODUCTO POR ID */
+/* ACTUALIZA CART*/
+export const newCart = (updateCart) =>({
+type: UPDATE_CART, payload: updateCart
+})
 
+/* ELIMINAR PRODUCTO POR ID */
 export const dropProduct = (id) => ({ type: DROP_PRODUCT, payload: id });
 
 export const incrementProduct = (id) => ({
