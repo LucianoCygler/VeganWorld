@@ -3,7 +3,7 @@ import styles from "./Cart.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faRecycle } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { createOrder, dropProduct } from "../../redux/actions/actions";
+import { createOrder, dropProduct, newCart } from "../../redux/actions/actions";
 import Pop_up from "../../Utils/Pop_up/Pop_up";
 import { NavLink } from "react-router-dom";
 
@@ -68,6 +68,7 @@ function Cart() {
 	};
 
 	useEffect(() => {
+		dispatch(newCart(updateCart))
 		setSubTotal(subTotalF());
 	}, [updateCart]);
 
@@ -111,21 +112,7 @@ function Cart() {
 										<p>
 											Qty: <span>{product.cantidad}</span>
 										</p>
-										<div>
-											<button
-												name="increment"
-												onClick={() => {
-													const updatedCart = [...updateCart];
-													updatedCart[index].cantidad += 1;
-													updatedCart[index].importe =
-														updatedCart[index].precio *
-														updatedCart[index].cantidad;
-													setUpdateCart(updatedCart);
-												}}
-											>
-												+
-											</button>
-											<span>{` `}</span>
+										<div className={styles.btnsQty}>
 											<button
 												name="decrement"
 												onClick={() => {
@@ -141,20 +128,43 @@ function Cart() {
 											>
 												-
 											</button>
+											<span>{` `}</span>
+											<button
+												name="increment"
+												onClick={() => {
+													const updatedCart = [...updateCart];
+													updatedCart[index].cantidad += 1;
+													updatedCart[index].importe =
+														updatedCart[index].precio *
+														updatedCart[index].cantidad;
+													setUpdateCart(updatedCart);
+												}}
+											>
+												+
+											</button>
 										</div>
 									</div>
 
 									<div className={styles.delete}>
 										<button
-											className={styles.btnDelete}
+											className={styles.btn}
 											name="delete"
 											value={product.id}
 											onClick={handleClick}
 										>
-											<div className={styles.icon}>
-												<FontAwesomeIcon icon={faRecycle} spin size="2xl" />
-											</div>
-
+											<svg
+												viewBox="0 0 15 17.5"
+												height="17.5"
+												width="15"
+												xmlns="http://www.w3.org/2000/svg"
+												className={styles.icon}
+											>
+												<path
+													transform="translate(-2.5 -1.25)"
+													d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z"
+													id="Fill"
+												></path>
+											</svg>
 										</button>
 									</div>
 								</div>
@@ -184,7 +194,7 @@ function Cart() {
 									Generate order
 								</button>
 							) : (
-								<NavLink to={"/Login"}>
+								<NavLink to={"/login"}>
 									<p>Login</p>
 								</NavLink>
 							)}

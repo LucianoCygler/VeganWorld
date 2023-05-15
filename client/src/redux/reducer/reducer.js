@@ -3,6 +3,7 @@ import {
   GET_PRODUCT_BY_ID,
   CLEAN_DETAIL,
   ADD_CART,
+  UPDATE_CART,
   FILTER_NAME_PRODUCT,
   FILTER_PRICE_PRODUCT,
   STATE_LOGIN,
@@ -50,6 +51,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         user: action.payload,
+      };
+    case GET_CLIENT_DATA:
+      return {
+        ...state,
+        user: {},
       };
 
     case GET_CLIENT_REVIEWS:
@@ -118,6 +124,9 @@ export default function rootReducer(state = initialState, action) {
       } else {
         throw Error("You product is already in Cart!");
       }
+
+    case UPDATE_CART:
+      return {...state, cart: action.payload}
 
     case DROP_PRODUCT:
       return {

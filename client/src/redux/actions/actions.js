@@ -5,6 +5,7 @@ import {
   GET_PRODUCT_BY_ID,
   CLEAN_DETAIL,
   ADD_CART,
+  UPDATE_CART,
   FILTER_NAME_PRODUCT,
   FILTER_PRICE_PRODUCT,
   STATE_LOGIN,
@@ -18,6 +19,7 @@ import {
   DELETE_ORDER,
   UPDATE_ORDER,
   GET_CLIENT_DATA,
+  CLAEN_CLIENT_ID,
   UPDATE_CLIENT_DATA,
   DELETE_CLIENT,
   CREATE_REVIEW,
@@ -96,8 +98,12 @@ export const addCartProduct = (product, quantity) => ({
   quantity: quantity,
 });
 
-/* ELIMINAR PRODUCTO POR ID */
+/* ACTUALIZA CART*/
+export const newCart = (updateCart) =>({
+type: UPDATE_CART, payload: updateCart
+})
 
+/* ELIMINAR PRODUCTO POR ID */
 export const dropProduct = (id) => ({ type: DROP_PRODUCT, payload: id });
 
 export const incrementProduct = (id) => ({
@@ -250,6 +256,10 @@ export const getClientData = (client_id) => {
     }
   };
 };
+
+export const  cleanClient_Id = () => {
+  return  ({type: CLAEN_CLIENT_ID })
+}
 
 /* MODIFICAR DATA DEL CLIENTE */
 export const updateClientData = (client_id, newData) => {
