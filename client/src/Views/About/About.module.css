@@ -8,6 +8,7 @@
 
 .contenedor {
   margin-top: 125px;
+  padding: 50px;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
@@ -25,13 +26,14 @@
   height: 200px;
   padding: 1px;
   object-fit: cover;
-  margin: 1px;
+  margin: 30px;
   border-radius: 50%;
   position: relative;
   box-shadow: 0px 0px 15px #7fb69b;
 }
 
 .h2{
+  
   position: relative;
   font-size: 60px;
   text-shadow: 1px 1px rgb(0, 0, 0), 1px 1px rgb(13, 5, 25), -3px 0 4px #000000;
@@ -41,4 +43,10 @@
   justify-content: center;
   text-align: center;
   display: block;
+}
+
+.contenedor h3 {
+  
+  margin-left: 100px;
+  width: 80%;
 }
