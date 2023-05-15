@@ -47,6 +47,14 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
       updatedFavorites.push(product_id);
     }
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+
+    /* Animacion boton */
+
+    const favButton = document.querySelector(`.${styles.favButton}`);
+    favButton.classList.add(styles.animate);
+    setTimeout(() => {
+      favButton.classList.remove(styles.animate);
+    }, 500);
   };
 
   useEffect(() => {
