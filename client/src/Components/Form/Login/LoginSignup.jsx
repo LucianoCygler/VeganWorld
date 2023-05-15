@@ -1,15 +1,10 @@
 import style from "./LoginSignup.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  validateLogin,
-  loginUser,
-} from "../../../redux/actions/actions";
+import { validateLogin, loginUser } from "../../../redux/actions/actions";
 import { useNavigate } from "react-router-dom";
 
-
 const LoginSignup = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,7 +17,6 @@ const LoginSignup = () => {
     setLogin({ ...login, [event.target.name]: event.target.value });
   };
 
-
   const handleButtonAccess = async (event) => {
     event.preventDefault();
     const response = await dispatch(validateLogin(login));
@@ -32,7 +26,6 @@ const LoginSignup = () => {
       navigate("/");
     }
   };
-
 
   const handleOnClick = () => {
     navigate("/Register");

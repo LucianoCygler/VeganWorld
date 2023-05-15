@@ -1,11 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import { registerUser } from "../../../../redux/actions/actions";
+import { useNavigate } from "react-router-dom";
 
 const useForm = (initialForm, validationsForm) => {
   const [register, setRegister] = useState(initialForm);
   const [error, serError] = useState({});
-
-
+  const navigate = useNavigate();
   // AGREGAR A FORM LOS DEL EVENTO Y VALUE
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -13,20 +14,17 @@ const useForm = (initialForm, validationsForm) => {
     setRegister({ ...register, [name]: value });
   };
 
-
   const handleBlur = (event) => {
-    handleChange(event)
-    serError(validationsForm(register))
+    handleChange(event);
+    serError(validationsForm(register));
   };
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post("http://localhost:3001/client", register)
+    dispatchEvent(registerUser(register))
       .then((res) => {
-        alert(res.data.message);
         setRegister(initialForm);
+        navigate("/login");
       })
       .catch((error) => {
         alert(error.response.data);
@@ -38,9 +36,8 @@ const useForm = (initialForm, validationsForm) => {
     handleBlur,
     handleSubmit,
     register,
-    error
-  }
-
+    error,
+  };
 };
 
 export default useForm;

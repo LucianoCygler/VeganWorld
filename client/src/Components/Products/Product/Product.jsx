@@ -9,7 +9,7 @@ import {
 
 function Product({ nombre, imagen, precio, stock, descripcion, id }) {
   const [isFav, setIsFav] = useState(false);
-  const product = { nombre, imagen, precio, stock, descripcion, id };
+  // const product = { nombre, imagen, precio, stock, descripcion, id };
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -50,11 +50,11 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
 
     /* Animacion boton */
 
-    const favButton = document.querySelector(`.${styles.favButton}`);
-    favButton.classList.add(styles.animate);
-    setTimeout(() => {
-      favButton.classList.remove(styles.animate);
-    }, 500);
+    //   const favButton = document.querySelector(`.${styles.favButton}`);
+    //   favButton.classList.add(styles.animate);
+    //   setTimeout(() => {
+    //     favButton.classList.remove(styles.animate);
+    //   }, 500);
   };
 
   useEffect(() => {
@@ -68,45 +68,41 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
 
   return (
     <div className={styles.mainContainer}>
-      {isFav ? (
-        <div className={styles.favoriteContainer}>
-          <button className={styles.favButton} onClick={handleFavorite}>
-            ❤️
-          </button>
-        </div>
-      ) : (
-        <div className={styles.favoriteContainer}>
-          <button className={styles.favButton} onClick={handleFavorite}>
-            🤍
-          </button>
-        </div>
-      )}
-      <NavLink
-        className={styles.card}
-        to={`/Detail/${product.id}`}
-        style={{ textDecoration: "none" }}
-        >
-      <div>
-        {isAuthenticated ? (
-          <div>
-          </div>
-        ) : (
-          ""
-        )}
-
+      {isAuthenticated ? (
         <div>
           {" "}
-            <h2 className={styles.subtitle}>{product.nombre}</h2>
-            <img
-              className={styles.image}
-              src={product.imagen}
-              alt={product.nombre}
-            />
-
-            <h2 className={styles.subtitle}>${product.precio} </h2>
-            <h2 className={styles.subtitle}>{product.descripcion}</h2>
+          {isFav ? (
+            <div className={styles.favoriteContainer}>
+              <button className={styles.favButton} onClick={handleFavorite}>
+                ❤️
+              </button>
+            </div>
+          ) : (
+            <div className={styles.favoriteContainer}>
+              <button className={styles.favButton} onClick={handleFavorite}>
+                🤍
+              </button>
+            </div>
+          )}
         </div>
-      </div>
+      ) : (
+        ""
+      )}
+
+      <NavLink
+        className={styles.card}
+        to={`/Detail/${id}`}
+        style={{ textDecoration: "none" }}
+      >
+        <div>
+          <div>
+            {" "}
+            <h2 className={styles.subtitle}>{nombre}</h2>
+            <img className={styles.image} src={imagen} alt={nombre} />
+            <h2 className={styles.subtitle}>${precio} </h2>
+            {/* <h2 className={styles.subtitle}>{product.descripcion}</h2> */}
+          </div>
+        </div>
       </NavLink>
     </div>
   );
