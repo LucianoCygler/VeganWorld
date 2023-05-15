@@ -1,7 +1,44 @@
+.mainContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+  color: #EEF2E6;
+}
+
 .contenedor {
+  margin-top: 125px;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding-top: 10em;
+  border-radius: 0.75em;
+  box-shadow: 9px 13px 13px 3px #1C6758;
+  width: 1000px;
+  background-color: #3D8361;
+  height: 550px;
+  text-transform: capitalize;
+}
+
+.image {
+  width: 200px;
+  height: 200px;
+  padding: 1px;
+  object-fit: cover;
+  margin: 1px;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0px 0px 15px #7fb69b;
+}
+
+.h2{
+  position: relative;
+  font-size: 60px;
+  text-shadow: 1px 1px rgb(0, 0, 0), 1px 1px rgb(13, 5, 25), -3px 0 4px #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #e2edce;
+  font-weight: lighter;
+  justify-content: center;
+  text-align: center;
+  display: block;
 }
