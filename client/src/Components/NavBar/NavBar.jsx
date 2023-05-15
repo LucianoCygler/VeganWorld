@@ -33,7 +33,9 @@ function NavBar() {
         </NavLink>
       </div>
       <div className={styles.divMid}>
-        <h1 className={styles.tittle}>VeganWorld!</h1>
+        <NavLink to={"/"} className={styles.tittle}>
+        <h1 >VeganWorld!</h1>
+        </NavLink>
       </div>
       <div className={styles.divRight}>
         <div className={styles.redirects}>
