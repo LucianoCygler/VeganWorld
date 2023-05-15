@@ -68,18 +68,25 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
 
   return (
     <div className={styles.mainContainer}>
-      {isFav ? (
-        <div className={styles.favoriteContainer}>
-          <button className={styles.favButton} onClick={handleFavorite}>
-            ❤️
-          </button>
+      {isAuthenticated ? (
+        <div>
+          {" "}
+          {isFav ? (
+            <div className={styles.favoriteContainer}>
+              <button className={styles.favButton} onClick={handleFavorite}>
+                ❤️
+              </button>
+            </div>
+          ) : (
+            <div className={styles.favoriteContainer}>
+              <button className={styles.favButton} onClick={handleFavorite}>
+                🤍
+              </button>
+            </div>
+          )}
         </div>
       ) : (
-        <div className={styles.favoriteContainer}>
-          <button className={styles.favButton} onClick={handleFavorite}>
-            🤍
-          </button>
-        </div>
+        ""
       )}
       <NavLink
         className={styles.card}
@@ -87,24 +94,15 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
         style={{ textDecoration: "none" }}
         >
       <div>
-        {isAuthenticated ? (
-          <div>
-          </div>
-        ) : (
-          ""
-        )}
-
         <div>
-          {" "}
-            <h2 className={styles.subtitle}>{product.nombre}</h2>
-            <img
-              className={styles.image}
-              src={product.imagen}
-              alt={product.nombre}
-            />
-
-            <h2 className={styles.subtitle}>${product.precio} </h2>
-            <h2 className={styles.subtitle}>{product.descripcion}</h2>
+          <h2 className={styles.subtitle}>{product.nombre}</h2>
+          <img
+            className={styles.image}
+            src={product.imagen}
+            alt={product.nombre}
+          />
+          <h2 className={styles.subtitle}>${product.precio} </h2>
+          <h2 className={styles.subtitle}>{product.descripcion}</h2>
         </div>
       </div>
       </NavLink>
