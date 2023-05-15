@@ -1,20 +1,21 @@
 @font-face {
   font-family: "Raleway";
-  src: url("../../Utils/Raleway/Raleway-VariableFont_wght.ttf") format("truetype");
+  src: url("../../Utils/Raleway/Raleway-VariableFont_wght.ttf")
+    format("truetype");
 }
 
 .mainContainer {
   display: flex;
   justify-content: center;
   font-family: "Raleway";
-  color: #EEF2E6;
+  color: #eef2e6;
   text-shadow: 0 0 15px #000000;
 }
 
-.imageDiv{
+.imageDiv {
   width: 30%;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
@@ -24,14 +25,14 @@
   flex-direction: column;
   justify-content: center;
   margin-top: 100px;
-  background-color: #3D8361;
+  background-color: #3d8361;
   max-width: 800px;
   height: auto;
-  border: 2px solid #1C6758;
-  box-shadow: 0 0 15px 5px #1C6758;
+  border: 2px solid #1c6758;
+  box-shadow: 0 0 15px 5px #1c6758;
 }
 
-.descriptionDiv{
+.descriptionDiv {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -64,7 +65,7 @@
   flex-direction: row;
 }
 
-.productValue{
+.productValue {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,19 +81,19 @@
   margin-bottom: 5px;
   border-radius: 15px;
   margin-top: -40px;
-  border: 2px solid #1C6758;
-  box-shadow: 10px 10px 15px 5px #1C6758;
+  border: 2px solid #1c6758;
+  box-shadow: 10px 10px 15px 5px #1c6758;
   transition: transform 0.3s ease-in-out;
 }
 
-.image:hover{
-  transform: scale(1.1)
+.image:hover {
+  transform: scale(1.1);
 }
-
+/* 
 .p {
   display: flex;
   flex-direction: row;
-}
+} */
 
 .spanPrice {
   margin-left: 180px;
@@ -104,7 +105,7 @@
   height: 50px;
   width: 100px;
   text-decoration: none;
-  color: #EEF2E6;
+  color: #eef2e6;
   margin-left: 15px;
   transition: transform 0.3s ease;
 }
@@ -113,27 +114,26 @@
   transform: scale(1.1);
 }
 
-.button {
+.buttonad {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: 80px;
-  background-color: #1C6758;
+  background-color: #1c6758;
   border: transparent;
-  box-shadow: 0 0 15px 5px #1C6758;
+  box-shadow: 0 0 15px 5px #1c6758;
   transition: transform 0.3s ease-in-out;
-  color: #EEF2E6;
+  color: #eef2e6;
 }
 
-.button:hover {
+.buttonad:hover {
   transform: scale(1.1);
 }
 
 .input {
   display: flex;
-  background-color: #3D8361;
+  background-color: #3d8361;
 }
-
 
 .price {
   display: flex;
@@ -152,10 +152,10 @@
   align-items: center;
   position: relative;
   margin-left: 15px;
-  color: #EEF2E6;
-  background-color: #1C6758;
+  color: #eef2e6;
+  background-color: #1c6758;
   border: transparent;
-  box-shadow: 0 0 15px 5px #1C6758;
+  box-shadow: 0 0 15px 5px #1c6758;
   transition: transform 0.3s ease-in-out;
 }
 

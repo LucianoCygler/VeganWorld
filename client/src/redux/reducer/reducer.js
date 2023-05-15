@@ -25,6 +25,8 @@ import {
   LOGOUT,
   LOGIN,
   DELETE_FAVORITE,
+  GET_PRODUCT_REVIEWS,
+  GET_ALL_CLIENTS,
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -43,6 +45,8 @@ const initialState = {
   reviews: [],
   favorites: [],
   isAuthenticated: false,
+  productReviews: [],
+  allClients: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -126,7 +130,7 @@ export default function rootReducer(state = initialState, action) {
       }
 
     case UPDATE_CART:
-      return {...state, cart: action.payload}
+      return { ...state, cart: action.payload };
 
     case DROP_PRODUCT:
       return {
@@ -205,6 +209,16 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         favorites: [...action.payload],
+      };
+    case GET_PRODUCT_REVIEWS:
+      return {
+        ...state,
+        productReviews: [...action.payload],
+      };
+    case GET_ALL_CLIENTS:
+      return {
+        ...state,
+        allClients: [...action.payload],
       };
     default:
       return { ...state };

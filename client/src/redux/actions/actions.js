@@ -38,6 +38,8 @@ import {
   DECREMENT_PRODUCT,
   LOGIN,
   LOGOUT,
+  GET_PRODUCT_REVIEWS,
+  GET_ALL_CLIENTS,
 } from "./Types/Types";
 
 const URL_SERVIDOR = "http://localhost:3001";
@@ -99,9 +101,10 @@ export const addCartProduct = (product, quantity) => ({
 });
 
 /* ACTUALIZA CART*/
-export const newCart = (updateCart) =>({
-type: UPDATE_CART, payload: updateCart
-})
+export const newCart = (updateCart) => ({
+  type: UPDATE_CART,
+  payload: updateCart,
+});
 
 /* ELIMINAR PRODUCTO POR ID */
 export const dropProduct = (id) => ({ type: DROP_PRODUCT, payload: id });
@@ -126,7 +129,6 @@ export const filterPriceProduct = (product) => ({
   type: FILTER_PRICE_PRODUCT,
   payload: product,
 });
-
 
 //! CAMBIAR PAGINA
 export const changePage = (number) => {
@@ -257,9 +259,9 @@ export const getClientData = (client_id) => {
   };
 };
 
-export const  cleanClient_Id = () => {
-  return  ({type: CLAEN_CLIENT_ID })
-}
+export const cleanClient_Id = () => {
+  return { type: CLAEN_CLIENT_ID };
+};
 
 /* MODIFICAR DATA DEL CLIENTE */
 export const updateClientData = (client_id, newData) => {
@@ -438,5 +440,31 @@ export const loginUser = () => {
 export const logoutUser = () => {
   return {
     type: LOGOUT,
+  };
+};
+
+export const getProductReviews = (id_product) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(
+        `${URL_SERVIDOR}/review/product/${id_product}`
+      );
+      const productReviews = res.data;
+      return dispatch({ type: GET_PRODUCT_REVIEWS, payload: productReviews });
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
+};
+
+export const getAllClients = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${URL_SERVIDOR}/client`);
+      const clients = res.data;
+      dispatch({ type: GET_ALL_CLIENTS, payload: clients });
+    } catch (error) {
+      alert(error.response.data);
+    }
   };
 };
