@@ -11,6 +11,7 @@ const MyOrders = () => {
   const user = useSelector((state) => state.user);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,7 +22,7 @@ const MyOrders = () => {
       const client_id = user.id;
       dispatch(getClientOrders(client_id));
     }
-  }, [dispatch, isAuthenticated]);
+  }, [selectedOrder, isAuthenticated]);
 
   const showPopupHandler = (order) => {
     setSelectedOrder(order);
