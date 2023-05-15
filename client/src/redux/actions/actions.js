@@ -361,11 +361,11 @@ export const getClientReview = (id_review) => {
 };
 
 //ORDENAMIENTO Y FILTRADO
-export const orderAndFilter = (filterByType, sortByName, sortByPrice) => {
+export const orderAndFilter = (filterByType, sort) => {
   return async function (dispatch) {
     try {
       const res = await axios.get(
-        `${URL_SERVIDOR}/product?filterByType=${filterByType}&sortByName=${sortByName}&sortByPrice=${sortByPrice}`
+        `${URL_SERVIDOR}/product?filterByType=${filterByType}&sort=${sort}`
       );
       const filterProducts = res.data;
       return dispatch({ type: ORDER_FILTER, payload: filterProducts });

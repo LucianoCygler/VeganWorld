@@ -41,9 +41,6 @@ const RegisterUser = () => {
     validationsForm
   );
 
-  //!borrar consolelog luego
-  console.log(register);
-
   return (
     <div className={style.contenedorprincipal}>
       <form className={style.form} onSubmit={handleSubmit}>
@@ -151,7 +148,7 @@ const RegisterUser = () => {
         </div>
         {error.edad && <p>{error.edad}</p>}
 
-        <div className={style.div17}> DNI</div>
+        {/* <div className={style.div17}> DNI</div>
         <div className={style.div18}>
           <input
             type="text"
@@ -161,8 +158,8 @@ const RegisterUser = () => {
             onChange={handleChange}
             onBlur={handleBlur}
           />
-        </div>
-        {error.dni && <p>{error.dni}</p>}
+        </div> */}
+        {/* {error.dni && <p>{error.dni}</p>} */}
 
         <div className={style.div19}>
           <button className={style.buttonlogin}>Sign In</button>

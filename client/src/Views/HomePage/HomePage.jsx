@@ -7,19 +7,21 @@ import { orderAndFilter } from "../../redux/actions/actions";
 
 function HomePage() {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state);
+  const products = useSelector((state) => state.products);
   const [filterByType, setFilterByType] = useState("");
-  const [sortByName, setSortByName] = useState("");
-  const [sortByPrice, setSortByPrice] = useState("");
- 
-  useEffect(() => {
-    !products.length > 0 && dispatch(getAllProducts());
-    dispatch(orderAndFilter(filterByType, sortByName, sortByPrice));
-  }, [filterByType, sortByName, sortByPrice]);
+  const [sort, setSort] = useState("");
+  // const [sortByPrice, setSortByPrice] = useState("");
 
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, []);
+
+  useEffect(() => {
+    dispatch(orderAndFilter(filterByType, sort));
+  }, [filterByType, sort]);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const itemsPerPage = 6;
+  const itemsPerPage = 12;
 
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -30,13 +32,8 @@ function HomePage() {
   const handleFilter = (e) => {
     setFilterByType(e.target.value);
   };
-  const handleSortByName = (e) => {
-    setSortByName(e.target.value);
-    setSortByPrice("");
-  };
-  const handleSortByPrice = (e) => {
-    setSortByPrice(e.target.value);
-    setSortByName("");
+  const handleSort = (e) => {
+    setSort(e.target.value);
   };
 
   return (
@@ -50,19 +47,21 @@ function HomePage() {
         <option value="fruta">Fruta</option>
         <option value="bebida">Bebida</option>
       </select>
-      Order By Name:{" "}
-      <select value={sortByName} onChange={handleSortByName}>
+      Order:{" "}
+      <select value={sort} onChange={handleSort}>
         <option value=""></option>
-        <option value="asc">Ascending</option>
-        <option value="desc">Descending</option>
+        <option value="a-z">Name a-z</option>
+        <option value="z-a">Name z-a</option>
+        <option value="Mayor precio">Mayor precio</option>
+        <option value="Menor precio">Menor precio</option>
       </select>
-      Order By Price:{" "}
+      {/* Order By Price:{" "}
       <select value={sortByPrice} onChange={handleSortByPrice}>
         <option value=""></option>
         <option value="asc">Ascending</option>
         <option value="desc">Descending</option>
-      </select>
-      <Products currentItems={currentItems} />
+      </select> */}
+      <Products products={currentItems} />
       <Pagination
         goToPrevPage={() => setCurrentPage(currentPage - 1)}
         goToNextPage={() => setCurrentPage(currentPage + 1)}

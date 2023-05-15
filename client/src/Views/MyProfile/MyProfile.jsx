@@ -13,7 +13,8 @@ const MyData = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
-  const { nombre, apellido, email, direccion, telefono, dni, ciudad, id } = user;
+  const { nombre, apellido, email, direccion, telefono, dni, ciudad, id } =
+    user;
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
   const [editMode, setEditMode] = useState(false);
   const [editedName, setEditedName] = useState(nombre || "");
@@ -47,59 +48,91 @@ const MyData = () => {
     dispatch(updateClientData(id, newUser));
     alert("Client Data updated");
     setEditMode(false);
-    window.location.reload();
   };
 
   useEffect(() => {
     if (isAuthenticated === false) {
       navigate("/login");
     } else {
-     
-      dispatch(getClientData(user));
+      dispatch(getClientData(id));
     }
-    return () => {
-      dispatch( cleanClient_Id ())
-     }
-  }, [dispatch, id]);
+  }, [user]);
   return (
     <div className={style.container}>
       {editMode ? (
         <div className={style.edit}>
           <div className={style.divFlex}>
             <h3 className={style.h3}>First Name:</h3>
-            <input className={style.input1} type="text" value={editedName} onChange={(e) => setEditedName(e.target.value)} />
+            <input
+              className={style.input1}
+              type="text"
+              value={editedName}
+              onChange={(e) => setEditedName(e.target.value)}
+            />
           </div>
           <div className={style.divFlex}>
             <h3 className={style.h3}>Surname:</h3>
-            <input className={style.input2} type="text" value={editedSurname} onChange={(e) => setEditedSurname(e.target.value)} />
+            <input
+              className={style.input2}
+              type="text"
+              value={editedSurname}
+              onChange={(e) => setEditedSurname(e.target.value)}
+            />
           </div>
           <div className={style.divFlex}>
             <h3 className={style.h3}>Email:</h3>
-            <input className={style.input3} type="text" value={editedEmail} onChange={(e) => setEditedEmail(e.target.value)} />
+            <input
+              className={style.input3}
+              type="text"
+              value={editedEmail}
+              onChange={(e) => setEditedEmail(e.target.value)}
+            />
           </div>
           <div className={style.divFlex}>
             <h3 className={style.h3}>Phone:</h3>
-            <input className={style.input4} type="text" value={editedPhone} onChange={(e) => setEditedPhone(e.target.value)} />
+            <input
+              className={style.input4}
+              type="text"
+              value={editedPhone}
+              onChange={(e) => setEditedPhone(e.target.value)}
+            />
           </div>
           <div className={style.divFlex}>
             <h3 className={style.h3}>City:</h3>
-            <input className={style.input5} type="text" value={editedCity} onChange={(e) => setEditedCity(e.target.value)}/>
+            <input
+              className={style.input5}
+              type="text"
+              value={editedCity}
+              onChange={(e) => setEditedCity(e.target.value)}
+            />
           </div>
           <div className={style.divFlex}>
+
             <h3 className={style.h3}>Address</h3>
-            <input className={style.input6} type="text" value={editedAddress} onChange={(e) => setEditedAddress(e.target.value)} />
+            <input
+              className={style.input6}
+              type="text"
+              onChange={(e) => setEditedAddress(e.target.value)}
+            />
+
           </div>
-          {!dni ? (
+          {/* {!dni ? (
             " "
           ) : (
             <div className={style.divFlex}>
               <h3 className={style.h3}>DNI:</h3>
-              <input className={style.input7} type="text" value={editedDNI} onChange={(e) => setEditedDNI(e.target.value)} />
+              <input
+                className={style.input7}
+                type="text"
+                value={editedDNI}
+                onChange={(e) => setEditedDNI(e.target.value)}
+              />
             </div>
-          )}
+          )} */}
 
-          <button className={style.buttonEdit} onClick={handleSaveUser}>Save Data</button>
-
+          <button className={style.buttonEdit} onClick={handleSaveUser}>
+            Save Data
+          </button>
         </div>
       ) : (
         <div className={style.c}>
@@ -117,23 +150,24 @@ const MyData = () => {
             {telefono}
           </p>
           <p>
-            <span style={{ fontWeight: "bold" }}> Direction: </span>
-            {direccion}
+            <span style={{ fontWeight: "bold" }}> Address: </span>
+            {address}
           </p>
           <p>
             <span style={{ fontWeight: "bold" }}> City: </span>
             {ciudad}
           </p>
-          {!dni ? (
+          {/* {!dni ? (
             " "
           ) : (
             <p>
               <span style={{ fontWeight: "bold" }}> DNI: </span> {dni}
             </p>
-          )}
+          )} */}
 
-          <button className={style.button} onClick={handleEditUser}>Edit User</button>
-
+          <button className={style.button} onClick={handleEditUser}>
+            Edit User
+          </button>
         </div>
       )}
     </div>
