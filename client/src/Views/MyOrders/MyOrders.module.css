@@ -1,18 +1,38 @@
-.orderscontainer {
-  padding-top: 10em;
+.mainContainer {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   justify-content: center;
-  width: 20%;
-  margin: auto;
+  align-items: center;
+}
+.orderscontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 150px;
+  background-color: #3D8361;
+  width: 25%;
+  padding-bottom: 25px;
+  border: #1c6758;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px #1C6758;
+  color: #EEF2E6;
+  text-shadow: 0 0 5px #000;
 }
 
 .ordercard {
-  border: 1px solid black;
+  border: transparent;
+  background-color: #1C6758;
+  border-radius: 15px;
   padding: 10px;
   margin: 10px;
   cursor: pointer;
+  width: 30%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.ordercard:hover {
+  transform: scale(1.1);
 }
 
 .popupcontainer {

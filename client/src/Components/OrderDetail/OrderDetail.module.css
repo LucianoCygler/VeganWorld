@@ -33,15 +33,30 @@
 /* ELEMENTS */
 
 .closeButton {
-    display: flex;
     margin-left: 360px;
-    background-color: #1C6758;
+    background-color: transparent;
     border: transparent;
-    
+    color: #EEF2E6;
+    font-size: 15px;
+    text-shadow: 0 0 5px #000;
+    transition: transform 0.3s ease-in-out;
+}
+
+.closeButton:hover {
+    transform: scale(1.5);
 }
 
 .buttonCancel {
-    display: flex;
+    background-color: transparent;
+    border: transparent;
+    color: #EEF2E6;
+    text-shadow: 0 0 5px #000;
+    transition: transform 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+.buttonCancel:hover {
+    transform: scale(1.1);
 }
 
 /* ESTADOS CENTRADOS */
