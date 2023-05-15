@@ -108,12 +108,11 @@ const MyData = () => {
           </div>
           <div className={style.divFlex}>
 
-            <h3 className={style.h3}>Adress</h3>
+            <h3 className={style.h3}>Address</h3>
             <input
               className={style.input6}
               type="text"
-              value={editedAdress}
-              onChange={(e) => setEditedAdress(e.target.value)}
+              onChange={(e) => setEditedAddress(e.target.value)}
             />
 
           </div>
@@ -151,8 +150,8 @@ const MyData = () => {
             {telefono}
           </p>
           <p>
-            <span style={{ fontWeight: "bold" }}> Direction: </span>
-            {direccion}
+            <span style={{ fontWeight: "bold" }}> Address: </span>
+            {address}
           </p>
           <p>
             <span style={{ fontWeight: "bold" }}> City: </span>
