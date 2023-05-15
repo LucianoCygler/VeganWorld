@@ -1,0 +1,84 @@
+/* DIVS */
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #f8f8f8;
+    padding: 25px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+}
+
+.flexContainer{
+    display: flex;
+    justify-content: flex-start;
+    width: 500px;
+}
+
+.buttonDiv {
+    display: flex;
+}
+
+/* ELEMENTS */
+
+.closeButton {
+    display: flex;
+}
+
+.buttonCancel {
+    display: flex;
+}
+
+.span {
+    display: flex;
+    margin-right: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* ESTADOS CENTRADOS */
+
+.spanEstados1 {
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 5px;
+    margin-left: 335px;
+}
+
+.spanEstados2 {
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 265px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.spanEstados3 {
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 368px;
+}
+
+.spanEstados4 {
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 5px;
+    margin-left: 338px;
+}
+
+.spanEstados5 {
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 213px;
+}

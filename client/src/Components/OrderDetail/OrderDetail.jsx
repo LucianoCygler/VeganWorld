@@ -1,7 +1,10 @@
 import React, { useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { deleteOrder } from "../../redux/actions/actions";
+import styles from "./OrderDetail.module.css";
+
 const OrderDetail = ({ order, closePopup }) => {
+
   const { estado, direccion, productos, importe, fecha, id } = order;
   const dispatch = useDispatch();
   // Contar los productos repetidos
@@ -32,67 +35,45 @@ const OrderDetail = ({ order, closePopup }) => {
   };
 
   return (
-    <div
-      ref={popupRef}
-      style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        background: "#f8f8f8",
-        padding: "20px",
-        border: "2px solid #ccc",
-        borderRadius: "10px",
-        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
-        zIndex: 9999,
-      }}
-    >
-      <button onClick={closePopup}>X</button>
-      <div style={{ marginBottom: "10px" }}>
-        <span
-          style={{ fontSize: "20px", fontWeight: "bold", marginRight: "5px" }}
-        >
+    <div ref={popupRef} className={styles.mainContainer}>
+      <div className={styles.buttonDiv}>
+        <button className={styles.closeButton} onClick={closePopup}>X</button>
+        {estado === "Pendiente" && (
+          <button className={styles.buttonCancel} onClick={handleCancelOrder}>Cancelar Pedido</button>
+        )}
+      </div>
+      <div className={styles.flexContainer}>
+        <span className={styles.span}>
           Estado:
         </span>
-        <span>{estado}</span>
+        <span className={styles.spanEstados1}>{estado}</span>
       </div>
-      <div style={{ marginBottom: "10px" }}>
-        <span
-          style={{ fontSize: "20px", fontWeight: "bold", marginRight: "5px" }}
-        >
+      <div className={styles.flexContainer}>
+        <span className={styles.span}>
           Productos:
         </span>
 
-        <span> {productos} </span>
+        <span className={styles.spanEstados2}>{productos}</span>
       </div>
-      <div style={{ marginBottom: "10px" }}>
-        <span
-          style={{ fontSize: "20px", fontWeight: "bold", marginRight: "5px" }}
-        >
+      <div className={styles.flexContainer}>
+        <span className={styles.span}>
           Dirección:
         </span>
-        <span>{direccion}</span>
+        <span className={styles.spanEstados3}>{direccion}</span>
       </div>
-      <div style={{ marginBottom: "10px" }}>
-        <span
-          style={{ fontSize: "20px", fontWeight: "bold", marginRight: "5px" }}
-        >
+      <div className={styles.flexContainer}>
+        <span className={styles.span} >
           Importe:
         </span>
-        <span>{importe}</span>
+        <span className={styles.spanEstados4}>${importe}</span>
       </div>
-      <div>
-        <span
-          style={{ fontSize: "20px", fontWeight: "bold", marginRight: "5px" }}
-        >
+      <div className={styles.flexContainer}>
+        <span className={styles.span}>
           Fecha de creación:
         </span>
-        <span>{fecha}</span>
+        <span className={styles.spanEstados5}>{fecha}</span>
       </div>
 
-      {estado === "Pendiente" && (
-        <button onClick={handleCancelOrder}>Cancelar Pedido</button>
-      )}
     </div>
   );
 };
