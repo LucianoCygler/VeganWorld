@@ -42,6 +42,7 @@ function HomePage() {
 
   return (
     <div className={style.body}>
+      <h1 className={style.h1}>The best vegan food in town!</h1>
       Filter By Type:{" "}
       <select onChange={handleFilter}>
         <option value="">All</option>
@@ -62,7 +63,6 @@ function HomePage() {
         <option value="asc">Ascending</option>
         <option value="desc">Descending</option>
       </select>
-      <h1 className={style.h1}>The best vegan food in town!</h1>
       <Products currentItems={currentItems} />
       <Pagination
         goToPrevPage={() => setCurrentPage(currentPage - 1)}
