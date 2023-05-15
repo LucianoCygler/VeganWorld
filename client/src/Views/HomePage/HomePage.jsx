@@ -52,8 +52,8 @@ function HomePage() {
         <option value=""></option>
         <option value="a-z">Name a-z</option>
         <option value="z-a">Name z-a</option>
-        <option value="Mayor precio">Mayor precio</option>
-        <option value="Menor precio">Menor precio</option>
+        <option value="Menor precio">Mayor precio</option>
+        <option value="Mayor precio">Menor precio</option>
       </select>
       {/* Order By Price:{" "}
       <select value={sortByPrice} onChange={handleSortByPrice}>

@@ -107,14 +107,12 @@ const MyData = () => {
             />
           </div>
           <div className={style.divFlex}>
-
             <h3 className={style.h3}>Address</h3>
             <input
               className={style.input6}
               type="text"
               onChange={(e) => setEditedAddress(e.target.value)}
             />
-
           </div>
           {/* {!dni ? (
             " "
@@ -151,7 +149,7 @@ const MyData = () => {
           </p>
           <p>
             <span style={{ fontWeight: "bold" }}> Address: </span>
-            {address}
+            {direccion}
           </p>
           <p>
             <span style={{ fontWeight: "bold" }}> City: </span>
