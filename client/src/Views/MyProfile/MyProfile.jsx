@@ -12,8 +12,7 @@ const MyData = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
-  const { nombre, apellido, email, direccion, telefono, dni, ciudad, id } =
-    user;
+  const { nombre, apellido, email, direccion, telefono, dni, ciudad, id } = user;
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
   const [editMode, setEditMode] = useState(false);
   const [editedName, setEditedName] = useState(nombre || "");

@@ -21,14 +21,14 @@ const Favorites = () => {
   }, [dispatch]);
 
   return (
-    <div className={styles.contenedor}>
+    <div className={styles.mainContainer}>
       {favorites && favorites.length > 0 ? (
         favorites.map((favorite) => (
           <div className={styles.card} key={favorite.id}>
             {favorite.Product && (
               <>
                 <p>{favorite.Product.nombre}</p>
-                <img
+                <img className={styles.image}
                   src={favorite.Product.imagen}
                   alt={favorite.Product.nombre}
                 />
