@@ -1,15 +1,14 @@
-.mainContainer{
+.mainContainer {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   text-transform: capitalize;
-  color: #EEF2E6;
+  color: #eef2e6;
 }
-
-
 
 .card {
   margin-top: 170px;
+  max-width: 100%;
   flex-wrap: wrap;
   text-decoration: none;
   justify-content: center;
@@ -18,13 +17,13 @@
   color: #eef2e6;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  background-color: #3D8361;
+  background-color: #3d8361;
   border-radius: 0.75em;
-  box-shadow: 5px 8px 8px 1px #1C6758;
+  box-shadow: 5px 8px 8px 1px #1c6758;
   margin-left: 20px;
 }
 .image {
-  width: 300px;
+  width: 80%;
   padding: 1px;
   object-fit: cover;
   margin: 1px;
@@ -33,13 +32,13 @@
   box-shadow: 0px 0px 15px #3d8361;
 }
 
-.title{
-  position:fixed;
+.title {
+  position: fixed;
   text-align: center;
   margin-top: 100px;
 }
 
-.h1{
+.h1 {
   position: relative;
   font-size: 30px;
   text-shadow: 1px 1px rgb(0, 0, 0), 1px 1px rgb(13, 5, 25), -3px 0 4px #000000;
@@ -48,10 +47,10 @@
   font-weight: lighter;
   justify-content: center;
   text-align: center;
-  display:contents;
+  display: contents;
 }
 
-.h2{
+.h2 {
   position: relative;
   font-size: 20px;
 
@@ -61,4 +60,7 @@
   justify-content: center;
   text-align: center;
   display: block;
+}
+.navlink {
+  content: fit;
 }
