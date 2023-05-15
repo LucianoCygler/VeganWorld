@@ -6,11 +6,13 @@ const createReviewHandler = async (req, res) => {
   try {
     const client = await getOneClient(cliente_id);
     if (!client) throw new Error(`Client id ${cliente_id} doesn´t exist`);
+    const cliente_nombre = client.nombre;
     const newReview = await createReview(
       titulo,
       descripcion,
       cliente_id,
-      product_id
+      product_id,
+      cliente_nombre
     );
     res.status(200).send(newReview);
   } catch (error) {
