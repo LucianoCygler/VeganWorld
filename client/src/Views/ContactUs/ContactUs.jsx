@@ -31,8 +31,7 @@ const ContactUs = () => {
     if (!form.email) {
       error.email = "Email is required in this field";
     } else if (!regEmail.test(form.email)) {
-      error.email =
-        "In this field it is only required to write text please. No numbers or special characters are allowed";
+      error.email = "check your email please";
     }
     if (!form.textContainer) {
       error.textContainer = "Write your comment is necessary";
