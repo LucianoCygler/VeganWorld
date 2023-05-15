@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import SearchBar from "./SearchBar/SearchBar";
 import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,16 +9,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./NavBar.module.css";
 import { logoutUser } from "../../redux/actions/actions";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-function NavBar() {
-  const navigate = useNavigate();
+
+
+function NavBar() {  
+
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
-
   const handleLogout = () => {
     dispatch(logoutUser());
   };
+
+  
   return (
     <div className={styles.mainContainer}>
       <div className={styles.divLeft}>
