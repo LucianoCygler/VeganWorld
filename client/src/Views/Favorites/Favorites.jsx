@@ -21,19 +21,22 @@ const Favorites = () => {
   }, [dispatch]);
 
   return (
-    <div className={styles.contenedor}>
+    <div className={styles.mainContainer}>
+      <div className={styles.title}>
+        <h1 className={styles.h1}>These are your favorite products ♥</h1>
+      </div>
       {favorites && favorites.length > 0 ? (
         favorites.map((favorite) => (
           <div className={styles.cardad} key={favorite.id}>
             {favorite.Product && (
               <>
-                <p>{favorite.Product.nombre}</p>
-                <img
+                <h2 className={styles.h2}>{favorite.Product.nombre}</h2>
+                <img className={styles.image}
                   src={favorite.Product.imagen}
                   alt={favorite.Product.nombre}
                 />
-                <p>{favorite.Product.precio}</p>
-                <p>{favorite.Product.descripcion}</p>
+                <h2 className={styles.h2}>{favorite.Product.precio}</h2>
+                <h2 className={styles.h2}>{favorite.Product.descripcion}</h2>
               </>
             )}
           </div>

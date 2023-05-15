@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "./HomePage.module.css";
 import { getAllProducts } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { Pagination, Products } from "../../Components/index";
+import { CustomerComments, Pagination, Products } from "../../Components/index";
 import { orderAndFilter } from "../../redux/actions/actions";
 
 function HomePage() {
@@ -19,7 +19,7 @@ function HomePage() {
 
   const [currentPage, setCurrentPage] = useState(0);
 
-  const itemsPerPage = 12;
+  const itemsPerPage = 6;
 
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -41,6 +41,7 @@ function HomePage() {
 
   return (
     <div className={style.body}>
+      <h1 className={style.h1}>The best vegan food in town!</h1>
       Filter By Type:{" "}
       <select onChange={handleFilter}>
         <option value="">All</option>
@@ -61,7 +62,6 @@ function HomePage() {
         <option value="asc">Ascending</option>
         <option value="desc">Descending</option>
       </select>
-      <h1 className={style.h1}>The best vegan food in town!</h1>
       <Products currentItems={currentItems} />
       <Pagination
         goToPrevPage={() => setCurrentPage(currentPage - 1)}
