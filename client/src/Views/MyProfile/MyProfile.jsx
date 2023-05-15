@@ -64,57 +64,41 @@ const MyData = () => {
     <div className={style.container}>
       {editMode ? (
         <div className={style.edit}>
-          First Name:
-          <input
-            type="text"
-            value={editedName}
-            onChange={(e) => setEditedName(e.target.value)}
-          />
-          Surname:
-          <input
-            type="text"
-            value={editedSurname}
-            onChange={(e) => setEditedSurname(e.target.value)}
-          />
-          Email:
-          <input
-            type="text"
-            value={editedEmail}
-            onChange={(e) => setEditedEmail(e.target.value)}
-          />
-          Phone:
-          <input
-            type="text"
-            value={editedPhone}
-            onChange={(e) => setEditedPhone(e.target.value)}
-          />
-          City:
-          <input
-            type="text"
-            value={editedCity}
-            onChange={(e) => setEditedCity(e.target.value)}
-          />
-          Adress
-          <input
-            type="text"
-            value={editedAdress}
-            onChange={(e) => setEditedAdress(e.target.value)}
-          />
+          <div className={style.divFlex}>
+            <h3 className={style.h3}>First Name:</h3>
+            <input className={style.input1} type="text" value={editedName} onChange={(e) => setEditedName(e.target.value)} />
+          </div>
+          <div className={style.divFlex}>
+            <h3 className={style.h3}>Surname:</h3>
+            <input className={style.input2} type="text" value={editedSurname} onChange={(e) => setEditedSurname(e.target.value)} />
+          </div>
+          <div className={style.divFlex}>
+            <h3 className={style.h3}>Email:</h3>
+            <input className={style.input3} type="text" value={editedEmail} onChange={(e) => setEditedEmail(e.target.value)} />
+          </div>
+          <div className={style.divFlex}>
+            <h3 className={style.h3}>Phone:</h3>
+            <input className={style.input4} type="text" value={editedPhone} onChange={(e) => setEditedPhone(e.target.value)} />
+          </div>
+          <div className={style.divFlex}>
+            <h3 className={style.h3}>City:</h3>
+            <input className={style.input5} type="text" value={editedCity} onChange={(e) => setEditedCity(e.target.value)}/>
+          </div>
+          <div className={style.divFlex}>
+            <h3 className={style.h3}>Adress</h3>
+            <input className={style.input6} type="text" value={editedAdress} onChange={(e) => setEditedAdress(e.target.value)} />
+          </div>
           {!dni ? (
             " "
           ) : (
-            <>
-              DNI:
-              <input
-                type="text"
-                value={editedDNI}
-                onChange={(e) => setEditedDNI(e.target.value)}
-              />
-            </>
+            <div className={style.divFlex}>
+              <h3 className={style.h3}>DNI:</h3>
+              <input className={style.input7} type="text" value={editedDNI} onChange={(e) => setEditedDNI(e.target.value)} />
+            </div>
           )}
-            <button className={style.save} onClick={handleSaveUser}>Save Data
-        </button>
-          {/* <button onClick={handleSaveUser}>Save Data</button> */}
+
+          <button className={style.buttonEdit} onClick={handleSaveUser}>Save Data</button>
+
         </div>
       ) : (
         <div className={style.c}>
@@ -132,7 +116,7 @@ const MyData = () => {
             {telefono}
           </p>
           <p>
-            <span style={{ fontWeight: "bold" }}> Phone Number: </span>
+            <span style={{ fontWeight: "bold" }}> Direction: </span>
             {direccion}
           </p>
           <p>
@@ -146,7 +130,9 @@ const MyData = () => {
               <span style={{ fontWeight: "bold" }}> DNI: </span> {dni}
             </p>
           )}
-          <button className={style.save}  onClick={handleEditUser}>Edit User</button>
+
+          <button className={style.button} onClick={handleEditUser}>Edit User</button>
+
         </div>
       )}
     </div>

@@ -35,7 +35,7 @@
 
 .tittle {
     font-size: 15px;
-    text-shadow: 0 0 5px #fff;
+    text-shadow: 0 0 5px #EEF2E6;
 }
 
 .inputClass {
@@ -44,12 +44,22 @@
     opacity: 0;
     right: 5px;
     transition: all 0.5s ease;
+    background-color: #3D8361;
+    color: #EEF2E6;
+    border: transparent;
+    border-radius: 15px;
+    text-align: center;
+    outline: none;
 }
 
 .inputClass.show{
     width: 200px;
     right: 5px;
     opacity: 1;
+}
+
+.inputClass::placeholder{
+    color: #EEF2E6;
 }
 
 .fontAwesome {
