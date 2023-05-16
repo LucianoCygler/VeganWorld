@@ -3,11 +3,16 @@ import styles from "./Cart.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faRecycle } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { createOrder, dropProduct, newCart } from "../../redux/actions/actions";
+import {
+  cleanCart,
+  createOrder,
+  dropProduct,
+  newCart,
+} from "../../redux/actions/actions";
 import Pop_up from "../../Utils/Pop_up/Pop_up";
-import { NavLink } from "react-router-dom";
-
+import { NavLink, useNavigate } from "react-router-dom";
 function Cart() {
+  const navigate = useNavigate();
   const { user, cart } = useSelector((state) => state);
 
   const [subTotal, setSubTotal] = useState(0);
@@ -28,7 +33,7 @@ function Cart() {
 
   function subTotalF() {
     let subTotalP = 0;
-    updateCart.forEach((product) => (subTotalP += product.importe));
+    updateCart?.forEach((product) => (subTotalP += product.importe));
     return subTotalP;
   }
 
@@ -48,6 +53,7 @@ function Cart() {
           importe: subTotalF(),
           productos: products(),
         };
+
         try {
           dispatch(createOrder(order));
           Pop_up(
@@ -55,12 +61,15 @@ function Cart() {
             "Order Ceated",
             "You can find your orders in MyOrders!"
           );
+          navigate("/MyOrders");
         } catch ({ message }) {
           Pop_up("error", "Fail to Create Order", message);
         }
+        dispatch(cleanCart());
         break;
       case "delete":
         setUpdateCart(updateCart.filter((product) => product.id != id));
+
         break;
       default:
         return;
@@ -74,7 +83,7 @@ function Cart() {
 
   return (
     <div className={styles.mainContainer}>
-      {updateCart.length > 0 ? (
+      {cart !== null && updateCart.length > 0 ? (
         <>
           {updateCart.map((product, index) => {
             return (

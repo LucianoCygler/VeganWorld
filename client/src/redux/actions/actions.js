@@ -40,6 +40,8 @@ import {
   LOGOUT,
   GET_PRODUCT_REVIEWS,
   GET_ALL_CLIENTS,
+  SET_CREATED_ORDER_ID,
+  CLEAN_CART,
 } from "./Types/Types";
 
 const URL_SERVIDOR = "http://localhost:3001";
@@ -104,6 +106,11 @@ export const addCartProduct = (product, quantity) => ({
 export const newCart = (updateCart) => ({
   type: UPDATE_CART,
   payload: updateCart,
+});
+
+export const cleanCart = () => ({
+  type: CLEAN_CART,
+  payload: [],
 });
 
 /* ELIMINAR PRODUCTO POR ID */
@@ -468,3 +475,18 @@ export const getAllClients = () => {
     }
   };
 };
+
+// export const getCreatedOrderId = (order) => {
+//   return async (dispatch) => {
+//     try {
+//       const res = await axios.get(`${URL_SERVIDOR}/order`);
+//       const orders = res.data;
+//       const foundOrder = orders.find((o) => o.ClientId === order.ClientId);
+
+//       const orderId = foundOrder ? foundOrder.id : null;
+//       dispatch({ type: SET_CREATED_ORDER_ID, payload: orderId });
+//     } catch (error) {
+//       // Manejo de errores
+//     }
+//   };
+// };

@@ -27,6 +27,8 @@ import {
   DELETE_FAVORITE,
   GET_PRODUCT_REVIEWS,
   GET_ALL_CLIENTS,
+  SET_CREATED_ORDER_ID,
+  CLEAN_CART,
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -47,6 +49,7 @@ const initialState = {
   isAuthenticated: false,
   productReviews: [],
   allClients: [],
+  // createdOrderId: null,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -131,7 +134,11 @@ export default function rootReducer(state = initialState, action) {
 
     case UPDATE_CART:
       return { ...state, cart: action.payload };
-
+    case CLEAN_CART:
+      return {
+        ...state,
+        cart: [...action.payload],
+      };
     case DROP_PRODUCT:
       return {
         ...state,
@@ -220,6 +227,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         allClients: [...action.payload],
       };
+    // case SET_CREATED_ORDER_ID:
+    //   return {
+    //     ...state,
+    //     createdOrderId: action.payload,
+    //   };
+
     default:
       return { ...state };
   }

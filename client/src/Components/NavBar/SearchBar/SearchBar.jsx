@@ -18,26 +18,20 @@ function SearchBar() {
   const handleSearch = (event) => {
     const nombre = event.target.value.toLowerCase();
 
-    const searchResult = filteredProducts?.filter((product) => {
-      const productNombre = product?.nombre?.toLowerCase();
-      let matchIndex = 0; // Índice de coincidencia
-      let hasMatched = true; // Indicador de coincidencia
-      for (let i = 0; i < nombre.length; i++) {
-        const char = nombre[i];
-        if (!productNombre.startsWith(char, matchIndex)) {
-          hasMatched = false;
-          break;
-        }
-        matchIndex++;
-      }
-      return hasMatched;
-    });
+    // Verificar si la cadena de búsqueda tiene más de una letra
+    if (nombre.length > 1) {
+      const searchResult = filteredProducts?.filter((product) => {
+        const productNombre = product?.nombre?.toLowerCase();
+        return productNombre.includes(nombre);
+      });
 
-    dispatch(setProductSearch(searchResult));
-    // Hacer algo con el array filtrado
+      dispatch(setProductSearch(searchResult));
+      // Hacer algo con el array filtrado
+    } else if (nombre.length === 0) {
+      dispatch(setProductSearch(filteredProducts)); // Restaurar la lista original de productos
+      // Hacer algo cuando la cadena de búsqueda está vacía
+    }
   };
-
-  // Resto del código...
 
   return (
     <div className={styles.mainContainer}>

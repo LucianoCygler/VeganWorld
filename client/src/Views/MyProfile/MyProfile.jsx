@@ -24,6 +24,7 @@ const MyData = () => {
   const [editedCity, setEditedCity] = useState(ciudad || "");
   const [editedDNI, setEditedDNI] = useState(dni || "");
   const [editedAddress, setEditedAddress] = useState(direccion || "");
+  const [selectedUser, setselectedUser] = useState(user);
 
   const handleEditUser = () => {
     setEditMode(true);
@@ -45,6 +46,7 @@ const MyData = () => {
       direccion: editedAddress,
       DNI: editedDNI,
     };
+    setselectedUser(newUser);
     dispatch(updateClientData(id, newUser));
     alert("Client Data updated");
     setEditMode(false);
@@ -56,7 +58,7 @@ const MyData = () => {
     } else {
       dispatch(getClientData(id));
     }
-  }, [user]);
+  }, [selectedUser]);
   return (
     <div className={style.container}>
       {editMode ? (
@@ -111,6 +113,7 @@ const MyData = () => {
             <input
               className={style.input6}
               type="text"
+              value={editedAddress}
               onChange={(e) => setEditedAddress(e.target.value)}
             />
           </div>
@@ -148,12 +151,12 @@ const MyData = () => {
             {telefono}
           </p>
           <p>
-            <span style={{ fontWeight: "bold" }}> Address: </span>
-            {direccion}
-          </p>
-          <p>
             <span style={{ fontWeight: "bold" }}> City: </span>
             {ciudad}
+          </p>
+          <p>
+            <span style={{ fontWeight: "bold" }}> Address: </span>
+            {direccion}
           </p>
           {/* {!dni ? (
             " "

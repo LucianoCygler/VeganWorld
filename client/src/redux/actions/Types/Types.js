@@ -45,3 +45,5 @@ export const LOGIN = "LOGIN";
 export const ADD_PRODUCT_TO_CART = "LOGIN";
 export const GET_PRODUCT_REVIEWS = "GET_PRODUCT_REVIEWS";
 export const GET_ALL_CLIENTS = "GET_ALL_CLIENTS";
+export const SET_CREATED_ORDER_ID = "SET_CREATED_ORDER_ID";
+export const CLEAN_CART = "CLEAN_CART";
