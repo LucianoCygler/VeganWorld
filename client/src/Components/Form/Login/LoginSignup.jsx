@@ -3,7 +3,7 @@ import {  useState } from "react";
 import { useDispatch } from "react-redux";
 import { validateLogin, loginUser } from "../../../redux/actions/actions";
 import { useNavigate } from "react-router-dom";
-import { auth, googleProvider, } from "../../../Firebase/firebase";
+import { auth, googleProvider } from "../../../Firebase/firebase";
 import {signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth'
 
 const LoginSignup = () => {
@@ -20,16 +20,6 @@ const LoginSignup = () => {
 
   const handleInputChange = (event) => {
     setLogin({ ...login, [event.target.name]: event.target.value });
-  };
-
-  const handleButtonAccess = async (event) => {
-    event.preventDefault();
-    const response = await dispatch(validateLogin(login));
-
-    if (typeof response === "object") {
-      dispatch(loginUser());
-      navigate("/");
-    }
   };
 
   const handleOnClick = () => {
@@ -65,7 +55,7 @@ const LoginSignup = () => {
 
   return (
     <div className={style.container}>
-      <form onSubmit={handleButtonAccess} className={style.form}>
+      <form className={style.form}>
         <div className={style.form_front}>
           <div className={style.form_details}>Login</div>
 
@@ -87,7 +77,7 @@ const LoginSignup = () => {
             value={login.password}
           />
 
-          <button className={style.btn} onClick={handleLogin}>
+          <button className={style.btn} type="button" onClick={handleLogin}>
             Login
           </button>
           <button className={style.btn} type="button" onClick={handleLogGoogle}>
