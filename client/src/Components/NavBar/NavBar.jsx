@@ -10,6 +10,7 @@ import {
 import styles from "./NavBar.module.css";
 import { logoutUser } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
+import PopUpLogin from "../../Views/Login/PopUpLogin";
 
 
 function NavBar() {  
@@ -17,7 +18,7 @@ function NavBar() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
   const handleLogout = () => {
-    dispatch(logoutUser());
+    localStorage.setItem("email", "")
   };
 
   
@@ -49,12 +50,10 @@ function NavBar() {
         </div>
 
         <SearchBar />
-        {isAuthenticated ? (
+        {localStorage.getItem("email") ? (
           ""
         ) : (
-          <Link to="/login" className="link-login">
-            <button className={styles.buttonlogin}>Login</button>
-          </Link>
+          <PopUpLogin /> 
         )}
         <NavLink to="/" className={styles.link}>
           <FontAwesomeIcon
