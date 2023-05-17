@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Ring } from "@uiball/loaders";
 import styles from "./Detail.module.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getProductById,
@@ -12,10 +12,10 @@ import {
 import Pop_up from "../../Utils/Pop_up/Pop_up";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { NavLink } from "react-router-dom";
 function Detail() {
   const { id } = useParams();
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [product] = useSelector((state) => state.product);
@@ -29,7 +29,7 @@ function Detail() {
   }, [dispatch]);
   useEffect(() => {
     dispatch(getProductReviews(product_id));
-  }, [dispatch]);
+  }, [productReviews]);
 
   const handleClick = () => {
     try {
@@ -49,14 +49,16 @@ function Detail() {
       setQuantity(quantity + 1);
     }
   };
-
+  const handleGoBack = () => {
+    navigate(-1);
+  };
   return (
     <div className={styles.mainContainer}>
       <div className={styles.container}>
         <div className={styles.linkContainer}>
-          <Link to="/" className={styles.linkBack}>
+          <NavLink to="#" className={styles.linkBack} onClick={handleGoBack}>
             <FontAwesomeIcon icon={faArrowLeftLong} />
-          </Link>
+          </NavLink>
         </div>
         {product?.nombre ? (
           <div className={styles.descriptionDiv}>
@@ -91,7 +93,7 @@ function Detail() {
                 >
                   +
                 </button>
-                <button className={styles.buttonad} onClick={handleClick}>
+                <button className={styles.button} onClick={handleClick}>
                   Add to cart
                 </button>
               </div>
@@ -107,17 +109,15 @@ function Detail() {
             />
           </div>
         )}
-        <div className="card" style={{ width: "18rem" }}>
+        <div className={styles.cardcontenedor}>
           {productReviews
-            ? productReviews.map((review) => {
+            ? productReviews.slice(0, 3).map((review) => {
                 return (
-                  <div className="card-body" key={review.id}>
+                  <div className={styles.card} key={review.id}>
                     <>
-                      <h5 className="card-title">{review.titulo}</h5>
-                      <h6 className="card-subtitle mb-2 text-body-secondary">
-                        {review.cliente_nombre}
-                      </h6>
-                      <p className="card-text">{review.descripcion}</p>
+                      <span>{review.cliente_nombre}</span>
+                      <h1>{review.titulo}</h1>
+                      <p>{review.descripcion}</p>
                       <p>{review.fecha}</p>
                     </>
                   </div>

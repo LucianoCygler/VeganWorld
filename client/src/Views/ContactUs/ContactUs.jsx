@@ -7,7 +7,7 @@ const formContactUser = {
   textContainer: "",
 };
 const ContactUs = () => {
-  const comment = []
+  const comment = [];
   const [form, setForm] = useState(formContactUser);
 
   const [error, setError] = useState(formContactUser);
@@ -31,13 +31,13 @@ const ContactUs = () => {
     if (!form.email) {
       error.email = "Email is required in this field";
     } else if (!regEmail.test(form.email)) {
-      error.email =
-      "In this field it is only required to write text please. No numbers or special characters are allowed";
+      error.email = "check your email please";
     }
     if (!form.textContainer) {
       error.textContainer = "Write your comment is necessary";
-    }else if (form.textContainer.length < 5) {
-      error.textContainer = "Enter a little more text please tell us more about your opinion";
+    } else if (form.textContainer.length < 5) {
+      error.textContainer =
+        "Enter a little more text please tell us more about your opinion";
     }
     if (!reg.test(form.textContainer)) {
       error.textContainer = "Numbers or special characters are not allowed";
@@ -66,7 +66,7 @@ const ContactUs = () => {
       form.name.length &&
       form.textContainer.length
     ) {
-      comment.push(form)
+      comment.push(form);
       alert("Thanks for your time. Good job!");
       setForm(formContactUser);
     } else {
@@ -75,15 +75,10 @@ const ContactUs = () => {
   };
 
   return (
-
     <form id="fm" onSubmit={submitHandler}>
-       <div className={style.ma} >
-                <iframe className={style.map}  src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJu8oXNbJMbDkRHVYbLDveBHI&key=AIzaSyB7nR1mbT0--BkKc9rs_Fa0eQF6tYc1kFI" allowfullscreen></iframe>
-            </div>
       <div className={style.contenedor}>
-
         <div className={style.form_left_container}>
-          <h1 className={style.h1}>We want to know your opinion write us</h1>
+          <h1 className={style.h1}>Contact us via email!</h1>
 
           <div className={style.formdiv}>
             <label htmlFor="name">Name: </label>
@@ -160,8 +155,7 @@ const ContactUs = () => {
           </div>
         </div>
         <div className={style.form_right_container}>
-          <label htmlFor="textContainer"> 
-          </label>
+          <label htmlFor="textContainer"></label>
           <textarea
             name="textContainer"
             type="text"
@@ -196,6 +190,13 @@ const ContactUs = () => {
         <button className={style.create} type="submit">
           Submit
         </button>
+      </div>
+      <div className={style.ma}>
+        <iframe
+          className={style.map}
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.7037906996197!2d-58.4969135!3d-34.636925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc93bc88e4279%3A0xc6e4c5cf528aa9fb!2sMundo%20Vegano!5e0!3m2!1ses!2sar!4v1684131909184!5m2!1ses!2sar"
+          allowfullscreen
+        ></iframe>
       </div>
     </form>
   );

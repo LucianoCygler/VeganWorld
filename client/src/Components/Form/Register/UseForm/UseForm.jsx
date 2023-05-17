@@ -1,9 +1,13 @@
 import { useState } from "react";
-import axios from "axios";
+import { auth } from "../../../../Firebase/firebase";
+import {createUserWithEmailAndPassword} from 'firebase/auth'
+import { registerUser } from "../../../../redux/actions/actions";
+import { useDispatch } from "react-redux";
 
 const useForm = (initialForm, validationsForm) => {
   const [register, setRegister] = useState(initialForm);
   const [error, serError] = useState({});
+  const dispatch = useDispatch()
 
 
   // AGREGAR A FORM LOS DEL EVENTO Y VALUE
@@ -13,24 +17,20 @@ const useForm = (initialForm, validationsForm) => {
     setRegister({ ...register, [name]: value });
   };
 
-
   const handleBlur = (event) => {
-    handleChange(event)
-    serError(validationsForm(register))
+    handleChange(event);
+    serError(validationsForm(register));
   };
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post("http://localhost:3001/client", register)
-      .then((res) => {
-        alert(res.data.message);
-        setRegister(initialForm);
-      })
-      .catch((error) => {
-        alert(error.response.data);
-      });
+    createUserWithEmailAndPassword(auth, register.email, register.contraseña).then(userCredential=> {
+      console.log(userCredential);
+    }).catch(error => {
+      console.log(error);
+    })
+
+    dispatch(registerUser(register))
   };
 
   return {
@@ -38,9 +38,8 @@ const useForm = (initialForm, validationsForm) => {
     handleBlur,
     handleSubmit,
     register,
-    error
-  }
-
+    error,
+  };
 };
 
 export default useForm;

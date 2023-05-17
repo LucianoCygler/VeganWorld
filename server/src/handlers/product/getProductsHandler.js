@@ -1,11 +1,11 @@
 const filterProductByType = require("../../controllers/product/filterProductByType");
 const getAllProducts = require("../../controllers/product/getAllProducts");
 const getProductByName = require("../../controllers/product/getProductByName");
-const orderProductByName = require("../../controllers/product/orderProductByName");
+const orderProduct = require("../../controllers/product/orderProduct");
 const orderProductByPrice = require("../../controllers/product/orderProductByPrice");
 
 const getProductsHandler = async (req, res) => {
-  const { nombre, sortByPrice, sortByName, filterByType } = req.query;
+  const { nombre, sort, filterByType } = req.query;
   try {
     let orderedProduct = await getAllProducts();
 
@@ -17,12 +17,8 @@ const getProductsHandler = async (req, res) => {
     if (filterByType) {
       orderedProduct = await filterProductByType(filterByType);
     }
-    if (sortByPrice) {
-      orderedProduct = await orderProductByPrice(sortByPrice, orderedProduct);
-    }
-
-    if (sortByName) {
-      orderedProduct = await orderProductByName(sortByName, orderedProduct);
+    if (sort) {
+      orderedProduct = await orderProduct(sort, orderedProduct);
     }
 
     res.status(200).send(orderedProduct);

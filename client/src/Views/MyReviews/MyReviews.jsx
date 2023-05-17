@@ -22,7 +22,7 @@ const MyReviews = () => {
     } else {
       dispatch(getClientReviews(clientId));
     }
-  }, [dispatch, clientId]);
+  }, [dispatch, selectedReview]);
 
   const showPopupHandler = (review) => {
     setSelectedReview(review);

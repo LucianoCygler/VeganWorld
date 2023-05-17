@@ -40,6 +40,8 @@ import {
   LOGOUT,
   GET_PRODUCT_REVIEWS,
   GET_ALL_CLIENTS,
+  SET_CREATED_ORDER_ID,
+  CLEAN_CART,
 } from "./Types/Types";
 
 const URL_SERVIDOR = "http://localhost:3001";
@@ -104,6 +106,11 @@ export const addCartProduct = (product, quantity) => ({
 export const newCart = (updateCart) => ({
   type: UPDATE_CART,
   payload: updateCart,
+});
+
+export const cleanCart = () => ({
+  type: CLEAN_CART,
+  payload: [],
 });
 
 /* ELIMINAR PRODUCTO POR ID */
@@ -361,11 +368,11 @@ export const getClientReview = (id_review) => {
 };
 
 //ORDENAMIENTO Y FILTRADO
-export const orderAndFilter = (filterByType, sortByName, sortByPrice) => {
+export const orderAndFilter = (filterByType, sort) => {
   return async function (dispatch) {
     try {
       const res = await axios.get(
-        `${URL_SERVIDOR}/product?filterByType=${filterByType}&sortByName=${sortByName}&sortByPrice=${sortByPrice}`
+        `${URL_SERVIDOR}/product?filterByType=${filterByType}&sort=${sort}`
       );
       const filterProducts = res.data;
       return dispatch({ type: ORDER_FILTER, payload: filterProducts });
@@ -398,7 +405,7 @@ export const createFavoriteAction = (favorite) => {
       const favoriteDB = res.data;
       return dispatch({ type: CREATE_FAVORITE, payload: favoriteDB });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
     }
   };
 };
@@ -411,7 +418,7 @@ export const deleteFavoriteAction = (product_id) => {
       const favorite = res.data;
       return dispatch({ type: DELETE_FAVORITE, payload: favorite.id });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
     }
   };
 };
@@ -468,3 +475,18 @@ export const getAllClients = () => {
     }
   };
 };
+
+// export const getCreatedOrderId = (order) => {
+//   return async (dispatch) => {
+//     try {
+//       const res = await axios.get(`${URL_SERVIDOR}/order`);
+//       const orders = res.data;
+//       const foundOrder = orders.find((o) => o.ClientId === order.ClientId);
+
+//       const orderId = foundOrder ? foundOrder.id : null;
+//       dispatch({ type: SET_CREATED_ORDER_ID, payload: orderId });
+//     } catch (error) {
+//       // Manejo de errores
+//     }
+//   };
+// };

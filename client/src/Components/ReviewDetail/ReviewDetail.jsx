@@ -26,6 +26,7 @@ const ReviewDetail = ({ review, closePopup }) => {
   const handleDeleteReview = () => {
     dispatch(deleteReview(id));
     alert("Review deleted");
+    closePopup();
   };
 
   const handleEditReview = () => {
