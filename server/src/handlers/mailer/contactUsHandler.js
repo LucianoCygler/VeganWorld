@@ -4,7 +4,7 @@ const contactUsHandler = async (req, res)=>{
     const {email, name, textContainer} = req.body;
     try {
         if (email && name && textContainer){
-            await mailer(mail, name, input);
+            await mailer(email, name, textContainer);
             res.status(200).send('Mail sent correctly.');
         }else{
             return res.status(400).send("Faltan datos para crear el pedido");
