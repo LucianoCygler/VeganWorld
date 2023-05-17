@@ -7,7 +7,6 @@ import {sendEmail } from '../../redux/actions/actions';
 import axios from 'axios';
 
 
-const dispatch = useDispatch();
 
 const formContactUser = {
   name: "",
@@ -15,6 +14,7 @@ const formContactUser = {
   textContainer: "",
 };
 const ContactUs = () => {
+  const dispatch = useDispatch();
   const comment = [];
   const [form, setForm] = useState(formContactUser);
 
