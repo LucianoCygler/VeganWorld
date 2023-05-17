@@ -16,7 +16,7 @@ const Login = () =>{
         <h4>💚Bienvenido nuevamente!</h4>
         </div>
         <div>
-        <LoginSignup/>
+        <LoginSignup />
         </div>
     </div>
 
