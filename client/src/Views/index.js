@@ -10,22 +10,21 @@ import MyReviews from "./MyReviews/MyReviews";
 import ContactUs from "./ContactUs/ContactUs";
 import About from "./About/About";
 import Login from "./Login/Login";
-import Register from "./Register/Register"
-
+import Register from "./Register/Register";
+import Resetpass from "./ResetPass/Resetpass";
 
 export {
-    HomePage,
-    LandingPage,
-    Detail,
-    Cart,
-    Favorites,
-    MyOrders, 
-    MyProfile, 
-    MyReviews, 
-    ContactUs, 
-    About,
-
-    Login,
-    Register,
-
-}
+  HomePage,
+  LandingPage,
+  Detail,
+  Cart,
+  Favorites,
+  MyOrders,
+  MyProfile,
+  MyReviews,
+  ContactUs,
+  About,
+  Resetpass,
+  Login,
+  Register,
+};
