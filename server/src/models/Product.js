@@ -35,6 +35,7 @@ module.exports = (sequelize) => {
         validate: {
           isUrl: true,
         },
+        public_id:String
       },
     },
     {

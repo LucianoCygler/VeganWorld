@@ -12,7 +12,7 @@ const Favorites = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuthenticated === false) {
+    if (!localStorage.getItem("email")) {
       navigate("/login");
     } else {
       const client_id = user?.id;

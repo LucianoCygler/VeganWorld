@@ -65,7 +65,7 @@ const MyData = () => {
   };
 
   useEffect(() => {
-    if (isAuthenticated === false) {
+    if (!localStorage.getItem("email")) {
       navigate("/login");
     } else {
       dispatch(getClientData(id));

@@ -68,7 +68,7 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
 
   return (
     <div className={styles.mainContainer}>
-      {isAuthenticated ? (
+      {localStorage.getItem("email") ? (
         <div>
           {" "}
           {isFav ? (

@@ -17,7 +17,7 @@ const MyReviews = () => {
   // const user = useSelector((state)=>state.user);
   //! Se usa el estado global de los datos del usuario en lugar de la const clientId
   useEffect(() => {
-    if (isAuthenticated === false) {
+    if (!localStorage.getItem("email")) {
       navigate("/login");
     } else {
       dispatch(getClientReviews(clientId));
