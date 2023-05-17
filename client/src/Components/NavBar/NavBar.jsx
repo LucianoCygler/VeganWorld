@@ -42,11 +42,16 @@ function NavBar() {
       </div>
       <div className={styles.divRight}>
         <div className={styles.redirects}>
-          <Link to="/MyProfile">Profile</Link>{" "}
-          <Link to="/Favorites">Favorites</Link>{" "}
-          <Link to="/MyOrders">Orders</Link>{" "}
-          <Link to="/MyReviews">Reviews</Link>{" "}
-          <Link to="/ContactUs">Contact</Link> <Link to="/About">About</Link>{" "}
+          <div className={styles.dropdown}>
+            <span className={styles.dropbtn}>Menu</span>
+            <div className={styles.dropdownContent}>
+              <Link to="/MyProfile">Profile</Link>{" "}
+              <Link to="/Favorites">Favorites</Link>{" "}
+              <Link to="/MyOrders">Orders</Link>{" "}
+              <Link to="/MyReviews">Reviews</Link>{" "}
+              <Link to="/ContactUs">Contact</Link> <Link to="/About">About</Link>{" "}
+            </div>
+          </div>
         </div>
 
         <SearchBar />
