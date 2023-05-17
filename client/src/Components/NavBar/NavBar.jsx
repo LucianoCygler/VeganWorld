@@ -26,19 +26,11 @@ function NavBar() {
     <div className={styles.mainContainer}>
       <div className={styles.divLeft}>
         <NavLink to="/" className={styles.link}>
-          <FontAwesomeIcon icon={faHouse} className={styles.fontAwesome} />
-        </NavLink>
-        <NavLink to="/Cart" className={styles.link}>
-          <FontAwesomeIcon
-            icon={faCartShopping}
-            className={styles.fontAwesome}
-          />
+          <h1 className={styles.tittle}>VeganWorld!</h1>
         </NavLink>
       </div>
       <div className={styles.divMid}>
-        <NavLink to={"/"} className={styles.tittle}>
-        <h1 >VeganWorld!</h1>
-        </NavLink>
+        <SearchBar />
       </div>
       <div className={styles.divRight}>
         <div className={styles.redirects}>
@@ -49,12 +41,17 @@ function NavBar() {
               <Link to="/Favorites">Favorites</Link>{" "}
               <Link to="/MyOrders">Orders</Link>{" "}
               <Link to="/MyReviews">Reviews</Link>{" "}
-              <Link to="/ContactUs">Contact</Link> <Link to="/About">About</Link>{" "}
+              <Link to="/ContactUs">Contact</Link> 
+              <Link to="/About">About</Link>{" "}
             </div>
           </div>
         </div>
-
-        <SearchBar />
+        <NavLink to="/Cart" className={styles.link}>
+          <FontAwesomeIcon
+            icon={faCartShopping}
+            className={styles.fontAwesome}
+          />
+        </NavLink>
         {localStorage.getItem("email") ? (
           ""
         ) : (

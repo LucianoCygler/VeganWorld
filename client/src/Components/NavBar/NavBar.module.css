@@ -31,7 +31,6 @@
   text-decoration: none;
   cursor: pointer;
   transition: color 0.3s;
-  margin-left: 2em;
 }
 .redirects a:hover {
   color: rgb(0, 255, 98);
@@ -53,6 +52,7 @@
 .fontAwesome {
   transition: transform 0.5s;
   color: #eef2e6;
+  font-size: 20px;
 }
 
 .fontAwesome:hover {
@@ -63,9 +63,6 @@
   color: whitesmoke;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-decoration: none;
-
-  position: absolute;
-  left: 43%;
 }
 /* Estilos del botón */
 .buttonlogin {
@@ -90,7 +87,7 @@
 }
 
 /* Estilos del enlace */
-.linklogin {
+.link {
   text-decoration: none;
 }
 
@@ -107,13 +104,14 @@
 .dropdown {
   position: relative;
   display: inline-block;
+  
 }
 
 .dropdown .dropbtn {
   color: #eef2e6;
   cursor: pointer;
   transition: color 0.3s;
-  margin-left: 2em;
+  font-size: 20px;
 }
 
 .dropdown:hover .dropbtn {
@@ -128,12 +126,12 @@
   background-color: #1c6758;
   box-shadow: 0 0 15px #3d8361;
   z-index: 1;
-  min-width: 160px;
+  width: 120px;
+  font-size: 20px;
 }
 
 .dropdownContent a {
   color: #eef2e6;
-  padding: 12px 16px;
   text-decoration: none;
   display: block;
   transition: background-color 0.3s;
@@ -144,5 +142,9 @@
 }
 
 .dropdown:hover .dropdownContent {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: -70px;
 }
