@@ -1,7 +1,5 @@
 import useForm from "./UseForm/UseForm";
 import style from "./RegisterUser.module.css";
-import { auth } from "../../../Firebase/firebase";
-import {createUserWithEmailAndPassword} from 'firebase/auth'
 
 
 const initialForm = {

@@ -1,5 +1,5 @@
 import style from "./LoginSignup.module.css";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useDispatch } from "react-redux";
 import { validateLogin, loginUser } from "../../../redux/actions/actions";
 import { useNavigate } from "react-router-dom";
