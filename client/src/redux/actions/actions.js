@@ -476,6 +476,16 @@ export const getAllClients = () => {
   };
 };
 
+export const sendEmail = (form) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post(`${URL_SERVIDOR}/mail`, form);
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
+};
+
 // export const getCreatedOrderId = (order) => {
 //   return async (dispatch) => {
 //     try {
