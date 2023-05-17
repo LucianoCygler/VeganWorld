@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react";
+import {useDispatch} from 'react-redux'
 import style from "./ContactUs.module.css";
+
+import {sendEmail } from '../../redux/actions/actions';
+
+import axios from 'axios';
+
+
+const dispatch = useDispatch();
 
 const formContactUser = {
   name: "",
@@ -66,7 +74,8 @@ const ContactUs = () => {
       form.name.length &&
       form.textContainer.length
     ) {
-      comment.push(form);
+      //comment.push(form);
+      dispatch(sendEmail(form));
       alert("Thanks for your time. Good job!");
       setForm(formContactUser);
     } else {
