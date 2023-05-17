@@ -5,7 +5,7 @@ import { HomePage, LandingPage, Detail, Cart, Favorites, MyOrders, MyProfile,
         MyReviews, ContactUs, About,Register,Login } from "./Views/index";
 
 import { NavBar } from "./Components/index";
-
+git 
 function App() {
   //************************************* OCULTAR / MOSTRAR NAVBAR *********************************/
   const location = useLocation();
