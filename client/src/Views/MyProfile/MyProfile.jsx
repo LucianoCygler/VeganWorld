@@ -24,6 +24,7 @@ const MyData = () => {
   const [editedCity, setEditedCity] = useState(ciudad || "");
   const [editedDNI, setEditedDNI] = useState(dni || "");
   const [editedAddress, setEditedAddress] = useState(direccion || "");
+  const [profileImage, setProfileImage] = useState(null);
   const [selectedUser, setselectedUser] = useState(user);
 
   const handleEditUser = () => {
@@ -52,8 +53,19 @@ const MyData = () => {
     setEditMode(false);
   };
 
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setProfileImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   useEffect(() => {
-    if (isAuthenticated === false) {
+    if (!localStorage.getItem("email")) {
       navigate("/login");
     } else {
       dispatch(getClientData(id));
@@ -117,19 +129,11 @@ const MyData = () => {
               onChange={(e) => setEditedAddress(e.target.value)}
             />
           </div>
-          {/* {!dni ? (
-            " "
-          ) : (
-            <div className={style.divFlex}>
-              <h3 className={style.h3}>DNI:</h3>
-              <input
-                className={style.input7}
-                type="text"
-                value={editedDNI}
-                onChange={(e) => setEditedDNI(e.target.value)}
-              />
-            </div>
-          )} */}
+          <input
+            className={style.input8}
+            type="file"
+            onChange={handleImageChange}
+          />
 
           <button className={style.buttonEdit} onClick={handleSaveUser}>
             Save Data
@@ -138,6 +142,11 @@ const MyData = () => {
       ) : (
         <div className={style.c}>
           <h1>My Profile</h1>
+          {profileImage ? (
+            <img src={profileImage} alt="Profile" />
+          ) : (
+            <img className={style.input8} src="https://s.alicdn.com/@sc04/kf/Hd45a4a8662ba407f8e4d3ad430722b26j.jpg_960x960.jpg" alt="Default Profile" />
+          )}
           <h2>
             {nombre} {apellido}
           </h2>

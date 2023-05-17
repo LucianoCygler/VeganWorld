@@ -1,6 +1,7 @@
 import useForm from "./UseForm/UseForm";
 import style from "./RegisterUser.module.css";
 
+
 const initialForm = {
   nombre: "",
   apellido: "",
@@ -162,7 +163,7 @@ const RegisterUser = () => {
         {/* {error.dni && <p>{error.dni}</p>} */}
 
         <div className={style.div19}>
-          <button className={style.buttonlogin}>Sign In</button>
+          <button className={style.buttonlogin}>Sign Up</button>
         </div>
       </form>
     </div>
