@@ -68,7 +68,7 @@ const ContactUs = () => {
   };
 
   const submitHandler = (event) => {
-    event.prebenDeFault();
+    event.preventDefault();
     if (
       Object.keys(error).length === 0 &&
       form.name.length &&
