@@ -64,3 +64,13 @@
 .navlink {
   content: fit;
 }
+
+.nofavs {
+  padding-top: 10em;
+  color: black;
+}
+.divLogin {
+  padding-top: 30em;
+  width: 100%;
+  height: 1000vh;
+}

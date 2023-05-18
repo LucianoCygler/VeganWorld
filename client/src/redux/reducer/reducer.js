@@ -167,11 +167,15 @@ export default function rootReducer(state = initialState, action) {
     case GET_CLIENT_ORDERS:
       return { ...state, clientOrders: action.payload };
 
-    // case DELETE_ORDER:
-    //   const orderId = action.payload;
-    //   const updatedOrders = state.clientOrders.filter(
-    //     (order) => order.id !== orderId
-    //   );
+    case DELETE_ORDER:
+      const orderId = action.payload;
+      const updatedOrders = state.clientOrders.filter(
+        (order) => order.id !== orderId
+      );
+      return {
+        ...state,
+        clientOrders: updatedOrders,
+      };
 
     case UPDATE_REVIEW:
       const { id, titulo, descripcion } = action.payload;
