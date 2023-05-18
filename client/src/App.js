@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div className="App">
-      <ChakraProvider>
+      <ChakraProvider />
         {showNav && <NavBar />}
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -46,7 +46,7 @@ function App() {
           <Route path="/ResetPass" element={<Resetpass />} />
           <Route path="/About" element={<About />} />
         </Routes>
-      </ChakraProvider>
+      <ChakraProvider />
     </div>
   );
 }

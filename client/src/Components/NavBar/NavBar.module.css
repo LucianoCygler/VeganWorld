@@ -1,10 +1,11 @@
+
 /************************************* DIVS ********************************/
 
 .mainContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1c6758;
+  background-color: #1B9C85;
   box-shadow: 0 0 15px #3d8361;
   width: 100%;
   position: fixed;
@@ -27,14 +28,13 @@
   align-items: center;
 }
 .redirects a {
-  color: #eef2e6;
+  color: #F6FFDE;
   text-decoration: none;
   cursor: pointer;
   transition: color 0.3s;
-  margin-left: 2em;
 }
 .redirects a:hover {
-  color: rgb(0, 255, 98);
+  /* color: rgb(0, 255, 98); */
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
@@ -45,14 +45,15 @@
   align-items: center;
   gap: 1rem;
   margin-right: 55px;
-  color: #eef2e6;
+  color: #F6FFDE;
 }
 
 /************************* ELEMENTS *************/
 
 .fontAwesome {
   transition: transform 0.5s;
-  color: #eef2e6;
+  color: #F6FFDE;
+  font-size: 20px;
 }
 
 .fontAwesome:hover {
@@ -60,37 +61,13 @@
 }
 
 .tittle {
-  color: whitesmoke;
+  color: #F6FFDE;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-decoration: none;
-
-  position: absolute;
-  left: 43%;
-}
-/* Estilos del botón */
-.buttonlogin {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #55756c;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.buttonlogin:hover {
-  background-color: #99c4b8;
-}
-
-.buttonlogin:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(103, 137, 131, 0.5);
 }
 
 /* Estilos del enlace */
-.linklogin {
+.link {
   text-decoration: none;
 }
 
@@ -100,4 +77,54 @@
   pointer-events: none;
   cursor: not-allowed;
   opacity: 0.7;
+}
+
+/* Menu desplegable */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  
+}
+
+.dropdown .dropbtn {
+  color: #F6FFDE;
+  cursor: pointer;
+  transition: color 0.3s;
+  font-size: 20px;
+}
+
+.dropdown:hover .dropbtn {
+  /* color: rgb(0, 255, 98); */
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: #1c6758;
+  box-shadow: 0 0 15px #3d8361;
+  z-index: 1;
+  width: 120px;
+  font-size: 20px;
+}
+
+.dropdownContent a {
+  color: #F6FFDE;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s;
+}
+
+.dropdownContent a:hover {
+  background-color: #99c4b8;
+}
+
+.dropdown:hover .dropdownContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: -70px;
 }
