@@ -502,12 +502,15 @@ export const getMercadoPagoLink = (emailAndProducts) => {
   };
 };
 
-export const sendEmail = (form) => {
+export const sendEmail = (form, type) => {
   return async function (dispatch) {
+    if (type){
+      form= {...form, type};
+    }else throw new Error('Type is missing.');
     try {
       const res = await axios.post(`${URL_SERVIDOR}/mail`, form);
     } catch (error) {
-      alert(error.response.data);
+      alert(error);
     }
   };
 };
