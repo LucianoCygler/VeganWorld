@@ -34,9 +34,8 @@ function Detail() {
   }, [productReviews, product_id, dispatch]);
 
     if (product_id) {
-      dispatch(getProductReviews(product_id));
+      return dispatch(getProductReviews(product_id));
     }
-  }, [product_id]);
 
 
   const handleClick = () => {

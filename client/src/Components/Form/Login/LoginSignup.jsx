@@ -22,15 +22,15 @@ const LoginSignup = () => {
     setLogin({ ...login, [event.target.name]: event.target.value });
   };
 
-  // const handleButtonAccess = async (event) => {
-  //   event.preventDefault();
-  //   const response = await dispatch(validateLogin(login));
+  const handleButtonAccess = async (event) => {
+    event.preventDefault();
+    const response = await dispatch(validateLogin(login));
 
-  //   if (typeof response === "object") {
-  //     dispatch(loginUser());
-  //     navigate("/");
-  //   }
-  // };
+    if (typeof response === "object") {
+      dispatch(loginUser());
+      navigate("/");
+    }
+  };
 
   const handleOnClick = () => {
     navigate("/Register");
