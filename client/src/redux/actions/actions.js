@@ -477,6 +477,7 @@ export const getAllClients = () => {
   };
 };
 
+
 export const getMercadoPagoLink = (emailAndProducts) => {
   return async function (dispatch) {
     try {
@@ -489,6 +490,7 @@ export const getMercadoPagoLink = (emailAndProducts) => {
     }
   };
 };
+
 
 export const sendEmail = (form) => {
   return async function (dispatch) {
