@@ -7,7 +7,6 @@ import { validateLogin } from "../../redux/actions/actions";
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 
-
 const PopUpLogin = () => {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
@@ -127,15 +126,18 @@ const PopUpLogin = () => {
             onClick={handleSubmit}
           >
             Login
-          </button >
+          </button>
 
           <NavLink to={"/Register"}>
-          <button className="btn btn-primary btn-lg btn-block"
-            type="button">Sign up
+            <button className="btn btn-primary btn-lg btn-block" type="button">
+              Sign up
             </button>
           </NavLink>
 
-          <NavLink to={"/ResetPass"}> <p>Olvide mi contraseña</p> </NavLink>
+          <NavLink to={"/ResetPass"}>
+            {" "}
+            <p>Olvide mi contraseña</p>{" "}
+          </NavLink>
 
           <hr className="my-4" />
 

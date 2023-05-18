@@ -23,20 +23,15 @@ function Detail() {
 
   const [quantity, setQuantity] = useState(1);
   const product_id = id;
-  
+
   useEffect(() => {
     dispatch(getProductById(id));
     return () => dispatch(cleanDetail());
   }, [dispatch, id]);
   useEffect(() => {
-
-    dispatch(getProductReviews(product_id));
-  }, [productReviews, product_id, dispatch]);
-
     if (product_id) {
       return dispatch(getProductReviews(product_id));
     }
-
 
   const handleClick = () => {
     try {
