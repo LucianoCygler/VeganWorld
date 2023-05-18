@@ -62,7 +62,7 @@ const LoginSignup = () => {
 
   return (
     <div className={style.container}>
-      <form onSubmit={handleButtonAccess} className={style.form}>
+      <form className={style.form}>
         <div className={style.form_front}>
           <div className={style.form_details}>Login</div>
 

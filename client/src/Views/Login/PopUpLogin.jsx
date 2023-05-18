@@ -4,12 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { auth, googleProvider } from "../../Firebase/firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { validateLogin } from "../../redux/actions/actions";
-
-import { useDispatch } from "react-redux";
-import { NavLink } from 'react-router-dom'
-
+import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
 
 const PopUpLogin = () => {
   const [showModal, setShowModal] = useState(false);
@@ -130,15 +126,18 @@ const PopUpLogin = () => {
             onClick={handleSubmit}
           >
             Login
-          </button >
+          </button>
 
           <NavLink to={"/Register"}>
-          <button className="btn btn-primary btn-lg btn-block"
-            type="button">Sign up
+            <button className="btn btn-primary btn-lg btn-block" type="button">
+              Sign up
             </button>
           </NavLink>
 
-          <NavLink to={"/ResetPass"}> <p>Olvide mi contraseña</p> </NavLink>
+          <NavLink to={"/ResetPass"}>
+            {" "}
+            <p>Olvide mi contraseña</p>{" "}
+          </NavLink>
 
           <hr className="my-4" />
 
