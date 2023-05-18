@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { auth, googleProvider } from "../../Firebase/firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { validateLogin } from "../../redux/actions/actions";
+import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Button, Modal } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const PopUpLogin = () => {
   const [showModal, setShowModal] = useState(false);
@@ -126,6 +127,17 @@ const PopUpLogin = () => {
           >
             Login
           </button>
+
+          <NavLink to={"/Register"}>
+            <button className="btn btn-primary btn-lg btn-block" type="button">
+              Sign up
+            </button>
+          </NavLink>
+
+          <NavLink to={"/ResetPass"}>
+            {" "}
+            <p>Olvide mi contraseña</p>{" "}
+          </NavLink>
 
           <hr className="my-4" />
 
