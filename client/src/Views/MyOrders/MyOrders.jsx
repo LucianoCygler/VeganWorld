@@ -8,18 +8,19 @@ import { useNavigate } from "react-router-dom";
 const MyOrders = () => {
   const clientOrders = useSelector((state) => state.clientOrders);
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
-  const user = useSelector((state) => state.user);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const userJSON = localStorage.getItem("user");
+  const userObj = JSON.parse(userJSON);
   useEffect(() => {
-    if (!localStorage.getItem("email")) {
+    if (!userObj) {
       navigate("/login");
     } else {
-      const client_id = user.id;
+      const client_id = userObj.id;
       dispatch(getClientOrders(client_id));
     }
   }, [selectedOrder, isAuthenticated]);

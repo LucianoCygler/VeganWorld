@@ -28,8 +28,10 @@ function Detail() {
     return () => dispatch(cleanDetail());
   }, [dispatch]);
   useEffect(() => {
-    dispatch(getProductReviews(product_id));
-  }, [productReviews]);
+    if (product_id) {
+      dispatch(getProductReviews(product_id));
+    }
+  }, [product_id]);
 
   const handleClick = () => {
     try {
