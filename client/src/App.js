@@ -19,8 +19,6 @@ import {
 
 import { NavBar } from "./Components/index";
 
-import { ChakraProvider } from "@chakra-ui/react";
-
 function App() {
   //************************************* OCULTAR / MOSTRAR NAVBAR *********************************/
   const location = useLocation();

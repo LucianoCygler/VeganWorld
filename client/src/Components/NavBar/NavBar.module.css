@@ -8,10 +8,10 @@
   background-color: #1B9C85;
   box-shadow: 0 0 15px #3d8361;
   width: 100%;
-  position: fixed;
+  position: sticky;
   padding: 20px;
   margin-top: 0;
-  z-index: 999;
+  /* z-index: 999; */
 }
 
 .divLeft {
