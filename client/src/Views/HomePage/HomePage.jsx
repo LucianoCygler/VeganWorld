@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import style from "./HomePage.module.css";
 import { getAllProducts } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { CustomerComments, Pagination, Products } from "../../Components/index";
+import { Pagination, Products } from "../../Components/index";
 import { orderAndFilter } from "../../redux/actions/actions";
+import Carousel from "../../Components/Carousel/Carousel";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -14,11 +15,11 @@ function HomePage() {
 
   useEffect(() => {
     dispatch(getAllProducts());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(orderAndFilter(filterByType, sort));
-  }, [filterByType, sort]);
+  }, [filterByType, sort, dispatch]);
   const [currentPage, setCurrentPage] = useState(0);
 
   const itemsPerPage = 12;
@@ -69,6 +70,7 @@ function HomePage() {
         currentPage={currentPage}
         lastPage={totalPages}
       />
+      <Carousel />
     </div>
   );
 }

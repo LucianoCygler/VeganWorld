@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 import { auth, googleProvider } from "../../Firebase/firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { validateLogin } from "../../redux/actions/actions";
@@ -58,7 +58,6 @@ const LoginForm = ({ handleCloseModal }) => {
   useEffect(() => {
     setValue(localStorage.getItem("email"));
   }, []);
-  console.log(value);
   useEffect(() => {
     if (user && value === "") {
       localStorage.setItem("user", JSON.stringify(user));

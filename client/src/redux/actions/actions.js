@@ -8,7 +8,7 @@ import {
   UPDATE_CART,
   FILTER_NAME_PRODUCT,
   FILTER_PRICE_PRODUCT,
-  STATE_LOGIN,
+  // STATE_LOGIN,
   GET_CUSTOMER_COMMENTS,
   SET_PAGE,
   CREATE_ORDER,
@@ -40,7 +40,7 @@ import {
   LOGOUT,
   GET_PRODUCT_REVIEWS,
   GET_ALL_CLIENTS,
-  SET_CREATED_ORDER_ID,
+  // SET_CREATED_ORDER_ID,
   CLEAN_CART,
   GET_MP_LINK,
 } from "./Types/Types";
@@ -494,7 +494,6 @@ export const getMercadoPagoLink = (emailAndProducts) => {
     try {
       const res = await axios.post(`${URL_SERVIDOR}/payment`, emailAndProducts);
       const MPLink = res.data;
-      console.log(res);
       return dispatch({ type: GET_MP_LINK, payload: MPLink });
     } catch (error) {
       console.log(error.response.data);
@@ -505,7 +504,7 @@ export const getMercadoPagoLink = (emailAndProducts) => {
 export const sendEmail = (form) => {
   return async function (dispatch) {
     try {
-      const res = await axios.post(`${URL_SERVIDOR}/mail`, form);
+      // const res = await axios.post(`${URL_SERVIDOR}/mail`, form);
     } catch (error) {
       alert(error.response.data);
     }

@@ -1,0 +1,19 @@
+.button {
+    color : red;
+    transition: transform 0.2 ease-in-out;
+}
+
+.button:hover {
+    transform: scale(1.5);
+}
+
+
+
+ /*
+ al clickear que el width se oculte (focus)
+
+ revisar before y after css puro 
+
+
+ 
+ */
