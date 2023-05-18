@@ -29,6 +29,7 @@ import {
   GET_ALL_CLIENTS,
   SET_CREATED_ORDER_ID,
   CLEAN_CART,
+  GET_MP_LINK,
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -49,6 +50,7 @@ const initialState = {
   isAuthenticated: false,
   productReviews: [],
   allClients: [],
+  MPLink: "",
   // createdOrderId: null,
 };
 
@@ -121,6 +123,7 @@ export default function rootReducer(state = initialState, action) {
             {
               id: action.payload.id,
               nombre: action.payload.nombre,
+              descripcion: action.payload.descripcion,
               precio: action.payload.precio,
               cantidad: action.quantity,
               importe: action.payload.precio * action.quantity,
@@ -164,11 +167,15 @@ export default function rootReducer(state = initialState, action) {
     case GET_CLIENT_ORDERS:
       return { ...state, clientOrders: action.payload };
 
-    // case DELETE_ORDER:
-    //   const orderId = action.payload;
-    //   const updatedOrders = state.clientOrders.filter(
-    //     (order) => order.id !== orderId
-    //   );
+    case DELETE_ORDER:
+      const orderId = action.payload;
+      const updatedOrders = state.clientOrders.filter(
+        (order) => order.id !== orderId
+      );
+      return {
+        ...state,
+        clientOrders: updatedOrders,
+      };
 
     case UPDATE_REVIEW:
       const { id, titulo, descripcion } = action.payload;
@@ -226,6 +233,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         allClients: [...action.payload],
+      };
+    case GET_MP_LINK:
+      return {
+        ...state,
+        MPLink: action.payload,
       };
     // case SET_CREATED_ORDER_ID:
     //   return {

@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
-import {useDispatch} from 'react-redux'
+import { useDispatch } from "react-redux";
 import style from "./ContactUs.module.css";
 
-import {sendEmail } from '../../redux/actions/actions';
+import { sendEmail } from "../../redux/actions/actions";
 
-import axios from 'axios';
-
-
+import axios from "axios";
 
 const formContactUser = {
   name: "",
@@ -83,130 +81,144 @@ const ContactUs = () => {
   };
 
   return (
-    <form id="fm" onSubmit={submitHandler}>
-      <div className={style.contenedor}>
-        <div className={style.form_left_container}>
-          <h1 className={style.h1}>Contact us via email!</h1>
+    <div>
+      <form id="fm" onSubmit={submitHandler}>
+        <div className={style.contenedor}>
+          <div className={style.form_left_container}>
+            <h1 className={style.h1}>Contact us via email!</h1>
 
-          <div className={style.formdiv}>
-            <label htmlFor="name">Name: </label>
+            <div className={style.formdiv}>
+              <label htmlFor="name">Name: </label>
 
-            <input
-              name="name"
-              type="text"
-              value={form.name}
-              onChange={(e) => changeHandler(e)}
-              style={
-                form.name.length
-                  ? error.name
-                    ? { borderColor: "#e74c3c" }
-                    : { borderColor: "#2ecc71" }
-                  : []
-              }
-              autocomplete="off"
-              placeholder="NAME"
-              required
-            />
-            {error.name ? (
-              <div>
+              <input
+                name="name"
+                type="text"
+                value={form.name}
+                onChange={(e) => changeHandler(e)}
+                style={
+                  form.name.length
+                    ? error.name
+                      ? { borderColor: "#e74c3c" }
+                      : { borderColor: "#2ecc71" }
+                    : []
+                }
+                autocomplete="off"
+                placeholder="NAME"
+                required
+              />
+              {error.name ? (
+                <div>
+                  <i
+                    className="fas fa-exclamacion-circle"
+                    style={{ color: "#e74c3c" }}
+                  ></i>
+                  <p>{error.name}</p>
+                </div>
+              ) : form.name.length ? (
                 <i
-                  className="fas fa-exclamacion-circle"
-                  style={{ color: "#e74c3c" }}
+                  className="fas fa-check-circle"
+                  style={{ color: "#2ecc71" }}
                 ></i>
-                <p>{error.name}</p>
-              </div>
-            ) : form.name.length ? (
-              <i
-                className="fas fa-check-circle"
-                style={{ color: "#2ecc71" }}
-              ></i>
-            ) : (
-              <i></i>
-            )}
-          </div>
-
-          <div className={style.formdiv}>
-            <label htmlFor="email">Emil: </label>
-
-            <input
-              name="email"
-              type="text"
-              value={form.email}
-              onChange={(e) => changeHandler(e)}
-              style={
-                form.email.length
-                  ? error.email
-                    ? { borderColor: "#e74c3c" }
-                    : { borderColor: "#2ecc71" }
-                  : []
-              }
-              autocomplete="off"
-              placeholder="EMAIL"
-              required
-            />
-            {error.email ? (
-              <div>
-                <i
-                  className="fas fa-exclamacion-circle"
-                  style={{ color: "#e74c3c" }}
-                ></i>
-                <p>{error.email}</p>
-              </div>
-            ) : form.email.length ? (
-              <i
-                className="fas fa-check-circle"
-                style={{ color: "#2ecc71" }}
-              ></i>
-            ) : (
-              <i></i>
-            )}
-          </div>
-        </div>
-        <div className={style.form_right_container}>
-          <label htmlFor="textContainer"></label>
-          <textarea
-            name="textContainer"
-            type="text"
-            value={form.textContainer}
-            onChange={(e) => changeHandler(e)}
-            style={
-              form.textContainer.length
-                ? error.textContainer
-                  ? { borderColor: "#e74c3c" }
-                  : { borderColor: "#2ecc71" }
-                : []
-            }
-            autocomplete="off"
-            placeholder="TEXT"
-            required
-          />
-          {error.textContainer ? (
-            <div>
-              <i
-                className="fas fa-exclamacion-circle"
-                style={{ color: "#e74c3c" }}
-              ></i>
-              <p>{error.textContainer}</p>
+              ) : (
+                <i></i>
+              )}
             </div>
-          ) : form.textContainer.length ? (
-            <i className="fas fa-check-circle" style={{ color: "#2ecc71" }}></i>
-          ) : (
-            <i></i>
-          )}
-        </div>
 
-        <button className={style.create} type="submit">
-          Submit
-        </button>
-      </div>
-      <div className={style.ma}>
-        <iframe
-          className={style.map}
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.7037906996197!2d-58.4969135!3d-34.636925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc93bc88e4279%3A0xc6e4c5cf528aa9fb!2sMundo%20Vegano!5e0!3m2!1ses!2sar!4v1684131909184!5m2!1ses!2sar"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </form>
+            <div className={style.formdiv}>
+              <label htmlFor="email">Emil: </label>
+
+              <input
+                name="email"
+                type="text"
+                value={form.email}
+                onChange={(e) => changeHandler(e)}
+                style={
+                  form.email.length
+                    ? error.email
+                      ? { borderColor: "#e74c3c" }
+                      : { borderColor: "#2ecc71" }
+                    : []
+                }
+                autocomplete="off"
+                placeholder="EMAIL"
+                required
+              />
+              {error.email ? (
+                <div>
+                  <i
+                    className="fas fa-exclamacion-circle"
+                    style={{ color: "#e74c3c" }}
+                  ></i>
+                  <p>{error.email}</p>
+                </div>
+              ) : form.email.length ? (
+                <i
+                  className="fas fa-check-circle"
+                  style={{ color: "#2ecc71" }}
+                ></i>
+              ) : (
+                <i></i>
+              )}
+            </div>
+          </div>
+          <div className={style.form_right_container}>
+            <label htmlFor="textContainer"></label>
+            <textarea
+              name="textContainer"
+              type="text"
+              value={form.textContainer}
+              onChange={(e) => changeHandler(e)}
+              style={
+                form.textContainer.length
+                  ? error.textContainer
+                    ? { borderColor: "#e74c3c" }
+                    : { borderColor: "#2ecc71" }
+                  : []
+              }
+              autocomplete="off"
+              placeholder="TEXT"
+              required
+            />
+            {error.textContainer ? (
+              <div>
+                <i
+                  className="fas fa-exclamacion-circle"
+                  style={{ color: "#e74c3c" }}
+                ></i>
+                <p>{error.textContainer}</p>
+              </div>
+            ) : form.textContainer.length ? (
+              <i
+                className="fas fa-check-circle"
+                style={{ color: "#2ecc71" }}
+              ></i>
+            ) : (
+              <i></i>
+            )}
+          </div>
+
+          <button className={style.create} type="submit">
+            Submit
+          </button>
+        </div>
+        <div className={style.ma}>
+          <iframe
+            className={style.map}
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.7037906996197!2d-58.4969135!3d-34.636925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc93bc88e4279%3A0xc6e4c5cf528aa9fb!2sMundo%20Vegano!5e0!3m2!1ses!2sar!4v1684131909184!5m2!1ses!2sar"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </form>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.703969221664!2d-58.497814741769595!3d-34.63692048947491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc93bc88e4279%3A0xc6e4c5cf528aa9fb!2sMundo%20Vegano!5e0!3m2!1ses!2sar!4v1684369093537!5m2!1ses!2sar"
+        width={400}
+        height={300}
+        style={{ border: 0 }}
+        allowFullScreen={true}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
   );
 };
 
