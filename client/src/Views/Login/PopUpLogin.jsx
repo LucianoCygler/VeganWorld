@@ -4,6 +4,8 @@ import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { validateLogin } from "../../redux/actions/actions";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Button, Modal } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const PopUpLogin = () => {
   const [showModal, setShowModal] = useState(false);
