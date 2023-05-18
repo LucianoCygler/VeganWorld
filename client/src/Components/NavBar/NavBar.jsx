@@ -3,7 +3,7 @@ import SearchBar from "./SearchBar/SearchBar";
 import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faHouse,
+  faBars,
   faCartShopping,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
@@ -35,8 +35,9 @@ function NavBar() {
       <div className={styles.divRight}>
         <div className={styles.redirects}>
           <div className={styles.dropdown}>
-            <span className={styles.dropbtn}>Menu</span>
+            <FontAwesomeIcon className={styles.dropbtn} icon={faBars}/>
             <div className={styles.dropdownContent}>
+              <div className={styles.triangle}></div>
               <Link to="/MyProfile">Profile</Link>{" "}
               <Link to="/Favorites">Favorites</Link>{" "}
               <Link to="/MyOrders">Orders</Link>{" "}
