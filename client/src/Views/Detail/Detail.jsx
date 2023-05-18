@@ -31,7 +31,7 @@ function Detail() {
   useEffect(() => {
     if (product_id) {
       return dispatch(getProductReviews(product_id));
-    }
+    }});
 
   const handleClick = () => {
     try {
