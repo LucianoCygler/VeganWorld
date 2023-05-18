@@ -45,7 +45,7 @@ module.exports = (sequelize) => {
     },
     imagen: {
       type: DataTypes.BLOB,
-      allowNull: false,
+      allowNull: true,
     }
   });
 };

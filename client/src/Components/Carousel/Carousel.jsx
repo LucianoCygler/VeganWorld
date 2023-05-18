@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box, Flex, Button } from '@chakra-ui/react';
+import { Box, Flex, Button, Slide } from '@chakra-ui/react';
 import styles from "./Carousel.module.css";
-
+import { motion } from 'framer-motion';
 
 const products = [
     { id: 1, name: 'Producto 1', image: 'https://res.cloudinary.com/dzv1xau8l/image/upload/v1684421289/imagenes/ihlsklhxsvlmjj0astpj.jpg' },
@@ -23,7 +23,7 @@ const Carousel = () => {
 
     const [currentIndex, setCurrentIndex] = React.useState(0);
 
-   
+
     const productsPerPage = 6;
 
 
@@ -42,24 +42,29 @@ const Carousel = () => {
         setCurrentIndex((prevIndex) => (prevIndex - 1 + totalSlides) % totalSlides);
     };
 
+    const AnimatedBox = motion(Box);
     return (
-        <Box>
-            <Flex justifyContent="center" alignItems="center">
-                <Button className={styles.button} mr={2} onClick={handlePrev} p="20px">
-                    ←
-                </Button>
-                {currentProducts.map((product) => (
-                    <Box key={product.id} p={4} borderWidth="1px" borderRadius="md" m={2}>
-                        <img src={product.image} alt={product.name} />
-                        <h3>{product.name}</h3>
-                    </Box>
-                ))}
-                <Button className={styles.button} ml={2} onClick={handleNext} p="20px">
-                    →
-                </Button>
-            </Flex>
-        </Box>
-    );
+
+        <AnimatedBox animate={{ x: 100}}>
+            <Box>
+                <Flex justifyContent="center" alignItems="center">
+                    <Button className={styles.button} mr={2} onClick={handlePrev} p="20px">
+                        ←
+                    </Button>
+                    {currentProducts.map((product) => (
+                        <Box key={product.id} p={4} borderWidth="1px" borderRadius="md" m={2}>
+                            <img src={product.image} alt={product.name} />
+                            <h3>{product.name}</h3>
+                        </Box>
+                    ))}
+                    <Button className={styles.button} ml={2} onClick={handleNext} p="20px">
+                        →
+                    </Button>
+                </Flex>
+            </Box>
+        </AnimatedBox>
+
+    )
 };
 
 export default Carousel;
