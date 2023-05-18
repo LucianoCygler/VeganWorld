@@ -9,6 +9,8 @@ import {
 } from "../../redux/actions/actions";
 import style from "./MyProfile.module.css";
 import { useNavigate } from "react-router-dom";
+import { Button, Modal } from "react-bootstrap";
+import LoginForm from "../Login/LoginForm";
 
 const MyData = () => {
   const dispatch = useDispatch();
@@ -29,6 +31,15 @@ const MyData = () => {
 
   const emailCurrent = localStorage.getItem("email");
 
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
   const handleEditUser = () => {
     setEditMode(true);
   };
@@ -77,106 +88,126 @@ const MyData = () => {
   }, [selectedUser]);
 
   return (
-    <div className={style.container}>
-      {editMode ? (
-        <div className={style.edit}>
-          <div className={style.divFlex}>
-            <h3 className={style.h3}>First Name:</h3>
-            <input
-              className={style.input1}
-              type="text"
-              value={editedName}
-              onChange={(e) => setEditedName(e.target.value)}
-            />
-          </div>
-          <div className={style.divFlex}>
-            <h3 className={style.h3}>Surname:</h3>
-            <input
-              className={style.input2}
-              type="text"
-              value={editedSurname}
-              onChange={(e) => setEditedSurname(e.target.value)}
-            />
-          </div>
-          <div className={style.divFlex}>
-            <h3 className={style.h3}>Email:</h3>
-            <input
-              className={style.input3}
-              type="text"
-              value={editedEmail}
-              onChange={(e) => setEditedEmail(e.target.value)}
-            />
-          </div>
-          <div className={style.divFlex}>
-            <h3 className={style.h3}>Phone:</h3>
-            <input
-              className={style.input4}
-              type="text"
-              value={editedPhone}
-              onChange={(e) => setEditedPhone(e.target.value)}
-            />
-          </div>
-          <div className={style.divFlex}>
-            <h3 className={style.h3}>City:</h3>
-            <input
-              className={style.input5}
-              type="text"
-              value={editedCity}
-              onChange={(e) => setEditedCity(e.target.value)}
-            />
-          </div>
-          <div className={style.divFlex}>
-            <h3 className={style.h3}>Address</h3>
-            <input
-              className={style.input6}
-              type="text"
-              value={editedAddress}
-              onChange={(e) => setEditedAddress(e.target.value)}
-            />
-          </div>
-          <input
-            className={style.input8}
-            type="file"
-            onChange={handleImageChange}
-          />
-
-          <button className={style.buttonEdit} onClick={handleSaveUser}>
-            Save Data
-          </button>
+    <div>
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Sign in</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <LoginForm handleCloseModal={handleCloseModal}></LoginForm>{" "}
+        </Modal.Body>
+      </Modal>
+      {!emailCurrent ? (
+        <div className={style.divLogin}>
+          <h2>
+            Oye, veo que estas intentando acceder a tu Perfil, pero para hacerlo
+            primero debes estar logueado.
+          </h2>
+          <Button variant="primary" onClick={handleShowModal}>
+            Haz click aqui para loguearte.
+          </Button>
         </div>
       ) : (
-        <div className={style.c}>
-          <h1>My Profile</h1>
-          {profileImage ? (
-            <img src={profileImage} alt="Profile" />
-          ) : (
-            <img
-              className={style.input8}
-              src="https://s.alicdn.com/@sc04/kf/Hd45a4a8662ba407f8e4d3ad430722b26j.jpg_960x960.jpg"
-              alt="Default Profile"
-            />
-          )}
-          <h2>
-            {nombre} {apellido}
-          </h2>
+        <div className={style.container}>
+          {editMode ? (
+            <div className={style.edit}>
+              <div className={style.divFlex}>
+                <h3 className={style.h3}>First Name:</h3>
+                <input
+                  className={style.input1}
+                  type="text"
+                  value={editedName}
+                  onChange={(e) => setEditedName(e.target.value)}
+                />
+              </div>
+              <div className={style.divFlex}>
+                <h3 className={style.h3}>Surname:</h3>
+                <input
+                  className={style.input2}
+                  type="text"
+                  value={editedSurname}
+                  onChange={(e) => setEditedSurname(e.target.value)}
+                />
+              </div>
+              <div className={style.divFlex}>
+                <h3 className={style.h3}>Email:</h3>
+                <input
+                  className={style.input3}
+                  type="text"
+                  value={editedEmail}
+                  onChange={(e) => setEditedEmail(e.target.value)}
+                />
+              </div>
+              <div className={style.divFlex}>
+                <h3 className={style.h3}>Phone:</h3>
+                <input
+                  className={style.input4}
+                  type="text"
+                  value={editedPhone}
+                  onChange={(e) => setEditedPhone(e.target.value)}
+                />
+              </div>
+              <div className={style.divFlex}>
+                <h3 className={style.h3}>City:</h3>
+                <input
+                  className={style.input5}
+                  type="text"
+                  value={editedCity}
+                  onChange={(e) => setEditedCity(e.target.value)}
+                />
+              </div>
+              <div className={style.divFlex}>
+                <h3 className={style.h3}>Address</h3>
+                <input
+                  className={style.input6}
+                  type="text"
+                  value={editedAddress}
+                  onChange={(e) => setEditedAddress(e.target.value)}
+                />
+              </div>
+              <input
+                className={style.input8}
+                type="file"
+                onChange={handleImageChange}
+              />
 
-          <p>
-            <span style={{ fontWeight: "bold" }}> Email: </span>
-            {email}
-          </p>
-          <p>
-            <span style={{ fontWeight: "bold" }}> Phone Number: </span>
-            {telefono}
-          </p>
-          <p>
-            <span style={{ fontWeight: "bold" }}> City: </span>
-            {ciudad}
-          </p>
-          <p>
-            <span style={{ fontWeight: "bold" }}> Address: </span>
-            {direccion}
-          </p>
-          {/* {!dni ? (
+              <button className={style.buttonEdit} onClick={handleSaveUser}>
+                Save Data
+              </button>
+            </div>
+          ) : (
+            <div className={style.c}>
+              <h1>My Profile</h1>
+              {profileImage ? (
+                <img src={profileImage} alt="Profile" />
+              ) : (
+                <img
+                  className={style.input8}
+                  src="https://s.alicdn.com/@sc04/kf/Hd45a4a8662ba407f8e4d3ad430722b26j.jpg_960x960.jpg"
+                  alt="Default Profile"
+                />
+              )}
+              <h2>
+                {nombre} {apellido}
+              </h2>
+
+              <p>
+                <span style={{ fontWeight: "bold" }}> Email: </span>
+                {email}
+              </p>
+              <p>
+                <span style={{ fontWeight: "bold" }}> Phone Number: </span>
+                {telefono}
+              </p>
+              <p>
+                <span style={{ fontWeight: "bold" }}> City: </span>
+                {ciudad}
+              </p>
+              <p>
+                <span style={{ fontWeight: "bold" }}> Address: </span>
+                {direccion}
+              </p>
+              {/* {!dni ? (
             " "
           ) : (
             <p>
@@ -184,9 +215,11 @@ const MyData = () => {
             </p>
           )} */}
 
-          <button className={style.button} onClick={handleEditUser}>
-            Edit User
-          </button>
+              <button className={style.button} onClick={handleEditUser}>
+                Edit User
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>
