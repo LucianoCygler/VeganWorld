@@ -63,7 +63,8 @@ const MyOrders = () => {
   };
 
   return (
-    <div className={styles.mainContainer}>
+    <div>
+      {" "}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Sign in</Modal.Title>
@@ -72,40 +73,54 @@ const MyOrders = () => {
           <LoginForm handleCloseModal={handleCloseModal}></LoginForm>{" "}
         </Modal.Body>
       </Modal>
-      <div className={styles.orderscontainer}>
-        <h1>ORDERS</h1>
-        {!localStorage.getItem("email") ? (
-          <div className={styles.divLogin}>
-            <h2>
-              Oye, veo que estas intentando acceder a tus órdenes, pero para
-              hacerlo primero debes estar logueado.{" "}
-            </h2>
-            <Button variant="primary" onClick={handleShowModal}>
-              Haz click aqui para loguearte.
-            </Button>
-          </div>
-        ) : (
-          <div>
-            {" "}
-            {clientOrders?.map((order, index) => (
-              <div
-                key={index}
-                className={styles.ordercard}
-                onClick={() => showPopupHandler(order)}
-              >
-                <p>Pedido {index + 1}</p>
+      {!email ? (
+        <div className={styles.divLogin}>
+          <h2>
+            Oye, veo que estas intentando acceder a ts Ordenes, pero para
+            hacerlo primero debes estar logueado.
+          </h2>
+          <Button variant="primary" onClick={handleShowModal}>
+            Haz click aqui para loguearte.
+          </Button>
+        </div>
+      ) : (
+        <div className={styles.mainContainer}>
+          <div className={styles.orderscontainer}>
+            <h1>ORDERS</h1>
+            {!localStorage.getItem("email") ? (
+              <div className={styles.divLogin}>
+                <h2>
+                  Oye, veo que estas intentando acceder a tus órdenes, pero para
+                  hacerlo primero debes estar logueado.{" "}
+                </h2>
+                <Button variant="primary" onClick={handleShowModal}>
+                  Haz click aqui para loguearte.
+                </Button>
               </div>
-            ))}
+            ) : (
+              <div>
+                {" "}
+                {clientOrders?.map((order, index) => (
+                  <div
+                    key={index}
+                    className={styles.ordercard}
+                    onClick={() => showPopupHandler(order)}
+                  >
+                    <p>Pedido {index + 1}</p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-        )}
-      </div>
-      {isPopupOpen && (
-        <>
-          <div className={styles.overlay} onClick={closePopup} />
-          <div className={styles.popupcontainer}>
-            <OrderDetail order={selectedOrder} closePopup={closePopup} />
-          </div>
-        </>
+          {isPopupOpen && (
+            <>
+              <div className={styles.overlay} onClick={closePopup} />
+              <div className={styles.popupcontainer}>
+                <OrderDetail order={selectedOrder} closePopup={closePopup} />
+              </div>
+            </>
+          )}
+        </div>
       )}
     </div>
   );
