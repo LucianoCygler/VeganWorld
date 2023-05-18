@@ -42,6 +42,7 @@ import {
   GET_ALL_CLIENTS,
   SET_CREATED_ORDER_ID,
   CLEAN_CART,
+  GET_MP_LINK,
 } from "./Types/Types";
 
 const URL_SERVIDOR = "http://localhost:3001";
@@ -470,6 +471,29 @@ export const getAllClients = () => {
       const res = await axios.get(`${URL_SERVIDOR}/client`);
       const clients = res.data;
       dispatch({ type: GET_ALL_CLIENTS, payload: clients });
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
+};
+
+export const getMercadoPagoLink = (emailAndProducts) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post(`${URL_SERVIDOR}/payment`, emailAndProducts);
+      const MPLink = res.data;
+      console.log(res);
+      return dispatch({ type: GET_MP_LINK, payload: MPLink });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const sendEmail = (form) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post(`${URL_SERVIDOR}/mail`, form);
     } catch (error) {
       alert(error.response.data);
     }
