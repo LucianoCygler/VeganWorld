@@ -1,10 +1,10 @@
 import style from "./LoginSignup.module.css";
-import {  useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { validateLogin, loginUser } from "../../../redux/actions/actions";
 import { useNavigate } from "react-router-dom";
-import { auth, googleProvider, } from "../../../Firebase/firebase";
-import {signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth'
+import { auth, googleProvider } from "../../../Firebase/firebase";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 const LoginSignup = () => {
   const dispatch = useDispatch();
@@ -15,53 +15,50 @@ const LoginSignup = () => {
     contraseña: "",
   });
 
-  const [userValue, setUserValue] = useState("")
+  const [userValue, setUserValue] = useState("");
   console.log(userValue);
 
   const handleInputChange = (event) => {
     setLogin({ ...login, [event.target.name]: event.target.value });
   };
 
-  const handleButtonAccess = async (event) => {
-    event.preventDefault();
-    const response = await dispatch(validateLogin(login));
+  // const handleButtonAccess = async (event) => {
+  //   event.preventDefault();
+  //   const response = await dispatch(validateLogin(login));
 
-    if (typeof response === "object") {
-      dispatch(loginUser());
-      navigate("/");
-    }
-  };
+  //   if (typeof response === "object") {
+  //     dispatch(loginUser());
+  //     navigate("/");
+  //   }
+  // };
 
   const handleOnClick = () => {
     navigate("/Register");
   };
 
-  const handleLogin =  (e) => {
-    e.preventDefault()
-    
+  const handleLogin = (e) => {
+    e.preventDefault();
+
     signInWithEmailAndPassword(auth, login.email, login.contraseña)
-    .then(data => {setUserValue(data.user.email)
-    localStorage.setItem("email", data.user.email)
-    dispatch(validateLogin(login))        
-    if (userValue) {
-      dispatch(loginUser());
-      navigate("/");
-    }
-    }).catch(error => console.log(error))
-    
-  }
+      .then((data) => {
+        setUserValue(data.user.email);
+        localStorage.setItem("email", data.user.email);
+        dispatch(validateLogin(login));
+        if (userValue) {
+          dispatch(loginUser());
+          navigate("/");
+        }
+      })
+      .catch((error) => console.log(error));
+  };
 
-  const handleLogGoogle =  (e) => {
-    e.preventDefault()
-    signInWithPopup(auth, googleProvider)
-    .then(data => {setUserValue(data.user.email)
-    localStorage.setItem("email", data.user.email)    
-    })
-  }
-
-  
-
-  
+  const handleLogGoogle = (e) => {
+    e.preventDefault();
+    signInWithPopup(auth, googleProvider).then((data) => {
+      setUserValue(data.user.email);
+      localStorage.setItem("email", data.user.email);
+    });
+  };
 
   return (
     <div className={style.container}>

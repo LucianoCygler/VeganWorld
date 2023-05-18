@@ -145,7 +145,11 @@ const MyData = () => {
           {profileImage ? (
             <img src={profileImage} alt="Profile" />
           ) : (
-            <img className={style.input8} src="https://s.alicdn.com/@sc04/kf/Hd45a4a8662ba407f8e4d3ad430722b26j.jpg_960x960.jpg" alt="Default Profile" />
+            <img
+              className={style.input8}
+              src="https://s.alicdn.com/@sc04/kf/Hd45a4a8662ba407f8e4d3ad430722b26j.jpg_960x960.jpg"
+              alt="Default Profile"
+            />
           )}
           <h2>
             {nombre} {apellido}
