@@ -5,6 +5,7 @@ import {
   deleteClient,
   updateClientData,
   cleanClient_Id,
+  getUserDataByEmail,
 } from "../../redux/actions/actions";
 import style from "./MyProfile.module.css";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +16,6 @@ const MyData = () => {
   const user = useSelector((state) => state.user);
   const { nombre, apellido, email, direccion, telefono, dni, ciudad, id } =
     user;
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
   const [editMode, setEditMode] = useState(false);
   const [editedName, setEditedName] = useState(nombre || "");
   const [editedSurname, setEditedSurname] = useState(apellido || "");
@@ -26,6 +26,8 @@ const MyData = () => {
   const [editedAddress, setEditedAddress] = useState(direccion || "");
   const [profileImage, setProfileImage] = useState(null);
   const [selectedUser, setselectedUser] = useState(user);
+
+  const emailCurrent = localStorage.getItem("email");
 
   const handleEditUser = () => {
     setEditMode(true);
@@ -65,12 +67,15 @@ const MyData = () => {
   };
 
   useEffect(() => {
-    if (!localStorage.getItem("email")) {
-      navigate("/login");
-    } else {
-      dispatch(getClientData(id));
+    dispatch(getUserDataByEmail(emailCurrent));
+  }, [emailCurrent]);
+
+  useEffect(() => {
+    if (user) {
+      dispatch(getClientData(user.id));
     }
   }, [selectedUser]);
+
   return (
     <div className={style.container}>
       {editMode ? (

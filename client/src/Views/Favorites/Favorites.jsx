@@ -1,6 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getClientAllFavorites } from "../../redux/actions/actions";
+import {
+  getClientAllFavorites,
+  getUserDataByEmail,
+} from "../../redux/actions/actions";
 import styles from "./Favorites.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -12,13 +15,18 @@ const Favorites = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!localStorage.getItem("email")) {
-      navigate("/login");
-    } else {
+    const emailCurrent = localStorage.getItem("email");
+    if (emailCurrent) {
+      dispatch(getUserDataByEmail(emailCurrent));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user) {
       const client_id = user?.id;
       dispatch(getClientAllFavorites(client_id));
     }
-  }, [favorites]);
+  }, [user]);
 
   return (
     <div>
@@ -52,7 +60,7 @@ const Favorites = () => {
             </NavLink>
           ))
         ) : (
-          <h1>No hay favoritos</h1>
+          <h1 className={styles.nofavs}>No hay favoritos</h1>
         )}
       </div>
     </div>

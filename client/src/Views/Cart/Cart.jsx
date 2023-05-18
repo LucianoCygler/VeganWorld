@@ -94,7 +94,6 @@ function Cart() {
       unit_price: parseInt(product.precio),
     });
   });
-  console.log(emailAndProducts);
   useEffect(() => {
     dispatch(newCart(updateCart));
     setSubTotal(subTotalF());
