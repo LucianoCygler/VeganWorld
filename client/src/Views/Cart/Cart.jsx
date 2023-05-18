@@ -8,6 +8,7 @@ import {
   createOrder,
   dropProduct,
   newCart,
+  sendEmail,
 } from "../../redux/actions/actions";
 import Pop_up from "../../Utils/Pop_up/Pop_up";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -55,11 +56,15 @@ function Cart() {
         };
 
         try {
-          dispatch(createOrder(order));
+          dispatch(createOrder(order)).then((order)=>{
+            const form = {user: user, order: order}
+            dispatch(sendEmail(form, 'genOrder'));
+          })
           Pop_up(
             "success",
             "Order Ceated",
-            "You can find your orders in MyOrders!"
+            "You can find your orders in MyOrders!",
+            "An E-mail has been sent to your address with the order details."
           );
           navigate("/MyOrders");
         } catch ({ message }) {

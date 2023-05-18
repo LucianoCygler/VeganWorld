@@ -74,12 +74,11 @@ const ContactUs = () => {
       form.name.length &&
       form.textContainer.length
     ) {
-      //comment.push(form);
-      dispatch(sendEmail(form));
+      dispatch(sendEmail(form, 'contact'));
       alert("Thanks for your time. Good job!");
       setForm(formContactUser);
     } else {
-      alert("Error, it is necessary that you validate all the fields please");
+      alert("Error, it is mandatory that you validate all the fields please");
     }
   };
 
