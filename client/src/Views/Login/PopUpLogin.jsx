@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
 const PopUpLogin = () => {
   const [showModal, setShowModal] = useState(false);
+  const [view, setView] = useState("login");
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -13,15 +15,18 @@ const PopUpLogin = () => {
     setShowModal(true);
   };
 
+  const handleViewChange = (newView) => {
+    setView(newView);
+  };
+
   const value = localStorage.getItem("email");
+
   return (
     <>
-      {!value ? (
+      {!value && (
         <Button variant="primary" onClick={handleShowModal}>
           Login
         </Button>
-      ) : (
-        ""
       )}
 
       <Modal
@@ -30,10 +35,32 @@ const PopUpLogin = () => {
         handleCloseModal={handleCloseModal}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Sign in</Modal.Title>
+          <Modal.Title>
+            <div className="d-flex">
+              <div
+                className={`option ${view === "login" ? "actived" : ""}`}
+                onClick={() => handleViewChange("login")}
+              >
+                Login
+              </div>
+              <div
+                className={`option ${view === "signup" ? "actived" : ""}`}
+                onClick={() => handleViewChange("signup")}
+              >
+                Sign Up
+              </div>
+            </div>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <LoginForm handleCloseModal={handleCloseModal} />
+          {view === "login" ? (
+            <LoginForm handleCloseModal={handleCloseModal} />
+          ) : (
+            <RegisterForm
+              setView={setView}
+              handleCloseModal={handleCloseModal}
+            />
+          )}
         </Modal.Body>
       </Modal>
     </>
@@ -41,14 +68,3 @@ const PopUpLogin = () => {
 };
 
 export default PopUpLogin;
-
-{
-  /* <button
-  className="btn btn-lg btn-block btn-primary mb-2"
-  style={{ backgroundColor: "#161616" }}
-  type="submit"
-  onClick={SignInWithGitHub}
->
-  <i className="fab fa-facebook-f me-2"></i> Sign in with Github
-</button> */
-}

@@ -1,9 +1,9 @@
 const { Router } = require("express");
-const contactUsHandler = require("../handlers/mailer/contactUsHandler");
+const mailerHandler = require("../handlers/mailer/mailerHandler");
 
 
 const mailerRouter = Router();
 
-mailerRouter.post("/", contactUsHandler);
+mailerRouter.post("/", mailerHandler);
 
 module.exports = mailerRouter;

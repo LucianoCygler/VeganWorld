@@ -4,7 +4,7 @@ const nodemailer = require ('nodemailer');
 const {API_PASSWORD} = process.env;
 
 
-const mailer = (email, name, textContainer)=>{
+const mailerContactUs = (email, name, textContainer)=>{
     const config = {
       host: "smtp.gmail.com",
       port: 587,
@@ -25,4 +25,4 @@ const mailer = (email, name, textContainer)=>{
     const transporter = nodemailer.createTransport(config);
     const info = transporter.sendMail(message);
 }
-  module.exports = mailer;
+  module.exports = mailerContactUs;
