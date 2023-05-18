@@ -100,11 +100,11 @@ const MyData = () => {
       {!emailCurrent ? (
         <div className={style.divLogin}>
           <h2>
-            Oye, veo que estas intentando acceder a tu Perfil, pero para hacerlo
-            primero debes estar logueado.
+            Hey, I see that you are trying to access your Profile, but to do so,
+            you must first be logged in.
           </h2>
           <Button variant="primary" onClick={handleShowModal}>
-            Haz click aqui para loguearte.
+            Click here to log in!{" "}
           </Button>
         </div>
       ) : (
