@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Ring } from "@uiball/loaders";
 import styles from "./Detail.module.css";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getProductById,
@@ -23,13 +23,14 @@ function Detail() {
 
   const [quantity, setQuantity] = useState(1);
   const product_id = id;
+  
   useEffect(() => {
     dispatch(getProductById(id));
     return () => dispatch(cleanDetail());
-  }, [dispatch]);
+  }, [dispatch, id]);
   useEffect(() => {
     dispatch(getProductReviews(product_id));
-  }, [productReviews]);
+  }, [productReviews, product_id, dispatch]);
 
   const handleClick = () => {
     try {
