@@ -29,8 +29,15 @@ function Detail() {
     return () => dispatch(cleanDetail());
   }, [dispatch, id]);
   useEffect(() => {
+
     dispatch(getProductReviews(product_id));
   }, [productReviews, product_id, dispatch]);
+
+    if (product_id) {
+      dispatch(getProductReviews(product_id));
+    }
+  }, [product_id]);
+
 
   const handleClick = () => {
     try {
