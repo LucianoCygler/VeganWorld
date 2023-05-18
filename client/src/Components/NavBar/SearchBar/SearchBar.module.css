@@ -35,7 +35,7 @@
 
 .tittle {
     font-size: 15px;
-    text-shadow: 0 0 5px #EEF2E6;
+    text-shadow: 0 0 5px #F6FFDE;
 }
 
 .inputClass {
@@ -45,18 +45,31 @@
     right: 5px;
     transition: all 0.5s ease;
     background-color: #3D8361;
-    color: #EEF2E6;
+    color: #F6FFDE;
     border: transparent;
-    border-radius: 15px;
+    border-radius: 10px;
     text-align: center;
     outline: none;
+    height: 40px;
+    margin-right: 200px;
+}
+
+.inputClass::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .inputClass::placeholder{
-    color: #EEF2E6;
+    color: #F6FFDE;
 }
 
 .fontIcon {
     position: relative;
-    right: 30px;
+    right: 230px;
+    color: #F6FFDE;
+    transition: transform 0.2s ease-in-out;
+}
+
+.fontIcon:hover {
+    transform: scale(1.5);
 }
