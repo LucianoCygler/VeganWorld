@@ -64,3 +64,8 @@
 .navlink {
   content: fit;
 }
+
+.nofavs {
+  padding-top: 10em;
+  color: black;
+}

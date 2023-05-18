@@ -48,7 +48,7 @@ function Detail() {
   };
 
   const handleIncrement = () => {
-    if (quantity < 10) {
+    if (quantity < 100) {
       setQuantity(quantity + 1);
     }
   };
