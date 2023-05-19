@@ -8,13 +8,12 @@ import {
 } from "../../../redux/actions/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as farHeart} from "@fortawesome/free-regular-svg-icons"
+import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 
 function Product({ nombre, imagen, precio, stock, descripcion, id }) {
   const [isFav, setIsFav] = useState(false);
   const [showInfo, setShowInfo] = useState(false); /* INFO */
   // const product = { nombre, imagen, precio, stock, descripcion, id };
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const product_id = id;
@@ -51,9 +50,8 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
       updatedFavorites.push(product_id);
     }
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-
   };
-  
+
   useEffect(() => {
     // Cargar los favoritos desde el almacenamiento local al inicializar el componente
     const storedFavorites = localStorage.getItem("favorites");
@@ -62,39 +60,49 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
       setIsFav(parsedFavorites.includes(product_id));
     }
   }, []);
-
   return (
-    <div className={styles.mainContainer} onMouseOver={() => setShowInfo(true)} onMouseLeave={() => setShowInfo(false)} >
+    <div
+      className={styles.mainContainer}
+      onMouseOver={() => setShowInfo(true)}
+      onMouseLeave={() => setShowInfo(false)}
+    >
       {localStorage.getItem("email") ? (
         <div>
           {" "}
-          {isFav ? (
+          {!isFav ? (
             <div className={styles.favoriteContainer}>
-              <FontAwesomeIcon className={styles.favButton} onClick={handleFavorite} icon={farHeart} />
+              <FontAwesomeIcon
+                className={styles.favButton}
+                onClick={handleFavorite}
+                icon={farHeart}
+              />
             </div>
           ) : (
             <div className={styles.favoriteContainer}>
-              <FontAwesomeIcon className={styles.favButton} onClick={handleFavorite} icon={fasHeart} />
+              <FontAwesomeIcon
+                className={styles.favButton}
+                onClick={handleFavorite}
+                icon={fasHeart}
+              />
             </div>
           )}
         </div>
       ) : (
         ""
-        )}
+      )}
 
       <NavLink
         className={styles.card}
         to={`/Detail/${id}`}
         style={{ textDecoration: "none" }}
-        
-        >
+      >
         <div>
           <div>
             {" "}
             <div className={styles.divImage}>
               <img className={styles.image} src={imagen} alt={nombre} />
             </div>
-            <hr/>
+            <hr />
             <h2 className={styles.subtitle}>{nombre}</h2>
             {/* <h2 className={styles.subtitle}>{product.descripcion}</h2> */}
             {showInfo && (
@@ -103,7 +111,6 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
               </div>
             )}
           </div>
-
         </div>
       </NavLink>
     </div>
