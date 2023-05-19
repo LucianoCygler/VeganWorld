@@ -61,19 +61,16 @@ function Cart() {
         };
 
         try {
-          dispatch(createOrder(order)).then((order)=>{
-            const form = {user: user, order: order}
-            dispatch(sendEmail(form, 'genOrder'));
-          })
+          dispatch(createOrder(order))
           Pop_up(
             "success",
-
             "Order Ceated",
             "You can find your orders in MyOrders!",
             "An E-mail has been sent to your address with the order details."
-
           );
           setIsOrderGenerated(true);
+          const form = {user, order};
+          dispatch(sendEmail(form, 'genOrder'));
         } catch ({ message }) {
           Pop_up("error", "Failed to Create Order", message);
         }

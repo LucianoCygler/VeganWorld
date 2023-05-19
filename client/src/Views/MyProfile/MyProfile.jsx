@@ -9,8 +9,10 @@ import {
 } from "../../redux/actions/actions";
 import style from "./MyProfile.module.css";
 import { useNavigate } from "react-router-dom";
+import { uploadImage } from "../../Utils/CloudinaryImg";
 import { Button, Modal } from "react-bootstrap";
 import LoginForm from "../Login/LoginForm";
+
 
 const MyData = () => {
   const dispatch = useDispatch();
@@ -50,7 +52,7 @@ const MyData = () => {
     window.location.reload();
   };
 
-  const handleSaveUser = () => {
+  const handleSaveUser = async () => {
     const newUser = {
       nombre: editedName,
       apellido: editedSurname,
@@ -64,6 +66,10 @@ const MyData = () => {
     dispatch(updateClientData(id, newUser));
     alert("Client Data updated");
     setEditMode(false);
+    if (profileImage) {
+      const uploadedImage = await uploadImage(profileImage);
+      setProfileImage(uploadedImage);
+    }
   };
 
   const handleImageChange = (event) => {
