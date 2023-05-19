@@ -29,10 +29,7 @@ function App() {
 
   return (
     <div className="App">
-<<<<<<< HEAD
-=======
      
->>>>>>> 3f140969ffa1ca40b25548ba26fa61d4a7aa1e12
       {showNav && <NavBar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -48,10 +45,7 @@ function App() {
         <Route path="/ResetPass" element={<Resetpass />} />
         <Route path="/About" element={<About />} />
       </Routes>
-<<<<<<< HEAD
-=======
    
->>>>>>> 3f140969ffa1ca40b25548ba26fa61d4a7aa1e12
     </div>
   );
 }
