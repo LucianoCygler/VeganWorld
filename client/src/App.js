@@ -19,6 +19,10 @@ import {
 
 import { NavBar } from "./Components/index";
 
+
+import axios from "axios";
+axios.defaults.baseURL = "https://localhost:3001/";
+
 function App() {
   //************************************* OCULTAR / MOSTRAR NAVBAR *********************************/
   const location = useLocation();
@@ -28,6 +32,7 @@ function App() {
 
   return (
     <div className="App">
+
 
       {showNav && <NavBar />}
       <Routes>

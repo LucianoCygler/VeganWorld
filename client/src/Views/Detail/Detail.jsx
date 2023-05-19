@@ -93,6 +93,7 @@ function Detail() {
   
   // useEffect(() => {
 
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -104,6 +105,7 @@ function Detail() {
       dispatch(getProductReviews(product_id));
     }
   }, [product_id]);
+
 
 
   const handleClick = () => {
