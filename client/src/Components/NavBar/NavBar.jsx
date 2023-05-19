@@ -20,7 +20,7 @@ function NavBar() {
     localStorage.removeItem("email");
   };
   const location = useLocation();
-
+  //asd
   return (
     <div className={styles.mainContainer}>
       <div className={styles.divLeft}>
@@ -35,7 +35,7 @@ function NavBar() {
         <Link to="/OurProducts">Our Products</Link>{" "}
         <div className={styles.redirects}>
           <div className={styles.dropdown}>
-            <FontAwesomeIcon className={styles.dropbtn} icon={faBars}/>
+            <FontAwesomeIcon className={styles.dropbtn} icon={faBars} />
             <div className={styles.dropdownContent}>
               <div className={styles.triangle}></div>
               <Link to="/MyProfile">Profile</Link>{" "}
