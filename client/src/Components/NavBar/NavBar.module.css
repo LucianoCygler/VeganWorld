@@ -1,10 +1,10 @@
-
 /************************************* DIVS ********************************/
 
 .mainContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   background-color: #1D5C63;
   box-shadow: 0 0 15px #1A3C40;
   width: 100%;
@@ -28,7 +28,9 @@
   align-items: center;
 }
 .redirects a {
+
   color: #F2F9F1;
+
   text-decoration: none;
   cursor: pointer;
   transition: color 0.3s;
@@ -45,14 +47,18 @@
   align-items: center;
   gap: 1rem;
   margin-right: 55px;
+
   color: #F2F9F1;
+
 }
 
 /************************* ELEMENTS *************/
 
 .fontAwesome {
+
   transition: transform 0.2s ease-in-out;
   color: #F2F9F1;
+
   font-size: 20px;
 }
 
@@ -61,7 +67,9 @@
 }
 
 .tittle {
+
   color: #F2F9F1;
+
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-decoration: none;
 }
@@ -84,11 +92,13 @@
 .dropdown {
   position: relative;
   display: inline-block;
+
   box-sizing: border-box;
 }
 
 .dropdown .dropbtn {
   color: #F2F9F1;
+
   cursor: pointer;
   transition: color 0.3s;
   font-size: 20px;
@@ -128,13 +138,17 @@
 }
 
 .dropdownContent a {
+
   color: #F2F9F1;
+
   text-decoration: none;
   display: block;
   transition: background-color 0.3s;
+  width: 100%;
 }
 
 .dropdownContent a:hover {
+  width: 100%;
   background-color: #99c4b8;
 }
 
