@@ -166,7 +166,7 @@ export const getClientOrders = (id_client) => {
       const orders = res.data;
       return dispatch({ type: GET_CLIENT_ORDERS, payload: orders });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
     }
   };
 };
@@ -179,7 +179,7 @@ export const getOrderDetail = (id_order) => {
       const order = res.data;
       return dispatch({ type: GET_ORDER_BY_ID, payload: order });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
     }
   };
 };
@@ -192,7 +192,19 @@ export const validateLogin = (user) => {
       const userDB = res.data;
       return dispatch({ type: VALIDATE_LOGIN, payload: userDB });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
+    }
+  };
+};
+
+export const getUserDataByEmail = (email) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${URL_SERVIDOR}/client?email=${email}`);
+      const userData = res.data;
+      return dispatch({ type: VALIDATE_LOGIN, payload: userData });
+    } catch (error) {
+      console.log(error.response.data);
     }
   };
 };
@@ -244,7 +256,7 @@ export const getClientData = (client_id) => {
       const clientDB = res.data;
       return dispatch({ type: GET_CLIENT_DATA, payload: clientDB });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
     }
   };
 };
@@ -332,7 +344,7 @@ export const getClientReviews = (id_client) => {
       const reviewsDB = res.data;
       return dispatch({ type: GET_CLIENT_REVIEWS, payload: reviewsDB });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
     }
   };
 };
@@ -345,7 +357,7 @@ export const getClientReview = (id_review) => {
       const reviewDB = res.data;
       return dispatch({ type: GET_CLIENT_REVIEW, payload: reviewDB });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
     }
   };
 };
@@ -360,7 +372,7 @@ export const orderAndFilter = (filterByType, sort) => {
       const filterProducts = res.data;
       return dispatch({ type: ORDER_FILTER, payload: filterProducts });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
     }
   };
 };
@@ -375,7 +387,7 @@ export const getFavorites = (id_client) => {
       const clientFavorites = res.data;
       return dispatch({ type: GET_FAVORITES, payload: clientFavorites });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
     }
   };
 };
@@ -416,7 +428,7 @@ export const getClientAllFavorites = (client_id) => {
       const favorites = res.data;
       return dispatch({ type: GET_CLIENT_FAVORITE, payload: favorites });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
     }
   };
 };
@@ -442,7 +454,7 @@ export const getProductReviews = (id_product) => {
       const productReviews = res.data;
       return dispatch({ type: GET_PRODUCT_REVIEWS, payload: productReviews });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
     }
   };
 };
@@ -454,11 +466,10 @@ export const getAllClients = () => {
       const clients = res.data;
       dispatch({ type: GET_ALL_CLIENTS, payload: clients });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
     }
   };
 };
-
 
 export const getMercadoPagoLink = (emailAndProducts) => {
   return async function (dispatch) {
@@ -468,18 +479,20 @@ export const getMercadoPagoLink = (emailAndProducts) => {
       console.log(res);
       return dispatch({ type: GET_MP_LINK, payload: MPLink });
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
     }
   };
 };
 
-
-export const sendEmail = (form) => {
+export const sendEmail = (form, type) => {
   return async function (dispatch) {
+    if (type){
+      form= {...form, type};
+    }else throw new Error('Type is missing.');
     try {
       const res = await axios.post(`${URL_SERVIDOR}/mail`, form);
     } catch (error) {
-      alert(error.response.data);
+      alert(error);
     }
   };
 };
