@@ -85,6 +85,14 @@ function Detail() {
 
   const [quantity, setQuantity] = useState(1);
   const product_id = id;
+  
+  // useEffect(() => {
+  //   dispatch(getProductById(id));
+  //   return () => dispatch(cleanDetail());
+  // }, [dispatch, id]);
+  
+  // useEffect(() => {
+
 
   const [loading, setLoading] = useState(false);
 
@@ -97,6 +105,7 @@ function Detail() {
       dispatch(getProductReviews(product_id));
     }
   }, [product_id]);
+
 
   const handleClick = () => {
     setLoading(true);

@@ -1,24 +1,56 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   getClientOrders,
   getUserDataByEmail,
 } from "../../redux/actions/actions";
 import OrderDetail from "../../Components/OrderDetail/OrderDetail";
 import styles from "./MyOrders.module.css";
+
 import { useNavigate } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
 import LoginForm from "../Login/LoginForm";
 
+import {
+	Box,
+	Tab,
+	TabList,
+	TabPanel,
+	TabPanels,
+	Tabs,
+	Accordion,
+	Divider,
+	useDisclosure,
+	useToast,
+	Step,
+	StepDescription,
+	StepIcon,
+	StepIndicator,
+	StepNumber,
+	StepSeparator,
+	StepStatus,
+	StepTitle,
+	Stepper,
+	useSteps,
+} from "@chakra-ui/react";
+import AlertPopUp from "./AlertPopUp/AlertPopUp";
+
+const arrayProducts = require("../../Components/Products/arrayProducts.js");
+
 const MyOrders = () => {
+
   const clientOrders = useSelector((state) => state.clientOrders);
   const user = useSelector((state) => state.user);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+
+	return (
+		<>
+			<AlertPopUp isOpen={isOpen} cancelRef={cancelRef} onClose={onClose} />
+
 
   const email = localStorage.getItem("email");
 
@@ -32,10 +64,12 @@ const MyOrders = () => {
     setShowModal(true);
   };
 
-  const closePopup = () => {
-    setSelectedOrder(null);
-    setIsPopupOpen(false);
-  };
+
+									<Box flexShrink="0">
+										<StepTitle>{step.title}</StepTitle>
+										<StepDescription>{step.description}</StepDescription>
+									</Box>
+
 
   useEffect(() => {
     dispatch(getUserDataByEmail(email));
@@ -124,6 +158,7 @@ const MyOrders = () => {
       )}
     </div>
   );
+
 };
 
 export default MyOrders;

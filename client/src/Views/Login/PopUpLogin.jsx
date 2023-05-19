@@ -1,8 +1,10 @@
+
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
+
 const PopUpLogin = () => {
   const [showModal, setShowModal] = useState(false);
   const [view, setView] = useState("login");
