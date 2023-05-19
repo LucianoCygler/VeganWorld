@@ -124,27 +124,34 @@ function Detail() {
     navigate(-1);
   };
   return (
-    <Box w="100%" minHeight="100vh" bg="red" paddingTop="10em">
+    <Box minWidth="100%" minHeight="100vh" bg="white" paddingTop="10em">
       {product?.nombre ? (
         <>
           <Box bg="white">
             <Grid
               bg="white"
-              w="50%"
               margin="auto"
               height="80vh"
               position="relative"
               templateRows="repeat(2, 0.1fr)"
               justify="center"
               align="center"
-              boxShadow="0px 4px 10px rgba(0, 0, 0, 0.2)"
-              paddingTop="4em"
+              boxShadow="0px 0px 10px rgba(0, 0, 0, 0.2)"
+              maxWidth="80%"
             >
-              <h1>{product.nombre}</h1>
+              <Box marginTop="2em">
+                {" "}
+                <h1>{product.nombre}</h1>
+              </Box>
               <Flex
                 direction="row"
                 margin="auto"
-                bg="purple"
+                bg="white"
+                justify="center"
+                align="center"
+                paddingBottom="4em"
+                maxWidth="fit-content"
+
                 // Configuración de la sombra
               >
                 <Button
@@ -158,25 +165,51 @@ function Detail() {
                 >
                   <FontAwesomeIcon icon={faArrowLeftLong} />
                 </Button>
-                <Box w="500px" bg="blue" margin="3em">
+                <Box
+                  minWidth="500px"
+                  minheigth="500px"
+                  bg="white"
+                  margin="3em"
+                  display="inline-flex"
+                  alignItems="center"
+                  justifyContent="center"
+                >
                   <Img
                     src={product.imagen}
                     alt={product.nombre}
                     borderRadius="full"
+                    shadow="0px 4px 10px rgba(0, 0, 0, 0.2)"
+                    width="100%"
                   />
                 </Box>
                 <Box
                   marginTop="5em"
                   marginLeft="4em"
-                  bg="orange"
+                  bg="white"
                   marginRight="2em"
                 >
                   {" "}
-                  <h2>
+                  <Grid
+                    gridTemplateRows="3"
+                    gap="20"
+                    paddingTop="8em"
+                    minWidth="500px"
+                    minheigth="500px"
+                  >
+                    <p>
+                      {product.descripcion}Lorem ipsum dolor sit amet,
+                      consectetur adipiscing elit. Donec vel egestas dolor, nec
+                      dignissim metus. Donec augue elit, rhoncus ac sodales id,
+                      porttitor vitae est. Donec laoreet rutrum libero sed
+                      pharetra. Donec vel egestas dolor, nec dignissim metus.
+                      Donec augue elit, rhoncus ac sodales id, porttitor vitae
+                      est. Donec laoreet rutrum libero sed pharetra. Duis a arcu
+                      convallis, gravida purus eget, mollis diam.
+                    </p>
+
                     <h1>${product.precio}</h1>
-                    <p>{product.descripcion}</p>
-                  </h2>
-                  <p>Cantidad: {quantity}</p>
+                    <p>Cantidad: {quantity}</p>
+                  </Grid>
                   <Button onClick={handleDecrement}>-</Button>
                   <Button onClick={handleIncrement}>+</Button>
                   <Button

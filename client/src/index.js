@@ -8,6 +8,9 @@ import store from "./redux/store/store";
 import { Provider } from "react-redux";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
+import axios from "axios";
+axios.defaults.baseURL = "http://localhost:3001";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ChakraProvider>
