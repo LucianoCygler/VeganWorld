@@ -11,7 +11,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import styles from "./SearchBar.module.css";
 
 function SearchBar() {
-  const [isSearching, setIsSearching] = useState(false);
+  const [inputEnable, setInputEnable] = useState(false);
   const dispatch = useDispatch();
   const filteredProducts = useSelector((state) => state.filteredProducts);
 
@@ -33,24 +33,16 @@ function SearchBar() {
     }
   };
 
+  const handleIconSearch = () => {
+    setInputEnable(true);
+    document.getElementById("input").focus();
+  }
+
   return (
     <div className={styles.mainContainer}>
       <nav>
-        <input
-          className={`${styles.inputClass} ${
-            isSearching ? styles.show : styles.hidden
-          }`}
-          type="search"
-          placeholder="Search a product..."
-          onChange={handleSearch}
-          onMouseEnter={() => setIsSearching(true)}
-          onMouseLeave={() => setIsSearching(false)}
-        />
-        <FontAwesomeIcon
-          icon={faMagnifyingGlass}
-          onMouseEnter={() => setIsSearching(true)}
-          onMouseLeave={() => setIsSearching(false)}
-        />
+        <input id="input" className={styles.inputClass} type="search" placeholder="Search a product..." onChange={handleSearch} disabled={!inputEnable} onClick={() => setInputEnable(true)} />
+        <FontAwesomeIcon className={styles.fontIcon} icon={faMagnifyingGlass} onClick={handleIconSearch} />
       </nav>
     </div>
   );

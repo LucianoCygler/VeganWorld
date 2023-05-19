@@ -1,10 +1,6 @@
 .body {
   text-align: center;
-  /* background-image: url(https://img.freepik.com/free-vector/vegan-friendly-leaves-label-green-color_1017-25452.jpg); */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-color: #d6cda4;
+  background-color: #fff;
   margin: 0;
   font-size: medium;
   padding-top: 1em;
@@ -20,7 +16,7 @@
   font-size: 60px;
   text-shadow: 1px 1px rgb(0, 0, 0), 1px 1px rgb(13, 5, 25), -3px 0 4px #000000;
   font-family: Arial, Helvetica, sans-serif;
-  color: #e2edce;
+  color: #C9DBB2;
   padding: 16px;
   font-weight: lighter;
   text-align: center;

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { auth, googleProvider } from "../../Firebase/firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { validateLogin } from "../../redux/actions/actions";
-import { useDispatch } from "react-redux";
-
+import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Modal } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const PopUpLogin = () => {
   const [showModal, setShowModal] = useState(false);
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   const handleCloseModal = () => {
     setShowModal(false);
   };
@@ -22,7 +22,13 @@ const PopUpLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [value, setValue] = useState("");
-  const login = {email: email, contraseña: password}
+  const login = { email: email, contraseña: password };
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    }
+  }, [user]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +36,8 @@ const PopUpLogin = () => {
       .then((data) => {
         setValue(data.user.email);
         localStorage.setItem("email", data.user.email);
-        dispatch(validateLogin(login))
+        dispatch(validateLogin(login));
+        localStorage.setItem("user", user);
         handleCloseModal();
       })
       .catch((error) => console.log(error));
@@ -44,19 +51,19 @@ const PopUpLogin = () => {
     });
   };
 
-//   const SignInWithFacebook = () => {
-//     signInWithPopup(auth, providerfb).then((data) => {
-//       setValue(data.user.email);
-//       localStorage.setItem("email", data.user.email);
-//     });
-//   };
-//   const SignInWithGitHub = () => {
-//     signInWithPopup(auth, providergit).then((data) => {
-//       setValue(data.user.email);
-//       localStorage.setItem("email", data.user.email);
-//       handleCloseModal();
-//     });
-//   };
+  //   const SignInWithFacebook = () => {
+  //     signInWithPopup(auth, providerfb).then((data) => {
+  //       setValue(data.user.email);
+  //       localStorage.setItem("email", data.user.email);
+  //     });
+  //   };
+  //   const SignInWithGitHub = () => {
+  //     signInWithPopup(auth, providergit).then((data) => {
+  //       setValue(data.user.email);
+  //       localStorage.setItem("email", data.user.email);
+  //       handleCloseModal();
+  //     });
+  //   };
 
   useEffect(() => {
     setValue(localStorage.getItem("email"));
@@ -71,7 +78,7 @@ const PopUpLogin = () => {
       ) : (
         ""
       )}
-     
+
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Sign in</Modal.Title>
@@ -120,6 +127,17 @@ const PopUpLogin = () => {
           >
             Login
           </button>
+
+          <NavLink to={"/Register"}>
+            <button className="btn btn-primary btn-lg btn-block" type="button">
+              Sign up
+            </button>
+          </NavLink>
+
+          <NavLink to={"/ResetPass"}>
+            {" "}
+            <p>Olvide mi contraseña</p>{" "}
+          </NavLink>
 
           <hr className="my-4" />
 

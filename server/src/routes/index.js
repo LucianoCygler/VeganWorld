@@ -10,6 +10,9 @@ const favoriteRouter = require("./routerFavorite");
 const orderRouter = require("./routerOrder");
 const facturaRouter = require("./routerFactura");
 const pageReviewRouter = require("./routerPageReview");
+const routerPayments = require("./routerPayments");
+const mailerRouter = require("./routerMailer");
+
 
 router.use("/admin", adminRouter);
 router.use("/review", reviewRouter);
@@ -19,5 +22,8 @@ router.use("/order", orderRouter);
 router.use("/factura", facturaRouter);
 router.use("/favorite", favoriteRouter);
 router.use("/pagereview", pageReviewRouter);
+router.use("/payment", routerPayments);
+router.use("/mail", mailerRouter);
+
 
 module.exports = router;
