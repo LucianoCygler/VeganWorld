@@ -4,8 +4,6 @@
     6,
     1fr
   ); /* Configura 6 columnas de tamaño igual */
-  justify-content: center;
-  align-items: baseline;
   gap: 1rem;
   margin: 1rem 0;
   padding: 0;
@@ -16,5 +14,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%; /* Opcional: Ocupar todo el ancho disponible en la celda de la cuadrícula */
 }
