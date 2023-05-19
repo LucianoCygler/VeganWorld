@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Ring } from "@uiball/loaders";
-import styles from "./Detail.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,6 +12,69 @@ import Pop_up from "../../Utils/Pop_up/Pop_up";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
+import { Box, Flex, Grid, GridItem, Img } from "@chakra-ui/react";
+import { Button, IconButton } from "@chakra-ui/react";
+import { Text, Heading, Link, Image } from "@chakra-ui/react";
+import { Input, Textarea, Select } from "@chakra-ui/react";
+import { Checkbox, Radio, Switch } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+} from "@chakra-ui/react";
+import { Stack, VStack, HStack } from "@chakra-ui/react";
+import { Spacer, Divider } from "@chakra-ui/react";
+import { Avatar, Badge, Tag } from "@chakra-ui/react";
+import { Progress, Spinner, Skeleton } from "@chakra-ui/react";
+import { Alert, CloseButton } from "@chakra-ui/react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from "@chakra-ui/react";
+import {
+  AlertDialog,
+  AlertDialogOverlay,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogBody,
+  AlertDialogFooter,
+} from "@chakra-ui/react";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+} from "@chakra-ui/react";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuGroup,
+  MenuDivider,
+} from "@chakra-ui/react";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
+import { Pagination } from "@chakra-ui/react";
+import { Icon } from "@chakra-ui/react";
+import {
+  Tooltip,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverArrow,
+  PopoverCloseButton,
+} from "@chakra-ui/react";
+
 function Detail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -23,6 +85,8 @@ function Detail() {
 
   const [quantity, setQuantity] = useState(1);
   const product_id = id;
+
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     dispatch(getProductById(id));
@@ -35,6 +99,10 @@ function Detail() {
   }, [product_id]);
 
   const handleClick = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 800);
     try {
       dispatch(addCartProduct(product, quantity));
       Pop_up("success", "Product added", "You can find your products in Cart!");
@@ -56,7 +124,6 @@ function Detail() {
     navigate(-1);
   };
   return (
-
     <Box minWidth="100%" minHeight="100vh" bg="white" paddingTop="10em">
       {product?.nombre ? (
         <>
@@ -180,7 +247,6 @@ function Detail() {
           : ""}
       </Box>
     </Box>
-
   );
 }
 export default Detail;
