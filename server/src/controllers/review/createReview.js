@@ -4,6 +4,7 @@ const getOneClient = require("../../controllers/client/getOneClient");
 const createReview = async (
   titulo,
   descripcion,
+  estrellas,
   cliente_id,
   product_id,
   cliente_nombre
@@ -12,6 +13,7 @@ const createReview = async (
   const review = await Review.create({
     titulo,
     descripcion,
+    estrellas,
     fecha,
     cliente_nombre,
   });
