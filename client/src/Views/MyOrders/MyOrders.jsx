@@ -1,129 +1,152 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getClientOrders,
-  getUserDataByEmail,
-} from "../../redux/actions/actions";
-import OrderDetail from "../../Components/OrderDetail/OrderDetail";
-import styles from "./MyOrders.module.css";
+import { getClientOrders } from "../../redux/actions/actions";
+import OrderDetail from "./OrderDetail/OrderDetail";
 import { useNavigate } from "react-router-dom";
-import { Button, Modal } from "react-bootstrap";
-import LoginForm from "../Login/LoginForm";
+
+import {
+	Box,
+	Tab,
+	TabList,
+	TabPanel,
+	TabPanels,
+	Tabs,
+	Accordion,
+	Divider,
+	useDisclosure,
+	useToast,
+	Step,
+	StepDescription,
+	StepIcon,
+	StepIndicator,
+	StepNumber,
+	StepSeparator,
+	StepStatus,
+	StepTitle,
+	Stepper,
+	useSteps,
+} from "@chakra-ui/react";
+import AlertPopUp from "./AlertPopUp/AlertPopUp";
+
+
+const arrayProducts = require("../../Components/Products/arrayProducts.js");
 
 const MyOrders = () => {
-  const clientOrders = useSelector((state) => state.clientOrders);
-  const user = useSelector((state) => state.user);
-  const [selectedOrder, setSelectedOrder] = useState(null);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
+	// const clientOrders = useSelector((state) => state.clientOrders);
+	const isAuthenticated = useSelector((state) => state.isAuthenticated);
+	const user = useSelector((state) => state.user);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const toast = useToast();
 
-  const email = localStorage.getItem("email");
+	const userJSON = localStorage.getItem("user");
+	const userObj = JSON.parse(userJSON);
+	// useEffect(() => {
+	//   if (!userObj) {
+	//     navigate("/login");
+	//   } else {
+	//     const client_id = userObj.id;
+	//     dispatch(getClientOrders(client_id));
+	//   }
+	// }, [selectedOrder, isAuthenticated]);
 
-  const [showModal, setShowModal] = useState(false);
+	const clientOrders = arrayProducts.array;
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
+	const { isOpen, onOpen, onClose } = useDisclosure();
+	const cancelRef = useRef();
 
-  const handleShowModal = () => {
-    setShowModal(true);
-  };
+	const steps = [
+		{ title: "First", description: "Contact Info" },
+		{ title: "Second", description: "Date & Time" },
+		{ title: "Third", description: "Select Rooms" },
+	];
 
-  const closePopup = () => {
-    setSelectedOrder(null);
-    setIsPopupOpen(false);
-  };
+	const { activeStep } = useSteps({
+		index: 1,
+		count: steps.length,
+	});
 
-  useEffect(() => {
-    dispatch(getUserDataByEmail(email));
-  }, [email]);
+	return (
+		<>
+			<AlertPopUp isOpen={isOpen} cancelRef={cancelRef} onClose={onClose} />
 
-  useEffect(() => {
-    if (user) {
-      const client_id = user.id;
-      dispatch(getClientOrders(client_id));
-    }
-  }, [user, selectedOrder]);
-  const showPopupHandler = (order) => {
-    if (user.id) {
-      setSelectedOrder(order);
-      setIsPopupOpen(true);
-    } else {
-      setIsPopupOpen(false);
-      // Abre el popup de inicio de sesión
-      setIsLoginOpen(true);
-    }
-  };
+			<Tabs variant="enclosed-colored">
+				<TabList>
+					<Tab>Pendientes</Tab>
+					<Tab>En Proceso</Tab>
+					<Tab>Entregados</Tab>
+					<Tab>Cancelados</Tab>
+				</TabList>
 
-  const handleLoginClose = (order) => {
-    setIsLoginOpen(false);
-  };
+				<TabPanels>
+					<TabPanel>
+						PENDIENTES
+						{/* Aca debajo se rendiza los TabPanels con un map de la cantidad de ordenes */}
+						<Accordion defaultIndex={[0]} allowMultiple>
+							{clientOrders.map((order, index) => {
+								return (
+									order.estado === "Pendiente" && (
+										<OrderDetail
+											order={order}
+											cancelRef={cancelRef}
+											onOpen={onOpen}
+										/>
+									)
+								);
+							})}
+						</Accordion>
+					</TabPanel>
+					{/* TABPANEL EN PROCESO */}
+					<TabPanel>
+						EN PROCESO
+						<Stepper size="lg" index={activeStep}>
+							{steps.map((step, index) => (
+								<Step key={index}>
+									<StepIndicator>
+										<StepStatus
+											complete={<StepIcon />}
+											incomplete={<StepNumber />}
+											active={<StepNumber />}
+										/>
+									</StepIndicator>
 
-  return (
-    <div>
-      {" "}
-      <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Sign in</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <LoginForm handleCloseModal={handleCloseModal}></LoginForm>{" "}
-        </Modal.Body>
-      </Modal>
-      {!email ? (
-        <div className={styles.divLogin}>
-          <h2>
-            Hey, I see that you are trying to access your Orders, but to do so,
-            you must first be logged in.
-          </h2>
-          <Button variant="primary" onClick={handleShowModal}>
-            Click here to log in!
-          </Button>
-        </div>
-      ) : (
-        <div className={styles.mainContainer}>
-          <div className={styles.orderscontainer}>
-            <h1>ORDERS</h1>
-            {!localStorage.getItem("email") ? (
-              <div className={styles.divLogin}>
-                <h2>
-                  Oye, veo que estas intentando acceder a tus órdenes, pero para
-                  hacerlo primero debes estar logueado.{" "}
-                </h2>
-                <Button variant="primary" onClick={handleShowModal}>
-                  Haz click aqui para loguearte.
-                </Button>
-              </div>
-            ) : (
-              <div>
-                {" "}
-                {clientOrders?.map((order, index) => (
-                  <div
-                    key={index}
-                    className={styles.ordercard}
-                    onClick={() => showPopupHandler(order)}
-                  >
-                    <p>Pedido {index + 1}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-          {isPopupOpen && (
-            <>
-              <div className={styles.overlay} onClick={closePopup} />
-              <div className={styles.popupcontainer}>
-                <OrderDetail order={selectedOrder} closePopup={closePopup} />
-              </div>
-            </>
-          )}
-        </div>
-      )}
-    </div>
-  );
+									<Box flexShrink="0">
+										<StepTitle>{step.title}</StepTitle>
+										<StepDescription>{step.description}</StepDescription>
+									</Box>
+
+									<StepSeparator />
+								</Step>
+							))}
+						</Stepper>
+						<Accordion defaultIndex={[0]} allowMultiple>
+							{clientOrders.map((order, index) => {
+								return (
+									order.estado === "En proceso" && (
+										<OrderDetail
+											order={order}
+											cancelRef={cancelRef}
+											onOpen={onOpen}
+											state={order.estado}
+										/>
+									)
+								);
+							})}
+						</Accordion>
+					</TabPanel>{" "}
+					{/* TABPANEL ENTREGADOS */}
+					<TabPanel>
+						<p>ENTREGADOS</p>
+					</TabPanel>{" "}
+					{/* TABPANEL CANCELADOS */}
+					<TabPanel>
+						<p>CANCELADOS</p>
+					</TabPanel>{" "}
+				</TabPanels>
+			</Tabs>
+		</>
+	);
 };
 
 export default MyOrders;

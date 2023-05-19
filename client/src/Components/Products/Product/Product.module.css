@@ -1,15 +1,24 @@
 /********************************** DIVS **********************/
 
 .mainContainer {
-  /* color: #04ffff; */
   border-radius: 5px;
-  box-shadow: 0px 0px 15px 3px #d6cda4;
-  width: auto;
-  height: 100%;
-  margin: 5px 20px;
+  width: 200px;
+  height: 275px;
+  margin: 5px 10px;
   max-width: 1000px;
   background-color: #D8D8D8;
-  border: 2px solid #d6cda4;
+  position: relative;
+  transition: all 0.1s ease-in-out;
+}
+
+.mainContainer:hover {
+  top: 1px;
+  box-shadow: 0 5px 15px 0 #757575;
+  height: 290px;
+}
+
+.mainContainer:hover .favButton {
+  opacity: 1;
 }
 
 .favoriteContainer {
@@ -21,6 +30,26 @@
   margin-left: 83px;
 }
 
+.divImage {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  height: 150px;
+}
+
+.priceContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flexWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 /************************************ ELEMENTS **********************************/
 
 .image {
@@ -28,15 +57,21 @@
   padding: 1px;
   object-fit: cover;
   margin: 1px;
-  border-radius: 15px;
+  border-radius: 5px;
   position: relative;
-  box-shadow: 0px 0px 15px #3d8361;
 }
 
 .subtitle {
-  text-align: center;
+  margin: auto;
   overflow: hidden;
   cursor: pointer;
+  font-size: 15px;
+  padding-bottom: 5px;
+}
+
+.price {
+  margin-top: 5px;
+  font-size: 18px;
 }
 .card {
   color: #000;
@@ -47,12 +82,21 @@
 
 .favButton {
   background-color: transparent;
-  border: transparent;
+  border: none;
+  border-radius: 50%;
   margin-top: 5px;
-  transition: transform 0.3s ease-in-out;
+  position: absolute;
+  left: 93px;
+  top: 10px;
+  opacity: 0;
+  color: #FF1700;
+  font-size: 20px;
 }
 
-.favButton.animate {
+.favButton:hover, .favButton:focus {
+  color: #af0c0c;
+}
+/* .favButton.animate {
   animation: scale-rotate 0.5s ease-in-out;
 }
 
@@ -66,4 +110,4 @@
   100% {
     transform: scale(1) rotate(360deg);
   }
-}
+} */
