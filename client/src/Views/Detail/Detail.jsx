@@ -56,80 +56,131 @@ function Detail() {
     navigate(-1);
   };
   return (
-    <div className={styles.mainContainer}>
-      <div className={styles.container}>
-        <div className={styles.linkContainer}>
-          <NavLink to="#" className={styles.linkBack} onClick={handleGoBack}>
-            <FontAwesomeIcon icon={faArrowLeftLong} />
-          </NavLink>
-        </div>
-        {product?.nombre ? (
-          <div className={styles.descriptionDiv}>
-            <div className={styles.imageDiv}>
-              <img
-                src={product.imagen}
-                alt={product.nombre}
-                className={styles.image}
-              />
-            </div>
-            <div className={styles.detailDiv}>
-              <h1 className={styles.h1}>{product.nombre}</h1>
-              <h3 className={styles.p}>{product.descripcion}</h3>
-              <div className={styles.priceDiv}>
-                <h2 className={styles.price}>
-                  Precio:{" "}
-                  <span className={styles.spanPrice}>${product.precio}</span>
-                </h2>
-              </div>
-              <div className={styles.productValue}>
-                <h2 className={styles.h1}>Cantidad:</h2>
-                <h3 className={styles.quantitySpan}>{quantity}</h3>
-                <button
-                  className={styles.quantityButton}
-                  onClick={handleDecrement}
+
+    <Box minWidth="100%" minHeight="100vh" bg="white" paddingTop="10em">
+      {product?.nombre ? (
+        <>
+          <Box bg="white">
+            <Grid
+              bg="white"
+              margin="auto"
+              height="80vh"
+              position="relative"
+              templateRows="repeat(2, 0.1fr)"
+              justify="center"
+              align="center"
+              boxShadow="0px 0px 10px rgba(0, 0, 0, 0.2)"
+              maxWidth="80%"
+            >
+              <Box marginTop="2em">
+                {" "}
+                <h1>{product.nombre}</h1>
+              </Box>
+              <Flex
+                direction="row"
+                margin="auto"
+                bg="white"
+                justify="center"
+                align="center"
+                paddingBottom="4em"
+                maxWidth="fit-content"
+
+                // Configuración de la sombra
+              >
+                <Button
+                  colorScheme="teal"
+                  size="xs"
+                  onClick={handleGoBack}
+                  position="absolute"
+                  left="10px"
+                  top="10px"
+                  zIndex="1"
                 >
-                  -
-                </button>
-                <button
-                  className={styles.quantityButton}
-                  onClick={handleIncrement}
+                  <FontAwesomeIcon icon={faArrowLeftLong} />
+                </Button>
+                <Box
+                  minWidth="500px"
+                  minheigth="500px"
+                  bg="white"
+                  margin="3em"
+                  display="inline-flex"
+                  alignItems="center"
+                  justifyContent="center"
                 >
-                  +
-                </button>
-                <button className={styles.button} onClick={handleClick}>
-                  Add to cart
-                </button>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div style={{ paddingTop: "150px" }}>
-            <Ring
-              size={200}
-              lineWeight={5}
-              speed={2}
-              color="rgba(29, 103, 88, 0.6)"
-            />
-          </div>
-        )}
-        <div className={styles.cardcontenedor}>
-          {productReviews
-            ? productReviews.slice(0, 3).map((review) => {
-                return (
-                  <div className={styles.card} key={review.id}>
-                    <>
-                      <span>{review.cliente_nombre}</span>
-                      <h1>{review.titulo}</h1>
-                      <p>{review.descripcion}</p>
-                      <p>{review.fecha}</p>
-                    </>
-                  </div>
-                );
-              })
-            : ""}
-        </div>
-      </div>
-    </div>
+                  <Img
+                    src={product.imagen}
+                    alt={product.nombre}
+                    borderRadius="full"
+                    shadow="0px 4px 10px rgba(0, 0, 0, 0.2)"
+                    width="100%"
+                  />
+                </Box>
+                <Box
+                  marginTop="5em"
+                  marginLeft="4em"
+                  bg="white"
+                  marginRight="2em"
+                >
+                  {" "}
+                  <Grid
+                    gridTemplateRows="3"
+                    gap="20"
+                    paddingTop="8em"
+                    minWidth="500px"
+                    minheigth="500px"
+                  >
+                    <p>
+                      {product.descripcion}Lorem ipsum dolor sit amet,
+                      consectetur adipiscing elit. Donec vel egestas dolor, nec
+                      dignissim metus. Donec augue elit, rhoncus ac sodales id,
+                      porttitor vitae est. Donec laoreet rutrum libero sed
+                      pharetra. Donec vel egestas dolor, nec dignissim metus.
+                      Donec augue elit, rhoncus ac sodales id, porttitor vitae
+                      est. Donec laoreet rutrum libero sed pharetra. Duis a arcu
+                      convallis, gravida purus eget, mollis diam.
+                    </p>
+
+                    <h1>${product.precio}</h1>
+                    <p>Cantidad: {quantity}</p>
+                  </Grid>
+                  <Button onClick={handleDecrement}>-</Button>
+                  <Button onClick={handleIncrement}>+</Button>
+                  <Button
+                    isLoading={loading}
+                    colorScheme="teal"
+                    onClick={handleClick}
+                  >
+                    Add To Cart
+                  </Button>
+                </Box>
+              </Flex>
+            </Grid>
+          </Box>
+        </>
+      ) : (
+        <Ring
+          size={200}
+          lineWeight={5}
+          speed={2}
+          color="rgba(29, 103, 88, 0.6)"
+        />
+      )}
+      <Box>
+        {productReviews
+          ? productReviews.slice(0, 3).map((review) => {
+              return (
+                <>
+                  <h1>{review.titulo}</h1>
+                  <span>{review.cliente_nombre}</span>
+                  <p>{review.descripcion}</p>
+                  <p>{review.fecha}</p>
+                </>
+              );
+            })
+          : ""}
+      </Box>
+    </Box>
+
   );
 }
 export default Detail;
