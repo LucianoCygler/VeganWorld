@@ -30,14 +30,9 @@ function Detail() {
   }, [dispatch, id]);
   useEffect(() => {
     if (product_id) {
-<<<<<<< HEAD
-      return dispatch(getProductReviews(product_id));
-    }});
-=======
       dispatch(getProductReviews(product_id));
     }
   }, [product_id]);
->>>>>>> b1612e98ce37572750599b1deb7dc4c0cd077fd0
 
   const handleClick = () => {
     try {

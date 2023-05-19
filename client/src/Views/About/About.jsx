@@ -6,19 +6,20 @@ const About = () => {
     imageUrl: 'https://lh3.googleusercontent.com/x38IQRDTmLHdORZdCX6oUOKXrUfGDO5GekvJlUhBi6rMbkej3rp8yQvnaSjoD3p70K8j5Q1QZvXw0fHVWrxjDpRKvKN7Ra6E3l0tlv7U',
   }
   return (
-      <Box pt='200'>
-      <Flex color='white'>
-        <Center w='100px' bg='green'>
-          <Text>Box 1</Text>
-        </Center>
-        <Square bg='blue' size='150px'>
-          <Text>Box 2</Text>
-        </Square>
-        <Box flex='1' bg='tomato'>
-          <Text>Box 3</Text>
-        </Box>
-      </Flex>
-      {/* <div className={styles.mainContainer}>
+      // <Box pt='200'>
+      // <Flex color='white'>
+      //   <Center w='100px' bg='green'>
+      //     <Text>Box 1</Text>
+      //   </Center>
+      //   <Square bg='blue' size='150px'>
+      //     <Text>Box 2</Text>
+      //   </Square>
+      //   <Box flex='1' bg='tomato'>
+      //     <Text>Box 3</Text>
+      //   </Box>
+      // </Flex>
+        // </Box>
+      <div className={styles.mainContainer}>
         <div className={styles.contenedor}>
           <h2 className={styles.h2}>Vegan World</h2>
           <h3>Comes from our own needs. We wanted an app that could make it easier to be a vegan and order food like everybody else.
@@ -27,8 +28,7 @@ const About = () => {
         </div>
         <Image src={props.imageUrl} p='6' borderRadius='50' />
         <img className={styles.image} src="https://lh3.googleusercontent.com/x38IQRDTmLHdORZdCX6oUOKXrUfGDO5GekvJlUhBi6rMbkej3rp8yQvnaSjoD3p70K8j5Q1QZvXw0fHVWrxjDpRKvKN7Ra6E3l0tlv7U" alt="logo" />
-      </div>  */}
-      </Box>
+      </div> 
   );
 };
 

@@ -4,7 +4,7 @@ import { getAllProducts } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Pagination, Products } from "../../Components/index";
 import { orderAndFilter } from "../../redux/actions/actions";
-import Carousel from "../../Components/Carousel/Carousel";
+import CustomCarousel from "../../Components/Carousel/CustomCarousel";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ function HomePage() {
   return (
     <div className={style.body}>
       <h1 className={style.h1}>The best vegan food in town!</h1>
-      Filter By Type:{" "}
+      {/* Filter By Type:{" "}
       <select onChange={handleFilter}>
         <option value="">All</option>
         <option value="pasta">Pasta</option>
@@ -55,22 +55,22 @@ function HomePage() {
         <option value="z-a">Name z-a</option>
         <option value="Menor precio">Mayor precio</option>
         <option value="Mayor precio">Menor precio</option>
-      </select>
+      </select> */}
       {/* Order By Price:{" "}
       <select value={sortByPrice} onChange={handleSortByPrice}>
         <option value=""></option>
         <option value="asc">Ascending</option>
         <option value="desc">Descending</option>
       </select> */}
-      <Products products={currentItems} />
-      <Pagination
+      {/* <Products products={currentItems} /> */}
+      {/* <Pagination
         goToPrevPage={() => setCurrentPage(currentPage - 1)}
         goToNextPage={() => setCurrentPage(currentPage + 1)}
         goToPage={(page) => setCurrentPage(page)}
         currentPage={currentPage}
         lastPage={totalPages}
-      />
-      <Carousel />
+      /> */}
+      <CustomCarousel />
     </div>
   );
 }
