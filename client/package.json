@@ -3,13 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@chakra-ui/button": "^2.0.18",
-    "@chakra-ui/icons": "^2.0.19",
     "@chakra-ui/react": "^2.6.1",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
-    "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/material": "^5.13.0",
@@ -21,10 +18,8 @@
 <<<<<<< HEAD
     "cloudinary": "^1.37.0",
 =======
-    "bootstrap": "^5.3.0-alpha3",
-    "chakra": "^0.0.3",
-    "dotenv": "^16.0.3",
     "firebase": "^9.22.0",
+    "bootstrap": "^5.3.0-alpha3",
     "framer-motion": "^10.12.12",
 >>>>>>> 57e509ca79e89c03bd68d027b05debc3ddc12395
     "react": "^18.2.0",
@@ -35,7 +30,7 @@
     "react-scripts": "^5.0.1",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
-    "sweetalert2": "^11.4.8",
+    "sweetalert2": "^11.7.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

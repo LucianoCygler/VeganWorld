@@ -143,6 +143,24 @@ export const changePage = (number) => {
   return { type: SET_PAGE, payload: number };
 };
 
+// ACTIONS NECESARIAS:
+
+//* getAllProducts
+//* getProductById
+//* createOrder
+//* getOrders
+//* getOrderDetail
+//! deleteOrder
+//! updateOrder
+//! getClientData
+//! updateClientData
+//! deleteClient
+
+// order = {
+//   precioTotal: 1000,
+//   cliente_id: 1,
+//   productos: [1,3,2],
+// };
 
 /* CREAR ORDEN */
 export const createOrder = (order) => {
@@ -486,13 +504,13 @@ export const getMercadoPagoLink = (emailAndProducts) => {
 
 export const sendEmail = (form, type) => {
   return async function (dispatch) {
-    if (type) {
-      form = { ...form, type };
-    } else throw new Error("Type is missing.");
+    if (type){
+      form= {...form, type};
+    }else throw new Error('Type is missing.');
     try {
       const res = await axios.post(`${URL_SERVIDOR}/mail`, form);
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   };
 };

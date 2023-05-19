@@ -22,9 +22,7 @@ import { NavBar } from "./Components/index";
 git 
 =======
 
-
-import axios from "axios";
-axios.defaults.baseURL = "https://localhost:3001/";
+import { ChakraProvider } from "@chakra-ui/react";
 
 >>>>>>> 57e509ca79e89c03bd68d027b05debc3ddc12395
 function App() {
@@ -36,8 +34,7 @@ function App() {
 
   return (
     <div className="App">
-
-
+      <ChakraProvider />
       {showNav && <NavBar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -53,7 +50,7 @@ function App() {
         <Route path="/ResetPass" element={<Resetpass />} />
         <Route path="/About" element={<About />} />
       </Routes>
-
+      <ChakraProvider />
     </div>
   );
 }
