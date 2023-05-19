@@ -107,7 +107,6 @@ function Detail() {
   }, [product_id]);
 
 
-
   const handleClick = () => {
     setLoading(true);
     setTimeout(() => {
