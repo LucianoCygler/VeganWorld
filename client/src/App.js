@@ -19,6 +19,7 @@ import {
 
 import { NavBar } from "./Components/index";
 
+
 function App() {
   //************************************* OCULTAR / MOSTRAR NAVBAR *********************************/
   const location = useLocation();
@@ -28,6 +29,7 @@ function App() {
 
   return (
     <div className="App">
+     
       {showNav && <NavBar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -43,6 +45,7 @@ function App() {
         <Route path="/ResetPass" element={<Resetpass />} />
         <Route path="/About" element={<About />} />
       </Routes>
+   
     </div>
   );
 }

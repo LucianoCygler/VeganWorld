@@ -1,10 +1,10 @@
 const getClientChecked = require("../../controllers/client/getClientChecked");
 
 const getClientCheckedHandler = async (req, res) => {
-  const { email, contraseña } = req.body;
+  const {email} = req.body;
   try {
-    if (email && contraseña) {
-      const client = await getClientChecked(email, contraseña);
+    if (email) {
+      const client = await getClientChecked(email);
       if (client) return res.status(200).send(client);
       else if (!client)
         return res
