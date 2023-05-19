@@ -3,6 +3,8 @@ import { Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
+import { registerUser } from "../../redux/actions/actions";
+
 const PopUpLogin = () => {
   const [showModal, setShowModal] = useState(false);
   const [view, setView] = useState("login");
@@ -56,7 +58,7 @@ const PopUpLogin = () => {
           {view === "login" ? (
             <LoginForm handleCloseModal={handleCloseModal} />
           ) : (
-            <RegisterForm
+            <registerUser
               setView={setView}
               handleCloseModal={handleCloseModal}
             />
