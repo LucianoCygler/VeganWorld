@@ -10,7 +10,7 @@ const LoginForm = ({ handleCloseModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [value, setValue] = useState("");
-  const login = { email: email};
+  const login = { email: email };
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [rememberPassword, setRememberPassword] = useState(false);
@@ -122,7 +122,7 @@ const LoginForm = ({ handleCloseModal }) => {
 
       <hr className="my-4" />
 
-      <button class="button" onClick={SignInWithGoogle}>
+      <button class="button3" onClick={SignInWithGoogle}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="xMidYMid"

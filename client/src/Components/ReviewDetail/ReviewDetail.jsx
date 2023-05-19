@@ -3,12 +3,13 @@ import { useDispatch } from "react-redux";
 import { deleteReview, updateReview } from "../../redux/actions/actions";
 
 const ReviewDetail = ({ review, closePopup }) => {
-  const { titulo, descripcion, fecha, id } = review;
+  const { titulo, descripcion, fecha, id, estrellas } = review;
   const dispatch = useDispatch();
   const popupRef = useRef(null);
   const [editMode, setEditMode] = useState(false);
   const [editedTitulo, setEditedTitulo] = useState(titulo);
   const [editedDescripcion, setEditedDescripcion] = useState(descripcion);
+  const [editedEstrellas, seteditedEstrellas] = useState(estrellas);
 
   const handleClickOutside = (event) => {
     if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -37,6 +38,7 @@ const ReviewDetail = ({ review, closePopup }) => {
     const newReview = {
       titulo: editedTitulo,
       descripcion: editedDescripcion,
+      estrellas: editedEstrellas,
     };
     dispatch(updateReview(id, newReview));
     alert("Review updated");
@@ -64,6 +66,11 @@ const ReviewDetail = ({ review, closePopup }) => {
       {editMode ? (
         <>
           <input
+            type="integer"
+            value={editedEstrellas}
+            onChange={(e) => seteditedEstrellas(e.target.value)}
+          />
+          <input
             type="text"
             value={editedTitulo}
             onChange={(e) => setEditedTitulo(e.target.value)}
@@ -76,6 +83,19 @@ const ReviewDetail = ({ review, closePopup }) => {
         </>
       ) : (
         <>
+          <div style={{ marginBottom: "10px" }}>
+            <span
+              style={{
+                fontSize: "20px",
+                fontWeight: "bold",
+                marginRight: "5px",
+              }}
+            >
+              Estrellas: {""}
+              {estrellas}
+            </span>
+            <span style={{ whiteSpace: "nowrap", overflow: "hidden" }}></span>
+          </div>
           <div style={{ marginBottom: "10px" }}>
             <span
               style={{
