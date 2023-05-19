@@ -19,6 +19,7 @@ import {
 
 import { NavBar } from "./Components/index";
 
+
 function App() {
   //************************************* OCULTAR / MOSTRAR NAVBAR *********************************/
   const location = useLocation();

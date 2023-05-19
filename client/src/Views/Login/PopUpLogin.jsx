@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { auth, googleProvider } from "../../Firebase/firebase";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { validateLogin } from "../../redux/actions/actions";
-import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoginForm from "./LoginForm";
-import RegisterUser from "../../Components/Form/Register/RegisterUser";
+import RegisterForm from "./RegisterForm";
 
 const PopUpLogin = () => {
   const [showModal, setShowModal] = useState(false);

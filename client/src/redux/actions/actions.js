@@ -8,7 +8,7 @@ import {
   UPDATE_CART,
   FILTER_NAME_PRODUCT,
   FILTER_PRICE_PRODUCT,
-  STATE_LOGIN,
+  // STATE_LOGIN,
   GET_CUSTOMER_COMMENTS,
   SET_PAGE,
   CREATE_ORDER,
@@ -40,18 +40,18 @@ import {
   LOGOUT,
   GET_PRODUCT_REVIEWS,
   GET_ALL_CLIENTS,
-  SET_CREATED_ORDER_ID,
+  // SET_CREATED_ORDER_ID,
   CLEAN_CART,
   GET_MP_LINK,
 } from "./Types/Types";
 
-const URL_SERVIDOR = "http://localhost:3001";
+// const URL_SERVIDOR = "http://localhost:3001";
 
 /*TODOS LOS PRODUCTOS*/
 export const getAllProducts = () => {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${URL_SERVIDOR}/product`);
+      const res = await axios.get(`/product`);
       const products = res.data;
       dispatch({ type: GET_ALL_PRODUCTS, payload: products });
     } catch (error) {
@@ -71,7 +71,7 @@ export function setProductSearch(searchResult) {
 export const getProductById = (id_product) => {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${URL_SERVIDOR}/product/${id_product}`);
+      const res = await axios.get(`/product/${id_product}`);
       const product = res.data;
       dispatch({ type: GET_PRODUCT_BY_ID, payload: product });
     } catch (error) {
@@ -87,7 +87,7 @@ export const cleanDetail = () => ({ type: CLEAN_DETAIL });
 export const getCustomerComments = () => {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${URL_SERVIDOR}/pagereview`);
+      const res = await axios.get(`/pagereview`);
       const comm = res.data;
       dispatch({ type: GET_CUSTOMER_COMMENTS, payload: comm });
     } catch (error) {
@@ -143,12 +143,30 @@ export const changePage = (number) => {
   return { type: SET_PAGE, payload: number };
 };
 
+// ACTIONS NECESARIAS:
+
+//* getAllProducts
+//* getProductById
+//* createOrder
+//* getOrders
+//* getOrderDetail
+//! deleteOrder
+//! updateOrder
+//! getClientData
+//! updateClientData
+//! deleteClient
+
+// order = {
+//   precioTotal: 1000,
+//   cliente_id: 1,
+//   productos: [1,3,2],
+// };
 
 /* CREAR ORDEN */
 export const createOrder = (order) => {
   return async function (dispatch) {
     try {
-      const res = await axios.post(`${URL_SERVIDOR}/order`, order);
+      const res = await axios.post(`/order`, order);
       const newOrder = res.data;
       return dispatch({ type: CREATE_ORDER, payload: newOrder });
     } catch (error) {
@@ -162,7 +180,7 @@ export const getClientOrders = (id_client) => {
   //El id del cliente
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${URL_SERVIDOR}/client/orders/${id_client}`);
+      const res = await axios.get(`/client/orders/${id_client}`);
       const orders = res.data;
       return dispatch({ type: GET_CLIENT_ORDERS, payload: orders });
     } catch (error) {
@@ -175,7 +193,7 @@ export const getClientOrders = (id_client) => {
 export const getOrderDetail = (id_order) => {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${URL_SERVIDOR}/order/${id_order}`);
+      const res = await axios.get(`/order/${id_order}`);
       const order = res.data;
       return dispatch({ type: GET_ORDER_BY_ID, payload: order });
     } catch (error) {
@@ -188,7 +206,7 @@ export const getOrderDetail = (id_order) => {
 export const validateLogin = (user) => {
   return async function (dispatch) {
     try {
-      const res = await axios.post(`${URL_SERVIDOR}/client/checkclient`, user);
+      const res = await axios.post(`/client/checkclient`, user);
       const userDB = res.data;
       return dispatch({ type: VALIDATE_LOGIN, payload: userDB });
     } catch (error) {
@@ -200,7 +218,7 @@ export const validateLogin = (user) => {
 export const getUserDataByEmail = (email) => {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${URL_SERVIDOR}/client?email=${email}`);
+      const res = await axios.get(`/client?email=${email}`);
       const userData = res.data;
       return dispatch({ type: VALIDATE_LOGIN, payload: userData });
     } catch (error) {
@@ -213,7 +231,7 @@ export const getUserDataByEmail = (email) => {
 export const registerUser = (user) => {
   return async function (dispatch) {
     try {
-      const res = await axios.post(`${URL_SERVIDOR}/client`, user);
+      const res = await axios.post(`/client`, user);
       const userDB = res.data;
       return dispatch({ type: REGISTER_USER, payload: userDB });
     } catch (error) {
@@ -226,7 +244,7 @@ export const registerUser = (user) => {
 export const deleteOrder = (order_id) => {
   return async function (dispatch) {
     try {
-      const res = await axios.delete(`${URL_SERVIDOR}/order/${order_id}`);
+      const res = await axios.delete(`/order/${order_id}`);
       const orderDB = res.data;
       return dispatch({ type: DELETE_ORDER, payload: orderDB });
     } catch (error) {
@@ -239,7 +257,7 @@ export const deleteOrder = (order_id) => {
 export const updateOrder = (order_id) => {
   return async function (dispatch) {
     try {
-      const res = await axios.patch(`${URL_SERVIDOR}/order/${order_id}`);
+      const res = await axios.patch(`/order/${order_id}`);
       const orderDB = res.data;
       return dispatch({ type: UPDATE_ORDER, payload: orderDB });
     } catch (error) {
@@ -252,7 +270,7 @@ export const updateOrder = (order_id) => {
 export const getClientData = (client_id) => {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${URL_SERVIDOR}/client/${client_id}`);
+      const res = await axios.get(`/client/${client_id}`);
       const clientDB = res.data;
       return dispatch({ type: GET_CLIENT_DATA, payload: clientDB });
     } catch (error) {
@@ -269,10 +287,7 @@ export const cleanClient_Id = () => {
 export const updateClientData = (client_id, newData) => {
   return async function (dispatch) {
     try {
-      const res = await axios.patch(
-        `${URL_SERVIDOR}/client/${client_id}`,
-        newData
-      );
+      const res = await axios.patch(`/client/${client_id}`, newData);
       const clientDataDB = res.data;
       return dispatch({ type: UPDATE_CLIENT_DATA, payload: clientDataDB });
     } catch (error) {
@@ -285,7 +300,7 @@ export const updateClientData = (client_id, newData) => {
 export const deleteClient = (client_id) => {
   return async function (dispatch) {
     try {
-      const res = await axios.delete(`${URL_SERVIDOR}/client/${client_id}`);
+      const res = await axios.delete(`/client/${client_id}`);
       const clientDB = res.data;
       return dispatch({ type: DELETE_CLIENT, payload: clientDB });
     } catch (error) {
@@ -298,7 +313,7 @@ export const deleteClient = (client_id) => {
 export const createReview = (newReview) => {
   return async function (dispatch) {
     try {
-      const res = await axios.post(`${URL_SERVIDOR}/review`, newReview);
+      const res = await axios.post(`/review`, newReview);
       const reviewDB = res.data;
       return dispatch({ type: CREATE_REVIEW, payload: reviewDB });
     } catch (error) {
@@ -311,10 +326,7 @@ export const createReview = (newReview) => {
 export const updateReview = (review__id, newReview) => {
   return async function (dispatch) {
     try {
-      const res = await axios.patch(
-        `${URL_SERVIDOR}/review/${review__id}`,
-        newReview
-      );
+      const res = await axios.patch(`/review/${review__id}`, newReview);
       const reviewDB = res.data;
       return dispatch({ type: UPDATE_REVIEW, payload: reviewDB });
     } catch (error) {
@@ -327,7 +339,7 @@ export const updateReview = (review__id, newReview) => {
 export const deleteReview = (review__id) => {
   return async function (dispatch) {
     try {
-      const res = await axios.delete(`${URL_SERVIDOR}/review/${review__id}`);
+      const res = await axios.delete(`/review/${review__id}`);
       const reviewDB = res.data;
       return dispatch({ type: DELETE_REVIEW, payload: reviewDB });
     } catch (error) {
@@ -340,7 +352,7 @@ export const deleteReview = (review__id) => {
 export const getClientReviews = (id_client) => {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${URL_SERVIDOR}/review/client/${id_client}`);
+      const res = await axios.get(`/review/client/${id_client}`);
       const reviewsDB = res.data;
       return dispatch({ type: GET_CLIENT_REVIEWS, payload: reviewsDB });
     } catch (error) {
@@ -353,7 +365,7 @@ export const getClientReviews = (id_client) => {
 export const getClientReview = (id_review) => {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${URL_SERVIDOR}/review/${id_review}`);
+      const res = await axios.get(`/review/${id_review}`);
       const reviewDB = res.data;
       return dispatch({ type: GET_CLIENT_REVIEW, payload: reviewDB });
     } catch (error) {
@@ -367,7 +379,7 @@ export const orderAndFilter = (filterByType, sort) => {
   return async function (dispatch) {
     try {
       const res = await axios.get(
-        `${URL_SERVIDOR}/product?filterByType=${filterByType}&sort=${sort}`
+        `/product?filterByType=${filterByType}&sort=${sort}`
       );
       const filterProducts = res.data;
       return dispatch({ type: ORDER_FILTER, payload: filterProducts });
@@ -381,9 +393,7 @@ export const orderAndFilter = (filterByType, sort) => {
 export const getFavorites = (id_client) => {
   return async function (dispatch) {
     try {
-      const res = await axios.get(
-        `${URL_SERVIDOR}/favorite/client/${id_client}`
-      );
+      const res = await axios.get(`/favorite/client/${id_client}`);
       const clientFavorites = res.data;
       return dispatch({ type: GET_FAVORITES, payload: clientFavorites });
     } catch (error) {
@@ -396,7 +406,7 @@ export const getFavorites = (id_client) => {
 export const createFavoriteAction = (favorite) => {
   return async function (dispatch) {
     try {
-      const res = await axios.post(`${URL_SERVIDOR}/favorite`, favorite);
+      const res = await axios.post(`/favorite`, favorite);
       const favoriteDB = res.data;
       return dispatch({ type: CREATE_FAVORITE, payload: favoriteDB });
     } catch (error) {
@@ -409,7 +419,7 @@ export const createFavoriteAction = (favorite) => {
 export const deleteFavoriteAction = (product_id) => {
   return async function (dispatch) {
     try {
-      const res = await axios.delete(`${URL_SERVIDOR}/favorite/${product_id}`);
+      const res = await axios.delete(`/favorite/${product_id}`);
       const favorite = res.data;
       return dispatch({ type: DELETE_FAVORITE, payload: favorite.id });
     } catch (error) {
@@ -422,9 +432,7 @@ export const deleteFavoriteAction = (product_id) => {
 export const getClientAllFavorites = (client_id) => {
   return async function (dispatch) {
     try {
-      const res = await axios.get(
-        `${URL_SERVIDOR}/favorite/client/${client_id}`
-      );
+      const res = await axios.get(`/favorite/client/${client_id}`);
       const favorites = res.data;
       return dispatch({ type: GET_CLIENT_FAVORITE, payload: favorites });
     } catch (error) {
@@ -448,9 +456,7 @@ export const logoutUser = () => {
 export const getProductReviews = (id_product) => {
   return async function (dispatch) {
     try {
-      const res = await axios.get(
-        `${URL_SERVIDOR}/review/product/${id_product}`
-      );
+      const res = await axios.get(`/review/product/${id_product}`);
       const productReviews = res.data;
       return dispatch({ type: GET_PRODUCT_REVIEWS, payload: productReviews });
     } catch (error) {
@@ -462,7 +468,7 @@ export const getProductReviews = (id_product) => {
 export const getAllClients = () => {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${URL_SERVIDOR}/client`);
+      const res = await axios.get(`/client`);
       const clients = res.data;
       dispatch({ type: GET_ALL_CLIENTS, payload: clients });
     } catch (error) {
@@ -474,9 +480,8 @@ export const getAllClients = () => {
 export const getMercadoPagoLink = (emailAndProducts) => {
   return async function (dispatch) {
     try {
-      const res = await axios.post(`${URL_SERVIDOR}/payment`, emailAndProducts);
+      const res = await axios.post(`/payment`, emailAndProducts);
       const MPLink = res.data;
-      console.log(res);
       return dispatch({ type: GET_MP_LINK, payload: MPLink });
     } catch (error) {
       console.log(error.response.data);
@@ -486,13 +491,13 @@ export const getMercadoPagoLink = (emailAndProducts) => {
 
 export const sendEmail = (form, type) => {
   return async function (dispatch) {
-    if (type){
-      form= {...form, type};
-    }else throw new Error('Type is missing.');
+    if (type) {
+      form = { ...form, type };
+    } else throw new Error("Type is missing.");
     try {
-      const res = await axios.post(`${URL_SERVIDOR}/mail`, form);
+      const res = await axios.post(`/mail`, form);
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   };
 };
@@ -500,7 +505,7 @@ export const sendEmail = (form, type) => {
 // export const getCreatedOrderId = (order) => {
 //   return async (dispatch) => {
 //     try {
-//       const res = await axios.get(`${URL_SERVIDOR}/order`);
+//       const res = await axios.get(`/order`);
 //       const orders = res.data;
 //       const foundOrder = orders.find((o) => o.ClientId === order.ClientId);
 

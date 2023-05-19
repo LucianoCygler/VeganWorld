@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 import { auth, googleProvider } from "../../Firebase/firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { validateLogin } from "../../redux/actions/actions";
@@ -10,7 +10,7 @@ const LoginForm = ({ handleCloseModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [value, setValue] = useState("");
-  const login = { email: email, contraseña: password };
+  const login = { email: email };
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [rememberPassword, setRememberPassword] = useState(false);
@@ -59,7 +59,6 @@ const LoginForm = ({ handleCloseModal }) => {
   useEffect(() => {
     setValue(localStorage.getItem("email"));
   }, []);
-  console.log(value);
   useEffect(() => {
     if (user && value === "") {
       localStorage.setItem("user", JSON.stringify(user));
@@ -122,7 +121,7 @@ const LoginForm = ({ handleCloseModal }) => {
 
       <hr className="my-4" />
 
-      <button class="button" onClick={SignInWithGoogle}>
+      <button class="button3" onClick={SignInWithGoogle}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="xMidYMid"

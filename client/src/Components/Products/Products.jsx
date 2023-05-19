@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Products.module.css";
 import Product from "./Product/Product";
 
-function Products({ products }) {
+function  Products({ products }) {
   return (
     <div className={styles.mainContainer}>
       {products?.length > 0 &&

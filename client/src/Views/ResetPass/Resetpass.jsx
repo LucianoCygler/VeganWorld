@@ -1,20 +1,23 @@
 import React, { useState } from 'react'
 import s from './Resetpass.module.css'
-// import { getAuth } from "firebase/auth";
 import {auth} from '../../Firebase/firebase'
+import { sendPasswordResetEmail } from 'firebase/auth'
+
 
 function Resetpass() {
-  // const auth = getAuth()
-
-
+  
+  
   const [email, setEmail] = useState("")
-
+  
+  
   const handleChange = (e) => {
     setEmail(e.target.value)    
   }
 
+
   const handleClick = () => {
-    auth.sendPasswordResetEmail(email)
+    console.log(email);
+    sendPasswordResetEmail(auth, email)
   .then(function() {
     // Correo electrónico de restablecimiento de contraseña enviado.
     console.log("correo enviado");
@@ -27,9 +30,10 @@ function Resetpass() {
   
 
   return (
-    <div>
+    <div className={s.container}>
+        
         <h1>RESETPASS</h1>
-        <h1>RESETPASS</h1>
+        <h2>Los expertos en front dar estilos aqui porfa!!!!!</h2>
         <div >
         <label>E-mail</label>
         <input className={s.input} value={email} onChange={handleChange} name='name'  type="text" />

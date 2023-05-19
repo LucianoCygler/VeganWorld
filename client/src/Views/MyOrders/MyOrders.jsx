@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getClientOrders,
@@ -7,65 +7,60 @@ import {
 import OrderDetail from "./OrderDetail/OrderDetail";
 import styles from "./MyOrders.module.css";
 import { useNavigate } from "react-router-dom";
-import { Button, Modal } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import LoginForm from "../Login/LoginForm";
-
-import {
-	Box,
-	Tab,
-	TabList,
-	TabPanel,
-	TabPanels,
-	Tabs,
-	Accordion,
-	Divider,
-	useDisclosure,
-	useToast,
-	Step,
-	StepDescription,
-	StepIcon,
-	StepIndicator,
-	StepNumber,
-	StepSeparator,
-	StepStatus,
-	StepTitle,
-	Stepper,
-	useSteps,
-} from "@chakra-ui/react";
-import AlertPopUp from "./AlertPopUp/AlertPopUp";
-
-const arrayProducts = require("../../Components/Products/arrayProducts.js");
 
 const MyOrders = () => {
   const clientOrders = useSelector((state) => state.clientOrders);
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
 
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
-	const toast = useToast();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const userJSON = localStorage.getItem("user");
-  const userObj = JSON.parse(userJSON);
-  useEffect(() => {
-    if (!userObj) {
-      navigate("/login");
-    } else {
-      const client_id = userObj.id;
-      dispatch(getClientOrders(client_id));
-    }
-  }, [selectedOrder, isAuthenticated]);
+  const email = localStorage.getItem("email");
 
-  const showPopupHandler = (order) => {
-    setSelectedOrder(order);
-    setIsPopupOpen(true);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
-	const { activeStep } = useSteps({
-		index: 1,
-		count: steps.length,
-	});
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
+  const closePopup = () => {
+    setSelectedOrder(null);
+    setIsPopupOpen(false);
+  };
+
+  useEffect(() => {
+    dispatch(getUserDataByEmail(email));
+  }, [email]);
+
+  useEffect(() => {
+    if (user) {
+      const client_id = user.id;
+      dispatch(getClientOrders(client_id));
+    }
+  }, [user, selectedOrder]);
+  const showPopupHandler = (order) => {
+    if (user.id) {
+      setSelectedOrder(order);
+      setIsPopupOpen(true);
+    } else {
+      setIsPopupOpen(false);
+      // Abre el popup de inicio de sesión
+      setIsLoginOpen(true);
+    }
+  };
+
+  const handleLoginClose = (order) => {
+    setIsLoginOpen(false);
+  };
 
   return (
     <div className={styles.mainContainer}>
