@@ -10,7 +10,7 @@ const LoginForm = ({ handleCloseModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [value, setValue] = useState("");
-  const login = { email: email, contraseña: password };
+  const login = { email: email};
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [rememberPassword, setRememberPassword] = useState(false);

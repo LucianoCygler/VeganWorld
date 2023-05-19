@@ -1,7 +1,7 @@
 const { Client } = require("../../db");
 const bcrypt = require("bcrypt");
 
-async function getClientChecked(email, contraseña) {
+async function getClientChecked(email) {
   const client = await Client.findOne({
     where: { email: email },
   });
@@ -10,11 +10,11 @@ async function getClientChecked(email, contraseña) {
     throw new Error("Dirección de correo electrónico desconocida");
   }
 
-  const isMatch = await bcrypt.compare(contraseña, client.contraseña);
+  // const isMatch = await bcrypt.compare(contraseña, client.contraseña);
 
-  if (!isMatch) {
-    throw new Error("Contraseña incorrecta");
-  }
+  // if (!isMatch) {
+  //   throw new Error("Contraseña incorrecta");
+  // }
 
   return client;
 }
