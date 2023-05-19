@@ -12,16 +12,13 @@ import { logoutUser } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import PopUpLogin from "../../Views/Login/PopUpLogin";
 
-
-function NavBar() {  
-
+function NavBar() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
   const handleLogout = () => {
-    localStorage.setItem("email", "")
+    localStorage.removeItem("email");
   };
 
-  
   return (
     <div className={styles.mainContainer}>
       <div className={styles.divLeft}>
@@ -42,7 +39,7 @@ function NavBar() {
               <Link to="/Favorites">Favorites</Link>{" "}
               <Link to="/MyOrders">Orders</Link>{" "}
               <Link to="/MyReviews">Reviews</Link>{" "}
-              <Link to="/ContactUs">Contact</Link> 
+              <Link to="/ContactUs">Contact</Link>
               <Link to="/About">About</Link>{" "}
             </div>
           </div>
@@ -53,11 +50,7 @@ function NavBar() {
             className={styles.fontAwesome}
           />
         </NavLink>
-        {localStorage.getItem("email") ? (
-          ""
-        ) : (
-          <PopUpLogin /> 
-        )}
+        {localStorage.getItem("email") ? "" : <PopUpLogin />}
         <NavLink to="/" className={styles.link}>
           <FontAwesomeIcon
             onClick={handleLogout}

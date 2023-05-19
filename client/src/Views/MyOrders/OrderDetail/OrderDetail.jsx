@@ -13,7 +13,6 @@ import {
 	Stack,
 	useDisclosure,
 } from "@chakra-ui/react";
-import { NotAllowedIcon } from "@chakra-ui/icons";
 import TableOrder from "../TableOrder/TableOrder";
 
 const OrderDetail = ({ order, cancelRef, onOpen }) => {
@@ -75,17 +74,6 @@ const OrderDetail = ({ order, cancelRef, onOpen }) => {
 							</Button>
 						</>
 					)
-					// <IconButton
-					// 	size={"sm"}
-					// 	icon={<NotAllowedIcon boxSize={"4em"} />}
-					// 	colorScheme="red"
-					// 	aria-label="Delete"
-					// onClick={(event) => {
-					// 	event.stopPropagation();
-					// 	onOpen();
-					// }}
-					// 	mx={10}
-					// />
 				}
 				{/* BOTON DE DESPLEGAR */}
 				<AccordionIcon />
