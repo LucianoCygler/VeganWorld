@@ -23,16 +23,21 @@ function Detail() {
 
   const [quantity, setQuantity] = useState(1);
   const product_id = id;
+  
+  // useEffect(() => {
+  //   dispatch(getProductById(id));
+  //   return () => dispatch(cleanDetail());
+  // }, [dispatch, id]);
+  
+  // useEffect(() => {
 
-  useEffect(() => {
-    dispatch(getProductById(id));
-    return () => dispatch(cleanDetail());
-  }, [dispatch, id]);
-  useEffect(() => {
-    if (product_id) {
-      dispatch(getProductReviews(product_id));
-    }
-  }, [product_id]);
+  //   dispatch(getProductReviews(product_id));
+  // }, [productReviews, product_id, dispatch]);
+
+  //   if (product_id) {
+  //     dispatch(getProductReviews(product_id));
+  //   }
+  // }, [product_id])
 
   const handleClick = () => {
     try {

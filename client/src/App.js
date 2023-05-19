@@ -19,8 +19,6 @@ import {
 
 import { NavBar } from "./Components/index";
 
-import { ChakraProvider } from "@chakra-ui/react";
-
 function App() {
   //************************************* OCULTAR / MOSTRAR NAVBAR *********************************/
   const location = useLocation();
@@ -30,6 +28,7 @@ function App() {
 
   return (
     <div className="App">
+
       <ChakraProvider />
       {showNav && <NavBar />}
       <Routes>
@@ -47,6 +46,7 @@ function App() {
         <Route path="/About" element={<About />} />
       </Routes>
       <ChakraProvider />
+
     </div>
   );
 }
