@@ -3,7 +3,6 @@ import styles from "./Cart.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faRecycle } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import './Cart.css';
 import {
   cleanCart,
   createOrder,
@@ -14,6 +13,8 @@ import {
 } from "../../redux/actions/actions";
 import Pop_up from "../../Utils/Pop_up/Pop_up";
 import { NavLink, useNavigate } from "react-router-dom";
+import { Button, Modal } from "react-bootstrap";
+import LoginForm from "../Login/LoginForm";
 
 function Cart() {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ function Cart() {
   const [subTotal, setSubTotal] = useState(0);
   const [updateCart, setUpdateCart] = useState(cart);
   const [isOrderGenerated, setIsOrderGenerated] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   function products() {
     const idsProductos = [];
@@ -35,6 +37,14 @@ function Cart() {
     }
     return idsProductos;
   }
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
 
   function subTotalF() {
     let subTotalP = 0;
@@ -62,18 +72,20 @@ function Cart() {
         };
 
         try {
-          dispatch(createOrder(order));
+          dispatch(createOrder(order)).then((order) => {
+            const form = { user: user, order: order };
+            dispatch(sendEmail(form, "genOrder"));
+          });
+
           Pop_up(
             "success",
-
             "Order Ceated",
             "You can find your orders in MyOrders!",
             "An E-mail has been sent to your address with the order details."
-
           );
           setIsOrderGenerated(true);
-          const form = {user, order}
-          dispatch(sendEmail(form, 'genOrder'));
+          const form = { user, order };
+          dispatch(sendEmail(form, "genOrder"));
         } catch ({ message }) {
           Pop_up("error", "Failed to Create Order", message);
         }
@@ -120,6 +132,14 @@ function Cart() {
 
   return (
     <div className={styles.mainContainer}>
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Sign in</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <LoginForm handleCloseModal={handleCloseModal}></LoginForm>{" "}
+        </Modal.Body>
+      </Modal>
       {cart !== null && updateCart.length > 0 ? (
         <>
           {updateCart.map((product, index) => {
@@ -185,14 +205,26 @@ function Cart() {
                 </div>
 
                 <div className={styles.delete}>
-                <button class="buttonDelete"
-                name="delete"
-                onClick={handleClick}
-                value={product.id}>
-                  <svg viewBox="0 0 448 512" class="svgIcon" >
-                    <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" ></path>
+                  <button
+                    className={styles.btn}
+                    name="delete"
+                    value={product.id}
+                    onClick={handleClick}
+                  >
+                    <svg
+                      viewBox="0 0 15 17.5"
+                      height="17.5"
+                      width="15"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={styles.icon}
+                    >
+                      <path
+                        transform="translate(-2.5 -1.25)"
+                        d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z"
+                        id="Fill"
+                      ></path>
                     </svg>
-                </button>
+                  </button>
                 </div>
               </div>
             );
@@ -229,9 +261,9 @@ function Cart() {
                   )}
                 </>
               ) : (
-                <NavLink to={"/login"}>
-                  <p>Login</p>
-                </NavLink>
+                <Button variant="primary" onClick={handleShowModal}>
+                  Login to create Order!
+                </Button>
               )}
             </div>
             <div className={styles.orderTotal}></div>
