@@ -1,3 +1,16 @@
 .input {
     border: solid 1px;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 200px;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px;
+}
+
+.container h2 {
+    color: red;
+}
