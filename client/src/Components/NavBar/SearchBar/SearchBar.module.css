@@ -44,8 +44,8 @@
     opacity: 1;
     right: 5px;
     transition: all 0.5s ease;
-    background-color: #417D7A;
-    color: #F2F9F1;
+    background-color: #3D8361;
+    color: #F6FFDE;
     border: transparent;
     border-radius: 10px;
     text-align: center;
@@ -60,13 +60,13 @@
 }
 
 .inputClass::placeholder{
-    color: #F2F9F1;
+    color: #F6FFDE;
 }
 
 .fontIcon {
     position: relative;
     right: 230px;
-    color: #F2F9F1;
+    color: #F6FFDE;
     transition: transform 0.2s ease-in-out;
 }
 
