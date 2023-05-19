@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
   font-family: "Raleway";
   src: url("../../Utils/Raleway/Raleway-VariableFont_wght.ttf")
     format("truetype");
@@ -71,7 +71,7 @@
   align-items: center;
 }
 
-/* ELEMENTS */
+
 
 .image {
   width: 300px;
@@ -89,11 +89,7 @@
 .image:hover {
   transform: scale(1.1);
 }
-/* 
-.p {
-  display: flex;
-  flex-direction: row;
-} */
+
 
 .spanPrice {
   margin-left: 180px;
@@ -167,11 +163,11 @@
   grid-template-columns: repeat(
     3,
     1fr
-  ); /* Define 3 columnas del mismo tamaño */
+  );
 }
 
 .card {
-  flex: 0 0 calc(33.33% - 16px); /* Tamaño deseado para cada tarjeta */
+  flex: 0 0 calc(33.33% - 16px);
   background-color: #f5f5f5;
   border-radius: 4px;
   max-width: 80%;
@@ -182,7 +178,7 @@
   margin-right: 1em;
 }
 
-/* Resto de estilos de las tarjetas */
+
 .card span {
   font-weight: bold;
 }
@@ -200,4 +196,4 @@
 .card .date {
   color: #888;
   font-size: 14px;
-}
+} */

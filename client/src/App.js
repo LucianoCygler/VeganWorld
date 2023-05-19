@@ -19,6 +19,10 @@ import {
 
 import { NavBar } from "./Components/index";
 
+
+import axios from "axios";
+axios.defaults.baseURL = "https://localhost:3001/";
+
 function App() {
   //************************************* OCULTAR / MOSTRAR NAVBAR *********************************/
   const location = useLocation();
@@ -29,7 +33,8 @@ function App() {
   return (
     <div className="App">
 
-      <ChakraProvider />
+     
+
       {showNav && <NavBar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -45,7 +50,6 @@ function App() {
         <Route path="/ResetPass" element={<Resetpass />} />
         <Route path="/About" element={<About />} />
       </Routes>
-      <ChakraProvider />
 
     </div>
   );

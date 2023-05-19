@@ -19,6 +19,8 @@
     "@uiball/loaders": "^1.2.6",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0-alpha3",
+    "chakra": "^0.0.3",
+    "dotenv": "^16.0.3",
     "firebase": "^9.22.0",
     "framer-motion": "^10.12.12",
     "react": "^18.2.0",
@@ -29,7 +31,7 @@
     "react-scripts": "^5.0.1",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
-    "sweetalert2": "^11.7.5",
+    "sweetalert2": "^11.4.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
