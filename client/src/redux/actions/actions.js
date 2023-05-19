@@ -390,17 +390,17 @@ export const orderAndFilter = (filterByType, sort) => {
 };
 
 //OBTENER FAVORITOS
-export const getFavorites = (id_client) => {
-  return async function (dispatch) {
-    try {
-      const res = await axios.get(`/favorite/client/${id_client}`);
-      const clientFavorites = res.data;
-      return dispatch({ type: GET_FAVORITES, payload: clientFavorites });
-    } catch (error) {
-      console.log(error.response.data);
-    }
-  };
-};
+// export const getFavorites = (id_client) => {
+//   return async function (dispatch) {
+//     try {
+//       const res = await axios.get(`/favorite/client/${id_client}`);
+//       const clientFavorites = res.data;
+//       return dispatch({ type: GET_FAVORITES, payload: clientFavorites });
+//     } catch (error) {
+//       console.log(error.response.data);
+//     }
+//   };
+// };
 
 //CREAR FAVORITOS
 export const createFavoriteAction = (favorite) => {
@@ -428,7 +428,6 @@ export const deleteFavoriteAction = (product_id) => {
   };
 };
 
-//ELIMINAR FAVORITOS
 export const getClientAllFavorites = (client_id) => {
   return async function (dispatch) {
     try {

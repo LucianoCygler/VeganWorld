@@ -16,7 +16,7 @@ const Favorites = () => {
   const navigate = useNavigate();
 
   const [showModal, setShowModal] = useState(false);
-
+  const email = localStorage.getItem("email");
   const handleCloseModal = () => {
     setShowModal(false);
   };
@@ -25,11 +25,8 @@ const Favorites = () => {
     setShowModal(true);
   };
   useEffect(() => {
-    const emailCurrent = localStorage.getItem("email");
-    if (emailCurrent) {
-      dispatch(getUserDataByEmail(emailCurrent));
-    }
-  }, []);
+    dispatch(getUserDataByEmail(email));
+  }, [email]);
 
   useEffect(() => {
     if (user) {
