@@ -11,6 +11,7 @@ import styles from "./NavBar.module.css";
 import { logoutUser } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import PopUpLogin from "../../Views/Login/PopUpLogin";
+import { useLocation } from "react-router-dom";
 
 function NavBar() {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ function NavBar() {
   const handleLogout = () => {
     localStorage.removeItem("email");
   };
+  const location = useLocation();
 
   return (
     <div className={styles.mainContainer}>
@@ -27,9 +29,10 @@ function NavBar() {
         </NavLink>
       </div>
       <div className={styles.divMid}>
-        <SearchBar />
+        {location.pathname === "/Catalog" ? <SearchBar /> : ""}
       </div>
       <div className={styles.divRight}>
+        <Link to="/OurProducts">Our Products</Link>{" "}
         <div className={styles.redirects}>
           <div className={styles.dropdown}>
             <span className={styles.dropbtn}>Menu</span>
