@@ -35,38 +35,41 @@
 
 .tittle {
     font-size: 15px;
-    text-shadow: 0 0 5px #EEF2E6;
+    text-shadow: 0 0 5px #F6FFDE;
 }
 
 .inputClass {
-    width: 0;
+    width: 500px;
     position: relative;
-    opacity: 0;
+    opacity: 1;
     right: 5px;
     transition: all 0.5s ease;
-    background-color: #3D8361;
-    color: #EEF2E6;
+    background-color: #417D7A;
+    color: #F2F9F1;
     border: transparent;
-    border-radius: 15px;
+    border-radius: 10px;
     text-align: center;
     outline: none;
+    height: 40px;
+    margin-right: 200px;
 }
 
-.inputClass.show{
-    width: 200px;
-    right: 5px;
-    opacity: 1;
+.inputClass::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .inputClass::placeholder{
-    color: #EEF2E6;
+    color: #F2F9F1;
 }
 
-.fontAwesome {
-    transition: transform 0.5s;
+.fontIcon {
+    position: relative;
+    right: 230px;
+    color: #F2F9F1;
+    transition: transform 0.2s ease-in-out;
 }
 
-.fontAwesome:hover {
-    transform: scaleX(-1);
+.fontIcon:hover {
+    transform: scale(1.5);
 }
-

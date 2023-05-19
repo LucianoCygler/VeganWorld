@@ -14,7 +14,7 @@ const uploadImage = async (filePath) => {
 
 const createProductHandler = async (req, res) => {
   if (req.body?.imagen) {
-    const result = await uploadImage(req.body.imagen);
+    const result = await uploadImage(req.body.imagen)
     // const imgNube = result.secure_url;
 
     Product.imagen = {

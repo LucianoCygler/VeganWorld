@@ -3,7 +3,7 @@ import SearchBar from "./SearchBar/SearchBar";
 import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faHouse,
+  faBars,
   faCartShopping,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
@@ -12,49 +12,45 @@ import { logoutUser } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import PopUpLogin from "../../Views/Login/PopUpLogin";
 
-
-function NavBar() {  
-
+function NavBar() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
   const handleLogout = () => {
-    localStorage.setItem("email", "")
+    localStorage.removeItem("email");
   };
 
-  
   return (
     <div className={styles.mainContainer}>
       <div className={styles.divLeft}>
         <NavLink to="/" className={styles.link}>
-          <FontAwesomeIcon icon={faHouse} className={styles.fontAwesome} />
+          <h1 className={styles.tittle}>VeganWorld!</h1>
         </NavLink>
+      </div>
+      <div className={styles.divMid}>
+        <SearchBar />
+      </div>
+      <div className={styles.divRight}>
+        <div className={styles.redirects}>
+          <div className={styles.dropdown}>
+            <FontAwesomeIcon className={styles.dropbtn} icon={faBars}/>
+            <div className={styles.dropdownContent}>
+              <div className={styles.triangle}></div>
+              <Link to="/MyProfile">Profile</Link>{" "}
+              <Link to="/Favorites">Favorites</Link>{" "}
+              <Link to="/MyOrders">Orders</Link>{" "}
+              <Link to="/MyReviews">Reviews</Link>{" "}
+              <Link to="/ContactUs">Contact</Link>
+              <Link to="/About">About</Link>{" "}
+            </div>
+          </div>
+        </div>
         <NavLink to="/Cart" className={styles.link}>
           <FontAwesomeIcon
             icon={faCartShopping}
             className={styles.fontAwesome}
           />
         </NavLink>
-      </div>
-      <div className={styles.divMid}>
-        <NavLink to={"/"} className={styles.tittle}>
-        <h1 >VeganWorld!</h1>
-        </NavLink>
-      </div>
-      <div className={styles.divRight}>
-        <div className={styles.redirects}>
-          <Link to="/MyProfile">Profile</Link>{" "}
-          <Link to="/Favorites">Favorites</Link>{" "}
-          <Link to="/MyOrders">Orders</Link>{" "}
-          <Link to="/MyReviews">Reviews</Link>{" "}
-          <Link to="/ContactUs">Contact</Link> <Link to="/About">About</Link>{" "}
-        </div>
-
-        <SearchBar />
-        {localStorage.getItem("email") ? (
-          ""
-        ) : (
-          <PopUpLogin /> 
-        )}
+        {localStorage.getItem("email") ? "" : <PopUpLogin />}
         <NavLink to="/" className={styles.link}>
           <FontAwesomeIcon
             onClick={handleLogout}
