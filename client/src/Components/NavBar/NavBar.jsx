@@ -29,7 +29,7 @@ function NavBar() {
         </NavLink>
       </div>
       <div className={styles.divMid}>
-        {location.pathname === "/Catalog" ? <SearchBar /> : ""}
+        {location.pathname === "/OurProducts" ? <SearchBar /> : ""}
       </div>
       <div className={styles.divRight}>
         <Link to="/OurProducts">Our Products</Link>{" "}
