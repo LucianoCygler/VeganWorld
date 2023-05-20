@@ -53,33 +53,33 @@ function HomePage() {
   const shuffledReviews = shuffle(allReviews);
   const randomReviews = shuffledReviews.slice(0, 4);
 
-  useEffect(() => {
-    dispatch(getAllProducts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getAllProducts());
+  // }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(orderAndFilter(filterByType, sort));
-  }, [filterByType, sort, dispatch]);
+  // useEffect(() => {
+  //   dispatch(orderAndFilter(filterByType, sort));
+  // }, [filterByType, sort, dispatch]);
 
   useEffect(() => {
     dispatch(getAllReviews());
   }, []);
-  const [currentPage, setCurrentPage] = useState(0);
+  // const [currentPage, setCurrentPage] = useState(0);
 
-  const itemsPerPage = 12;
+  // const itemsPerPage = 12;
 
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentItems = products.slice(startIndex, endIndex);
+  // const startIndex = currentPage * itemsPerPage;
+  // const endIndex = startIndex + itemsPerPage;
+  // const currentItems = products.slice(startIndex, endIndex);
 
-  const totalPages = Math.ceil(products.length / itemsPerPage);
+  // const totalPages = Math.ceil(products.length / itemsPerPage);
 
-  const handleFilter = (e) => {
-    setFilterByType(e.target.value);
-  };
-  const handleSort = (e) => {
-    setSort(e.target.value);
-  };
+  // const handleFilter = (e) => {
+  //   setFilterByType(e.target.value);
+  // };
+  // const handleSort = (e) => {
+  //   setSort(e.target.value);
+  // };
   useEffect(() => {
     AOS.init(); // Inicializa AOS
   }, []); //#d8d8d8

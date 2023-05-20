@@ -18,7 +18,7 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
   const dispatch = useDispatch();
   const product_id = id;
   const client_id = user.id;
-
+  const email = localStorage.getItem("email");
   const handleFavorite = () => {
     if (isFav) {
       setIsFav(false);
@@ -66,7 +66,7 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
       onMouseOver={() => setShowInfo(true)}
       onMouseLeave={() => setShowInfo(false)}
     >
-      {localStorage.getItem("email") !== null ? (
+      {email ? (
         <div>
           {" "}
           {!isFav ? (
