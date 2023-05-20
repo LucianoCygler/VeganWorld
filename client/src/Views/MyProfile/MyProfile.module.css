@@ -1,20 +1,23 @@
 .container {
-   /* padding: 60px 0px 0px 50px;  */
+  /* padding: 60px 0px 0px 50px;  */
   display: flex;
   justify-content: center;
   align-items: center;
-/*   
+  height: 100vh;
+  /*   
   padding-top: 0.1em; */
-  
+  background-image: url("https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   text-transform: capitalize;
   color: #eef2e6;
-
 }
 
 .edit {
   margin-top: 220px;
   position: relative;
-  flex-wrap: wrap;  
+  flex-wrap: wrap;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,8 +51,7 @@
   text-transform: capitalize;
 }
 
-
-.buttonContainer{
+.buttonContainer {
   position: absolute;
   margin-top: 1000px;
   margin-right: 200px;
@@ -58,7 +60,7 @@
 .button {
   color: #eef2e6;
   border: transparent;
- justify-content: center;
+  justify-content: center;
   background-color: #1c6758;
   margin: -250px 0px 0px 210px;
   width: 100px;
@@ -100,8 +102,8 @@
   border: transparent;
   color: #eef2e6;
   border-radius: 8px;
-  text-align: center;  
-  margin: 0px 10px 45px 50px  ;
+  text-align: center;
+  margin: 0px 10px 45px 50px;
   box-shadow: 0 0 15px 5px #1c6758;
   text-shadow: 0 0 5px #000000;
   transition: transform 0.3s ease-in-out;
@@ -121,7 +123,7 @@
   display: flex;
   width: 250px;
   height: 28px;
-  margin-top:10px;
+  margin-top: 10px;
   margin-left: 50px;
 }
 
@@ -129,7 +131,7 @@
   display: flex;
   width: 250px;
   height: 28px;
-  margin-top:10px;
+  margin-top: 10px;
   margin-left: 75px;
 }
 
@@ -137,7 +139,7 @@
   display: flex;
   width: 250px;
   height: 28px;
-  margin-top:10px;
+  margin-top: 10px;
   margin-left: 115px;
 }
 
@@ -145,7 +147,7 @@
   display: flex;
   width: 250px;
   height: 28px;
-  margin-top:10px;
+  margin-top: 10px;
   margin-left: 100px;
 }
 
@@ -153,7 +155,7 @@
   display: flex;
   width: 250px;
   height: 28px;
-  margin-top:10px;
+  margin-top: 10px;
   margin-left: 130px;
 }
 
@@ -161,7 +163,7 @@
   display: flex;
   width: 250px;
   height: 28px;
-  margin-top:10px;
+  margin-top: 10px;
   margin-left: 90px;
 }
 
@@ -169,11 +171,11 @@
   display: flex;
   width: 250px;
   height: 28px;
-  margin-top:10px;
+  margin-top: 10px;
   margin-left: 50px;
 }
 
-.img{
+.img {
   display: flex;
   width: 350px;
   height: 350px;
