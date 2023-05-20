@@ -6,8 +6,10 @@
   ); /* Configura 6 columnas de tamaño igual */
   gap: 1rem;
   margin: 1rem 0;
+  margin-right: 4em;
+  margin-left: 4em;
   padding: 0;
-  background-color: #B6CDBD;
+  background-color: #b6cdbd;
 }
 
 .cardContainer {

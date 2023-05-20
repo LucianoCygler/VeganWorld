@@ -1,6 +1,6 @@
 .body {
   text-align: center;
-  background-color: #D8D8D8;
+  background-color: #d8d8d8;
   margin: 0;
   font-size: medium;
   padding-top: 1em;
@@ -16,13 +16,12 @@
   font-size: 60px;
   text-shadow: 1px 1px rgb(0, 0, 0), 1px 1px rgb(13, 5, 25), -3px 0 4px #000000;
   font-family: Arial, Helvetica, sans-serif;
-  color: #C9DBB2;
+  color: #c9dbb2;
   padding: 16px;
   font-weight: lighter;
   text-align: center;
   display: block;
   margin: 16px;
-  margin-top: 1em;
 }
 
 .card {

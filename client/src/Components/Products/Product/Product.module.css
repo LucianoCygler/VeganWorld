@@ -6,7 +6,7 @@
   height: 275px;
   margin: 5px 10px;
   max-width: 1000px;
-  background-color: #D8D8D8;
+  background-color: #d8d8d8;
   position: relative;
   transition: all 0.1s ease-in-out;
 }
@@ -89,11 +89,12 @@
   left: 93px;
   top: 10px;
   opacity: 0;
-  color: #FF1700;
+  color: #ff1700;
   font-size: 20px;
 }
 
-.favButton:hover, .favButton:focus {
+.favButton:hover,
+.favButton:focus {
   color: #af0c0c;
 }
 /* .favButton.animate {
