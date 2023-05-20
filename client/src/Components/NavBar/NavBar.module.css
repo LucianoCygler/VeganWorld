@@ -5,8 +5,8 @@
   justify-content: space-between;
   align-items: center;
 
-  background-color: #1D5C63;
-  box-shadow: 0 0 15px #1A3C40;
+  background-color: #1d5c63;
+  box-shadow: 0 0 15px #1a3c40;
   width: 100%;
   position: sticky;
   padding: 20px;
@@ -28,8 +28,7 @@
   align-items: center;
 }
 .redirects a {
-
-  color: #F2F9F1;
+  color: #f2f9f1;
 
   text-decoration: none;
   cursor: pointer;
@@ -48,16 +47,14 @@
   gap: 1rem;
   margin-right: 55px;
 
-  color: #F2F9F1;
-
+  color: #f2f9f1;
 }
 
 /************************* ELEMENTS *************/
 
 .fontAwesome {
-
   transition: transform 0.2s ease-in-out;
-  color: #F2F9F1;
+  color: #f2f9f1;
 
   font-size: 20px;
 }
@@ -67,8 +64,7 @@
 }
 
 .tittle {
-
-  color: #F2F9F1;
+  color: #f2f9f1;
 
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-decoration: none;
@@ -92,12 +88,11 @@
 .dropdown {
   position: relative;
   display: inline-block;
-
   box-sizing: border-box;
 }
 
 .dropdown .dropbtn {
-  color: #F2F9F1;
+  color: #f2f9f1;
 
   cursor: pointer;
   transition: color 0.3s;
@@ -108,14 +103,14 @@
   background-color: #1c6758;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   transition: transform 0.2s ease-in-out;
-  transform: scale(1.3)
+  transform: scale(1.3);
 }
 
 .dropdownContent {
   display: none;
   position: absolute;
-  background-color: #417D7A;
-  box-shadow: 0 0 15px #1A3C40;
+  background-color: #417d7a;
+  box-shadow: 0 0 15px #1a3c40;
   z-index: 1;
   width: 120px;
   font-size: 20px;
@@ -124,9 +119,9 @@
   border-radius: 5px;
   z-index: 10;
   padding: 10px;
-  color: #F2F9F1;   
-  text-decoration: none;   
-  transition: background-color 0.3s;   
+  color: #f2f9f1;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
 .triangle {
@@ -135,25 +130,20 @@
   right: 30px;
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  border-bottom: 15px solid #417D7A;
+  border-bottom: 15px solid #417d7a;
   border-top: 15px solid transparent;
-  z-index: -10;
+  z-index: 999;
 }
 
 .dropdownContent a {
-
-  color: #F2F9F1;
-
+  color: #f2f9f1;
   text-decoration: none;
   display: block;
-  transition: background-color 0.3s;
-
-  width: 100%;
-
+  transition: 0.3s;
 }
 
 .dropdownContent a:hover {
-  width: 100%;
+  width: 120%;
   background-color: #99c4b8;
 }
 

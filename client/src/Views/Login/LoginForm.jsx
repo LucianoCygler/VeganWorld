@@ -7,9 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./LoginForm.css";
 
-
 const LoginForm = ({ handleCloseModal }) => {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [value, setValue] = useState("");
@@ -20,20 +18,20 @@ const LoginForm = ({ handleCloseModal }) => {
   const [validEmail, setValidEmail] = useState(true);
   const [validPassword, setValidPassword] = useState(true);
   const [canLogin, setCanLogin] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const handleRememberPassword = () => {    
-    setRememberPassword(!rememberPassword);    
+  const handleRememberPassword = () => {
+    setRememberPassword(!rememberPassword);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (validEmail && validPassword) {
-      setCanLogin(true); 
+      setCanLogin(true);
       navigate("/");
     } else {
-      setCanLogin(false); 
+      setCanLogin(false);
     }
 
     signInWithEmailAndPassword(auth, email, password)
@@ -78,7 +76,7 @@ const LoginForm = ({ handleCloseModal }) => {
 
   const validarEmail = (email) => {
     const patron = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return patron.test(email);  
+    return patron.test(email);
   };
 
   return (
@@ -88,13 +86,17 @@ const LoginForm = ({ handleCloseModal }) => {
           type="email"
           name="email"
           id="typeEmailX-2"
-          className={`form-control form-control-lg ${validEmail ? "" : "is-invalid"}`}
+          className={`form-control form-control-lg ${
+            validEmail ? "" : "is-invalid"
+          }`}
           onChange={handleChange}
         />
         <label className="form-label" htmlFor="typeEmailX-2">
           Email
         </label>
-        {!validEmail && <div className="invalid-feedback">Correo electrónico inválido</div>}
+        {!validEmail && (
+          <div className="invalid-feedback">Correo electrónico inválido</div>
+        )}
       </div>
 
       <div className="form-outline mb-4">
@@ -102,13 +104,19 @@ const LoginForm = ({ handleCloseModal }) => {
           type="password"
           name="password"
           id="typePasswordX-2"
-          className={`form-control form-control-lg ${validPassword ? "" : "is-invalid"}`}
+          className={`form-control form-control-lg ${
+            validPassword ? "" : "is-invalid"
+          }`}
           onChange={handleChange}
         />
         <label className="form-label" htmlFor="typePasswordX-2">
           Password
         </label>
-        {!validPassword && <div className="invalid-feedback">La contraseña debe tener al menos 6 caracteres</div>}
+        {!validPassword && (
+          <div className="invalid-feedback">
+            La contraseña debe tener al menos 6 caracteres
+          </div>
+        )}
       </div>
 
       <div className="form-check d-flex justify-content-start mb-4">
@@ -125,7 +133,7 @@ const LoginForm = ({ handleCloseModal }) => {
         </label>
       </div>
 
-      <button class="button2" type="button" onClick={handleSubmit} >
+      <button class="button2" type="button" onClick={handleSubmit}>
         Login
       </button>
 

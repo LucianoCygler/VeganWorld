@@ -4,7 +4,8 @@ import "./Carousel.module.css";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import styles from "./Carousel.module.css";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 const products = [
   {
     id: 1,
@@ -91,7 +92,14 @@ const CustomCarousel = () => {
   const groupedProducts = chunkArray(products, productsPerPage);
 
   return (
-    <Box className={styles.carouselContainer}>
+    <Box
+      className={styles.carouselContainer}
+      zIndex={1}
+      marginTop={10}
+      data-aos="fade-right"
+      data-aos-offset="300"
+      data-aos-easing="ease-in-sine"
+    >
       <Flex
         justifyContent="center"
         alignItems="center"
