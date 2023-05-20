@@ -17,12 +17,13 @@ function OurProducts() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
   const user = useSelector((state) => state.user);
+  const filteredProducts = useSelector((state) => state.filteredProducts);
   const [filterByType, setFilterByType] = useState("");
   const [sort, setSort] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const email = localStorage.getItem("email");
   useEffect(() => {
-    dispatch(orderAndFilter());
+    dispatch(getAllProducts());
   }, []);
 
   useEffect(() => {

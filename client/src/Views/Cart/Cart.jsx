@@ -277,12 +277,7 @@ function Cart() {
           </div>
         </>
       ) : (
-        <Box margin={"auto"}>
-          <Text color="white">
-            {" "}
-            <h2>There is nothing in your cart...</h2>
-          </Text>
-        </Box>
+        <h2 className={styles.subTittle}>There is nothing in your cart...</h2>
       )}
     </div>
   );
