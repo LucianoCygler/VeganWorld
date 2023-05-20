@@ -13,15 +13,19 @@ function Resetpass() {
   const handleClick = () => {
     console.log(email);
     sendPasswordResetEmail(auth, email)
-      .then(function () {
-        // Correo electrónico de restablecimiento de contraseña enviado.
-        console.log("correo enviado");
-      })
-      .catch(function (error) {
-        // Ocurrió un error al enviar el correo electrónico de restablecimiento de contraseña.
-        console.log(error);
-      });
-  };
+
+
+  .then(function() {
+    // Correo electrónico de restablecimiento de contraseña enviado.
+    alert("correo enviado");
+  })
+  .catch(function(error) {
+    // Ocurrió un error al enviar el correo electrónico de restablecimiento de contraseña.
+    console.log(error);
+  });
+  }
+  
+
 
   return (
     <div>

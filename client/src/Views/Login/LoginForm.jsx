@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 import { auth, googleProvider } from "../../Firebase/firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { validateLogin } from "../../redux/actions/actions";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./LoginForm.css";
+
 const LoginForm = ({ handleCloseModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [value, setValue] = useState("");
-  const login = { email: email};
+  const login = { email: email };
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [rememberPassword, setRememberPassword] = useState(false);
+  const [validEmail, setValidEmail] = useState(true);
+  const [validPassword, setValidPassword] = useState(true);
+  const [canLogin, setCanLogin] = useState(false);
+  const navigate = useNavigate();
 
   const handleRememberPassword = () => {
     setRememberPassword(!rememberPassword);
@@ -22,11 +27,21 @@ const LoginForm = ({ handleCloseModal }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (validEmail && validPassword) {
+      setCanLogin(true);
+      navigate("/");
+    } else {
+      setCanLogin(false);
+    }
+
     signInWithEmailAndPassword(auth, email, password)
       .then((data) => {
         localStorage.setItem("email", data.user.email);
         dispatch(validateLogin(login));
-        localStorage.setItem("user", user);
+        localStorage.setItem(
+          "user",
+          localStorage.setItem("user", JSON.stringify(user))
+        );
         handleCloseModal();
       })
       .catch((error) => {
@@ -42,54 +57,69 @@ const LoginForm = ({ handleCloseModal }) => {
     });
   };
 
-  //   const SignInWithFacebook = () => {
-  //     signInWithPopup(auth, providerfb).then((data) => {
-  //       setValue(data.user.email);
-  //       localStorage.setItem("email", data.user.email);
-  //     });
-  //   };
-  //   const SignInWithGitHub = () => {
-  //     signInWithPopup(auth, providergit).then((data) => {
-  //       setValue(data.user.email);
-  //       localStorage.setItem("email", data.user.email);
-  //       handleCloseModal();
-  //     });
-  //   };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "email") {
+      setEmail(value);
+      setValidEmail(validarEmail(value));
+    } else if (name === "password") {
+      setPassword(value);
+      setValidPassword(value.length >= 6);
+    }
+  };
 
   useEffect(() => {
     setValue(localStorage.getItem("email"));
   }, []);
-  console.log(value);
   useEffect(() => {
     if (user && value === "") {
       localStorage.setItem("user", JSON.stringify(user));
     }
   }, [user]);
 
+  const validarEmail = (email) => {
+    const patron = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return patron.test(email);
+  };
+
   return (
     <div>
       <div className="form-outline mb-4">
         <input
           type="email"
+          name="email"
           id="typeEmailX-2"
-          className="form-control form-control-lg"
-          onChange={(e) => setEmail(e.target.value)}
+          className={`form-control form-control-lg ${
+            validEmail ? "" : "is-invalid"
+          }`}
+          onChange={handleChange}
         />
         <label className="form-label" htmlFor="typeEmailX-2">
           Email
         </label>
+        {!validEmail && (
+          <div className="invalid-feedback">Correo electrónico inválido</div>
+        )}
       </div>
 
       <div className="form-outline mb-4">
         <input
           type="password"
+          name="password"
           id="typePasswordX-2"
-          className="form-control form-control-lg"
-          onChange={(e) => setPassword(e.target.value)}
+          className={`form-control form-control-lg ${
+            validPassword ? "" : "is-invalid"
+          }`}
+          onChange={handleChange}
         />
         <label className="form-label" htmlFor="typePasswordX-2">
           Password
         </label>
+        {!validPassword && (
+          <div className="invalid-feedback">
+            La contraseña debe tener al menos 6 caracteres
+          </div>
+        )}
       </div>
 
       <div className="form-check d-flex justify-content-start mb-4">
@@ -122,7 +152,7 @@ const LoginForm = ({ handleCloseModal }) => {
 
       <hr className="my-4" />
 
-      <button class="button" onClick={SignInWithGoogle}>
+      <button class="button3" onClick={SignInWithGoogle}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="xMidYMid"

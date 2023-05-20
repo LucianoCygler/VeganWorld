@@ -16,21 +16,19 @@ import {
   Register,
   Login,
 } from "./Views/index";
-
+import OurProducts from "./Views/OurProducts/OurProducts";
 import { NavBar } from "./Components/index";
 
-import { ChakraProvider } from "@chakra-ui/react";
 
 function App() {
   //************************************* OCULTAR / MOSTRAR NAVBAR *********************************/
   const location = useLocation();
 
-  const showNav = location.pathname !== "/login";
+  const showNav = location.pathname !== "/home";
   const showNav2 = location.pathname !== "/register";
 
   return (
     <div className="App">
-      <ChakraProvider />
       {showNav && <NavBar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -45,8 +43,8 @@ function App() {
         <Route path="/ContactUs" element={<ContactUs />} />
         <Route path="/ResetPass" element={<Resetpass />} />
         <Route path="/About" element={<About />} />
+        <Route path="/OurProducts" element={<OurProducts />} />
       </Routes>
-      <ChakraProvider />
     </div>
   );
 }
