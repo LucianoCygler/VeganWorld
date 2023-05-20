@@ -84,7 +84,6 @@ const Favorites = () => {
             {favorites && favorites.length > 0 ? (
               favorites?.map((favorite) => (
                 <>
-                  console.log(favorites){" "}
                   <div className={styles.favoriteContainer}>
                     {/* <Box  position={"relative"}> */}
                     {/* <Button
@@ -118,18 +117,18 @@ const Favorites = () => {
                             <Image
                               style={{ textAlign: "center" }}
                               className={styles.image}
-                              src={favorite?.Product.imagen}
-                              alt={favorite?.Product.nombre}
+                              src={favorite?.Product?.imagen}
+                              alt={favorite?.Product?.nombre}
                             />
                           </Box>
 
                           <Heading size="md" marginTop={10}>
-                            {favorite?.Product.nombre}
+                            {favorite?.Product?.nombre}
                           </Heading>
                         </CardHeader>
                         <CardBody>
-                          <Text>{favorite?.Product.descripcion} </Text>
-                          <Text>{favorite?.Product.precio}</Text>
+                          <Text>{favorite?.Product?.descripcion} </Text>
+                          <Text>{favorite?.Product?.precio}</Text>
                         </CardBody>
                         <CardFooter></CardFooter>
                       </Card>{" "}
