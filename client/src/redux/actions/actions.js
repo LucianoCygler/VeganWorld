@@ -49,17 +49,17 @@ import {
 // const URL_SERVIDOR = "http://localhost:3001";
 
 /*TODOS LOS PRODUCTOS*/
-// export const getAllProducts = () => {
-//   return async function (dispatch) {
-//     try {
-//       const res = await axios.get(`/product`);
-//       const products = res.data;
-//       dispatch({ type: GET_ALL_PRODUCTS, payload: products });
-//     } catch (error) {
-//       alert(error.response.data);
-//     }
-//   };
-// };
+export const getAllProducts = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/product`);
+      const products = res.data;
+      dispatch({ type: GET_ALL_PRODUCTS, payload: products });
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
+};
 
 export function setProductSearch(searchResult) {
   return {

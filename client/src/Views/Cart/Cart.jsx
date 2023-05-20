@@ -20,7 +20,7 @@ function Cart() {
   const navigate = useNavigate();
   const { user, cart } = useSelector((state) => state);
   const MPLink = useSelector((state) => state.MPLink);
-
+  const [loading, setLoading] = useState(false);
   const [subTotal, setSubTotal] = useState(0);
   const [updateCart, setUpdateCart] = useState(cart);
   const [isOrderGenerated, setIsOrderGenerated] = useState(false);
@@ -57,6 +57,10 @@ function Cart() {
   const handleClick = async (event) => {
     const name = event.target.name;
     const id = event.target.value;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
 
     switch (name) {
       case "clear":
@@ -241,24 +245,14 @@ function Cart() {
             <div className={styles.btnOrder}>
               {user.id ? (
                 <>
-                  {!isOrderGenerated ? (
-                    <button
-                      className={styles.btnGenerate}
-                      onClick={handleClick}
-                      name="generateOrder"
-                      disabled={!user.id}
-                    >
-                      Generate order
-                    </button>
-                  ) : (
-                    <button
-                      className={styles.btnGenerate}
-                      onClick={handleClick}
-                      name="pay"
-                    >
-                      Pay
-                    </button>
-                  )}
+                  <Button
+                    onClick={handleClick}
+                    name="generateOrder"
+                    isLoading={loading}
+                    colorScheme="teal"
+                  >
+                    Generate order
+                  </Button>
                 </>
               ) : (
                 <Button variant="primary" onClick={handleShowModal}>
