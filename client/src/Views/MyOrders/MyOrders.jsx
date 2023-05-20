@@ -6,6 +6,7 @@ import {
 	getUserDataByEmail,
 } from "../../redux/actions/actions";
 import OrderDetail from "../../Components/OrderDetail/OrderDetail";
+
 import {
 	Box,
 	Tab,
@@ -25,6 +26,11 @@ import {
 	useSteps,
 } from "@chakra-ui/react";
 import { Accordion } from "@chakra-ui/accordion";
+import styles from "./MyOrders.module.css";
+import { useNavigate } from "react-router-dom";
+import { Modal, Button } from "react-bootstrap";
+import LoginForm from "../Login/LoginForm";
+
 
 const MyOrders = () => {
 	const {clientOrders, orderDelete} = useSelector((state) => state);

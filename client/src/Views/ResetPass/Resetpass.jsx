@@ -20,7 +20,7 @@ function Resetpass() {
     sendPasswordResetEmail(auth, email)
   .then(function() {
     // Correo electrónico de restablecimiento de contraseña enviado.
-    console.log("correo enviado");
+    alert("correo enviado");
   })
   .catch(function(error) {
     // Ocurrió un error al enviar el correo electrónico de restablecimiento de contraseña.

@@ -7,9 +7,6 @@ const orderFilterProductHandler = async (req, res) => {
   //        asc o des -  ?   - asc o desc
   const { precioOrder, tipo, nombreOrder } = req.query;
   const orderedProduct = await getAllProducts();
-  console.log(precioOrder);
-  console.log(orderedProduct);
-
   try {
     if (tipo) {
       orderedProduct = await orderProductByTipo(tipo, orderedProduct);

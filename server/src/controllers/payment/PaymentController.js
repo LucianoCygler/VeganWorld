@@ -13,8 +13,6 @@ class PaymentController {
 
       return res.json(payment.init_point);
     } catch (error) {
-      console.log(error);
-
       return res
         .status(500)
         .json({ error: true, msg: "Failed to create payment" });
@@ -27,8 +25,6 @@ class PaymentController {
 
       return res.json(subscription);
     } catch (error) {
-      console.log(error);
-
       return res
         .status(500)
         .json({ error: true, msg: "Failed to create subscription" });

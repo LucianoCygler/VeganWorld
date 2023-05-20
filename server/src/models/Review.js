@@ -19,6 +19,14 @@ module.exports = (sequelize) => {
       type: DataTypes.DATEONLY,
       allowNull: false,
     },
+    estrellas: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        min: 1,
+        max: 5,
+      },
+    },
     cliente_nombre: {
       type: DataTypes.STRING,
       allowNull: false,

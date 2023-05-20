@@ -1,4 +1,5 @@
-import React from "react";
+
+
 import {
 	AccordionIcon,
 	Box,
@@ -6,6 +7,14 @@ import {
 	Stack,
 	useDisclosure,
 } from "@chakra-ui/react";
+
+import React, { useRef, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { deleteOrder } from "../../redux/actions/actions";
+import styles from "./OrderDetail.module.css";
+import Steps from "./Steps";
+import Example from "./Steps";
+
 
 import {
 	AccordionItem,
@@ -21,6 +30,7 @@ const OrderDetail = ({ order, cancelRef }) => {
 	const { estado, direccion, productos, importe, fecha, id } = order;
 
 	const { isOpen, onOpen, onClose } = useDisclosure();
+
 
 	return (
 		<AccordionItem>
@@ -87,6 +97,7 @@ const OrderDetail = ({ order, cancelRef }) => {
 			/>
 		</AccordionItem>
 	);
+
 };
 
 export default OrderDetail;
