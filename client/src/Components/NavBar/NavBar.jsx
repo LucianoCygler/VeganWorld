@@ -3,7 +3,7 @@ import SearchBar from "./SearchBar/SearchBar";
 import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faHouse,
+  faBars,
   faCartShopping,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
@@ -11,6 +11,7 @@ import styles from "./NavBar.module.css";
 import { logoutUser } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import PopUpLogin from "../../Views/Login/PopUpLogin";
+import { useLocation } from "react-router-dom";
 
 function NavBar() {
   const dispatch = useDispatch();
@@ -18,7 +19,8 @@ function NavBar() {
   const handleLogout = () => {
     localStorage.removeItem("email");
   };
-
+  const location = useLocation();
+  //asd
   return (
     <div className={styles.mainContainer}>
       <div className={styles.divLeft}>
@@ -27,13 +29,15 @@ function NavBar() {
         </NavLink>
       </div>
       <div className={styles.divMid}>
-        <SearchBar />
+        {location.pathname === "/OurProducts" ? <SearchBar /> : ""}
       </div>
       <div className={styles.divRight}>
+        <Link to="/OurProducts">Our Products</Link>{" "}
         <div className={styles.redirects}>
           <div className={styles.dropdown}>
-            <span className={styles.dropbtn}>Menu</span>
+            <FontAwesomeIcon className={styles.dropbtn} icon={faBars} />
             <div className={styles.dropdownContent}>
+              <div className={styles.triangle}></div>
               <Link to="/MyProfile">Profile</Link>{" "}
               <Link to="/Favorites">Favorites</Link>{" "}
               <Link to="/MyOrders">Orders</Link>{" "}

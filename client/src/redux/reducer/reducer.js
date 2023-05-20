@@ -217,7 +217,7 @@ export default function rootReducer(state = initialState, action) {
       );
       return {
         ...state,
-        favorites: filtered,
+        favorites: [...filtered],
       };
     case GET_CLIENT_FAVORITE:
       return {

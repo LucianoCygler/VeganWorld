@@ -13,6 +13,8 @@ import {
 } from "../../redux/actions/actions";
 import Pop_up from "../../Utils/Pop_up/Pop_up";
 import { NavLink, useNavigate } from "react-router-dom";
+import { Button, Modal } from "react-bootstrap";
+import LoginForm from "../Login/LoginForm";
 
 function Cart() {
   const navigate = useNavigate();
@@ -22,6 +24,7 @@ function Cart() {
   const [subTotal, setSubTotal] = useState(0);
   const [updateCart, setUpdateCart] = useState(cart);
   const [isOrderGenerated, setIsOrderGenerated] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   function products() {
     const idsProductos = [];
@@ -34,6 +37,14 @@ function Cart() {
     }
     return idsProductos;
   }
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
 
   function subTotalF() {
     let subTotalP = 0;
@@ -61,18 +72,20 @@ function Cart() {
         };
 
         try {
-          dispatch(createOrder(order));
+          dispatch(createOrder(order)).then((order) => {
+            const form = { user: user, order: order };
+            dispatch(sendEmail(form, "genOrder"));
+          });
+
           Pop_up(
             "success",
-
             "Order Ceated",
             "You can find your orders in MyOrders!",
             "An E-mail has been sent to your address with the order details."
-
           );
           setIsOrderGenerated(true);
-          const form = {user, order}
-          dispatch(sendEmail(form, 'genOrder'));
+          const form = { user, order };
+          dispatch(sendEmail(form, "genOrder"));
         } catch ({ message }) {
           Pop_up("error", "Failed to Create Order", message);
         }
@@ -119,6 +132,14 @@ function Cart() {
 
   return (
     <div className={styles.mainContainer}>
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Sign in</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <LoginForm handleCloseModal={handleCloseModal}></LoginForm>{" "}
+        </Modal.Body>
+      </Modal>
       {cart !== null && updateCart.length > 0 ? (
         <>
           {updateCart.map((product, index) => {
@@ -240,9 +261,9 @@ function Cart() {
                   )}
                 </>
               ) : (
-                <NavLink to={"/login"}>
-                  <p>Login</p>
-                </NavLink>
+                <Button variant="primary" onClick={handleShowModal}>
+                  Login to create Order!
+                </Button>
               )}
             </div>
             <div className={styles.orderTotal}></div>
