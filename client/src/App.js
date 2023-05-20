@@ -19,6 +19,8 @@ import {
 import OurProducts from "./Views/OurProducts/OurProducts";
 import { NavBar } from "./Components/index";
 
+
+
 function App() {
   //************************************* OCULTAR / MOSTRAR NAVBAR *********************************/
   const location = useLocation();
