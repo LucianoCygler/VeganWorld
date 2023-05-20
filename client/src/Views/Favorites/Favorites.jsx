@@ -43,7 +43,9 @@ const Favorites = () => {
     dispatch(deleteFavoriteAction(productId));
   };
   useEffect(() => {
-    dispatch(getUserDataByEmail(email));
+    if (email) {
+      dispatch(getUserDataByEmail(email));
+    }
   }, [email]);
 
   useEffect(() => {
@@ -80,59 +82,59 @@ const Favorites = () => {
           </div>
           <Flex marginTop={200}>
             {favorites && favorites.length > 0 ? (
-              favorites.map((favorite) => (
+              favorites?.map((favorite) => (
                 <>
-                  {" "}
-                  <div className={styles.favoriteContainer}></div>
-                  <Box zIndex={999} position={"absolute"} left={1040} top={320}>
-                    <Button colorScheme="teal" onClick={() => {}}>
-                      X
-                    </Button>
-                  </Box>
-                  <NavLink
-                    to={`/Detail/${favorite.product_id}`}
-                    style={{ textDecoration: "none" }}
-                  >
-                    {" "}
-                    <Card
-                      margin={5}
-                      paddingTop={10}
-                      maxW={350}
-                      maxH={510}
-                      _hover={{
-                        transform: "scale(1.05)",
-                        boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.7)",
-                      }}
+                  console.log(favorites){" "}
+                  <div className={styles.favoriteContainer}>
+                    {/* <Box  position={"relative"}> */}
+                    {/* <Button
+                        colorScheme="teal"
+                        onClick={() => {
+                          setIsFav(false);
+                          dispatch(deleteFavoriteAction(favorite.product_id));
+                          setUpdateFlag(true);
+                        }}
+                      >
+                        X
+                      </Button> */}
+                    {/* </Box> */}
+                    <NavLink
+                      to={`/Detail/${favorite.product_id}`}
+                      style={{ textDecoration: "none" }}
                     >
-                      <CardHeader>
-                        <Box>
-                          <Image
-                            style={{ textAlign: "center" }}
-                            className={styles.image}
-                            src={favorite.Product.imagen}
-                            alt={favorite.Product.nombre}
-                          />
-                        </Box>
+                      {" "}
+                      <Card
+                        margin={5}
+                        paddingTop={10}
+                        maxW={350}
+                        maxH={510}
+                        _hover={{
+                          transform: "scale(1.05)",
+                          boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.7)",
+                        }}
+                      >
+                        <CardHeader>
+                          <Box>
+                            <Image
+                              style={{ textAlign: "center" }}
+                              className={styles.image}
+                              src={favorite?.Product.imagen}
+                              alt={favorite?.Product.nombre}
+                            />
+                          </Box>
 
-                        <Heading size="md" marginTop={10}>
-                          {favorite.Product.nombre}
-                        </Heading>
-                      </CardHeader>
-                      <CardBody>
-                        <Text>{favorite.Product.descripcion} </Text>
-                        <Text>{favorite.Product.precio}</Text>
-                      </CardBody>
-                      <CardFooter></CardFooter>
-                    </Card>{" "}
-                    {favorite.Product && (
-                      <>
-                        <h2 className={styles.h2}></h2>
-
-                        <h2 className={styles.h2}></h2>
-                        <h2 className={styles.h2}></h2>
-                      </>
-                    )}
-                  </NavLink>
+                          <Heading size="md" marginTop={10}>
+                            {favorite?.Product.nombre}
+                          </Heading>
+                        </CardHeader>
+                        <CardBody>
+                          <Text>{favorite?.Product.descripcion} </Text>
+                          <Text>{favorite?.Product.precio}</Text>
+                        </CardBody>
+                        <CardFooter></CardFooter>
+                      </Card>{" "}
+                    </NavLink>{" "}
+                  </div>
                 </>
               ))
             ) : (

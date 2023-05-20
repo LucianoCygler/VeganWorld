@@ -66,7 +66,7 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
       onMouseOver={() => setShowInfo(true)}
       onMouseLeave={() => setShowInfo(false)}
     >
-      {localStorage.getItem("email") ? (
+      {localStorage.getItem("email") !== null ? (
         <div>
           {" "}
           {!isFav ? (

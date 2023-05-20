@@ -30,6 +30,7 @@ import {
   SET_CREATED_ORDER_ID,
   CLEAN_CART,
   GET_MP_LINK,
+  GET_REVIEWS,
 } from "../actions/Types/Types";
 
 const initialState = {
@@ -51,6 +52,7 @@ const initialState = {
   productReviews: [],
   allClients: [],
   MPLink: "",
+  allReviews: [],
   // createdOrderId: null,
 };
 
@@ -238,6 +240,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         MPLink: action.payload,
+      };
+    case GET_REVIEWS:
+      return {
+        ...state,
+        allReviews: [...action.payload],
       };
     // case SET_CREATED_ORDER_ID:
     //   return {

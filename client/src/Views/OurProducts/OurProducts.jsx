@@ -7,16 +7,25 @@ import style from "./OurProducts.module.css";
 import { Select } from "@chakra-ui/react";
 import { Box, Flex, Grid, GridItem, Img } from "@chakra-ui/react";
 import { Divider } from "@chakra-ui/react";
+import { Spinner } from "@chakra-ui/react";
 
 function OurProducts() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
   const [filterByType, setFilterByType] = useState("");
   const [sort, setSort] = useState("");
-  const [sortByPrice, setSortByPrice] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false); // Desactiva el loader después de 3 segundos
+    }, 1000);
+
+    return () => clearTimeout(timer); // Limpia el temporizador al desmontar el componente
+  }, []);
 
   useEffect(() => {
     dispatch(orderAndFilter(filterByType, sort));
@@ -41,7 +50,6 @@ function OurProducts() {
   return (
     <Box bg={"# d8d8d8"} marginTop={-20}>
       <h1 className={style.h1}>The best vegan food in town!</h1>
-      <Divider />
 
       <Flex direction={"row"} margin={"auto"} justifyContent={"center"}>
         <Select
@@ -62,9 +70,19 @@ function OurProducts() {
           <option value="Mayor precio">Menor precio</option>
         </Select>
       </Flex>
+      {isLoading ? (
+        <Spinner
+          size="xl"
+          marginTop={"5em"}
+          emptyColor="gray.200"
+          color="teal.500"
+        /> // Muestra el componente de Loader mientras isLoading sea true
+      ) : (
+        <Products products={currentItems} />
+      )}
+
       <Divider />
 
-      <Products products={currentItems} />
       <Pagination
         goToPrevPage={() => setCurrentPage(currentPage - 1)}
         goToNextPage={() => setCurrentPage(currentPage + 1)}

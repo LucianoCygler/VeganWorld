@@ -23,8 +23,10 @@ section {
   text-align: left;
   font: bold 16px sans-serif;
   padding: 55px 50px;
+  padding-left: 10em;
+  height: 40vh;
+  margin-top: 3em;
 }
-
 .footer-distributed .footer-left,
 .footer-distributed .footer-center,
 .footer-distributed .footer-right {
