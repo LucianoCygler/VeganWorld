@@ -35,7 +35,13 @@ function SearchBar() {
   return (
     <div className={styles.mainContainer}>
       <nav>
-        <input id="input" className={styles.inputClass} type="search" placeholder="Search a product..." onChange={handleSearch} />
+        <input
+          id="input"
+          className={styles.inputClass}
+          type="search"
+          placeholder="Search a product..."
+          onChange={handleSearch}
+        />
         <FontAwesomeIcon className={styles.fontIcon} icon={faMagnifyingGlass} />
       </nav>
     </div>

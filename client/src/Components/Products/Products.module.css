@@ -1,15 +1,14 @@
 .mainContainer {
-  min-height: 100vh;
+  min-height: 80vh;
   display: grid;
   grid-template-columns: repeat(
     6,
     1fr
   ); /* Configura 6 columnas de tamaño igual */
-  gap: 0.1rem;
+
   margin: 0;
   margin-right: 4em;
   margin-left: 4em;
-  padding: 0;
   border-radius: 40px;
   background-color: rgba(216, 216, 216, 0.3);
   margin-top: 2em;
@@ -17,12 +16,11 @@
   background-size: cover; 
   background-repeat: no-repeat; 
   background-position: center;  */
-
+  padding: 5em;
   /* background-color: #b6cdbd; */
 }
 
 .cardContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
 }
