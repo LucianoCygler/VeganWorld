@@ -166,20 +166,22 @@ const MyData = () => {
                 />
               </div>
               <input
-                className={style.input8}
+                className={style.input8B}
                 type="file"
                 onChange={handleImageChange}
               />
 
-              <button className={style.buttonEdit} onClick={handleSaveUser}>
+            <div className={style.buttonContainer} >
+            <button  className={style.button} onClick={handleSaveUser}>
                 Save Data
               </button>
+            </div>
             </div>
           ) : (
             <div className={style.c}>
               <h1>My Profile</h1>
               {profileImage ? (
-                <img src={profileImage} alt="Profile" />
+                <img className={style.img} src={profileImage} alt="Profile" />
               ) : (
                 <img
                   className={style.input8}
@@ -215,7 +217,7 @@ const MyData = () => {
             </p>
           )} */}
 
-              <button className={style.button} onClick={handleEditUser}>
+              <button className={style.buttonEdit} onClick={handleEditUser}>
                 Edit User
               </button>
             </div>
