@@ -45,6 +45,7 @@ const initialState = {
   success: [],
   user: {},
   clientOrders: [],
+  orderDelete: [],
   reviews: [],
   favorites: [],
   isAuthenticated: false,
@@ -168,13 +169,14 @@ export default function rootReducer(state = initialState, action) {
       return { ...state, clientOrders: action.payload };
 
     case DELETE_ORDER:
-      const orderId = action.payload;
-      const updatedOrders = state.clientOrders.filter(
-        (order) => order.id !== orderId
-      );
+      // const orderId = action.payload;
+      // const updatedOrders = 
       return {
         ...state,
-        clientOrders: updatedOrders,
+        clientOrders: [...state.clientOrders.filter(
+          (order) => order.id !== action.payload
+        )],
+        orderDelete: [action.payload]
       };
 
     case UPDATE_REVIEW:

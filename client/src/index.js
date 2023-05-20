@@ -14,15 +14,15 @@ axios.defaults.baseURL = "http://localhost:3001";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <ChakraProvider>
-    <Provider store={store}>
-      <BrowserRouter>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </BrowserRouter>
-    </Provider>
-  </ChakraProvider>
+	<Provider store={store}>
+		<BrowserRouter>
+			<React.StrictMode>
+				<ChakraProvider>
+					<App />
+				</ChakraProvider>
+			</React.StrictMode>
+		</BrowserRouter>
+	</Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
