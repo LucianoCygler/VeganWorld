@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { auth, googleProvider } from "../../Firebase/firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { validateLogin } from "../../redux/actions/actions";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./LoginForm.css";
 
@@ -20,7 +20,7 @@ const LoginForm = ({ handleCloseModal }) => {
   const [validEmail, setValidEmail] = useState(true);
   const [validPassword, setValidPassword] = useState(true);
   const [canLogin, setCanLogin] = useState(false);
-  const navigate = useState()
+  const navigate = useNavigate()
 
   const handleRememberPassword = () => {    
     setRememberPassword(!rememberPassword);    
@@ -30,10 +30,10 @@ const LoginForm = ({ handleCloseModal }) => {
     e.preventDefault();
 
     if (validEmail && validPassword) {
-      setCanLogin(true); // Si el correo y la contraseña son válidos, habilitar el inicio de sesión
+      setCanLogin(true); 
       navigate("/");
     } else {
-      setCanLogin(false); // Si alguna condición de validación no se cumple, deshabilitar el inicio de sesión
+      setCanLogin(false); 
     }
 
     signInWithEmailAndPassword(auth, email, password)
@@ -125,7 +125,7 @@ const LoginForm = ({ handleCloseModal }) => {
         </label>
       </div>
 
-      <button class="button2" type="button" onClick={handleSubmit} disabled={!canLogin}>
+      <button class="button2" type="button" onClick={handleSubmit} >
         Login
       </button>
 
