@@ -1,3 +1,13 @@
+
+
+import {
+	AccordionIcon,
+	Box,
+	Button,
+	Stack,
+	useDisclosure,
+} from "@chakra-ui/react";
+
 import React, { useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { deleteOrder } from "../../redux/actions/actions";
@@ -5,77 +15,89 @@ import styles from "./OrderDetail.module.css";
 import Steps from "./Steps";
 import Example from "./Steps";
 
-const OrderDetail = ({ order, closePopup }) => {
-  const { estado, direccion, productos, importe, fecha, id } = order;
-  const dispatch = useDispatch();
-  // Contar los productos repetidos
-  const countProducts = productos.reduce((count, producto) => {
-    count[producto] = (count[producto] || 0) + 1;
-    return count;
-  }, {});
 
-  const popupRef = useRef(null);
+import {
+	AccordionItem,
+	AccordionButton,
+	AccordionPanel,
+} from "@chakra-ui/accordion";
 
-  const handleClickOutside = (event) => {
-    if (popupRef.current && !popupRef.current.contains(event.target)) {
-      closePopup();
-    }
-  };
+import TableOrder from "./TableOrder";
+import AlertPopUp from "./AlertPopUp";
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [closePopup]);
+const OrderDetail = ({ order, cancelRef }) => {
 
-  const handleCancelOrder = () => {
-    dispatch(deleteOrder(id));
-    alert("Pedido cancelado");
-    closePopup();
-  };
+	const { estado, direccion, productos, importe, fecha, id } = order;
 
-  return (
-    <div ref={popupRef} className={styles.mainContainer}>
-      <Example />
-      <div className={styles.buttonDiv}>
-        {estado === "Pendiente" && (
-          <button className={styles.buttonCancel} onClick={handleCancelOrder}>
-            Cancelar Pedido
-          </button>
-        )}
-        <button className={styles.closeButton} onClick={closePopup}>
-          X
-        </button>
-      </div>
-      <div className={styles.flexContainer}>
-        <div className={styles.flexWrap}>
-          <span className={styles.span}>Estado:</span>
-        </div>
-        <div className={styles.flexWrap}>
-          <span className={styles.spanEstados}>{estado}</span>
-        </div>
-      </div>
-      <div className={styles.flexContainer}>
-        <span className={styles.span}>Productos:</span>
+	const { isOpen, onOpen, onClose } = useDisclosure();
 
-        <span className={styles.spanEstados}>{productos}</span>
-      </div>
-      <div className={styles.flexContainer}>
-        <span className={styles.span}>Dirección:</span>
-        <span className={styles.spanEstados}>{direccion}</span>
-      </div>
-      <div className={styles.flexContainer}>
-        <span className={styles.span}>Importe:</span>
-        <span className={styles.spanEstados}>${importe}</span>
-      </div>
-      <div className={styles.flexContainer}>
-        <span className={styles.span}>Fecha de creación:</span>
 
-        <span className={styles.spanEstados}>{fecha}</span>
-      </div>
-    </div>
-  );
+	return (
+		<AccordionItem>
+			<AccordionButton>
+				{/* CABEZERA DE LA ORDEN */}
+				<Stack
+					flex
+					direction={"row"}
+					justify={"space-around"}
+					shouldWrapChildren={true}
+					m={"auto"}
+					spacing={"10"}
+				>
+					<Box as="span" flex="1" textAlign="left">
+						Order: {id}
+					</Box>
+					<Box as="span" flex="1" textAlign="left">
+						Date: {fecha}
+					</Box>
+					<Box as="span" flex="1" textAlign="left">
+						Total Amount: $ {importe}
+					</Box>
+				</Stack>
+				{/* BOTON DE CANCELAR */}
+				{estado === "Pendiente" && (
+					<>
+						<Button
+							mx={2}
+							colorScheme="red"
+							onClick={(event) => {
+								event.stopPropagation();
+								onOpen();
+							}}
+						>
+							Cancel Order
+						</Button>
+
+						<Button
+							mx={2}
+							colorScheme="whatsapp"
+							onClick={(event) => {
+								event.stopPropagation();
+								onOpen();
+							}}
+						>
+							Pay order
+						</Button>
+					</>
+				)}
+				{/* BOTON DE DESPLEGAR */}
+				<AccordionIcon />
+			</AccordionButton>
+
+			<AccordionPanel pb={4}>
+				{/* AQUI SE HACE UN MAP DE LA ORDEN PARA OBTENER LOS PRODUCTOS */}
+				<TableOrder items={order.productos} />
+			</AccordionPanel>
+
+			<AlertPopUp
+				isOpen={isOpen}
+				cancelRef={cancelRef}
+				onClose={onClose}
+				orderId={id}
+			/>
+		</AccordionItem>
+	);
+
 };
 
 export default OrderDetail;

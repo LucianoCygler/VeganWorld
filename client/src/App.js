@@ -19,8 +19,10 @@ import {
 import OurProducts from "./Views/OurProducts/OurProducts";
 import { NavBar } from "./Components/index";
 
+<<<<<<< Updated upstream
 
-
+=======
+>>>>>>> Stashed changes
 function App() {
   //************************************* OCULTAR / MOSTRAR NAVBAR *********************************/
   const location = useLocation();
@@ -35,6 +37,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         {/* <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} /> */}
+        <Route path="/OurProducts" element={<OurProducts />} />
         <Route path="/Detail/:id" element={<Detail />} />
         <Route path="/Cart" element={<Cart />} />
         <Route path="/Favorites" element={<Favorites />} />
@@ -44,7 +47,6 @@ function App() {
         <Route path="/ContactUs" element={<ContactUs />} />
         <Route path="/ResetPass" element={<Resetpass />} />
         <Route path="/About" element={<About />} />
-        <Route path="/OurProducts" element={<OurProducts />} />
       </Routes>
     </div>
   );
