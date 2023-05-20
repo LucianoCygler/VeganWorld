@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Pagination, Products } from "../../Components/index";
 import { orderAndFilter } from "../../redux/actions/actions";
 import CustomCarousel from "../../Components/Carousel/CustomCarousel";
+import Carrusel from "../../Components/Carousel/Carrusel";
+import { Box } from "@chakra-ui/react";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -38,7 +40,7 @@ function HomePage() {
   };
 
   return (
-    <div className={style.body}>
+    <Box bg="#d6cda4" py="4em">
       <h1 className={style.h1}>The best vegan food in town!</h1>
       {/* Filter By Type:{" "}
       <select onChange={handleFilter}>
@@ -71,7 +73,8 @@ function HomePage() {
         lastPage={totalPages}
       /> */}
       <CustomCarousel />
-    </div>
+      <Carrusel />
+    </Box>
   );
 }
 

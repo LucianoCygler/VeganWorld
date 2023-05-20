@@ -1,6 +1,7 @@
 .contenedor {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: auto;
+  justify-content:center;
   align-items: center;
   padding-top: 9em;
   background-color: #d6cda4;
@@ -26,9 +27,9 @@
 
 .h1 {
   display: flex;
-  padding-left: 500px;
   align-items: center;
   position: relative;
+  text-align: center;
 }
 
 .formdiv {
@@ -43,6 +44,7 @@
   display: flex;
   margin-left: 15%;
   margin-bottom: 4px;
+  align-items: center;
 }
 .formdiv input {
   border: 2px solid #52b3d3;

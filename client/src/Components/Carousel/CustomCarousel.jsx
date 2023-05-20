@@ -9,7 +9,7 @@ const products = [
     { id: 1, name: 'Desayuno completo', image: 'https://cdn.urbantecno.com/urbantecno/2022/10/Estas-aplicaciones-te-permitiran-acceder-a-un-catalogo-de-miles-de-recetas-con-platillos-vegetarianos.jpg' },
     { id: 2, name: 'Light-Green Salad', image: 'https://img.freepik.com/foto-gratis/ensalada-tomate-pepino-cebolla-morada-hojas-lechuga-menu-saludable-vitaminas-verano-comida-vegetariana-vegana-mesa-cena-vegetariana-vista-superior-lay-flat_2829-6482.jpg' },
     { id: 3, name: 'Bocaditos de falafel', image: 'https://img-global.cpcdn.com/recipes/7651a1de84212ee0/680x482cq70/falafel-foto-principal.jpg' },
-    { id: 4, name: 'Arroz vergano', image: 'https://i.blogs.es/e78f73/recetas-vegans/1366_2000.jpg' },
+    { id: 4, name: 'Arroz con garbanzo', image: 'https://i.blogs.es/e78f73/recetas-vegans/1366_2000.jpg' },
     { id: 5, name: 'Tostadas Veganas', image: 'https://images11.eitb.eus/multimedia/images/2019/04/04/2420793/20190404161404_vegano_foto610x342.jpg' },
     { id: 6, name: 'Ensalada Anashe', image: 'https://www.lavanguardia.com/files/og_thumbnail/uploads/2020/01/27/5fa8fc09e020a.png' },
     { id: 7, name: 'Ratatouille', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIzWQdbbtTRdbNgxvu1a98MFjNsRC0PaQ3ojXo_ELUvtWO4cifRoM3O-r6MQXeCQMMRVc&usqp=CAU' },
