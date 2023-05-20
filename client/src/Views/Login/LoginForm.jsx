@@ -38,7 +38,10 @@ const LoginForm = ({ handleCloseModal }) => {
       .then((data) => {
         localStorage.setItem("email", data.user.email);
         dispatch(validateLogin(login));
-        localStorage.setItem("user", user);
+        localStorage.setItem(
+          "user",
+          localStorage.setItem("user", JSON.stringify(user))
+        );
         handleCloseModal();
       })
       .catch((error) => {

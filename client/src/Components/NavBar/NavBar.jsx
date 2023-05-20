@@ -57,22 +57,22 @@ function NavBar() {
             _selected={{ bg: "teal.500" }}
           />
           <MenuList color={"black"} zIndex={9}>
-            <MenuItem as="a" href="/MyProfile">
+            <MenuItem as={NavLink} to="/MyProfile">
               Profile
             </MenuItem>
-            <MenuItem as="a" href="/Favorites">
+            <MenuItem as={NavLink} to="/Favorites">
               Favorites
             </MenuItem>
-            <MenuItem as="a" href="/MyOrders">
+            <MenuItem as={NavLink} to="/MyOrders">
               Orders
             </MenuItem>
-            <MenuItem as="a" href="/MyReviews">
+            <MenuItem as={NavLink} to="/MyReviews">
               Reviews
             </MenuItem>
-            <MenuItem as="a" href="/ContactUs">
+            <MenuItem as={NavLink} to="/ContactUs">
               Contact
             </MenuItem>
-            <MenuItem as="a" href="/About">
+            <MenuItem as={NavLink} to="/About">
               About us
             </MenuItem>
           </MenuList>
