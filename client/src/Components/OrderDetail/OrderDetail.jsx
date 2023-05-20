@@ -2,6 +2,8 @@ import React, { useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { deleteOrder } from "../../redux/actions/actions";
 import styles from "./OrderDetail.module.css";
+import Steps from "./Steps";
+import Example from "./Steps";
 
 const OrderDetail = ({ order, closePopup }) => {
   const { estado, direccion, productos, importe, fecha, id } = order;
@@ -35,6 +37,7 @@ const OrderDetail = ({ order, closePopup }) => {
 
   return (
     <div ref={popupRef} className={styles.mainContainer}>
+      <Example />
       <div className={styles.buttonDiv}>
         {estado === "Pendiente" && (
           <button className={styles.buttonCancel} onClick={handleCancelOrder}>
@@ -68,6 +71,7 @@ const OrderDetail = ({ order, closePopup }) => {
       </div>
       <div className={styles.flexContainer}>
         <span className={styles.span}>Fecha de creación:</span>
+
         <span className={styles.spanEstados}>{fecha}</span>
       </div>
     </div>

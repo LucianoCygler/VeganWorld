@@ -5,6 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Pagination, Products } from "../../Components/index";
 import { orderAndFilter } from "../../redux/actions/actions";
 import CustomCarousel from "../../Components/Carousel/CustomCarousel";
+import "./HomePage.css";
+import { SocialIcon } from "react-social-icons";
+import { Box, Flex, Grid, GridItem, Img } from "@chakra-ui/react";
+import { PhoneIcon, AddIcon, WarningIcon } from "@chakra-ui/icons";
+import { Divider } from "@chakra-ui/react";
+import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
+import { Image, Stack, Heading, Text, Button } from "@chakra-ui/react";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -39,6 +46,7 @@ function HomePage() {
 
   return (
     <div className={style.body}>
+      <Divider />
       <h1 className={style.h1}>The best vegan food in town!</h1>
       {/* Filter By Type:{" "}
       <select onChange={handleFilter}>
@@ -70,7 +78,124 @@ function HomePage() {
         currentPage={currentPage}
         lastPage={totalPages}
       /> */}
+      <Divider />
       <CustomCarousel />
+      <div>
+        <Card
+          direction={{ base: "column", sm: "row" }}
+          overflow="hidden"
+          variant="outline"
+          justifyContent={"center"}
+          alignContent={"center"}
+        >
+          <Image
+            position={"absolute"}
+            left={40}
+            objectFit="cover"
+            maxW={{ base: "100%", sm: "330px" }}
+            src="https://mdpiblog.wordpress.sciforum.net/wp-content/uploads/sites/4/2021/11/vegan-4187877_1280.jpeg"
+            alt="Caffe Latte"
+          />
+
+          <Stack>
+            <CardBody>
+              <Heading size="md">Welcome to your Vegan World!</Heading>
+
+              <Text py="2">
+                {" "}
+                We hope you can find what you need here, take a look to our
+                products and start shopping by clicking the button below.
+              </Text>
+            </CardBody>
+
+            <CardFooter>
+              <Button
+                variant="solid"
+                colorScheme="teal"
+                margin={"auto"}
+                marginTop={-4}
+              >
+                Let's start
+              </Button>
+            </CardFooter>
+          </Stack>
+        </Card>
+      </div>
+      <footer class="footer-distributed">
+        <div class="footer-left">
+          <h3>
+            <span>Vegan</span>World
+          </h3>
+
+          <p class="footer-links">
+            <a href="#" class="link-1">
+              Home
+            </a>
+
+            <a href="#">Blog</a>
+
+            <a href="#">Pricing</a>
+
+            <a href="#">About</a>
+
+            <a href="#">Faq</a>
+
+            <a href="#">Contact</a>
+          </p>
+
+          <p class="footer-company-name">VeganWorld © 2023</p>
+        </div>
+
+        <div class="footer-center">
+          <div>
+            <i class="fa fa-map-marker"></i>
+            <p>
+              <span>Av. Rivadavia 9423</span> Capital Federal, Buenos Aires
+            </p>
+          </div>
+
+          <div>
+            <i class="fa fa-phone"></i>
+            <PhoneIcon marginRight="1em"></PhoneIcon>
+            <p>+54 9 1122309876</p>
+          </div>
+
+          <div>
+            <i class="fa fa-envelope"></i>
+            <p>
+              <a href="mailto:support@company.com">veganworld@gmail.com</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-right">
+          <p class="footer-company-about">
+            <span>About the company</span>
+            Making it easier to be Vegan and order food!
+          </p>
+
+          <div class="footer-icons">
+            <a href="#">
+              <SocialIcon
+                url="https://facebook.com/VeganWorld"
+                style={{ height: 30, width: 30 }}
+              />
+            </a>
+            <a href="#">
+              <SocialIcon
+                url="https://twitter.com/VeganWorld"
+                style={{ height: 30, width: 30 }}
+              />
+            </a>
+            <a href="#">
+              <SocialIcon
+                url="https://github.com/LucianoCygler/VeganWorld"
+                style={{ height: 30, width: 30 }}
+              />
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

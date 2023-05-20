@@ -12,6 +12,9 @@ import { Button, Modal } from "react-bootstrap";
 import LoginForm from "../Login/LoginForm";
 import { Box, Flex, Grid, GridItem, Img } from "@chakra-ui/react";
 import "./MyReviews.css";
+import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react";
+import { Divider } from "@chakra-ui/react";
+
 const MyReviews = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -79,11 +82,12 @@ const MyReviews = () => {
         </div>
       ) : (
         <>
+          <Divider />
           <Box
             w="80%"
             bg="white  "
-            paddingTop="2em"
             margin="auto"
+            marginTop="50px"
             shadow="0px 4px 10px rgba(0, 0, 0, 0.2)"
           >
             {reviews ? (
@@ -98,7 +102,14 @@ const MyReviews = () => {
                     >
                       <div class="cardReview">
                         <div class="header">
-                          <div class="image"></div>
+                          <div>
+                            {" "}
+                            <Avatar
+                              name="Ryan Florence"
+                              src="https://bit.ly/ryan-florence"
+                              size="xl"
+                            />
+                          </div>
                           <div>
                             <div class="stars">
                               {Array.from({ length: review.estrellas }).map(
