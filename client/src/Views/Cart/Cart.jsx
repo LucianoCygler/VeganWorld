@@ -16,6 +16,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
 import LoginForm from "../Login/LoginForm";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
+import { Box, Text } from "@chakra-ui/react";
 
 function Cart() {
   const navigate = useNavigate();
@@ -276,7 +277,12 @@ function Cart() {
           </div>
         </>
       ) : (
-        <h2 className={styles.subTittle}>There is nothing in your cart...</h2>
+        <Box margin={"auto"}>
+          <Text color="white">
+            {" "}
+            <h2>There is nothing in your cart...</h2>
+          </Text>
+        </Box>
       )}
     </div>
   );

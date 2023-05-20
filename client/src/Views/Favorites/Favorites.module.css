@@ -10,6 +10,8 @@
   background-repeat: no-repeat;
   background-position: center;
   padding-right: 5em;
+  height: 100vh;
+  width: 100%;
 }
 
 .card {

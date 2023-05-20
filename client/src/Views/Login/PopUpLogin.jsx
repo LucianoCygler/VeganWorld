@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Button } from "@chakra-ui/react";
+
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 
@@ -25,7 +27,15 @@ const PopUpLogin = () => {
   return (
     <>
       {!value && (
-        <Button variant="primary" onClick={handleShowModal}>
+        <Button
+          onClick={handleShowModal}
+          shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+          w={"90px"}
+          h={"40px"}
+          variant="solid"
+          colorScheme="teal"
+          margin={"auto"}
+        >
           Login
         </Button>
       )}
