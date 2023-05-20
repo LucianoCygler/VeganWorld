@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Button } from "@chakra-ui/react";
+import { Box, Flex, Button, Image } from "@chakra-ui/react";
 import "./Carousel.module.css";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -120,11 +120,17 @@ const CustomCarousel = () => {
                   key={product.id}
                   w="100%"
                   p={4}
-                  borderWidth="1px"
                   borderRadius="md"
                   className={styles.productCard}
                 >
-                  <img src={product.image} alt={product.name} />
+                  <Image
+                    borderRadius={"12%"}
+                    marginTop={"2em"}
+                    h={"190px"}
+                    w={"60px"}
+                    src={product.image}
+                    alt={product.name}
+                  />
                   <h3 className={styles.productName}>{product.name}</h3>
                 </Box>
               ))}

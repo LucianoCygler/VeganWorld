@@ -61,7 +61,12 @@ const MyReviews = () => {
   };
 
   return (
-    <div>
+    <Box
+      marginTop={"0"}
+      backgroundImage={
+        "https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
+      }
+    >
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Sign in</Modal.Title>
@@ -84,11 +89,12 @@ const MyReviews = () => {
         <>
           <Divider />
           <Box
+            paddingTop={10}
             w="80%"
-            bg="white  "
+            bg="#d8d8d8  "
             margin="auto"
-            marginTop="50px"
-            shadow="0px 4px 10px rgba(0, 0, 0, 0.2)"
+            shadow="0px 4px 1000px rgba(0, 0, 0, 0.2)"
+            bg="rgba(216, 216, 216, 0.5);"
           >
             {reviews ? (
               reviews.map((review) => {
@@ -174,7 +180,7 @@ const MyReviews = () => {
           )}
         </>
       )}
-    </div>
+    </Box>
   );
 };
 

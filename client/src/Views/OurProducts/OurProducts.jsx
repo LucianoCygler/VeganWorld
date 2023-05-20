@@ -54,18 +54,25 @@ function OurProducts() {
   };
 
   return (
-    <Box bg={"# d8d8d8"} marginTop={-20}>
+    <Box
+      minH={"100vh"}
+      bg={"# d8d8d8"}
+      paddingTop={15}
+      backgroundImage={
+        "https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
+      }
+    >
       <h1 className={style.h1}>The best vegan food in town!</h1>
 
       <Flex direction={"row"} margin={"auto"} justifyContent={"center"}>
-        <Select onChange={handleFilter} w={200} marginRight={4}>
+        <Select onChange={handleFilter} w={200} marginRight={4} bg="#d8d8d8">
           <option value="">All</option>
           <option value="pasta">Pasta</option>
           <option value="snack">Snack</option>
           <option value="fruta">Fruta</option>
           <option value="bebida">Bebida</option>
         </Select>
-        <Select w={200} value={sort} onChange={handleSort}>
+        <Select w={200} value={sort} onChange={handleSort} bg="#d8d8d8">
           <option value="">Order</option>
           <option value="a-z">Name a-z</option>
           <option value="z-a">Name z-a</option>

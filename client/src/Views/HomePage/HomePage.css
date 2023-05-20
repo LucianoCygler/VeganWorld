@@ -195,3 +195,19 @@ section {
     margin-left: 0;
   }
 }
+.custom-dot {
+  width: 12px; /* Ajusta el tamaño según tus necesidades */
+  height: 12px; /* Ajusta el tamaño según tus necesidades */
+  background-color: white; /* Color blanco */
+  border-radius: 50%; /* Para crear una forma circular */
+  margin: 0 5px; /* Espacio entre los dots */
+}
+.custom-dot.active {
+  background-color: black;
+}
+/* Estilo para el contenedor de los dots */
+.custom-dots {
+  display: flex; /* Para alinear los dots horizontalmente */
+  justify-content: center; /* Para centrar los dots horizontalmente */
+  margin-top: 10px; /* Espacio superior */
+}
