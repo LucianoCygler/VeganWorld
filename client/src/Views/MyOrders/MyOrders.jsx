@@ -54,9 +54,10 @@ const MyOrders = () => {
   const cancelRef = useRef();
 
   const steps = [
-    { title: "First", description: "Contact Info" },
-    { title: "Second", description: "Date & Time" },
-    { title: "Third", description: "Select Rooms" },
+    { title: "Pending", description: "Order received" },
+    { title: "In preparation", description: "Preparing" },
+    { title: "Sent", description: "On the way" },
+    { title: "Finalized", description: "Shipment received" },
   ];
 
   const { activeStep } = useSteps({

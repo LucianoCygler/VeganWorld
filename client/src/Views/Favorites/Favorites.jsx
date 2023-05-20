@@ -77,10 +77,11 @@ const Favorites = () => {
         </div>
       ) : (
         <div className={styles.mainContainer}>
-          <div className={styles.title}>
+          <div className={styles.title}></div>
+          <Box paddingTop={100} margin={"auto"}>
             <h1 className={styles.h1}>These are your favorite products ♥</h1>
-          </div>
-          <Flex marginTop={200}>
+          </Box>
+          <Grid marginTop={200} templateColumns={"repeat(5,1fr)"}>
             {favorites && favorites.length > 0 ? (
               favorites?.map((favorite) => (
                 <>
@@ -111,6 +112,7 @@ const Favorites = () => {
                           transform: "scale(1.05)",
                           boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.7)",
                         }}
+                        bg={"#d8d8d8"}
                       >
                         <CardHeader>
                           <Box>
@@ -139,7 +141,7 @@ const Favorites = () => {
             ) : (
               <h1 className={styles.nofavs}>No hay favoritos</h1>
             )}
-          </Flex>
+          </Grid>
         </div>
       )}
     </div>

@@ -15,12 +15,13 @@ import Pop_up from "../../Utils/Pop_up/Pop_up";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
 import LoginForm from "../Login/LoginForm";
+import { InfoOutlineIcon } from "@chakra-ui/icons";
 
 function Cart() {
   const navigate = useNavigate();
   const { user, cart } = useSelector((state) => state);
   const MPLink = useSelector((state) => state.MPLink);
-  const [loading, setLoading] = useState(false);
+
   const [subTotal, setSubTotal] = useState(0);
   const [updateCart, setUpdateCart] = useState(cart);
   const [isOrderGenerated, setIsOrderGenerated] = useState(false);
@@ -57,10 +58,6 @@ function Cart() {
   const handleClick = async (event) => {
     const name = event.target.name;
     const id = event.target.value;
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
 
     switch (name) {
       case "clear":
@@ -245,14 +242,29 @@ function Cart() {
             <div className={styles.btnOrder}>
               {user.id ? (
                 <>
-                  <Button
-                    onClick={handleClick}
-                    name="generateOrder"
-                    isLoading={loading}
-                    colorScheme="teal"
-                  >
-                    Generate order
-                  </Button>
+                  <p>
+                    <InfoOutlineIcon marginRight={1.5} />
+                    Once the order is created, you will be reditected to the
+                    payment window.
+                  </p>
+                  {!isOrderGenerated ? (
+                    <button
+                      className={styles.btnGenerate}
+                      onClick={handleClick}
+                      name="generateOrder"
+                      disabled={!user.id}
+                    >
+                      Generate order
+                    </button>
+                  ) : (
+                    <button
+                      className={styles.btnGenerate}
+                      onClick={handleClick}
+                      name="pay"
+                    >
+                      Redirecting...
+                    </button>
+                  )}
                 </>
               ) : (
                 <Button variant="primary" onClick={handleShowModal}>
