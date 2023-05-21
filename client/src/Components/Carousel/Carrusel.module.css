@@ -1,0 +1,27 @@
+.carouselContainer {
+  position: relative;
+  overflow: hidden;
+}
+
+.carouselItems {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.product-card {
+  flex: 1 0 calc(33.333% - 10px);
+  max-width: calc(33.333% - 10px);
+  margin: 5px;
+}
+
+.carouselControlArrow {
+  color: black;
+}
+
+.carousel .control-dots .dot {
+  background-color: black;
+}
+
+.productName {
+  color: green;
+}

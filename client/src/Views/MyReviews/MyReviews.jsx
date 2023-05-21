@@ -63,6 +63,7 @@ const MyReviews = () => {
   return (
     <Box
       marginTop={"0"}
+      minH="100vh"
       backgroundImage={
         "https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
       }
@@ -90,11 +91,14 @@ const MyReviews = () => {
           <Divider />
           <Box
             paddingTop={10}
+            minH="80vh"
             w="80%"
             bg="#d8d8d8  "
             margin="auto"
             shadow="0px 4px 1000px rgba(0, 0, 0, 0.2)"
-            bg="rgba(216, 216, 216, 0.5);"
+            bg={"rgba(216, 216, 216, 0.5)"}
+            marginTop={"10em"}
+            borderRadius={"35px"}
           >
             {reviews ? (
               reviews.map((review) => {

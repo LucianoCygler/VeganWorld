@@ -1,9 +1,8 @@
-.mainContainer{
+.mainContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-transform: capitalize;
-  color: #EEF2E6;
+  color: #eef2e6;
 }
 
 .contenedor {
@@ -14,13 +13,12 @@
   justify-content: center;
   align-items: center;
   border-radius: 0.75em;
-  box-shadow: 9px 13px 13px 3px #1C6758;
+  box-shadow: 9px 13px 13px 3px #1c6758;
   width: 1000px;
-  background-color: #3D8361;
+  background-color: #3d8361;
   height: 550px;
   text-transform: capitalize;
 }
-
 .image {
   width: 200px;
   height: 200px;
@@ -31,9 +29,7 @@
   position: relative;
   box-shadow: 0px 0px 15px #7fb69b;
 }
-
-.h2{
-  
+.h2 {
   position: relative;
   font-size: 60px;
   text-shadow: 1px 1px rgb(0, 0, 0), 1px 1px rgb(13, 5, 25), -3px 0 4px #000000;
@@ -45,8 +41,7 @@
   display: block;
 }
 
-.contenedor h3 {
-  
+.h3 {
   margin-left: 100px;
   width: 80%;
 }
