@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SearchBar from "./SearchBar/SearchBar";
 import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,14 +26,27 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { Button, IconButton } from "@chakra-ui/react";
+import { signOut } from "firebase/auth";
+import { auth } from "../../Firebase/firebase";
 
 function NavBar() {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const [email, setEmail] = useState("");
+
   const handleLogout = () => {
     localStorage.removeItem("email");
+    localStorage.removeItem("token");
+    signOut(auth)
+      .then(() => {
+        console.log("Signed out successfully");
+        window.location.reload();
+      })
+      .catch((error) => console.log(error));
   };
   const location = useLocation();
+  useEffect(() => {
+    setEmail(localStorage.getItem("email"));
+  }, [email]);
   //asd
   return (
     <div className={styles.mainContainer}>
@@ -98,14 +111,17 @@ function NavBar() {
             className={styles.fontAwesome}
           />
         </NavLink>
-        {localStorage.getItem("email") ? "" : <PopUpLogin />}
-        <NavLink to="/" className={styles.link}>
-          <FontAwesomeIcon
-            onClick={handleLogout}
-            icon={faRightFromBracket}
-            className={styles.fontAwesome}
-          />
-        </NavLink>
+        {email ? (
+          <NavLink to="/" className={styles.link}>
+            <FontAwesomeIcon
+              onClick={handleLogout}
+              icon={faRightFromBracket}
+              className={styles.fontAwesome}
+            />
+          </NavLink>
+        ) : (
+          <PopUpLogin />
+        )}
       </div>
     </div>
   );
