@@ -9,7 +9,7 @@ import styles from "./Favorites.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Button, Image, Modal } from "react-bootstrap";
 import LoginForm from "../Login/LoginForm";
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import "./Favorites.css";
 
 import { Wrap, WrapItem } from "@chakra-ui/react";
@@ -18,7 +18,9 @@ import CardFav from "./CardFav";
 const Favorites = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const {favorites, deleteFavorite, user, isAuthenticated} = useSelector((state) => state);
+	const { favorites, deleteFavorite, user, isAuthenticated } = useSelector(
+		(state) => state
+	);
 
 	const [isFav, setIsFav] = useState(false);
 	const [showModal, setShowModal] = useState(false);
@@ -35,7 +37,7 @@ const Favorites = () => {
 		setIsFav(false);
 		dispatch(deleteFavoriteAction(productId));
 	};
-  
+
 	useEffect(() => {
 		if (email) {
 			dispatch(getUserDataByEmail(email));
@@ -71,7 +73,13 @@ const Favorites = () => {
 						</Button>
 					</div>
 				) : (
-					<Box mt={110}>
+					<Box
+						bgImg={
+							"https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
+						}
+						minH={"100vh"}
+						pt={40}
+					>
 						<h1 className={styles.h1}>These are your favorite products ♥</h1>
 						<Wrap py={5} spacing={"5"} justify={"center"}>
 							{favorites && favorites.length > 0 ? (
@@ -83,7 +91,14 @@ const Favorites = () => {
 									);
 								})
 							) : (
-								<h1 className={styles.nofavs}>You don't have favorites</h1>
+								<Text
+									color={"whiteAlpha.900"}
+									fontSize="5xl"
+									as="b"
+									textShadow="2px 2px 4px rgba(0, 0, 0, 0.5)"
+								>
+									You don't have favorites
+								</Text>
 							)}
 						</Wrap>
 					</Box>
@@ -91,7 +106,6 @@ const Favorites = () => {
 			</div>
 		</>
 	);
-
 };
 
 export default Favorites;

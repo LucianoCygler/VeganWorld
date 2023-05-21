@@ -26,21 +26,18 @@ import Pop_up from "../../Utils/Pop_up/Pop_up";
 import LoginForm from "../Login/LoginForm";
 
 const CardFav = ({ product, favorites }) => {
+	const navigate = useNavigate();
 
-	const navigate = useNavigate() 
-
-	const quantity = 1
+	const quantity = 1;
 
 	const dispatch = useDispatch();
 
-	const { id, nombre, descripcion, precio, imagen, stock } = product?.Product;
-
-  const [productFav] = useSelector((state) => state.product);
+	const [productFav] = useSelector((state) => state.product);
 
 	const [loading, setLoading] = useState(false);
 
 	const handleClick = () => {
-		dispatch(getProductById(id))
+		dispatch(getProductById(product?.Product.id));
 		setLoading(true);
 		setTimeout(() => {
 			setLoading(false);
@@ -53,29 +50,38 @@ const CardFav = ({ product, favorites }) => {
 		}
 	};
 
-const handleMP = () => {
-	alert(`AGREGAR LA FUNCION DE MERCADO PAGO`)
-}
+	const handleMP = () => {
+		alert(`AGREGAR LA FUNCION DE MERCADO PAGO`);
+	};
 
-useEffect(()=>{
-	!product && navigate("/")
-},[])
+	useEffect(() => {
+		!product && navigate("/");
+	}, []);
 
 	return (
 		<Card maxW="2xs">
 			<CardHeader>
-				<Button onClick={() => dispatch(deleteFavoriteAction(id))}>
+				<Button
+					onClick={() => dispatch(deleteFavoriteAction(product?.Product?.id))}
+				>
 					<FontAwesomeIcon icon={faHeartCrack} style={{ color: "#c11010" }} />
 				</Button>
 			</CardHeader>
-			<NavLink to={`/Detail/${id}`} style={{ textDecoration: "none" }}>
+			<NavLink
+				to={`/Detail/${product?.Product?.id}`}
+				style={{ textDecoration: "none" }}
+			>
 				<CardBody>
-					<Image src={imagen} alt={nombre} borderRadius="lg" />
+					<Image
+						src={product?.Product?.imagen}
+						alt={product?.Product?.nombre}
+						borderRadius="lg"
+					/>
 					<Stack mt="6" spacing="3">
-						<Heading size="md">{nombre}</Heading>
-						<Text>{descripcion}</Text>
+						<Heading size="md">{product?.Product?.nombre}</Heading>
+						<Text>{product?.Product?.descripcion}</Text>
 						<Text color="blue.600" fontSize="2xl">
-							$ {precio}
+							$ {product?.Product?.precio}
 						</Text>
 					</Stack>
 				</CardBody>
