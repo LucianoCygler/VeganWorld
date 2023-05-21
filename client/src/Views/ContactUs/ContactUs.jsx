@@ -45,8 +45,8 @@ const ContactUs = () => {
       error.textContainer =
         "Enter a little more text please tell us more about your opinion";
     }
-    if (!reg.test(form.textContainer)) {
-      error.textContainer = "Numbers or special characters are not allowed";
+    if (!form.textContainer) {
+      error.textContainer = "This input is mandatory";
     }
     return error;
   };
