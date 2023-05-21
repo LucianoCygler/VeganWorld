@@ -71,7 +71,7 @@ const Favorites = () => {
 						</Button>
 					</div>
 				) : (
-					<Box mt={5}>
+					<Box mt={110}>
 						<h1 className={styles.h1}>These are your favorite products ♥</h1>
 						<Wrap py={5} spacing={"5"} justify={"center"}>
 							{favorites && favorites.length > 0 ? (
