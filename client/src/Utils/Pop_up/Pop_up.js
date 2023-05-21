@@ -4,7 +4,7 @@ import styles from "./popup.module.css";
 const Pop_up = (icon, tittle, text) => {
   const Toast = Swal.mixin({
     toast: true,
-    position: "center",
+    position: "top",
     showConfirmButton: false,
     timer: 1000,
     timerProgressBar: true,
