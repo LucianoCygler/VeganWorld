@@ -49,6 +49,7 @@ const initialState = {
   orderDelete: [],
   reviews: [],
   favorites: [],
+  deleteFavorite:[],
   isAuthenticated: false,
   productReviews: [],
   allClients: [],
@@ -222,6 +223,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         favorites: [...filtered],
+        deleteFavorite:[action.payload]
       };
     case GET_CLIENT_FAVORITE:
       return {
