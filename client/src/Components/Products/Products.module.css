@@ -1,19 +1,26 @@
 .mainContainer {
+  min-height: 80vh;
   display: grid;
   grid-template-columns: repeat(
     6,
     1fr
   ); /* Configura 6 columnas de tamaño igual */
-  gap: 1rem;
-  margin: 1rem 0;
+
+  margin: 0;
   margin-right: 4em;
   margin-left: 4em;
-  padding: 0;
-  background-color: #b6cdbd;
+  border-radius: 40px;
+  background-color: rgba(216, 216, 216, 0.3);
+  margin-top: 2em;
+  /* background-image: url("https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg");
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center;  */
+  padding: 5em;
+  /* background-color: #b6cdbd; */
 }
 
 .cardContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
 }

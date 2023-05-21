@@ -80,7 +80,6 @@ const OrderDetail = ({ order, cancelRef }) => {
       </AccordionButton>
 
       <AccordionPanel pb={4}>
-        {/* AQUI SE HACE UN MAP DE LA ORDEN PARA OBTENER LOS PRODUCTOS */}
         <TableOrder items={order.productos} />
       </AccordionPanel>
 

@@ -35,6 +35,7 @@ const Favorites = () => {
 		setIsFav(false);
 		dispatch(deleteFavoriteAction(productId));
 	};
+  
 	useEffect(() => {
 		if (email) {
 			dispatch(getUserDataByEmail(email));
@@ -47,7 +48,6 @@ const Favorites = () => {
 			dispatch(getClientAllFavorites(client_id));
 		}
 	}, [user, deleteFavorite]);
-
 
 	return (
 		<>
@@ -91,6 +91,7 @@ const Favorites = () => {
 			</div>
 		</>
 	);
+
 };
 
 export default Favorites;

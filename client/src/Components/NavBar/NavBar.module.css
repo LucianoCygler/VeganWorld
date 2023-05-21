@@ -4,13 +4,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   background-color: #1d5c63;
   box-shadow: 0 0 15px #1a3c40;
   width: 100%;
-  position: sticky;
+  z-index: 999;
   padding: 20px;
   margin-top: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   /* z-index: 999; */
 }
 

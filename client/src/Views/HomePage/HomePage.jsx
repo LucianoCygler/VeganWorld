@@ -40,7 +40,7 @@ const settings = {
   autoplay: true,
   autoplaySpeed: 5000, // Tiempo de espera entre imágenes (en milisegundos)
   speed: 900, // Velocidad de transición entre imágenes (en milisegundos)
-  slidesToShow: 1, // Número de imágenes a mostrar al mismo tiempo
+  slidesToShow: 2, // Número de imágenes a mostrar al mismo tiempo
   slidesToScroll: 1, // Número de imágenes a desplazar al avanzar o retroceder
 };
 function HomePage() {
@@ -84,10 +84,21 @@ function HomePage() {
     AOS.init(); // Inicializa AOS
   }, []); //#d8d8d8
   return (
-    <Box bg="white" vh={100} overflowY="scroll" scrollBehavior={"smooth"}>
-      <Box paddingTop={1}>
-        <Flex direction={"row"} justify={"center"}>
-          {/* <Box width={"80%"} height="700" bg="#d8d8d8">
+    <Box
+      marginRight={0}
+      maxW={"100%"}
+      vh={100}
+      scrollBehavior={"smooth"}
+      paddingTop={200}
+      margin={0}
+      backgroundImage={
+        "https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
+      }
+    >
+      <Box>
+        <Box paddingTop={1}>
+          <Flex direction={"row"} justify={"center"}>
+            {/* <Box width={"80%"} height="700" bg="#d8d8d8">
             <Image
               
               maxW={{ base: "100%", sm: "330px" }}
@@ -95,65 +106,72 @@ function HomePage() {
             ></Image>
           </Box> */}
 
-          <Text fontSize="6xl">
-            <h1 className={style.h1}>The best vegan food in town!</h1>
-          </Text>
-        </Flex>
-      </Box>
-      <div
-        data-aos="fade-right"
-        data-aos-offset="300"
-        data-aos-easing="ease-in-sine"
-        data-aos-duration="1000"
-      >
-        <Card
-          direction={{ base: "column", sm: "row" }}
-          overflow="hidden"
-          variant="outline"
-          justifyContent={"center"}
-          alignContent={"center"}
-          height={400}
+            <Text fontSize="6xl">
+              <h1 className={style.h1}>The best vegan food in town!</h1>
+            </Text>
+          </Flex>
+        </Box>
+        <div
+          data-aos="fade-right"
+          data-aos-offset="300"
+          data-aos-easing="ease-in-sine"
+          data-aos-duration="1000"
         >
-          <Image
-            position={"absolute"}
-            left={40}
-            top={16}
-            objectFit="cover"
-            maxW={{ base: "100%", sm: "330px" }}
-            src="https://mdpiblog.wordpress.sciforum.net/wp-content/uploads/sites/4/2021/11/vegan-4187877_1280.jpeg"
-            alt="Caffe Latte"
-          />
+          <Card
+            direction={{ base: "column", sm: "row" }}
+            overflow="hidden"
+            variant="outline"
+            justifyContent={"center"}
+            alignContent={"center"}
+            height={400}
+            bg="none"
+          >
+            <Stack justifyContent={"center"}>
+              <CardBody>
+                <Heading
+                  size="md"
+                  fontSize="5xl"
+                  paddingTop={30}
+                  color="white"
+                  textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                >
+                  <Text> Welcome to your Vegan World!</Text>
+                </Heading>
+                <Box marginLeft={500} wordBreak="break-word" w={"50%"}>
+                  <Text
+                    marginTop={10}
+                    py="2"
+                    fontSize="3xl"
+                    color="white"
+                    textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                  >
+                    We hope you can find what you need here, take a look to our
+                    products and start shopping by clicking the button below.
+                  </Text>
+                </Box>
+              </CardBody>
 
-          <Stack justifyContent={"center"}>
-            <CardBody>
-              <Heading size="md" fontSize="5xl" paddingTop={30}>
-                Welcome to your Vegan World!
-              </Heading>
-              <Box marginLeft={500} wordBreak="break-word" w={"50%"}>
-                <Text marginTop={10} py="2" fontSize="3xl">
-                  We hope you can find what you need here, take a look to our
-                  products and start shopping by clicking the button below.
-                </Text>
-              </Box>
-            </CardBody>
-
-            <CardFooter>
-              <Button
-                variant="solid"
-                colorScheme="teal"
-                margin={"auto"}
-                marginTop={-4}
-                marginBottom={20}
-                onClick={() => {
-                  navigate("/ourproducts");
-                }}
-              >
-                Let's start
-              </Button>
-            </CardFooter>
-          </Stack>
-        </Card>{" "}
-      </div>
+              <CardFooter>
+                <Button
+                  shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+                  w={"200px"}
+                  h={"70px"}
+                  variant="solid"
+                  colorScheme="teal"
+                  margin={"auto"}
+                  marginTop={-4}
+                  marginBottom={20}
+                  onClick={() => {
+                    navigate("/ourproducts");
+                  }}
+                >
+                  <Text fontSize={"3xl"}>Let's start</Text>
+                </Button>
+              </CardFooter>
+            </Stack>
+          </Card>
+        </div>
+      </Box>
       {/* Filter By Type:{" "}
       <select onChange={handleFilter}>
         <option value="">All</option>
@@ -184,8 +202,16 @@ function HomePage() {
         currentPage={currentPage}
         lastPage={totalPages}
       /> */}
-      <Box marginTop={200}>
-        <Text as="b" fontSize="6xl">
+      <Box marginTop={200} w={"fit-content"} margin="3em auto ">
+        <Text
+          as="b"
+          fontSize="6xl"
+          textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+          color="white"
+          bg={"rgba(0, 0, 0, 0.2)"}
+          padding={"0.3em"}
+          borderRadius={70}
+        >
           <span>Best Products</span>
         </Text>
       </Box>
@@ -197,7 +223,11 @@ function HomePage() {
         marginTop={60}
         marginBottom={180}
       >
-        <Text as={"b"}>
+        <Text
+          as={"b"}
+          textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+          color="white"
+        >
           <h1>Our custommers</h1>
         </Text>{" "}
         <>
@@ -246,60 +276,100 @@ function HomePage() {
         <Box
           width={"100%"}
           height={400}
-          bg={"white"}
+          bg={"none"}
           padding={1}
-          marginBottom={600}
+          marginBottom={300}
         >
           <Grid
             templateColumns={"repeat(4,1fr)"}
             templateRows={"repeat(2,1fr)"}
           >
-            <Image
-              marginLeft={20}
-              maxW={{ base: "100%", sm: "330px" }}
-              src="https://static.vecteezy.com/system/resources/previews/004/542/032/non_2x/young-woman-sitting-on-floor-working-with-laptop-cartoon-style-illustration-isolated-on-white-background-vector.jpg"
-            ></Image>
-            <Image
-              marginLeft={20}
-              paddingTop={5}
-              maxW={{ base: "100%", sm: "330px" }}
-              src="https://img.freepik.com/vector-gratis/hombre-montando-scooter-sobre-fondo-blanco_1308-46379.jpg"
-            ></Image>
-            <Image
-              marginLeft={19.5}
-              maxW={{ base: "100%", sm: "370px" }}
-              src="https://media.istockphoto.com/id/1152445566/es/vector/el-repartidor-est%C3%A1-sosteniendo-una-caja-de-paquetes.jpg?s=612x612&w=0&k=20&c=cUSmSP-hnxJSOTnGoNxstqDh9UGZyM2zE0OEebXt_UE="
-            ></Image>
-            <Image
-              marginLeft={19.5}
-              maxW={{ base: "100%", sm: "370px" }}
-              src="https://media.istockphoto.com/id/1282103104/es/vector/ni%C3%B1a-comiendo-frutas-alimentos-saludables-mujer-aislada-en-dibujos-animados-planos-la.jpg?s=170667a&w=0&k=20&c=HpUGp0dItcE_lAzyYKe70xrm5xc0NnzyiGWy8el5Q4A="
-            ></Image>{" "}
-            <Text fontSize="4xl">
-              <Text as="b">Order</Text> Online
-            </Text>
-            <Text fontSize="4xl">
-              <Text as="b">Fast</Text> shipping
-            </Text>
-            <Text fontSize="4xl" marginRight={20}>
-              <Text as="b">Receive</Text> the order at the door of your house
-            </Text>
-            <Text fontSize="4xl" marginRight={20}>
-              <Text as="b">Enjoy</Text> your order from Vegan World!
-            </Text>
+            <Box
+              bg={"white"}
+              margin="2px"
+              borderRadius={"120px 20px"}
+              shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+            >
+              <Image
+                padding="1em  "
+                marginLeft={20}
+                maxW={{ base: "100%", sm: "330px" }}
+                src="https://static.vecteezy.com/system/resources/previews/004/542/032/non_2x/young-woman-sitting-on-floor-working-with-laptop-cartoon-style-illustration-isolated-on-white-background-vector.jpg"
+              ></Image>
+              <Text fontSize="4xl" marginTop={"64px"}>
+                <Text as="b">Order</Text> Online
+              </Text>
+            </Box>{" "}
+            <Box
+              shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+              bg={"white"}
+              margin="2px"
+              borderRadius={"120px 20px"}
+            >
+              <Image
+                padding="1em  "
+                marginLeft={20}
+                paddingTop={5}
+                maxW={{ base: "100%", sm: "330px" }}
+                src="https://img.freepik.com/vector-gratis/hombre-montando-scooter-sobre-fondo-blanco_1308-46379.jpg"
+              ></Image>
+              <Text fontSize="4xl" marginTop={20}>
+                <Text as="b">Fast</Text> shipping
+              </Text>
+            </Box>
+            <Box
+              shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+              bg={"white"}
+              margin="2px"
+              borderRadius={"120px 20px"}
+              paddingLeft={"3em"}
+            >
+              <Image
+                padding="2em  "
+                marginLeft={19.5}
+                maxW={{ base: "100%", sm: "370px" }}
+                src="https://media.istockphoto.com/id/1152445566/es/vector/el-repartidor-est%C3%A1-sosteniendo-una-caja-de-paquetes.jpg?s=612x612&w=0&k=20&c=cUSmSP-hnxJSOTnGoNxstqDh9UGZyM2zE0OEebXt_UE="
+              ></Image>{" "}
+              <Text fontSize="4xl" marginRight={20} paddingLeft={"1em"}>
+                <Text as="b">Receive</Text> the order at the door of your house
+              </Text>
+            </Box>
+            <Box
+              shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+              bg={"white"}
+              margin="2px"
+              borderRadius={"120px 20px"}
+              paddingLeft={"3em"}
+            >
+              <Image
+                padding="2em"
+                marginLeft={19.5}
+                maxW={{ base: "100%", sm: "370px" }}
+                src="https://media.istockphoto.com/id/1282103104/es/vector/ni%C3%B1a-comiendo-frutas-alimentos-saludables-mujer-aislada-en-dibujos-animados-planos-la.jpg?s=170667a&w=0&k=20&c=HpUGp0dItcE_lAzyYKe70xrm5xc0NnzyiGWy8el5Q4A="
+              ></Image>{" "}
+              <Text fontSize="4xl" marginRight={20}>
+                <Text as="b">Enjoy</Text> your order from Vegan World!
+              </Text>
+            </Box>
           </Grid>
         </Box>
       </div>
       <Slider {...settings}>
         {images.map((image, index) => (
           <div key={index}>
-            <Image
-              w={"100%"}
-              h={"95vh"}
-              maxH="95vh"
-              src={image}
-              alt={`Slide ${index + 1}`}
-            />
+            <Box>
+              <Image
+                shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+                color={"white"}
+                marginLeft={"2em"}
+                w={"95%"}
+                h={"65vh"}
+                maxH="95vh"
+                src={image}
+                alt={`Slide ${index + 1}`}
+                style={{ opacity: 0.7 }}
+              />{" "}
+            </Box>
           </div>
         ))}
       </Slider>
