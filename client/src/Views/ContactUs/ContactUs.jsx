@@ -60,8 +60,10 @@ const ContactUs = () => {
     } else if (form.textContainer.length < 30) {
       error.textContainer = "Text must be longer than 30 characters";
     }
-    if (!reg.test(form.textContainer)) {
-      error.textContainer = "Only text is allowed";
+
+    if (!form.textContainer) {
+      error.textContainer = "This input is mandatory";
+
     }
     return error;
   };
