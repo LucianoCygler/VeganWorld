@@ -28,7 +28,7 @@ const OrderDetail = ({ order, cancelRef }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <AccordionItem>
+    <AccordionItem bg={"rgba(29, 92, 99, 0.8)"} textColor={"white"} fontWeight={"medium"} >
       <AccordionButton>
         {/* CABEZERA DE LA ORDEN */}
         <Stack
@@ -39,13 +39,13 @@ const OrderDetail = ({ order, cancelRef }) => {
           m={"auto"}
           spacing={"10"}
         >
-          <Box as="span" flex="1" textAlign="left">
-            Order: {id}
+          <Box as="span" flex="1" textAlign="left" fontWeight={"bold"}>
+            Order: <Stack>{id}</Stack>
           </Box>
-          <Box as="span" flex="1" textAlign="left">
+          <Box as="span" flex="1" textAlign="left" fontWeight={"bold"}>
             Date: {fecha}
           </Box>
-          <Box as="span" flex="1" textAlign="left">
+          <Box as="span" flex="1" textAlign="left" fontWeight={"bold"}>
             Total Amount: $ {importe}
           </Box>
         </Stack>

@@ -17,7 +17,7 @@ const TableOrder = ({ items }) => {
 
   return (
     <TableContainer>
-      <Table size="sm">
+      <Table size="sm" >
         <Thead>
           <Tr>
             <Th>items</Th>

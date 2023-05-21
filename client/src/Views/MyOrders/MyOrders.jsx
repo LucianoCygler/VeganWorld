@@ -80,7 +80,7 @@ const MyOrders = () => {
 						<TabPanel>
 							{/* PENDING */}
 							{/* Aca debajo se rendiza los TabPanels con un map de la cantidad de ordenes */}
-							<Accordion allowMultiple w={"95%"} >
+							<Accordion allowMultiple w={"95%"}  >
 								{clientOrders.map((order, index) => {
 									return (
 										order.estado === "Pendiente" && (
