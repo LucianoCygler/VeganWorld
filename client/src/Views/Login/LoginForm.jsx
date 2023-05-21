@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 // import { Button } from "react-bootstrap";
 import { auth, googleProvider } from "../../Firebase/firebase";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+  getIdToken,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { validateLogin } from "../../redux/actions/actions";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,34 +23,39 @@ const LoginForm = ({ handleCloseModal }) => {
   const [validPassword, setValidPassword] = useState(true);
   const [canLogin, setCanLogin] = useState(false);
   const navigate = useNavigate();
+  const [token, setToken] = useState("");
 
   const handleRememberPassword = () => {
     setRememberPassword(!rememberPassword);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (validEmail && validPassword) {
       setCanLogin(true);
-      navigate("/");
+      // navigate("/");
     } else {
       setCanLogin(false);
     }
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((data) => {
-        localStorage.setItem("email", data.user.email);
-        dispatch(validateLogin(login));
-        localStorage.setItem(
-          "user",
-          localStorage.setItem("user", JSON.stringify(user))
-        );
-        handleCloseModal();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      const idToken = await user.getIdToken();
+
+      setToken(idToken);
+      localStorage.setItem("token", idToken);
+      setValue(user.email);
+      localStorage.setItem("email", user.email);
+      handleCloseModal();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const SignInWithGoogle = () => {
@@ -70,6 +79,7 @@ const LoginForm = ({ handleCloseModal }) => {
 
   useEffect(() => {
     setValue(localStorage.getItem("email"));
+    setToken(localStorage.getItem("token"));
   }, []);
   useEffect(() => {
     if (user && value === "") {

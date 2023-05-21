@@ -27,7 +27,7 @@ const products = [
   },
   {
     id: 4,
-    name: "Arroz vergano",
+    name: "Arroz vegano",
     image: "https://i.blogs.es/e78f73/recetas-vegans/1366_2000.jpg",
   },
   {
@@ -50,9 +50,9 @@ const products = [
   },
   {
     id: 8,
-    name: "NARANJASSSSS",
+    name: "Plato Gourmet",
     image:
-      "https://res.cloudinary.com/dzv1xau8l/image/upload/v1684421289/imagenes/ihlsklhxsvlmjj0astpj.jpg",
+      "https://gastronomiaycia.republica.com/wp-content/uploads/2020/03/sal_comida_vegana.jpg",
   },
   {
     id: 9,
