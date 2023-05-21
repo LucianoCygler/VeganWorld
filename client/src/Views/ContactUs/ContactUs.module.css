@@ -1,9 +1,13 @@
 .contenedor {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto;
   justify-content: center;
   align-items: center;
   padding-top: 9em;
-  background-color: #d6cda4;
+  background-image: url("https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .ma {
@@ -26,9 +30,9 @@
 
 .h1 {
   display: flex;
-  padding-left: 500px;
   align-items: center;
   position: relative;
+  text-align: center;
 }
 
 .formdiv {
@@ -43,6 +47,7 @@
   display: flex;
   margin-left: 15%;
   margin-bottom: 4px;
+  align-items: center;
 }
 .formdiv input {
   border: 2px solid #52b3d3;
@@ -120,11 +125,3 @@
   text-transform: uppercase;
   cursor: pointer;
 }
-
-/* .for_-left_container input {
-  padding: 0 0.5rem;
-  height: 6vh;
-  width: 20vw;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-} */
