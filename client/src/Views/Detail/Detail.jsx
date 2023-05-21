@@ -250,7 +250,13 @@ function Detail() {
                   <Box display="inline-block" marginRight="1.5em">
                     <div class="cardReview">
                       <div class="header">
-                        <div class="image"></div>
+                        <div>
+                          <Avatar
+                            name="Ryan Florence"
+                            src="https://bit.ly/ryan-florence"
+                            size="xl"
+                          />
+                        </div>
                         <div>
                           <div class="stars">
                             {Array.from({ length: review.estrellas }).map(

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   filterNameProduct,
@@ -11,7 +11,6 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import styles from "./SearchBar.module.css";
 
 function SearchBar() {
-  const [inputEnable, setInputEnable] = useState(false);
   const dispatch = useDispatch();
   const filteredProducts = useSelector((state) => state.filteredProducts);
 
@@ -33,16 +32,17 @@ function SearchBar() {
     }
   };
 
-  const handleIconSearch = () => {
-    setInputEnable(true);
-    document.getElementById("input").focus();
-  }
-
   return (
     <div className={styles.mainContainer}>
       <nav>
-        <input id="input" className={styles.inputClass} type="search" placeholder="Search a product..." onChange={handleSearch} disabled={!inputEnable} onClick={() => setInputEnable(true)} />
-        <FontAwesomeIcon className={styles.fontIcon} icon={faMagnifyingGlass} onClick={handleIconSearch} />
+        <input
+          id="input"
+          className={styles.inputClass}
+          type="search"
+          placeholder="Search a product..."
+          onChange={handleSearch}
+        />
+        <FontAwesomeIcon className={styles.fontIcon} icon={faMagnifyingGlass} />
       </nav>
     </div>
   );

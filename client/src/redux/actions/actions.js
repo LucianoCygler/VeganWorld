@@ -43,6 +43,7 @@ import {
   // SET_CREATED_ORDER_ID,
   CLEAN_CART,
   GET_MP_LINK,
+  GET_REVIEWS,
 } from "./Types/Types";
 
 // const URL_SERVIDOR = "http://localhost:3001";
@@ -390,17 +391,17 @@ export const orderAndFilter = (filterByType, sort) => {
 };
 
 //OBTENER FAVORITOS
-export const getFavorites = (id_client) => {
-  return async function (dispatch) {
-    try {
-      const res = await axios.get(`/favorite/client/${id_client}`);
-      const clientFavorites = res.data;
-      return dispatch({ type: GET_FAVORITES, payload: clientFavorites });
-    } catch (error) {
-      console.log(error.response.data);
-    }
-  };
-};
+// export const getFavorites = (id_client) => {
+//   return async function (dispatch) {
+//     try {
+//       const res = await axios.get(`/favorite/client/${id_client}`);
+//       const clientFavorites = res.data;
+//       return dispatch({ type: GET_FAVORITES, payload: clientFavorites });
+//     } catch (error) {
+//       console.log(error.response.data);
+//     }
+//   };
+// };
 
 //CREAR FAVORITOS
 export const createFavoriteAction = (favorite) => {
@@ -428,7 +429,6 @@ export const deleteFavoriteAction = (product_id) => {
   };
 };
 
-//ELIMINAR FAVORITOS
 export const getClientAllFavorites = (client_id) => {
   return async function (dispatch) {
     try {
@@ -459,6 +459,17 @@ export const getProductReviews = (id_product) => {
       const res = await axios.get(`/review/product/${id_product}`);
       const productReviews = res.data;
       return dispatch({ type: GET_PRODUCT_REVIEWS, payload: productReviews });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
+export const getAllReviews = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/review`);
+      const reviews = res.data;
+      return dispatch({ type: GET_REVIEWS, payload: reviews });
     } catch (error) {
       console.log(error.response.data);
     }

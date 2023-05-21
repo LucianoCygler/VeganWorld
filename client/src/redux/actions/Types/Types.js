@@ -48,3 +48,4 @@ export const GET_ALL_CLIENTS = "GET_ALL_CLIENTS";
 export const SET_CREATED_ORDER_ID = "SET_CREATED_ORDER_ID";
 export const CLEAN_CART = "CLEAN_CART";
 export const GET_MP_LINK = "GET_MP_LINK";
+export const GET_REVIEWS = "GET_REVIEWS";

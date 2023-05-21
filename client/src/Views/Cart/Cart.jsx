@@ -15,6 +15,8 @@ import Pop_up from "../../Utils/Pop_up/Pop_up";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
 import LoginForm from "../Login/LoginForm";
+import { InfoOutlineIcon } from "@chakra-ui/icons";
+import { Box, Text } from "@chakra-ui/react";
 
 function Cart() {
   const navigate = useNavigate();
@@ -241,6 +243,11 @@ function Cart() {
             <div className={styles.btnOrder}>
               {user.id ? (
                 <>
+                  <p>
+                    <InfoOutlineIcon marginRight={1.5} />
+                    Once the order is created, you will be reditected to the
+                    payment window.
+                  </p>
                   {!isOrderGenerated ? (
                     <button
                       className={styles.btnGenerate}
@@ -256,7 +263,7 @@ function Cart() {
                       onClick={handleClick}
                       name="pay"
                     >
-                      Pay
+                      Redirecting...
                     </button>
                   )}
                 </>

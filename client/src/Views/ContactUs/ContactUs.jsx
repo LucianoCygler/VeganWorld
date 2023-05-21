@@ -46,7 +46,7 @@ const ContactUs = () => {
       error.name = "Name is required in this field";
     }
     if (!reg.test(form.name)) {
-      error.name = "Numbers or special characters are not allowed";
+      error.name = "Numbers or special characters are not allowed"; 
     }
     if (form.name.length > 20) {
       error.name = "Name must not be longer than 20 characters";
