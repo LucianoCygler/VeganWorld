@@ -63,10 +63,10 @@ function Cart() {
     switch (name) {
       case "clear":
         return dispatch(dropProduct(id));
-      case "pay":
-        dispatch(cleanCart());
-        return alert("ir al metodo de pago");
-      case "generateOrder":
+      // case "pay":
+      //   return alert("ir al metodo de pago");
+        case "generateOrder":
+          dispatch(cleanCart());
         var order = {
           cliente_id: user?.id,
           importe: subTotalF(),
@@ -121,10 +121,10 @@ function Cart() {
   }, [updateCart]);
 
   useEffect(() => {
-    if (isOrderGenerated && user.id) {
+    if (isOrderGenerated && user?.id) {
       dispatch(getMercadoPagoLink(emailAndProducts));
     }
-  }, [isOrderGenerated, user.id]);
+  }, [isOrderGenerated, user?.id]);
 
   useEffect(() => {
     if (MPLink) {
