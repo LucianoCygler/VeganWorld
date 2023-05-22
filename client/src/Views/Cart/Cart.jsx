@@ -18,6 +18,8 @@ import LoginForm from "../Login/LoginForm";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { Box, Text } from "@chakra-ui/react";
 
+
+//
 function Cart() {
   const navigate = useNavigate();
   const { user, cart } = useSelector((state) => state);
@@ -74,10 +76,7 @@ function Cart() {
         };
 
         try {
-          dispatch(createOrder(order)).then((order) => {
-            const form = { user: user, order: order };
-            dispatch(sendEmail(form, "genOrder"));
-          });
+          dispatch(createOrder(order));
 
           Pop_up(
             "success",
