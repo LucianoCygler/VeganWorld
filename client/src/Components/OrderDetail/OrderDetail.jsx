@@ -33,7 +33,7 @@ const OrderDetail = ({ order, cancelRef }) => {
 			textColor={"white"}
 			fontWeight={"medium"}
 		>
-			<AccordionButton>
+			<AccordionButton mb={2} boxShadow={"dark-lg"} borderRadius={'2xl'}>
 				{/* CABEZERA DE LA ORDEN */}
 				<Stack
 					flex
@@ -44,7 +44,7 @@ const OrderDetail = ({ order, cancelRef }) => {
 					spacing={"10"}
 				>
 					<Box as="span" flex="1" textAlign="left" fontWeight={"bold"}>
-						Order: <Stack>{id}</Stack>
+						Order: {id}
 					</Box>
 					<Box as="span" flex="1" textAlign="left" fontWeight={"bold"}>
 						Date: {fecha}

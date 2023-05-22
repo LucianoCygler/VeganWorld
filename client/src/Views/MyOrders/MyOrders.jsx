@@ -71,7 +71,7 @@ const MyOrders = () => {
 				bgImg={
 					"https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
 				}
-				h={"100vh"}
+				minH={"100vh"}
 				bgAttachment={"fixed"}
 			>
 				<Tabs
