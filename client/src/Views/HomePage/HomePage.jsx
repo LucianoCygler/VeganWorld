@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Pagination, Products } from "../../Components/index";
 import { orderAndFilter } from "../../redux/actions/actions";
 import CustomCarousel from "../../Components/Carousel/CustomCarousel";
+import Carrusel from "../../Components/Carousel/Carrusel";
 import "./HomePage.css";
 import { SocialIcon } from "react-social-icons";
 import { Box, Flex, Grid, GridItem, Img } from "@chakra-ui/react";
@@ -66,6 +67,7 @@ function HomePage() {
   }, []); //#d8d8d8
   return (
     <Box
+      overflow={"hidden"}
       marginRight={0}
       maxW={"100%"}
       vh={100}
@@ -184,6 +186,7 @@ function HomePage() {
         currentPage={currentPage}
         lastPage={totalPages}
       /> */}
+      <Carrusel />
       <Box marginTop={200} w={"fit-content"} margin="3em auto ">
         <Text
           as="b"
@@ -261,6 +264,7 @@ function HomePage() {
           bg={"none"}
           padding={1}
           marginBottom={300}
+          flexWrap={"wrap"}
         >
           <Grid
             templateColumns={"repeat(4,1fr)"}

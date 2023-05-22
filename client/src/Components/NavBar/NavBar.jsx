@@ -111,17 +111,14 @@ function NavBar() {
             className={styles.fontAwesome}
           />
         </NavLink>
-        {email ? (
-          <NavLink to="/" className={styles.link}>
-            <FontAwesomeIcon
-              onClick={handleLogout}
-              icon={faRightFromBracket}
-              className={styles.fontAwesome}
-            />
-          </NavLink>
-        ) : (
-          <PopUpLogin />
-        )}
+        {email ? "" : <PopUpLogin />}
+        <NavLink to="/" className={styles.link}>
+          <FontAwesomeIcon
+            onClick={handleLogout}
+            icon={faRightFromBracket}
+            className={styles.fontAwesome}
+          />
+        </NavLink>
       </div>
     </div>
   );

@@ -67,8 +67,20 @@ const MyOrders = () => {
 
 	return (
 		<>
-			<Box bgImg={"https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"} h={"100vh"} bgAttachment={"fixed"}>
-				<Tabs variant="enclosed-colored" w={"80%"} m={"auto"} pt={"40"} shadow={"lg"}>
+			<Box
+				bgImg={
+					"https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
+				}
+				h={"100vh"}
+				bgAttachment={"fixed"}
+			>
+				<Tabs
+					variant="enclosed-colored"
+					w={"80%"}
+					m={"auto"}
+					pt={"40"}
+					shadow={"lg"}
+				>
 					<TabList color={"green.800"}>
 						<Tab fontWeight={"extrabold"}>Pending</Tab>
 						<Tab fontWeight={"extrabold"}>In Progress</Tab>
@@ -80,7 +92,7 @@ const MyOrders = () => {
 						<TabPanel>
 							{/* PENDING */}
 							{/* Aca debajo se rendiza los TabPanels con un map de la cantidad de ordenes */}
-							<Accordion allowMultiple w={"95%"} >
+							<Accordion allowMultiple w={"95%"}>
 								{clientOrders.map((order, index) => {
 									return (
 										order.estado === "Pendiente" && (
