@@ -9,8 +9,16 @@ import {
 } from "../../redux/actions/actions";
 import style from "./MyProfile.module.css";
 import { useNavigate } from "react-router-dom";
-import { Button, Modal } from "react-bootstrap";
 import LoginForm from "../Login/LoginForm";
+import {
+  Box,
+  Flex,
+  Grid,
+  GridItem,
+  Image,
+  Text,
+  Button,
+} from "@chakra-ui/react";
 
 const MyData = () => {
   const dispatch = useDispatch();
@@ -89,14 +97,6 @@ const MyData = () => {
 
   return (
     <div>
-      <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Sign in</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <LoginForm handleCloseModal={handleCloseModal}></LoginForm>{" "}
-        </Modal.Body>
-      </Modal>
       {!emailCurrent ? (
         <div className={style.divLogin}>
           <h2>
@@ -169,46 +169,73 @@ const MyData = () => {
                 className={style.input8B}
                 type="file"
                 onChange={handleImageChange}
-              />
-
-            <div className={style.buttonContainer} >
-            <button  className={style.button} onClick={handleSaveUser}>
+              />{" "}
+              <Button
+                right={"170px"}
+                onClick={handleSaveUser}
+                marginTop={"10em"}
+                marginBottom={"3em"}
+              >
                 Save Data
-              </button>
-            </div>
+              </Button>
             </div>
           ) : (
             <div className={style.c}>
-              <h1>My Profile</h1>
+              <Text
+                marginTop={"4em"}
+                marginBottom={"2em"}
+                color="white"
+                textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+              >
+                <h1>My Profile</h1>
+              </Text>{" "}
               {profileImage ? (
                 <img className={style.img} src={profileImage} alt="Profile" />
               ) : (
-                <img
-                  className={style.input8}
-                  src="https://s.alicdn.com/@sc04/kf/Hd45a4a8662ba407f8e4d3ad430722b26j.jpg_960x960.jpg"
-                  alt="Default Profile"
-                />
+                <Box w={"30%"} margin={"auto"} marginBottom={"3em"}>
+                  <Image
+                    borderRadius={100}
+                    src="https://bit.ly/ryan-florence"
+                    alt="Default Profile"
+                  />
+                </Box>
               )}
-              <h2>
-                {nombre} {apellido}
-              </h2>
-
-              <p>
-                <span style={{ fontWeight: "bold" }}> Email: </span>
-                {email}
-              </p>
-              <p>
-                <span style={{ fontWeight: "bold" }}> Phone Number: </span>
-                {telefono}
-              </p>
-              <p>
-                <span style={{ fontWeight: "bold" }}> City: </span>
-                {ciudad}
-              </p>
-              <p>
-                <span style={{ fontWeight: "bold" }}> Address: </span>
-                {direccion}
-              </p>
+              <Text
+                color="white"
+                textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+                marginBottom={"2em"}
+              >
+                {" "}
+                <h2>
+                  {nombre} {apellido}
+                </h2>
+              </Text>
+              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0,12)">
+                <p>
+                  <span style={{ fontWeight: "bold" }}> Email: </span>
+                  {email}
+                </p>
+              </Text>
+              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
+                <p>
+                  <span style={{ fontWeight: "bold" }}> Phone Number: </span>
+                  {telefono}
+                </p>
+              </Text>
+              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
+                {" "}
+                <p>
+                  <span style={{ fontWeight: "bold" }}> City: </span>
+                  {ciudad}
+                </p>
+              </Text>
+              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
+                {" "}
+                <p>
+                  <span style={{ fontWeight: "bold" }}> Address: </span>
+                  {direccion}
+                </p>
+              </Text>
               {/* {!dni ? (
             " "
           ) : (
@@ -216,7 +243,6 @@ const MyData = () => {
               <span style={{ fontWeight: "bold" }}> DNI: </span> {dni}
             </p>
           )} */}
-
               <button className={style.buttonEdit} onClick={handleEditUser}>
                 Edit User
               </button>

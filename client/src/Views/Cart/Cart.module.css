@@ -54,6 +54,7 @@
 
 .imagen {
   grid-area: imagen;
+  margin-left: 4em;
 }
 
 .nombre {

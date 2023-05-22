@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Pagination, Products } from "../../Components/index";
 import { orderAndFilter } from "../../redux/actions/actions";
 import CustomCarousel from "../../Components/Carousel/CustomCarousel";
+import Carrusel from "../../Components/Carousel/Carrusel";
 import "./HomePage.css";
 import { SocialIcon } from "react-social-icons";
 import { Box, Flex, Grid, GridItem, Img } from "@chakra-ui/react";
@@ -16,7 +17,7 @@ import { PhoneIcon, AddIcon, WarningIcon } from "@chakra-ui/icons";
 import { Divider } from "@chakra-ui/react";
 import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
 import { Image, Stack, Heading, Text, Button } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react";
@@ -24,6 +25,7 @@ import { shuffle } from "lodash";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ModalLogin from "../Login/ModalLogin";
 
 const images = [
   "https://images.pexels.com/photos/1893563/pexels-photo-1893563.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -53,38 +55,19 @@ function HomePage() {
   const shuffledReviews = shuffle(allReviews);
   const randomReviews = shuffledReviews.slice(0, 4);
 
-  // useEffect(() => {
-  //   dispatch(getAllProducts());
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   dispatch(orderAndFilter(filterByType, sort));
-  // }, [filterByType, sort, dispatch]);
+  const location = useLocation();
+  const showLogin = location.state && location.state.showLogin;
 
   useEffect(() => {
     dispatch(getAllReviews());
   }, []);
-  // const [currentPage, setCurrentPage] = useState(0);
 
-  // const itemsPerPage = 12;
-
-  // const startIndex = currentPage * itemsPerPage;
-  // const endIndex = startIndex + itemsPerPage;
-  // const currentItems = products.slice(startIndex, endIndex);
-
-  // const totalPages = Math.ceil(products.length / itemsPerPage);
-
-  // const handleFilter = (e) => {
-  //   setFilterByType(e.target.value);
-  // };
-  // const handleSort = (e) => {
-  //   setSort(e.target.value);
-  // };
   useEffect(() => {
     AOS.init(); // Inicializa AOS
   }, []); //#d8d8d8
   return (
     <Box
+      overflow={"hidden"}
       marginRight={0}
       maxW={"100%"}
       vh={100}
@@ -95,6 +78,7 @@ function HomePage() {
         "https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
       }
     >
+      <ModalLogin show={showLogin}></ModalLogin>
       <Box>
         <Box paddingTop={1}>
           <Flex direction={"row"} justify={"center"}>
@@ -202,6 +186,7 @@ function HomePage() {
         currentPage={currentPage}
         lastPage={totalPages}
       /> */}
+      <Carrusel />
       <Box marginTop={200} w={"fit-content"} margin="3em auto ">
         <Text
           as="b"
@@ -279,6 +264,7 @@ function HomePage() {
           bg={"none"}
           padding={1}
           marginBottom={300}
+          flexWrap={"wrap"}
         >
           <Grid
             templateColumns={"repeat(4,1fr)"}

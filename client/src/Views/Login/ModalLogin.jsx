@@ -6,8 +6,8 @@ import { Button } from "@chakra-ui/react";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 
-const PopUpLogin = () => {
-  const [showModal, setShowModal] = useState(false);
+const ModalLogin = ({ show }) => {
+  const [showModal, setShowModal] = useState(show);
   const [view, setView] = useState("login");
 
   const handleCloseModal = () => {
@@ -22,24 +22,8 @@ const PopUpLogin = () => {
     setView(newView);
   };
 
-  const token = localStorage.getItem("token");
-
   return (
     <>
-      {!token && (
-        <Button
-          onClick={handleShowModal}
-          shadow="2px 2px 4px rgba(0, 0, 0, 1)"
-          w={"90px"}
-          h={"40px"}
-          variant="solid"
-          colorScheme="teal"
-          margin={"auto"}
-        >
-          Login
-        </Button>
-      )}
-
       <Modal
         show={showModal}
         onHide={handleCloseModal}
@@ -78,4 +62,4 @@ const PopUpLogin = () => {
   );
 };
 
-export default PopUpLogin;
+export default ModalLogin;
