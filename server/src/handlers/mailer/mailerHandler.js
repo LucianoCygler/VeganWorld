@@ -1,6 +1,6 @@
 const mailerContactUs = require('../../controllers/mailer/contactUs');
 const mailerGenOrder = require('../../controllers/mailer/generateOrder');
-
+//
 
 const mailerHandler = async (req, res)=>{
     const {type} = req.body;

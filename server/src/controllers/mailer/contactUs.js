@@ -3,7 +3,7 @@ const nodemailer = require ('nodemailer');
 
 const {API_PASSWORD} = process.env;
 
-
+//
 const mailerContactUs = (email, name, textContainer)=>{
     const config = {
       host: "smtp.gmail.com",
