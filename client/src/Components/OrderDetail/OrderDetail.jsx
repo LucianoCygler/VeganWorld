@@ -27,46 +27,46 @@ const OrderDetail = ({ order, cancelRef }) => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  return (
-    <AccordionItem
-      bg={"rgba(29, 92, 99, 0.8)"}
-      textColor={"white"}
-      fontWeight={"medium"}
-    >
-      <AccordionButton mb={2} boxShadow={"dark-lg"} borderRadius={"2xl"}>
-        {/* CABEZERA DE LA ORDEN */}
-        <Stack
-          flex
-          direction={"row"}
-          justify={"space-around"}
-          shouldWrapChildren={true}
-          m={"auto"}
-          spacing={"10"}
-        >
-          <Box as="span" flex="1" textAlign="left" fontWeight={"bold"}>
-            Order: {id}
-          </Box>
-          <Box as="span" flex="1" textAlign="left" fontWeight={"bold"}>
-            Date: {fecha}
-          </Box>
-          <Box as="span" flex="1" textAlign="left" fontWeight={"bold"}>
-            Total Amount: $ {importe}
-          </Box>
-        </Stack>
-        {/* BOTON DE CANCELAR */}
-        {estado === "Pendiente" && (
-          <>
-            <Button
-              mx={2}
-              colorScheme="red"
-              onClick={(event) => {
-                event.stopPropagation();
-                onOpen();
-              }}
-            >
-              Cancel Order
-            </Button>
-            {/* 
+	return (
+		<AccordionItem
+			bg={"rgba(29, 92, 99, 0.8)"}
+			textColor={"white"}
+			fontWeight={"medium"}
+		>
+			<AccordionButton mb={2} boxShadow={"dark-lg"} borderRadius={'2xl'}>
+				{/* CABEZERA DE LA ORDEN */}
+				<Stack
+					flex
+					direction={"row"}
+					justify={"space-around"}
+					shouldWrapChildren={true}
+					m={"auto"}
+					spacing={"10"}
+				>
+					<Box as="span" flex="1" textAlign="left" fontWeight={"bold"}>
+						Order: {id}
+					</Box>
+					<Box as="span" flex="1" textAlign="left" fontWeight={"bold"}>
+						Date: {fecha}
+					</Box>
+					<Box as="span" flex="1" textAlign="left" fontWeight={"bold"}>
+						Total Amount: $ {importe}
+					</Box>
+				</Stack>
+				{/* BOTON DE CANCELAR */}
+				{estado === "Pendiente" && (
+					<>
+						<Button
+							mx={2}
+							colorScheme="red"
+							onClick={(event) => {
+								event.stopPropagation();
+								onOpen();
+							}}
+						>
+							Cancel Order
+						</Button>
+						{/* 
 						<Button
 							mx={2}
 							colorScheme="whatsapp"
