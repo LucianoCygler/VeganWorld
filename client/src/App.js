@@ -18,6 +18,7 @@ import {
 } from "./Views/index";
 import OurProducts from "./Views/OurProducts/OurProducts";
 import { NavBar } from "./Components/index";
+import Paperbase from "./Views/Template/Dashboard";
 
 const ProtectedRoute = ({ element: Component, ...rest }) => {
   const isAuthenticated = localStorage.getItem("token");
@@ -58,6 +59,8 @@ function App() {
           path="/MyReviews"
           element={<ProtectedRoute element={MyReviews} />}
         />
+        <Route path="/dash" element={<Paperbase />} />
+
       </Routes>
     </div>
   );
