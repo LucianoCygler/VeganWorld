@@ -8,6 +8,7 @@ import {
   createOrder,
   dropProduct,
   getMercadoPagoLink,
+  getUserDataByEmail,
   newCart,
   sendEmail,
 } from "../../redux/actions/actions";
@@ -17,7 +18,6 @@ import { Button, Modal } from "react-bootstrap";
 import LoginForm from "../Login/LoginForm";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { Box, Text } from "@chakra-ui/react";
-
 
 //
 function Cart() {
@@ -67,8 +67,8 @@ function Cart() {
         return dispatch(dropProduct(id));
       // case "pay":
       //   return alert("ir al metodo de pago");
-        case "generateOrder":
-          dispatch(cleanCart());
+      case "generateOrder":
+        dispatch(cleanCart());
         var order = {
           cliente_id: user?.id,
           importe: subTotalF(),
@@ -114,6 +114,12 @@ function Cart() {
       unit_price: parseInt(product.precio),
     });
   });
+  const email = localStorage.getItem("email");
+
+  useEffect(() => {
+    dispatch(getUserDataByEmail(email));
+  }, [email]);
+
   useEffect(() => {
     dispatch(newCart(updateCart));
     setSubTotal(subTotalF());
@@ -252,7 +258,6 @@ function Cart() {
                       className={styles.btnGenerate}
                       onClick={handleClick}
                       name="generateOrder"
-                      disabled={!user.id}
                     >
                       Generate order
                     </button>
