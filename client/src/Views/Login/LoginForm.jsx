@@ -72,13 +72,13 @@ const LoginForm = ({ handleCloseModal }) => {
       const idToken = await user.getIdToken();
       console.log(user);
 
-      const client = await dispatch(validateUserExistenceInDb(user?.email));
-      if (!client) {
-        const form = {
-          email: user.email,
-        };
-        const register = await dispatch(registerUser(form));
-      }
+      dispatch(validateUserExistenceInDb({ email: user.email }));
+      // if (!client) {
+      //   const form = {
+      //     email: user.email,
+      //   };
+      //   dispatch(registerUser(form));
+      // }
 
       localStorage.setItem("token", idToken);
       setToken(idToken);

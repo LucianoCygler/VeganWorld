@@ -11,7 +11,7 @@ const getClientsHandler = async (req, res) => {
     }
     if (email) {
       const client = await getClientByEmail(email);
-      return res.status(200).send(client);
+      if (client) return res.status(200).send(client);
     }
     const allClients = await getAllClients();
     res.status(200).send(allClients);
