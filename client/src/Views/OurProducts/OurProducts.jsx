@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   getAllProducts,
+  getClientAllFavorites,
   getUserDataByEmail,
   sor,
 } from "../../redux/actions/actions";
@@ -22,9 +23,17 @@ function OurProducts() {
   const [sort, setSort] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const email = localStorage.getItem("email");
+  
   useEffect(() => {
     dispatch(getAllProducts());
+    dispatch(getClientAllFavorites(user.id))
+
   }, []);
+
+   useEffect(() => {
+        dispatch(getUserDataByEmail(email));
+    }, [email]);
+  
 
   useEffect(() => {
     const timer = setTimeout(() => {
