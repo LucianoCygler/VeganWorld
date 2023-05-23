@@ -219,8 +219,9 @@ export const validateLogin = (user) => {
 export const getUserDataByEmail = (email) => {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`/client?email=${email}`);
+      const res = await axios.post(`/client/checkclient/`, email);
       const userData = res.data;
+      console.log(userData);
       return dispatch({ type: VALIDATE_LOGIN, payload: userData });
     } catch (error) {
       console.log(error.response.data);
@@ -234,6 +235,7 @@ export const registerUser = (user) => {
     try {
       const res = await axios.post(`/client`, user);
       const userDB = res.data;
+      console.log(userDB);
       return dispatch({ type: REGISTER_USER, payload: userDB });
     } catch (error) {
       alert(error.response.data);

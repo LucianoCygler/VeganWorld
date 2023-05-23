@@ -4,17 +4,6 @@
   font-family: Open Sans;
 }
 
-section {
-  width: 100%;
-  display: inline-block;
-  background: #333;
-  height: 50vh;
-  text-align: center;
-  font-size: 22px;
-  font-weight: 700;
-  text-decoration: underline;
-}
-
 .footer-distributed {
   background: #666;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);

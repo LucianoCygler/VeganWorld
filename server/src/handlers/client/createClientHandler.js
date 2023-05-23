@@ -19,27 +19,17 @@ const createClientHandler = async (req, res) => {
       return res
         .status(409)
         .json({ error: "There is already a user with that email." });
-    } else if (
-      !client &&
-      email &&
-      contraseña &&
-      nombre &&
-      apellido &&
-      ciudad &&
-      direccion &&
-      telefono &&
-      edad
-    ) {
+    } else if (!client && email) {
       const newClient = await createClient(
         email,
-        contraseña,
-        nombre,
-        apellido,
-        ciudad,
-        direccion,
-        telefono,
-        edad,
-        dni
+        contraseña || "",
+        nombre || "",
+        apellido || "",
+        ciudad || "",
+        direccion || "",
+        telefono || "",
+        edad || null,
+        dni || ""
       );
       res.status(200).send(newClient);
     } else {

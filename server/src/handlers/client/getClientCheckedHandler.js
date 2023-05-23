@@ -1,7 +1,7 @@
 const getClientChecked = require("../../controllers/client/getClientChecked");
 
 const getClientCheckedHandler = async (req, res) => {
-  const {email} = req.body;
+  const { email } = req.body;
   try {
     if (email) {
       const client = await getClientChecked(email);
