@@ -3,7 +3,9 @@ import style from "./HomePage.module.css";
 import {
   getAllProducts,
   getAllReviews,
+  getClientData,
   getClientReviews,
+  getUserDataByEmail,
 } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Pagination, Products } from "../../Components/index";
@@ -54,9 +56,15 @@ function HomePage() {
   const navigate = useNavigate();
   const shuffledReviews = shuffle(allReviews);
   const randomReviews = shuffledReviews.slice(0, 4);
+  const user = useSelector((state) => state.user);
 
   const location = useLocation();
   const showLogin = location.state && location.state.showLogin;
+  const email = localStorage.getItem("email");
+
+  useEffect(() => {
+    dispatch(getUserDataByEmail(email));
+  }, [email]);
 
   useEffect(() => {
     dispatch(getAllReviews());

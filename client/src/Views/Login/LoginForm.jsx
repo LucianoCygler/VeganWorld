@@ -6,7 +6,11 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
-import { getUserDataByEmail, registerUser } from "../../redux/actions/actions";
+import {
+  getUserDataByEmail,
+  registerUser,
+  validateUserExistenceInDb,
+} from "../../redux/actions/actions";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./LoginForm.css";
@@ -68,13 +72,12 @@ const LoginForm = ({ handleCloseModal }) => {
       const idToken = await user.getIdToken();
       console.log(user);
 
-      const client = await dispatch(getUserDataByEmail(user.email));
-      console.log(client);
+      const client = await dispatch(validateUserExistenceInDb(user?.email));
       if (!client) {
         const form = {
           email: user.email,
         };
-        dispatch(registerUser(form));
+        const register = await dispatch(registerUser(form));
       }
 
       localStorage.setItem("token", idToken);
