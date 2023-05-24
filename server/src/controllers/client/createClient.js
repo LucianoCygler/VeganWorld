@@ -12,12 +12,13 @@ async function createClient(
   edad,
   dni
 ) {
-  const saltRounds = 10;
-  const hashedPassword = await bcrypt.hash(contraseña, saltRounds);
+  //const saltRounds = 10;
+  // const hashedPassword = await bcrypt.hash(contraseña, saltRounds);
 
   const client = await Client.create({
     email,
-    contraseña: hashedPassword,
+    //contraseña: hashedPassword,
+    contraseña,
     nombre,
     apellido,
     ciudad,

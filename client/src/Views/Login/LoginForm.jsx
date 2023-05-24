@@ -6,7 +6,11 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
-import { validateLogin } from "../../redux/actions/actions";
+import {
+  getUserDataByEmail,
+  registerUser,
+  validateUserExistenceInDb,
+} from "../../redux/actions/actions";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./LoginForm.css";
@@ -50,20 +54,39 @@ const LoginForm = ({ handleCloseModal }) => {
 
       setToken(idToken);
       localStorage.setItem("token", idToken);
+
       setValue(user.email);
       localStorage.setItem("email", user.email);
+
       handleCloseModal();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const SignInWithGoogle = () => {
-    signInWithPopup(auth, googleProvider).then((data) => {
-      setValue(data.user.email);
-      localStorage.setItem("email", data.user.email);
+  const SignInWithGoogle = async () => {
+    try {
+      const userCredential = await signInWithPopup(auth, googleProvider);
+
+      const user = userCredential.user;
+      const idToken = await user.getIdToken();
+      console.log(user);
+
+      dispatch(validateUserExistenceInDb({ email: user.email }));
+      // if (!client) {
+      //   const form = {
+      //     email: user.email,
+      //   };
+      //   dispatch(registerUser(form));
+      // }
+
+      localStorage.setItem("token", idToken);
+      setToken(idToken);
+
+      localStorage.setItem("email", user.email);
+      setValue(user.email);
       handleCloseModal();
-    });
+    } catch (error) {}
   };
 
   const handleChange = (e) => {

@@ -9,7 +9,6 @@ import MyProfile from "./MyProfile/MyProfile";
 import MyReviews from "./MyReviews/MyReviews";
 import ContactUs from "./ContactUs/ContactUs";
 import About from "./About/About";
-import Login from "./Login/Login";
 import Register from "./Register/Register";
 import Resetpass from "./ResetPass/Resetpass";
 
@@ -25,6 +24,5 @@ export {
   ContactUs,
   About,
   Resetpass,
-  Login,
   Register,
 };
