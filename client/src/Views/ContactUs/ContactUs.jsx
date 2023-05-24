@@ -64,7 +64,6 @@ const ContactUs = () => {
 
     if (!form.textContainer) {
       error.textContainer = "This input is mandatory";
-
     }
     return error;
   };
@@ -115,6 +114,7 @@ const ContactUs = () => {
     >
       <Box
         bg="rgba(216, 216, 216, 0.5)"
+        shadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
         w="40%"
         margin="auto"
         borderRadius={50}
@@ -124,18 +124,18 @@ const ContactUs = () => {
           <Box>
             <Heading
               padding={"0.5em"}
+              marginTop={"1em"}
               mb="1rem"
               color={"white"}
               textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
             >
-              Visit us:
+              Visit us 📍
             </Heading>
             <Box>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.703969221664!2d-58.497814741769595!3d-34.63692048947491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc93bc88e4279%3A0xc6e4c5cf528aa9fb!2sMundo%20Vegano!5e0!3m2!1ses!2sar!4v1684369093537!5m2!1ses!2sar"
                 width={400}
                 height={300}
-                style={{ border: 0 }}
                 allowFullScreen={true}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -151,7 +151,7 @@ const ContactUs = () => {
               color={"white"}
               textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
             >
-              ...or send us an email!
+              👇🏽 or leave us an email below 👇🏽
             </Heading>
             <Grid templateColumns="repeat(2, 1fr)" gap={6}>
               <GridItem>
@@ -218,6 +218,7 @@ const ContactUs = () => {
                     Comment:
                   </FormLabel>
                   <Textarea
+                    resize={"none"}
                     name="textContainer"
                     type="text"
                     value={form.textContainer}
