@@ -65,7 +65,14 @@ const CardFav = ({ product, favorites }) => {
   }, []);
 
   return (
-    <Card maxW="2xs">
+    <Card
+      maxW="2xs"
+      bg={"#d8d8d8"}
+      _hover={{
+        transform: "scale(1.05)",
+        transition: "transform 0.3s ease-in-out",
+      }}
+    >
       <CardHeader>
         <Button
           onClick={() => dispatch(deleteFavoriteAction(product?.Product?.id))}

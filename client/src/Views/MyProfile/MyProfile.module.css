@@ -69,9 +69,10 @@
   margin: 40px 0px 0px 255.5px;
   color: #eef2e6;
   border: transparent;
-  background-color: #1c6758;
+  border-radius: 15px;
+  background-color: #2f2e2e;
   border-radius: 8x;
-  box-shadow: 0 0 15px 5px #1c6758;
+  box-shadow: 0 0 15px 5px #000000;
   transition: transform 0.4s ease-in-out;
 }
 

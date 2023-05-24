@@ -11,22 +11,46 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 import "aos/dist/aos.css";
-
+import { Box, Button, Flex } from "@chakra-ui/react";
+import { addCartProduct, getProductById } from "../../../redux/actions/actions";
+import Pop_up from "../../../Utils/Pop_up/Pop_up";
 function Product({ nombre, imagen, precio, stock, descripcion, id }) {
   const [isFav, setIsFav] = useState(false);
   const [showInfo, setShowInfo] = useState(false); /* INFO */
   // const product = { nombre, imagen, precio, stock, descripcion, id };
   const { user, favorites } = useSelector((state) => state);
+  const [product] = useSelector((state) => state.product);
   const dispatch = useDispatch();
   const product_id = id;
   const client_id = user.id;
   const email = localStorage.getItem("email");
-
+  const [loading, setLoading] = useState(false);
+  const quantity = 1;
   useEffect(() => {
     for (const item of favorites) {
       if (id == item.Product.id) setIsFav(true);
     }
   }, []);
+  const handleClick = () => {
+    dispatch(getProductById(id))
+      .then(() => {
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+        }, 800);
+        return dispatch(addCartProduct(product, quantity));
+      })
+      .then(() => {
+        Pop_up(
+          "success",
+          "Product added",
+          "You can find your products in Cart!"
+        );
+      })
+      .catch(({ message }) => {
+        Pop_up("info", "Product added", message);
+      });
+  };
 
   const handleFavorite = () => {
     if (isFav) {
@@ -76,29 +100,42 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
       ) : (
         ""
       )}
-
-      <NavLink
-        className={styles.card}
-        to={`/Detail/${id}`}
-        style={{ textDecoration: "none" }}
-      >
-        <div>
-          <div>
-            {" "}
-            <div className={styles.divImage}>
-              <img className={styles.image} src={imagen} alt={nombre} />
-            </div>
-            <hr />
-            <h2 className={styles.subtitle}>{nombre}</h2>
-            {/* <h2 className={styles.subtitle}>{product.descripcion}</h2> */}
-            {showInfo && (
-              <div className={styles.priceContainer}>
-                <h2 className={styles.price}>${precio} </h2>
+      <Box>
+        <Flex flexDirection={"column"}>
+          {" "}
+          <NavLink
+            className={styles.card}
+            to={`/Detail/${id}`}
+            style={{ textDecoration: "none" }}
+          >
+            <div>
+              <div>
+                {" "}
+                <div className={styles.divImage}>
+                  <img className={styles.image} src={imagen} alt={nombre} />
+                </div>
+                <hr />
+                <h2 className={styles.subtitle}>{nombre}</h2>
+                {/* <h2 className={styles.subtitle}>{product.descripcion}</h2> */}
+                {showInfo && (
+                  <div className={styles.priceContainer}>
+                    <h2 className={styles.price}>${precio} </h2>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        </div>
-      </NavLink>
+            </div>
+          </NavLink>
+          <Button
+            marginTop={2}
+            variant="solid"
+            colorScheme="teal"
+            onClick={handleClick}
+            isLoading={loading}
+          >
+            Add to cart
+          </Button>
+        </Flex>
+      </Box>
     </div>
   );
 }

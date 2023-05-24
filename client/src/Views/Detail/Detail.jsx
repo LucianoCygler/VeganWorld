@@ -238,13 +238,9 @@ function Detail() {
           color="rgba(29, 103, 88, 0.6)"
         />
       )}
-      <Box
-        w="80%"
-        bg="white  "
-        paddingTop="2em"
-        margin="auto"
-        shadow="0px 4px 10px rgba(0, 0, 0, 0.2)"
-      >
+
+      <Box w="80%" bg="white  " paddingTop="2em" margin="auto">
+        <Heading marginBottom={10}>Product Reviews</Heading>
         {productReviews
           ? productReviews.slice(0, 3).map((review) => {
               return (
