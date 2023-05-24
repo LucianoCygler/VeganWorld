@@ -11,7 +11,6 @@ import {
   FormErrorMessage,
   FormHelperText,
 } from "@chakra-ui/react";
-// import style from "./Resetpass.module.css";
 
 function EmailValid(email) {
   const Reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
