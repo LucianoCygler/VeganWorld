@@ -75,6 +75,7 @@ function HomePage() {
   }, []); //#d8d8d8
   return (
     <Box
+      overflow={"hidden"}
       marginRight={0}
       maxW={"100%"}
       vh={100}
