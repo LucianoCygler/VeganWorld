@@ -31,6 +31,7 @@
   transform: scale(1.1);
   color: #000000;
 }
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
 
 .container {  
   position: absolute;
@@ -38,10 +39,10 @@
  
     margin-left: 600px;
    border-radius: 0.75em;
-   box-shadow: 8px 10px 10px 8px #1c6758;
+   box-shadow: 8px 10px 10px 8px #3ba39b;
 
    width: 600px;
-   background-color: #3d8361;
+   background-color:#9BA4B5;
    height: 540px;
    text-transform: capitalize;
 }
