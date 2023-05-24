@@ -22,7 +22,7 @@ import LoginForm from "../Login/LoginForm";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { Box, Text } from "@chakra-ui/react";
 import AddressPopUp from "./AdressPopUp";
-import { DotSpinner } from "@uiball/loaders";
+import { DotSpinner, DotWave } from "@uiball/loaders";
 
 function Cart() {
   const navigate = useNavigate();
@@ -195,7 +195,7 @@ function Cart() {
               background="rgba(0, 0, 0, 0.5)" // Ajusta el color de fondo y la opacidad del contenedor
               borderRadius="8px" // Ajusta el radio de borde del contenedor
             >
-              <DotSpinner size={80} speed={0.9} color="white" />{" "}
+              <DotWave size={80} speed={0.9} color="white" />{" "}
               {/* Ajusta el tamaño del DotSpinner */}
             </Box>
           </Box>
