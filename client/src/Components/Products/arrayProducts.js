@@ -7,7 +7,7 @@ export const array =
 			"Hamburguesa de lentejas, acompañada de lechuga, tomate, cebolla y mayonesa vegana.",
 		precio: 150,
 		stock: 88,
-		imagen: "https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg",
+		imagen: "https://porlavision.com/wp-content/uploads/2020/04/444-13-1024x533.jpg",
 	},
 	{
 		nombre: "Pizza de verduras",
@@ -16,7 +16,7 @@ export const array =
 			"Pizza vegana con una base de tomate y especias, cubierta de verduras frescas y queso vegano.",
 		precio: 200,
 		stock: 88,
-		imagen: "https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg",
+		imagen: "https://www.rockandpop.cl/wp-content/uploads/2018/05/vegan-pizza-istock.jpg",
 	},
 	{
 		nombre: "Sándwich de aguacate y tofu",
@@ -25,7 +25,7 @@ export const array =
 			"Sándwich vegano con aguacate, tofu, lechuga y tomate, en pan integral.",
 		precio: 120,
 		stock: 88,
-		imagen: "https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg",
+		imagen: "https://images.clarin.com/2020/11/23/comida-vegana-foto-shutterstock___WEInbevcX_720x0__1.jpg",
 	},
 	{
 		nombre: "Ensalada de quinoa",
@@ -34,7 +34,7 @@ export const array =
 			"Ensalada vegana de quinoa con tomate, pepino, cebolla, aceitunas y aliño de limón.",
 		precio: 90,
 		stock: 88,
-		imagen: "https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg",
+		imagen: "https://www.somosmamas.com.ar/wp-content/uploads/2020/02/comidas-vegetarianas-1.jpg",
 	},
 	{
 		nombre: "Wrap de falafel",
@@ -43,7 +43,7 @@ export const array =
 			"Wrap vegano con falafel, hummus, tomate, cebolla y lechuga, envuelto en tortilla integral.",
 		precio: 130,
 		stock: 88,
-		imagen: "https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg",
+		imagen: "https://i0.wp.com/bajardepesosinharinas.com/wp-content/uploads/2019/10/QUE-ES-LA-DIETA-VEGANA.jpg?fit=1423%2C950&ssl=1",
 	},
 	{
 		nombre: "Curry de garbanzos",
@@ -52,7 +52,7 @@ export const array =
 			"Curry vegano de garbanzos con arroz integral, tomate, cebolla y especias.",
 		precio: 180,
 		stock: 88,
-		imagen: "https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg",
+		imagen: "https://assets.elimparcial.com/__export/1599580881534/sites/elimparcial/img/2020/09/08/comida_vegana.jpg_673822677.jpg",
 	},
 	{
 		nombre: "Tacos de coliflor",
@@ -61,7 +61,7 @@ export const array =
 			"Tacos veganos de coliflor, con guacamole, tomate, cebolla y cilantro.",
 		precio: 160,
 		stock: 88,
-		imagen: "https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg",
+		imagen: "https://img.lagaceta.com.ar/fotos/notas/2017/12/15/755183_20171215132358.jpg",
 	},
 	{
 		nombre: "Sopa de lentejas y espinacas",

@@ -44,11 +44,10 @@ import {
   CLEAN_CART,
   GET_MP_LINK,
   GET_REVIEWS,
+  CHANGE_LABEL,
   UPDATE_ADDRESS,
   CLEAN_ADDRESS,
 } from "./Types/Types";
-
-// const URL_SERVIDOR = "http://localhost:3001";
 
 /*TODOS LOS PRODUCTOS*/
 export const getAllProducts = () => {
@@ -153,25 +152,6 @@ export const updateAddress = (address) => {
 export const cleanAddress = () => {
   return { type: CLEAN_ADDRESS };
 };
-
-// ACTIONS NECESARIAS:
-
-//* getAllProducts
-//* getProductById
-//* createOrder
-//* getOrders
-//* getOrderDetail
-//! deleteOrder
-//! updateOrder
-//! getClientData
-//! updateClientData
-//! deleteClient
-
-// order = {
-//   precioTotal: 1000,
-//   cliente_id: 1,
-//   productos: [1,3,2],
-// };
 
 /* CREAR ORDEN */
 export const createOrder = (order) => {
@@ -550,3 +530,9 @@ export const sendEmail = (form, type) => {
 //     }
 //   };
 // };
+
+
+export const ChangeLabel = (id)=>{
+
+  return{ type : CHANGE_LABEL, payload : id}
+}

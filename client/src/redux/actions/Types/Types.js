@@ -49,5 +49,7 @@ export const SET_CREATED_ORDER_ID = "SET_CREATED_ORDER_ID";
 export const CLEAN_CART = "CLEAN_CART";
 export const GET_MP_LINK = "GET_MP_LINK";
 export const GET_REVIEWS = "GET_REVIEWS";
+
+export const CHANGE_LABEL = "CHANGE_LABEL"
 export const UPDATE_ADDRESS = "UPDATE_ADDRESS";
 export const CLEAN_ADDRESS = "CLEAN_ADDRESS";
