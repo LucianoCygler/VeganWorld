@@ -44,6 +44,7 @@ import {
   CLEAN_CART,
   GET_MP_LINK,
   GET_REVIEWS,
+  CHANGE_LABEL,
 } from "./Types/Types";
 
 // const URL_SERVIDOR = "http://localhost:3001";
@@ -527,3 +528,9 @@ export const sendEmail = (form, type) => {
 //     }
 //   };
 // };
+
+
+export const ChangeLabel = (id)=>{
+
+  return{ type : CHANGE_LABEL, payload : id}
+}
