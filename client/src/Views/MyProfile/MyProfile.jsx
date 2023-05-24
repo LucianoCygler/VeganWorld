@@ -18,6 +18,7 @@ import {
   Image,
   Text,
   Button,
+  Avatar,
 } from "@chakra-ui/react";
 
 const MyData = () => {
@@ -163,7 +164,7 @@ const MyData = () => {
                   type="text"
                   value={editedAddress}
                   onChange={(e) => setEditedAddress(e.target.value)}
-                />
+                />{" "}
               </div>
               <input
                 className={style.input8B}
@@ -193,6 +194,7 @@ const MyData = () => {
                 <img className={style.img} src={profileImage} alt="Profile" />
               ) : (
                 <Box w={"30%"} margin={"auto"} marginBottom={"3em"}>
+                  {/* <Avatar bg="teal.500" size={60} /> */}
                   <Image
                     borderRadius={100}
                     src="https://bit.ly/ryan-florence"

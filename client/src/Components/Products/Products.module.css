@@ -16,7 +16,9 @@
   background-size: cover; 
   background-repeat: no-repeat; 
   background-position: center;  */
-  padding: 5em;
+  padding: 2em;
+  padding-left: 11em;
+  padding-right: 11em;
   /* background-color: #b6cdbd; */
 }
 

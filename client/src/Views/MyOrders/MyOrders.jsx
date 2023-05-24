@@ -71,15 +71,17 @@ const MyOrders = () => {
         bgImg={
           "https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
         }
+        bgSize={"cover"}
+        bgPosition={"center"}
         h={"100vh"}
-        bgAttachment={"fixed"}
+        w={"100%"}
       >
         <Tabs
           variant="enclosed-colored"
           w={"80%"}
           m={"auto"}
           pt={"40"}
-          shadow={"lg"}
+          // shadow={"lg"}
         >
           <TabList color={"green.800"}>
             <Tab fontWeight={"extrabold"}>Pending</Tab>
