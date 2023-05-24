@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { registerUser } from "../../../src/redux/actions/actions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+
 
 const initialForm = {
   nombre: "",
@@ -28,11 +28,6 @@ const LoginForm = ({ handleCloseModal, setView }) => {
     event.preventDefault();
     createUserWithEmailAndPassword(auth, form.email, form.contraseña)
       .then((userCredential) => {
-        const user = userCredential.user;
-        const idToken = user.getIdToken();
-        localStorage.setItem("token", idToken);
-        localStorage.setItem("email", user.email);
-        console.log(user);
         setView("login");
       })
       .catch((error) => {
@@ -40,38 +35,93 @@ const LoginForm = ({ handleCloseModal, setView }) => {
       });
     dispatch(registerUser(form));
   };
+  
   const validationsForm = (initialForm) => {
     let errors = {};
-
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const regexname = /^[a-zA-Z ]+$/;
+    const regexDireccion = /^[a-zA-Z0-9\s]+$/ ;
 
-    if (!initialForm.nombre.trim()) {
-      errors.nombre = "El campo del nombre es requerido";
-    } else if (!regexname.test(initialForm.nombre.trim()))
-      errors.nombre =
-        "El campo del nombre solo acepta letras en Mayuscula y Minuscula";
-
-    if (!initialForm.apellido.trim()) {
-      errors.apellido = "El campo del apellido es requerido";
-    } else if (!regexname.test(initialForm.apellido.trim()))
-      errors.apellido =
-        "El campo del apellido solo acepta letras en Mayuscula y Minuscula";
-
-    if (!initialForm.telefono) {
-      errors.telefono = "El campo del Telefono es requerido";
-    } else if (isNaN(initialForm.telefono))
-      errors.telefono = "El campo del telefono solo acepta numeros";
-    else if (initialForm.telefono.length > 10) {
-      errors.telefono = "El Telefono no puede tener mas de 10 numeros";
+    //EMAIL
+    if (!initialForm.email) {
+      errors.email = "Email is required";      
+    } else if (initialForm.email.length > 40) {
+      errors.email = "The email exceeds the maximum of 40 characters.";
+    } else if (!emailRegex.test(initialForm.email.trim())) {
+      errors.email = "Invalid email format";
+    }
+    
+    //PASSWORD
+    if (!initialForm.contraseña) {
+      errors.contraseña = "Must create a password";
+    } else if (initialForm.contraseña.length > 12 || initialForm.contraseña.length < 6) {
+      errors.contraseña = "it must have between 6 and 12 characters";
     }
 
+    //NOMBRE
+    if (!initialForm.nombre.trim()) {
+      errors.nombre = "Name is required";
+    } else if (!regexname.test(initialForm.nombre.trim())){
+      errors.nombre = "Only accepts uppercase and lowercase letters.";
+    } else if (initialForm.nombre.length > 15) {
+      errors.nombre = "The name exceeds the maximum of 15 characters.";
+    }
+      
+    //APELLIDO
+    if (!initialForm.apellido.trim()) {
+      errors.apellido = "The surname is required";
+    } else if (!regexname.test(initialForm.apellido.trim())) {
+      errors.apellido = "Only accepts uppercase and lowercase letters.";
+    } else if (initialForm.apellido.length > 15) {
+      errors.apellido = "The surname exceeds the maximum of 15 characters.";
+    }
+      
+
+    //TELEFONO 
+    if (!initialForm.telefono) {
+      errors.telefono = "The Phone field is required.";
+    } else if (isNaN(initialForm.telefono))
+      errors.telefono = "The Phone field only accepts numbers.";
+    else if (initialForm.telefono.length > 10) {
+      errors.telefono = "The Phone cannot have more than 10 digits.";
+    }
+
+    //CIUDAD
+    if (!initialForm.ciudad) {
+      errors.ciudad = "City is required"
+    } else if (!regexname.test(initialForm.ciudad.trim())) {
+      errors.ciudad = "Only accepts uppercase and lowercase letters."
+    } else if (initialForm.ciudad.length > 20) {
+      errors.ciudad = "The city exceeds the maximum of 20 characters."
+    }
+
+    //DIRECCION
+    if (!initialForm.direccion) {
+      errors.direccion = "Adress is required"
+    } else if (!regexDireccion.test(initialForm.direccion.trim())) {
+      errors.direccion = "Only accepts uppercase and lowercase letters."
+    } else if (initialForm.direccion.length > 20) {
+      errors.direccion = "The Adress exceeds the maximum of 20 characters."
+    }
+
+    //EDAD
+    const edad = parseInt(initialForm.edad)
     if (!initialForm.edad) {
-      errors.edad = "El campo edad es requerido";
-    } else if (isNaN(initialForm.edad))
-      errors.edad = "El campo edad solo acepta numeros";
+      errors.edad = "The age is required";
+    } else if (isNaN(initialForm.edad)) {
+      errors.edad = "Only numbers accepts";
+    } else if (edad > 100 || edad < 18) {
+      errors.edad = "you must be over 18 and under 100 years old"
+    } else if (initialForm.edad.length > 2) {
+      errors.edad = "you must be over 18 and under 100 years old"
+    }
+      
 
     return errors;
   };
+
+  
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -85,131 +135,128 @@ const LoginForm = ({ handleCloseModal, setView }) => {
   };
   return (
     <div>
-      {error.email && <p>{error.email}</p>}
+     
+      
       <div className="form-outline mb-4">
         <input
           type="email"
           name="email"
-          id="typeEmailX-2"
-          className="form-control form-control-lg"
+          id="typeEmailX-2"          
+          className={`form-control form-control-lg ${!error.email ? "" : "is-invalid"}`}
           onChange={handleChange}
           onBlur={handleBlur}
         />
         <label className="form-label" htmlFor="typeEmailX-2">
           Email
         </label>
+        {error.email && ( <span className="invalid-feedback">{`${error.email}`}</span> )}                
       </div>
-      {error.contraseña && <p>{error.contraseña}</p>}
+      
       <div className="form-outline mb-4">
         <input
           type="password"
           name="contraseña"
           id="typePasswordX-2"
-          className="form-control form-control-lg"
+          className={`form-control form-control-lg ${!error.contraseña ? "" : "is-invalid"}`}
           onChange={handleChange}
           onBlur={handleBlur}
         />
         <label className="form-label" htmlFor="typePasswordX-2">
           Password
         </label>
+        {error.contraseña && ( <span className="invalid-feedback">{`${error.contraseña}`}</span> )}
       </div>
-      {error.nombre && <p>{error.nombre}</p>}
+       
 
       <div className="form-outline mb-4">
         <input
           type="text"
           name="nombre"
-          className="form-control form-control-lg"
+          className={`form-control form-control-lg ${!error.nombre ? "" : "is-invalid"}`}
           onChange={handleChange}
           onBlur={handleBlur}
         />
         <label className="form-label" htmlFor="typeEmailX-2">
           Name
         </label>
+        {error.nombre && ( <span className="invalid-feedback">{`${error.nombre}`}</span> )}
       </div>
-      {error.apellido && <p>{error.apellido}</p>}
+      
       <div className="form-outline mb-4">
         <input
           type="text"
           name="apellido"
-          className="form-control form-control-lg"
+          className={`form-control form-control-lg ${!error.apellido ? "" : "is-invalid"}`}
           onChange={handleChange}
           onBlur={handleBlur}
         />
         <label className="form-label" htmlFor="typeEmailX-2">
           SurName
         </label>
+        {error.apellido && ( <span className="invalid-feedback">{`${error.apellido}`}</span> )}
       </div>
-      {error.ciudad && <p>{error.ciudad}</p>}
+      
       <div className="form-outline mb-4">
         <input
           type="text"
           name="ciudad"
-          className="form-control form-control-lg"
+          className={`form-control form-control-lg ${!error.ciudad ? "" : "is-invalid"}`}
           onChange={handleChange}
           onBlur={handleBlur}
         />
         <label className="form-label" htmlFor="typeEmailX-2">
           City
         </label>
+        {error.ciudad && ( <span className="invalid-feedback">{`${error.ciudad}`}</span> )}
       </div>
-      {error.direccion && <p>{error.direccion}</p>}
+      
       <div className="form-outline mb-4">
         <input
           type="text"
           name="direccion"
-          className="form-control form-control-lg"
+          className={`form-control form-control-lg ${!error.direccion ? "" : "is-invalid"}`}
           onChange={handleChange}
           onBlur={handleBlur}
         />
         <label className="form-label" htmlFor="typeEmailX-2">
           Address
         </label>
+        {error.direccion && ( <span className="invalid-feedback">{`${error.direccion}`}</span> )}
       </div>
-      {error.telefono && <p>{error.telefono}</p>}
+      
       <div className="form-outline mb-4">
         <input
           type="text"
           name="telefono"
-          className="form-control form-control-lg"
+          className={`form-control form-control-lg ${!error.telefono ? "" : "is-invalid"}`}
           onChange={handleChange}
           onBlur={handleBlur}
         />
         <label className="form-label" htmlFor="typeEmailX-2">
           Phone Number
         </label>
+        {error.telefono && ( <span className="invalid-feedback">{`${error.telefono}`}</span> )}
       </div>
-      {error.edad && <p>{error.edad}</p>}
+      
       <div className="form-outline mb-4">
         <input
           type="text"
           name="edad"
-          className="form-control form-control-lg"
+          className={`form-control form-control-lg ${!error.edad ? "" : "is-invalid"}`}
           onChange={handleChange}
           onBlur={handleBlur}
         />
         <label className="form-label" htmlFor="typeEmailX-2">
           Edad
         </label>
+        {error.edad && ( <span className="invalid-feedback">{`${error.edad}`}</span> )}
       </div>
+
       <hr className="my-4" />
       <button class="button2" type="button" onClick={handleSubmit}>
         Sign Up
       </button>
 
-      {/* <NavLink to={"/Register"}>
-        <button class="button2" type="button">
-          Sign up
-        </button>
-      </NavLink> */}
-
-      {/* <button
-        className="btn btn-lg btn-block btn-primary"
-        style={{ backgroundColor: "#dd4b39" }}
-        type="submit"
-      > 
-        <i className="fab fa-google me-2"></i> Sign in with Google
-      </button> */}
     </div>
   );
 };
