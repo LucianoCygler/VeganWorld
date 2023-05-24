@@ -122,9 +122,7 @@ const LoginForm = ({ handleCloseModal }) => {
           type="email"
           name="email"
           id="typeEmailX-2"
-          className={`form-control form-control-lg ${
-            validEmail ? "" : "is-invalid"
-          }`}
+          className={`form-control form-control-lg ${validEmail ? "" : "is-invalid"}`}
           onChange={handleChange}
         />
         <label className="form-label" htmlFor="typeEmailX-2">
