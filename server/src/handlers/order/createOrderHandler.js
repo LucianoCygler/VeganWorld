@@ -2,13 +2,18 @@ const createOrder = require("../../controllers/order/createOrder");
 const getOneClient = require("../../controllers/client/getOneClient");
 
 const createOrderHandler = async (req, res) => {
-  const { importe, cliente_id, productos } = req.body;
+  const { importe, cliente_id, productos, direccion } = req.body;
 
   try {
-    if (cliente_id && importe && productos) {
+    if (cliente_id && importe && productos && direccion) {
       const client = await getOneClient(cliente_id);
       if (client) {
-        const newOrder = await createOrder(importe, cliente_id, productos);
+        const newOrder = await createOrder(
+          importe,
+          cliente_id,
+          productos,
+          direccion
+        );
         return res.status(200).send(newOrder);
       } else {
         return res

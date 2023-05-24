@@ -44,6 +44,8 @@ import {
   CLEAN_CART,
   GET_MP_LINK,
   GET_REVIEWS,
+  UPDATE_ADDRESS,
+  CLEAN_ADDRESS,
 } from "./Types/Types";
 
 // const URL_SERVIDOR = "http://localhost:3001";
@@ -142,6 +144,14 @@ export const filterPriceProduct = (product) => ({
 //! CAMBIAR PAGINA
 export const changePage = (number) => {
   return { type: SET_PAGE, payload: number };
+};
+
+export const updateAddress = (address) => {
+  return { type: UPDATE_ADDRESS, payload: address };
+};
+
+export const cleanAddress = () => {
+  return { type: CLEAN_ADDRESS };
 };
 
 // ACTIONS NECESARIAS:
@@ -249,7 +259,7 @@ export const deleteOrder = (order_id) => {
       const orderDB = res.data;
       return dispatch({ type: DELETE_ORDER, payload: orderDB });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
     }
   };
 };

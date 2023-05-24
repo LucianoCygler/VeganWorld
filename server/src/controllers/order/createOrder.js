@@ -8,15 +8,13 @@ function contarRepeticiones(array) {
   }, {});
 }
 
-async function createOrder(importe, cliente_id, productos) {
+async function createOrder(importe, cliente_id, productos, direccion) {
   const fecha = new Date().toISOString().slice(0, 10);
-
-  const direccion = await getDireccion(cliente_id);
 
   const productosNames = await Promise.all(
     productos.map(async (productoID) => {
       const productDB = await Product.findOne({ where: { id: productoID } });
-      return productDB.nombre;
+      return productDB?.nombre;
     })
   );
   const repeticiones = contarRepeticiones(productosNames);

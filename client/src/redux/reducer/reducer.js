@@ -31,30 +31,36 @@ import {
   CLEAN_CART,
   GET_MP_LINK,
   GET_REVIEWS,
+  UPDATE_ADDRESS,
+  CLEAN_ADDRESS,
 } from "../actions/Types/Types";
+const carritoa = JSON.parse(localStorage.getItem("carrito")) || [];
+const productsa = JSON.parse(localStorage.getItem("products")) || [];
+const address = localStorage.getItem("address") || "";
 
 const initialState = {
   products: [],
   filteredProducts: [],
-  product: [],
-  cart: [],
+  product: productsa,
+  cart: carritoa,
   customerComments: [],
   currentPage: 0,
   itemsPerPage: 1,
   orders: [],
   order: {},
-  success: [],
+  success: {},
   user: {},
   clientOrders: [],
   orderDelete: [],
   reviews: [],
   favorites: [],
-  deleteFavorite:[],
+  deleteFavorite: [],
   isAuthenticated: false,
   productReviews: [],
   allClients: [],
   MPLink: "",
   allReviews: [],
+  address: address,
   // createdOrderId: null,
 };
 
@@ -78,6 +84,7 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case GET_ALL_PRODUCTS:
+      localStorage.setItem("products", JSON.stringify([...action.payload]));
       return {
         ...state,
         products: [...action.payload],
@@ -163,7 +170,7 @@ export default function rootReducer(state = initialState, action) {
       return { ...state, currentPage: [action.payload] };
 
     case CREATE_ORDER:
-      return { ...state, success: [action.payload] };
+      return { ...state, success: action.payload };
 
     case GET_ORDER_BY_ID:
       return { ...state, order: [action.payload] };
@@ -173,13 +180,13 @@ export default function rootReducer(state = initialState, action) {
 
     case DELETE_ORDER:
       // const orderId = action.payload;
-      // const updatedOrders = 
+      // const updatedOrders =
       return {
         ...state,
-        clientOrders: [...state.clientOrders.filter(
-          (order) => order.id !== action.payload
-        )],
-        orderDelete: [action.payload]
+        clientOrders: [
+          ...state.clientOrders.filter((order) => order.id !== action.payload),
+        ],
+        orderDelete: [action.payload],
       };
 
     case UPDATE_REVIEW:
@@ -223,7 +230,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         favorites: [...filtered],
-        deleteFavorite:[action.payload]
+        deleteFavorite: [action.payload],
       };
     case GET_CLIENT_FAVORITE:
       return {
@@ -249,6 +256,18 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         allReviews: [...action.payload],
+      };
+    case UPDATE_ADDRESS:
+      localStorage.setItem("address", action.payload);
+      return {
+        ...state,
+        address: action.payload,
+      };
+    case CLEAN_ADDRESS:
+      localStorage.removeItem("address");
+      return {
+        ...state,
+        address: "",
       };
     // case SET_CREATED_ORDER_ID:
     //   return {

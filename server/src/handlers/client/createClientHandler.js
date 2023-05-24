@@ -15,6 +15,7 @@ const createClientHandler = async (req, res) => {
   } = req.body;
   try {
     const client = await getClientByEmail(email);
+
     if (client) {
       return res
         .status(409)

@@ -4,9 +4,6 @@ async function getClientByEmail(email) {
     where: { email: email },
   });
 
-  if (!client) {
-    throw new Error("No existe email");
-  }
   return client;
 }
 
