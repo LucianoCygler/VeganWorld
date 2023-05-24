@@ -45,9 +45,9 @@ import {
   GET_MP_LINK,
   GET_REVIEWS,
   CHANGE_LABEL,
+  UPDATE_ADDRESS,
+  CLEAN_ADDRESS,
 } from "./Types/Types";
-
-// const URL_SERVIDOR = "http://localhost:3001";
 
 /*TODOS LOS PRODUCTOS*/
 export const getAllProducts = () => {
@@ -145,24 +145,13 @@ export const changePage = (number) => {
   return { type: SET_PAGE, payload: number };
 };
 
-// ACTIONS NECESARIAS:
+export const updateAddress = (address) => {
+  return { type: UPDATE_ADDRESS, payload: address };
+};
 
-//* getAllProducts
-//* getProductById
-//* createOrder
-//* getOrders
-//* getOrderDetail
-//! deleteOrder
-//! updateOrder
-//! getClientData
-//! updateClientData
-//! deleteClient
-
-// order = {
-//   precioTotal: 1000,
-//   cliente_id: 1,
-//   productos: [1,3,2],
-// };
+export const cleanAddress = () => {
+  return { type: CLEAN_ADDRESS };
+};
 
 /* CREAR ORDEN */
 export const createOrder = (order) => {
@@ -237,7 +226,7 @@ export const registerUser = (user) => {
       const userDB = res.data;
       return dispatch({ type: REGISTER_USER, payload: userDB });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
     }
   };
 };
@@ -250,7 +239,20 @@ export const deleteOrder = (order_id) => {
       const orderDB = res.data;
       return dispatch({ type: DELETE_ORDER, payload: orderDB });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
+    }
+  };
+};
+
+export const validateUserExistenceInDb = (email) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post(`/client/checkclient/`, email);
+      const userData = res.data;
+      console.log(userData);
+      return dispatch({ type: VALIDATE_LOGIN, payload: userData });
+    } catch (error) {
+      console.log(error.response.data);
     }
   };
 };

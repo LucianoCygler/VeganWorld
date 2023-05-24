@@ -1,61 +1,66 @@
 import {
-	GET_ALL_PRODUCTS,
-	GET_PRODUCT_BY_ID,
-	CLEAN_DETAIL,
-	ADD_CART,
-	UPDATE_CART,
-	FILTER_NAME_PRODUCT,
-	FILTER_PRICE_PRODUCT,
-	STATE_LOGIN,
-	GET_CLIENT_DATA,
-	SET_PAGE,
-	GET_CLIENT_ORDERS,
-	GET_ORDER_BY_ID,
-	GET_CUSTOMER_COMMENTS,
-	CREATE_ORDER,
-	DROP_PRODUCT,
-	DELETE_ORDER,
-	GET_CLIENT_REVIEWS,
-	UPDATE_REVIEW,
-	VALIDATE_LOGIN,
-	ORDER_FILTER,
-	SET_PRODUCT_SEARCH,
-	CREATE_FAVORITE,
-	GET_CLIENT_FAVORITE,
-	LOGOUT,
-	LOGIN,
-	DELETE_FAVORITE,
-	GET_PRODUCT_REVIEWS,
-	GET_ALL_CLIENTS,
-	SET_CREATED_ORDER_ID,
-	CLEAN_CART,
-	GET_MP_LINK,
-	GET_REVIEWS,
+  GET_ALL_PRODUCTS,
+  GET_PRODUCT_BY_ID,
+  CLEAN_DETAIL,
+  ADD_CART,
+  UPDATE_CART,
+  FILTER_NAME_PRODUCT,
+  FILTER_PRICE_PRODUCT,
+  STATE_LOGIN,
+  GET_CLIENT_DATA,
+  SET_PAGE,
+  GET_CLIENT_ORDERS,
+  GET_ORDER_BY_ID,
+  GET_CUSTOMER_COMMENTS,
+  CREATE_ORDER,
+  DROP_PRODUCT,
+  DELETE_ORDER,
+  GET_CLIENT_REVIEWS,
+  UPDATE_REVIEW,
+  VALIDATE_LOGIN,
+  ORDER_FILTER,
+  SET_PRODUCT_SEARCH,
+  CREATE_FAVORITE,
+  GET_CLIENT_FAVORITE,
+  LOGOUT,
+  LOGIN,
+  DELETE_FAVORITE,
+  GET_PRODUCT_REVIEWS,
+  GET_ALL_CLIENTS,
+  SET_CREATED_ORDER_ID,
+  CLEAN_CART,
+  GET_MP_LINK,
+  GET_REVIEWS,
 	CHANGE_LABEL,
+  UPDATE_ADDRESS,
+  CLEAN_ADDRESS,
 } from "../actions/Types/Types";
+const carritoa = JSON.parse(localStorage.getItem("carrito")) || [];
+const productsa = JSON.parse(localStorage.getItem("products")) || [];
+const address = localStorage.getItem("address") || "";
 
 const initialState = {
-	products: [],
-	filteredProducts: [],
-	product: [],
-	cart: [],
-	customerComments: [],
-	currentPage: 0,
-	itemsPerPage: 1,
-	orders: [],
-	order: {},
-	success: [],
-	user: {},
-	clientOrders: [],
-	orderDelete: [],
-	reviews: [],
-	favorites: [],
-	deleteFavorite: [],
-	isAuthenticated: false,
-	productReviews: [],
-	allClients: [],
-	MPLink: "",
-	allReviews: [],
+  products: [],
+  filteredProducts: [],
+  product: productsa,
+  cart: carritoa,
+  customerComments: [],
+  currentPage: 0,
+  itemsPerPage: 1,
+  orders: [],
+  order: {},
+  success: {},
+  user: {},
+  clientOrders: [],
+  orderDelete: [],
+  reviews: [],
+  favorites: [],
+  deleteFavorite: [],
+  isAuthenticated: false,
+  productReviews: [],
+  allClients: [],
+  MPLink: "",
+  allReviews: [],
 	labels: {
 		Graph: false,
 		Clients: false,
@@ -63,7 +68,8 @@ const initialState = {
 		Reviews: false,
 		Orders: false,
 	},
-	// createdOrderId: null,
+  address: address,
+  // createdOrderId: null,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -84,14 +90,13 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				reviews: [...action.payload],
 			};
-
-		case GET_ALL_PRODUCTS:
-			return {
-				...state,
-				products: [...action.payload],
-				filteredProducts: [...action.payload],
-			};
-
+    case GET_ALL_PRODUCTS:
+      localStorage.setItem("products", JSON.stringify([...action.payload]));
+      return {
+        ...state,
+        products: [...action.payload],
+        filteredProducts: [...action.payload],
+      };
 		case GET_PRODUCT_BY_ID:
 			return { ...state, product: [action.payload] };
 
@@ -169,27 +174,24 @@ export default function rootReducer(state = initialState, action) {
 
 		case SET_PAGE:
 			return { ...state, currentPage: [action.payload] };
-
-		case CREATE_ORDER:
-			return { ...state, success: [action.payload] };
-
+    case CREATE_ORDER:
+      return { ...state, success: action.payload };
 		case GET_ORDER_BY_ID:
 			return { ...state, order: [action.payload] };
 
 		case GET_CLIENT_ORDERS:
 			return { ...state, clientOrders: action.payload };
 
-		case DELETE_ORDER:
-			// const orderId = action.payload;
-			// const updatedOrders =
-			return {
-				...state,
-				clientOrders: [
-					...state.clientOrders.filter((order) => order.id !== action.payload),
-				],
-				orderDelete: [action.payload],
-			};
-
+    case DELETE_ORDER:
+      // const orderId = action.payload;
+      // const updatedOrders =
+      return {
+        ...state,
+        clientOrders: [
+          ...state.clientOrders.filter((order) => order.id !== action.payload),
+        ],
+        orderDelete: [action.payload],
+      };
 		case UPDATE_REVIEW:
 			const { id, titulo, descripcion } = action.payload;
 			const fecha = new Date().toISOString().slice(0, 10);
@@ -208,62 +210,72 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				reviews: updatedReviews,
 			};
-
-		case ORDER_FILTER:
-			return {
-				...state,
-				products: action.payload,
-			};
-		case SET_PRODUCT_SEARCH:
-			return {
-				...state,
-				products: action.payload,
-			};
-		case CREATE_FAVORITE:
-			return {
-				...state,
-				favorites: [...state.favorites, action.payload],
-			};
-		case DELETE_FAVORITE:
-			const filtered = state.favorites.filter(
-				(favorite) => favorite.id !== action.payload
-			);
-			return {
-				...state,
-				favorites: [...filtered],
-				deleteFavorite: [action.payload],
-			};
-		case GET_CLIENT_FAVORITE:
-			return {
-				...state,
-				favorites: [...action.payload],
-			};
-		case GET_PRODUCT_REVIEWS:
-			return {
-				...state,
-				productReviews: [...action.payload],
-			};
-		case GET_ALL_CLIENTS:
-			return {
-				...state,
-				allClients: [...action.payload],
-			};
-		case GET_MP_LINK:
-			return {
-				...state,
-				MPLink: action.payload,
-			};
-		case GET_REVIEWS:
-			return {
-				...state,
-				allReviews: [...action.payload],
-			};
-		// case SET_CREATED_ORDER_ID:
-		//   return {
-		//     ...state,
-		//     createdOrderId: action.payload,
-		//   };
-
+    case ORDER_FILTER:
+      return {
+        ...state,
+        products: action.payload,
+      };
+    case SET_PRODUCT_SEARCH:
+      return {
+        ...state,
+        products: action.payload,
+      };
+    case CREATE_FAVORITE:
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload],
+      };
+    case DELETE_FAVORITE:
+      const filtered = state.favorites.filter(
+        (favorite) => favorite.id !== action.payload
+      );
+      return {
+        ...state,
+        favorites: [...filtered],
+        deleteFavorite: [action.payload],
+      };
+    case GET_CLIENT_FAVORITE:
+      return {
+        ...state,
+        favorites: [...action.payload],
+      };
+    case GET_PRODUCT_REVIEWS:
+      return {
+        ...state,
+        productReviews: [...action.payload],
+      };
+    case GET_ALL_CLIENTS:
+      return {
+        ...state,
+        allClients: [...action.payload],
+      };
+    case GET_MP_LINK:
+      return {
+        ...state,
+        MPLink: action.payload,
+      };
+    case GET_REVIEWS:
+      return {
+        ...state,
+        allReviews: [...action.payload],
+      };
+    case UPDATE_ADDRESS:
+      localStorage.setItem("address", action.payload);
+      return {
+        ...state,
+        address: action.payload,
+      };
+    case CLEAN_ADDRESS:
+      localStorage.removeItem("address");
+      return {
+        ...state,
+        address: "",
+      };
+    // case SET_CREATED_ORDER_ID:
+    //   return {
+    //     ...state,
+    //     createdOrderId: action.payload,
+    //   };
 		case CHANGE_LABEL:
 			return {
 				...state,
@@ -276,7 +288,6 @@ export default function rootReducer(state = initialState, action) {
 					[action.payload]: true,
 				},
 			};
-
 		default:
 			return { ...state };
 	}

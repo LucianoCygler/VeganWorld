@@ -13,31 +13,31 @@ module.exports = (sequelize) => {
     },
     contraseña: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     nombre: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     apellido: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ciudad: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     direccion: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     telefono: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     edad: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     dni: {
       type: DataTypes.STRING,
@@ -46,6 +46,6 @@ module.exports = (sequelize) => {
     imagen: {
       type: DataTypes.BLOB,
       allowNull: true,
-    }
+    },
   });
 };

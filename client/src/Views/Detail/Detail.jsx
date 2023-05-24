@@ -81,6 +81,7 @@ function Detail() {
   const dispatch = useDispatch();
 
   const [product] = useSelector((state) => state.product);
+  const cart = useSelector((state) => state.cart);
   const productReviews = useSelector((state) => state.productReviews);
 
   const [quantity, setQuantity] = useState(1);
@@ -105,6 +106,7 @@ function Detail() {
     }, 800);
     try {
       dispatch(addCartProduct(product, quantity));
+      localStorage.setItem("carrito", JSON.stringify(cart));
       Pop_up("success", "Product added", "You can find your products in Cart!");
     } catch ({ message }) {
       Pop_up("info", "Product added", message);
