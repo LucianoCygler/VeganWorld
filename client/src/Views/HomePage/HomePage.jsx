@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import style from "./HomePage.module.css";
 import {
-	getAllProducts,
-	getAllReviews,
-	getClientReviews,
-	getUserDataByEmail,
+
+  getAllProducts,
+  getAllReviews,
+  getClientData,
+  getClientReviews,
+  getUserDataByEmail,
+
 } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Pagination, Products } from "../../Components/index";
@@ -47,17 +50,25 @@ const settings = {
 	slidesToScroll: 1, // Número de imágenes a desplazar al avanzar o retroceder
 };
 function HomePage() {
-	const dispatch = useDispatch();
-	const products = useSelector((state) => state.products);
-	const allReviews = useSelector((state) => state.allReviews);
-	const [filterByType, setFilterByType] = useState("");
-	const [sort, setSort] = useState("");
-	const navigate = useNavigate();
-	const shuffledReviews = shuffle(allReviews);
-	const randomReviews = shuffledReviews.slice(0, 4);
 
-	const location = useLocation();
-	const showLogin = location.state && location.state.showLogin;
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products);
+  const allReviews = useSelector((state) => state.allReviews);
+  const [filterByType, setFilterByType] = useState("");
+  const [sort, setSort] = useState("");
+  const navigate = useNavigate();
+  const shuffledReviews = shuffle(allReviews);
+  const randomReviews = shuffledReviews.slice(0, 4);
+  const user = useSelector((state) => state.user);
+
+  const location = useLocation();
+  const showLogin = location.state && location.state.showLogin;
+  const email = localStorage.getItem("email");
+
+  useEffect(() => {
+    dispatch(getUserDataByEmail(email));
+  }, [email]);
+
 
 	const email = localStorage.getItem("email");
 	useEffect(() => {
