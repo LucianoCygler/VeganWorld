@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -7,13 +7,13 @@ import { getAllProducts } from "../../redux/actions/actions";
 
 export default function FormPropsTextFields() {
 	const dispatch = useDispatch();
+	const products = useSelector((state) => state.products);
+	const productsName = products.map((product) => product.nombre);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		dispatch(getAllProducts());
 	}, []);
 
-	const products = useSelector((state) => state.products);
-	const productsName = products.map((product) => product.nombre);
 
 	return (
 		<>

@@ -18,7 +18,7 @@ import {
 } from "./Views/index";
 import OurProducts from "./Views/OurProducts/OurProducts";
 import { NavBar } from "./Components/index";
-import Paperbase from "./Views/Template/Dashboard";
+import Dashboard from "./Views/Dashboard/Dashboard";
 
 const ProtectedRoute = ({ element: Component, ...rest }) => {
 	const isAuthenticated = localStorage.getItem("token");
@@ -34,7 +34,7 @@ function App() {
 	const { pathname } = useLocation();
 	return (
 		<div className="App">
-			{pathname !== "/dash" && <NavBar />}
+			{pathname !== "/admin" && <NavBar />}
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/Detail/:id" element={<Detail />} />
@@ -60,7 +60,7 @@ function App() {
 					path="/MyReviews"
 					element={<ProtectedRoute element={MyReviews} />}
 				/>
-				<Route path="/dash" element={<Paperbase />} />
+				<Route path="/admin" element={<Dashboard />} />
 			</Routes>
 		</div>
 	);

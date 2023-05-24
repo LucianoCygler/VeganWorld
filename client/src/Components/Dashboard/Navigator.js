@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -13,8 +13,9 @@ import DnsRoundedIcon from "@mui/icons-material/DnsRounded";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import ReviewsIcon from "@mui/icons-material/Reviews";
 import WarehouseIcon from "@mui/icons-material/Warehouse";
-import { ChangeLabel } from "../../redux/actions/actions";
 import { useDispatch } from "react-redux";
+import { ChangeLabel } from "../../redux/actions/actions";
+
 export default function Navigator(props) {
 	const categories = [
 		{
