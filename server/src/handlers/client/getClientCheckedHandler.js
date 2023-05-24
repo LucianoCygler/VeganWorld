@@ -1,17 +1,15 @@
 const getClientChecked = require("../../controllers/client/getClientChecked");
-
+const createClient = require("../../controllers/client/createClient");
 const getClientCheckedHandler = async (req, res) => {
-  const {email} = req.body;
+  const { email } = req.body;
   try {
     if (email) {
       const client = await getClientChecked(email);
-      if (client) return res.status(200).send(client);
-      else if (!client)
-        return res
-          .status(400)
-          .send(
-            "Dirección de correo electrónico desconocida o contraseña incorrecta"
-          );
+      if (!client) {
+        // El cliente no existe en la base de datos, así que lo creamos
+        const newClient = await createClient(email); // Supongamos que hay una función createClient que crea el cliente en la base de datos
+        return res.status(201).send(newClient);
+      }
     } else {
       return res.status(400).send("Faltan ingresar datos");
     }

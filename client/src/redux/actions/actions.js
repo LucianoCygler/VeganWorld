@@ -45,6 +45,8 @@ import {
   GET_MP_LINK,
   GET_REVIEWS,
   CHANGE_LABEL,
+  UPDATE_ADDRESS,
+  CLEAN_ADDRESS,
 } from "./Types/Types";
 
 // const URL_SERVIDOR = "http://localhost:3001";
@@ -145,6 +147,14 @@ export const changePage = (number) => {
   return { type: SET_PAGE, payload: number };
 };
 
+export const updateAddress = (address) => {
+  return { type: UPDATE_ADDRESS, payload: address };
+};
+
+export const cleanAddress = () => {
+  return { type: CLEAN_ADDRESS };
+};
+
 // ACTIONS NECESARIAS:
 
 //* getAllProducts
@@ -237,7 +247,7 @@ export const registerUser = (user) => {
       const userDB = res.data;
       return dispatch({ type: REGISTER_USER, payload: userDB });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
     }
   };
 };
@@ -250,7 +260,20 @@ export const deleteOrder = (order_id) => {
       const orderDB = res.data;
       return dispatch({ type: DELETE_ORDER, payload: orderDB });
     } catch (error) {
-      alert(error.response.data);
+      console.log(error.response.data);
+    }
+  };
+};
+
+export const validateUserExistenceInDb = (email) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post(`/client/checkclient/`, email);
+      const userData = res.data;
+      console.log(userData);
+      return dispatch({ type: VALIDATE_LOGIN, payload: userData });
+    } catch (error) {
+      console.log(error.response.data);
     }
   };
 };

@@ -23,17 +23,15 @@ function OurProducts() {
   const [sort, setSort] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const email = localStorage.getItem("email");
-  
+
   useEffect(() => {
     dispatch(getAllProducts());
-    dispatch(getClientAllFavorites(user.id))
-
+    // dispatch(getClientAllFavorites(user.id));
   }, []);
 
-   useEffect(() => {
-        dispatch(getUserDataByEmail(email));
-    }, [email]);
-  
+  useEffect(() => {
+    dispatch(getUserDataByEmail(email));
+  }, [email]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -45,7 +43,7 @@ function OurProducts() {
 
   useEffect(() => {
     dispatch(orderAndFilter(filterByType, sort));
-  }, [filterByType, sort, dispatch]);
+  }, [filterByType, sort]);
   const [currentPage, setCurrentPage] = useState(0);
 
   const itemsPerPage = 12;
@@ -53,7 +51,6 @@ function OurProducts() {
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = products.slice(startIndex, endIndex);
-
   const totalPages = Math.ceil(products.length / itemsPerPage);
 
   const handleFilter = (e) => {

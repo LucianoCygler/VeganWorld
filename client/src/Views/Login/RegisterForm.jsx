@@ -28,6 +28,11 @@ const LoginForm = ({ handleCloseModal, setView }) => {
     event.preventDefault();
     createUserWithEmailAndPassword(auth, form.email, form.contraseña)
       .then((userCredential) => {
+        const user = userCredential.user;
+        const idToken = user.getIdToken();
+        localStorage.setItem("token", idToken);
+        localStorage.setItem("email", user.email);
+        console.log(user);
         setView("login");
       })
       .catch((error) => {
