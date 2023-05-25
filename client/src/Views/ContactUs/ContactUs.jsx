@@ -18,10 +18,7 @@ import {
   GridItem,
   Center,
 } from "@chakra-ui/react";
-
 import { sendEmail } from "../../redux/actions/actions";
-
-import axios from "axios";
 
 const formContactUser = {
   name: "",
@@ -37,40 +34,38 @@ const ContactUs = () => {
 
   const validations = (form) => {
     let reg = /^[a-zA-Z\s]*$/;
-
     let regEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
     const error = {};
-
+    //NOMBRE
     if (!form.name) {
-      error.name = "Name is required in this field";
+      error.name = "Name is required";
+    } else if (!reg.test(form.name)) {
+      error.name = "Only accepts uppercase and lowercase letters.";
+    } else if (form.name.length > 20) {
+      error.name = "The name exceeds the maximum of 15 characters.";
     }
-    if (!reg.test(form.name)) {
-      error.name = "Numbers or special characters are not allowed";
-    }
-    if (form.name.length > 20) {
-      error.name = "Name must not be longer than 20 characters";
-    }
+
+    //EMAIL
     if (!form.email) {
       error.email = "Email is required in this field";
     } else if (!regEmail.test(form.email)) {
       error.email = "Check your email please";
+    } else if (form.email.length > 40) {
+      error.email = "The email exceeds the maximum of 40 characters."
     }
+
+    //COMENTARIOS
     if (!form.textContainer) {
       error.textContainer = "Please give us a comment...";
     } else if (form.textContainer.length < 30) {
       error.textContainer = "Text must be longer than 30 characters";
+    } else if (form.textContainer.length > 250) {
+      error.textContainer = "Text must be shorter than 250 characters";
     }
-
-    if (!form.textContainer) {
-      error.textContainer = "This input is mandatory";
-    }
+    
     return error;
-  };
-
-  useEffect(() => {
-    setError(validations(form));
-  }, [form]);
+  };  
 
   const changeHandler = (event) => {
     const property = event.target.name;
@@ -166,6 +161,7 @@ const ContactUs = () => {
                   <Input
                     name="name"
                     type="text"
+                    backgroundColor={"white"}
                     value={form.name}
                     onChange={(e) => changeHandler(e)}
                     borderColor={
@@ -192,6 +188,7 @@ const ContactUs = () => {
                   <Input
                     name="email"
                     type="text"
+                    backgroundColor={"white"}
                     value={form.email}
                     onChange={(e) => changeHandler(e)}
                     borderColor={
@@ -218,6 +215,7 @@ const ContactUs = () => {
                     Comment:
                   </FormLabel>
                   <Textarea
+                    backgroundColor={"white"}
                     resize={"none"}
                     name="textContainer"
                     type="text"

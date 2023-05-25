@@ -28,6 +28,8 @@ const LoginForm = ({ handleCloseModal }) => {
   const [canLogin, setCanLogin] = useState(false);
   const navigate = useNavigate();
   const [token, setToken] = useState("");
+  const [passError, setPassError] = useState(false)
+
 
   const handleRememberPassword = () => {
     setRememberPassword(!rememberPassword);
@@ -50,15 +52,24 @@ const LoginForm = ({ handleCloseModal }) => {
         password
       );
       const user = userCredential.user;
-      const idToken = await user.getIdToken();
 
-      setToken(idToken);
-      localStorage.setItem("token", idToken);
+      // Verificar si el inicio de sesión fue exitoso
+      if (user) {
+        const idToken = await user.getIdToken();
+        console.log("Inicio de sesión exitoso");
 
-      setValue(user.email);
-      localStorage.setItem("email", user.email);
+        setToken(idToken);
+        localStorage.setItem("token", idToken);
 
-      handleCloseModal();
+        setValue(user.email);
+        localStorage.setItem("email", user.email);
+
+        handleCloseModal();
+      } else {
+        setPassError(true)
+        console.log(passError);
+        console.log("Contraseña incorrecta");
+      }
     } catch (error) {
       console.log(error);
     }
