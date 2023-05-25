@@ -118,6 +118,9 @@ const LoginForm = ({ handleCloseModal }) => {
   return (
     <div>
       <div className="form-outline mb-4">
+      <label className="form-label" htmlFor="typeEmailX-2">
+          Email
+        </label>
         <input
           type="email"
           name="email"
@@ -125,15 +128,16 @@ const LoginForm = ({ handleCloseModal }) => {
           className={`form-control form-control-lg ${validEmail ? "" : "is-invalid"}`}
           onChange={handleChange}
         />
-        <label className="form-label" htmlFor="typeEmailX-2">
-          Email
-        </label>
+        
         {!validEmail && (
           <div className="invalid-feedback">Correo electrónico inválido</div>
         )}
       </div>
 
       <div className="form-outline mb-4">
+      <label className="form-label" htmlFor="typePasswordX-2">
+          Password
+        </label>
         <input
           type="password"
           name="password"
@@ -143,9 +147,7 @@ const LoginForm = ({ handleCloseModal }) => {
           }`}
           onChange={handleChange}
         />
-        <label className="form-label" htmlFor="typePasswordX-2">
-          Password
-        </label>
+        
         {!validPassword && (
           <div className="invalid-feedback">
             La contraseña debe tener al menos 6 caracteres
