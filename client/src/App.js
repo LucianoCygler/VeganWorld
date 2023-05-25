@@ -19,6 +19,7 @@ import {
 import OurProducts from "./Views/OurProducts/OurProducts";
 import { NavBar } from "./Components/index";
 import Paperbase from "./Views/Template/Dashboard";
+import PruebaGrafico from "./PruebaGrafico/PruebaGrafico";
 
 const ProtectedRoute = ({ element: Component, ...rest }) => {
   const isAuthenticated = localStorage.getItem("token");
@@ -42,25 +43,14 @@ function App() {
         <Route path="/ResetPass" element={<Resetpass />} />
         <Route path="/About" element={<About />} />
         <Route path="/OurProducts" element={<OurProducts />} />
-        <Route
-          path="/MyOrders"
-          element={<ProtectedRoute element={MyOrders} />}
-        />
+        <Route path="/MyOrders" element={<ProtectedRoute element={MyOrders} />} />
 
-        <Route
-          path="/MyProfile"
-          element={<ProtectedRoute element={MyProfile} />}
-        />
-        <Route
-          path="/Favorites"
-          element={<ProtectedRoute element={Favorites} />}
-        />
-        <Route
-          path="/MyReviews"
-          element={<ProtectedRoute element={MyReviews} />}
-        />
+        <Route path="/MyProfile" element={<ProtectedRoute element={MyProfile} />} />
+        <Route path="/Favorites" element={<ProtectedRoute element={Favorites} />} />
+        <Route path="/MyReviews" element={<ProtectedRoute element={MyReviews} />} />
         <Route path="/dash" element={<Paperbase />} />
 
+        <Route path="/grafico" element={<PruebaGrafico />} />
       </Routes>
     </div>
   );
