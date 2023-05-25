@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -21,6 +21,8 @@ import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllClients } from '../../redux/actions/actions';
 
 function createData(name, calories, fat, carbs, protein) {
   return {
@@ -114,6 +116,14 @@ const headCells = [
 ];
 
 function TableClients(props) {
+
+  const dispatch = useDispatch()
+  const clients = useSelector(state=>state.allClients)
+  useEffect(()=>{
+    console.log(clients);
+    dispatch(getAllClients())
+  },[])
+
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
     props;
   const createSortHandler = (property) => (event) => {

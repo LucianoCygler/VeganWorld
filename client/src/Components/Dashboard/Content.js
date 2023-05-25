@@ -14,6 +14,7 @@ import { prodErrorMap } from "firebase/auth";
 import TableClient from "./TableClient";
 import FormPropsTextFields from "./FormProduct";
 import { useSelector } from "react-redux";
+import CustomToolbarGrid from "./Tabla";
 
 export default function Content() {
 	const {Graph, Clients, Products, Reviews, Orders} = useSelector(state=>state.labels)
@@ -64,6 +65,7 @@ export default function Content() {
 			</AppBar>
 			{Clients && <TableClient />}
 			{Products && <FormPropsTextFields />	}
+			{Reviews && <CustomToolbarGrid/>}
 
 			<Typography sx={{ my: 5, mx: 2 }} color="text.secondary" align="center">
 				No users for this project yet
