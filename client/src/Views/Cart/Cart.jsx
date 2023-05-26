@@ -261,22 +261,33 @@ function Cart() {
                             justifyContent={"space-around"}
                           >
                             {" "}
-                            <Box>
-                              <Image
-                                h={"150px"}
-                                w={"150px"}
-                                borderRadius={"5px"}
-                                src={product.imagen}
-                              />
+                            <Box display={"flex"} justifyContent={"center"}>
+                              <NavLink
+                                to={`/Detail/${product.id}`}
+                                style={{ textDecoration: "none" }}
+                              >
+                                {" "}
+                                <Image
+                                  h={"150px"}
+                                  w={"150px"}
+                                  borderRadius={"5px"}
+                                  src={product.imagen}
+                                />
+                              </NavLink>
                             </Box>
                             <Box display={"flex"} justifyContent={"center"}>
-                              <Text
-                                fontWeight={"bold"}
-                                fontSize={"2xl"}
-                                marginTop={"1em"}
+                              <NavLink
+                                to={`/Detail/${product.id}`}
+                                style={{ textDecoration: "none" }}
                               >
-                                {product.nombre}
-                              </Text>
+                                <Text
+                                  fontWeight={"bold"}
+                                  fontSize={"2xl"}
+                                  marginTop={"1em"}
+                                >
+                                  {product.nombre}
+                                </Text>{" "}
+                              </NavLink>
                             </Box>
                             <Box>
                               <Text
