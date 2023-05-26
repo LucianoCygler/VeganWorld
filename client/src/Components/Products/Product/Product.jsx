@@ -79,11 +79,11 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
         {email ? (
           <Box>
             {!isFav ? (
-              <Box position={"relative"} left={"5.5em"}>
+              <Box position={"relative"} left={"5.5em"} top={"-30px"}>
                 <FontAwesomeIcon onClick={handleFavorite} icon={farHeart} />
               </Box>
             ) : (
-              <Box position={"relative"} left={"5.5em"}>
+              <Box position={"relative"} left={"5.5em"} top={"-30px"}>
                 <FontAwesomeIcon onClick={handleFavorite} icon={fasHeart} />
               </Box>
             )}

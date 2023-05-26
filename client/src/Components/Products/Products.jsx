@@ -25,6 +25,7 @@ function Products({ products }) {
                 maxW={"200px"}
                 maxH="22em"
                 marginBottom={"3em"}
+                paddingTop={"2em"}
               >
                 {" "}
                 <Product

@@ -238,7 +238,6 @@ function HomePage() {
           fontSize="6xl"
           textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
           color="white"
-          bg={"rgba(0, 0, 0, 0.2)"}
           padding={"0.3em"}
           borderRadius={70}
         >

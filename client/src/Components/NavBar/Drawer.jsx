@@ -10,6 +10,7 @@ import {
   Input,
   Grid,
   Heading,
+  Text,
 } from "@chakra-ui/react";
 import React from "react";
 import { useDisclosure } from "@chakra-ui/react";
@@ -33,15 +34,24 @@ function DrawerMenu() {
         <DrawerContent bg={" rgba(34, 34, 34, 0.8)"} color={"white"}>
           <DrawerCloseButton />
           <DrawerHeader
-            textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
-            fontSize={"19px"}
-          ></DrawerHeader>
+            bg={"  rgba(12, 92, 99, 0.5)"}
+            textShadow="2px 2px 114px rgba(0, 0, 0, 0.9)"
+            fontSize={"25px"}
+            fontWeight={"bold"}
+          >
+            <Text display={"inline"} color={"#26a353"}>
+              {" "}
+              Vegan
+            </Text>
+            World
+          </DrawerHeader>
 
-          <DrawerBody textAlign={"center"}>
-            <Grid templateRows={"repeat(6,1fr)"} gap={12} marginTop={"8em"}>
+          <DrawerBody textAlign={"left"}>
+            <Grid templateRows={"repeat(6,1fr)"} gap={20} marginTop={"8em"}>
               <a href="/MyProfile">
                 <Heading
-                  fontSize={"30PX"}
+                  fontWeight={"light"}
+                  fontSize={"25PX"}
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                   _hover={{
                     textShadow: "1px 2px 11px #EEEEEE",
@@ -53,8 +63,9 @@ function DrawerMenu() {
               </a>
               <a href="/Favorites">
                 <Heading
+                  fontWeight={"light"}
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
-                  fontSize={"30PX"}
+                  fontSize={"25PX"}
                   _hover={{
                     textShadow: "1px 2px 11px #EEEEEE",
                     cursor: "pointer",
@@ -65,8 +76,9 @@ function DrawerMenu() {
               </a>
               <a href="/MyOrders">
                 <Heading
+                  fontWeight={"light"}
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
-                  fontSize={"30PX"}
+                  fontSize={"25PX"}
                   _hover={{
                     textShadow: "1px 2px 11px #EEEEEE",
                     cursor: "pointer",
@@ -77,8 +89,9 @@ function DrawerMenu() {
               </a>
               <a href="/MyReviews">
                 <Heading
+                  fontWeight={"light"}
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
-                  fontSize={"30PX"}
+                  fontSize={"25PX"}
                   _hover={{
                     textShadow: "1px 2px 11px #EEEEEE",
                     cursor: "pointer",
@@ -87,33 +100,37 @@ function DrawerMenu() {
                   Reviews
                 </Heading>
               </a>
-              <a href="/ContactUs">
-                <Heading
-                  textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
-                  fontSize={"30PX"}
-                  _hover={{
-                    textShadow: "1px 2px 11px #EEEEEE",
-                    cursor: "pointer",
-                  }}
-                >
-                  Contact
-                </Heading>
-              </a>
-              <a href="/About">
-                <Heading
-                  fontSize={"30PX"}
-                  _hover={{
-                    textShadow: "1px 2px 11px #EEEEEE",
-                    cursor: "pointer",
-                  }}
-                >
-                  About us
-                </Heading>
-              </a>
             </Grid>
           </DrawerBody>
-
-          <DrawerFooter></DrawerFooter>
+          <hr></hr>
+          <DrawerFooter justifyContent={"left"}>
+            <a href="/ContactUs">
+              <Heading
+                marginRight={"11em"}
+                fontWeight={"light"}
+                textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
+                fontSize={"15px"}
+                _hover={{
+                  textShadow: "1px 2px 11px #EEEEEE",
+                  cursor: "pointer",
+                }}
+              >
+                Contact
+              </Heading>
+            </a>
+            <a href="/About">
+              <Heading
+                fontWeight={"light"}
+                fontSize={"15PX"}
+                _hover={{
+                  textShadow: "1px 2px 11px #EEEEEE",
+                  cursor: "pointer",
+                }}
+              >
+                About us
+              </Heading>
+            </a>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>

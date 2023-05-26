@@ -125,8 +125,15 @@ function NavBar() {
           />
         </NavLink>
         {email ? (
-          <Box w={"5%"}>
-            <Image src={user.imagen}></Image>
+          <Box>
+            <NavLink to="/MyProfile">
+              <Image
+                w={"50px"}
+                h={"50px"}
+                borderRadius={"50%"}
+                src={user.imagen}
+              ></Image>
+            </NavLink>
           </Box>
         ) : (
           <PopUpLogin />
