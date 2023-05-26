@@ -12,6 +12,7 @@ const createClientHandler = async (req, res) => {
     telefono,
     edad,
     dni,
+    imagen,
   } = req.body;
   try {
     const client = await getClientByEmail(email);
@@ -30,7 +31,8 @@ const createClientHandler = async (req, res) => {
         direccion || "",
         telefono || "",
         edad || null,
-        dni || ""
+        dni || "",
+        imagen || ""
       );
       res.status(200).send(newClient);
     } else {

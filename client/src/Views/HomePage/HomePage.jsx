@@ -38,15 +38,59 @@ const images = [
   "https://images.pexels.com/photos/3669638/pexels-photo-3669638.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   "https://images.pexels.com/photos/1351238/pexels-photo-1351238.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
 ];
-const settings = {
-  dots: true,
-  infinite: true,
-  autoplay: true,
-  autoplaySpeed: 5000, // Tiempo de espera entre imágenes (en milisegundos)
-  speed: 900, // Velocidad de transición entre imágenes (en milisegundos)
-  slidesToShow: 2, // Número de imágenes a mostrar al mismo tiempo
-  slidesToScroll: 1, // Número de imágenes a desplazar al avanzar o retroceder
+
+const MySlider = () => {
+  const [slidesToShow, setSlidesToShow] = useState(2);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        // Ajusta el valor según tus necesidades
+        setSlidesToShow(1);
+      } else {
+        setSlidesToShow(2);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Asegura que la configuración inicial sea correcta
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  const settings = {
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 5000, // Tiempo de espera entre imágenes (en milisegundos)
+    speed: 900, // Velocidad de transición entre imágenes (en milisegundos)
+    slidesToShow: slidesToShow, // Número de imágenes a mostrar al mismo tiempo
+    slidesToScroll: 1, // Número de imágenes a desplazar al avanzar o retroceder
+  };
+  return (
+    <Slider {...settings}>
+      {images.map((image, index) => (
+        <div key={index}>
+          <Box>
+            <Image
+              shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+              color={"white"}
+              marginLeft={"2em"}
+              w={"95%"}
+              h={"65vh"}
+              maxH="95vh"
+              src={image}
+              alt={`Slide ${index + 1}`}
+              style={{ opacity: 0.7 }}
+            />{" "}
+          </Box>
+        </div>
+      ))}
+    </Slider>
+  );
 };
+
 function HomePage() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
@@ -82,9 +126,9 @@ function HomePage() {
       scrollBehavior={"smooth"}
       paddingTop={200}
       margin={0}
-      backgroundImage={
-        "https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
-      }
+      backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
+      bgSize={"cover"}
+      bgRepeat={"no-repeat"}
     >
       <ModalLogin show={showLogin}></ModalLogin>
       <Box>
@@ -263,12 +307,15 @@ function HomePage() {
           )}
         </>
       </Box>
+      <Box overflowWrap={"wrap"}></Box>
       <div data-aos="fade-left" data-aos-duration="2000">
         <Grid
           templateColumns={{
             base: "1fr",
-            sm: "repeat(2, 1fr)",
-            md: "repeat(4, 1fr)",
+            sm: "repeat(1, 1fr)",
+            md: "repeat(2, 1fr)",
+            lg: "repeat(3, 1fr)",
+            xl: "repeat(4, 1fr)",
           }}
           gap={4}
           marginBottom="3em"
@@ -340,99 +387,91 @@ function HomePage() {
           </Box>
         </Grid>
       </div>
-      <Slider {...settings}>
-        {images.map((image, index) => (
-          <div key={index}>
-            <Box>
-              <Image
-                shadow="2px 2px 4px rgba(0, 0, 0, 1)"
-                color={"white"}
-                marginLeft={"2em"}
-                w={"95%"}
-                h={"65vh"}
-                maxH="95vh"
-                src={image}
-                alt={`Slide ${index + 1}`}
-                style={{ opacity: 0.7 }}
-              />{" "}
-            </Box>
-          </div>
-        ))}
-      </Slider>
+      <MySlider />
       <footer class="footer-distributed">
-        <div class="footer-left">
-          <h3>
-            <span>Vegan</span>World
-          </h3>
+        <Grid
+          templateColumns={{
+            base: "1fr",
+            sm: "repeat(1, 100%)",
+            md: "repeat(2, 50%)",
+            lg: "repeat(3, 42%)",
+            xl: "repeat(3, 42%)",
+          }}
+        >
+          <div class="footer-left">
+            <h3>
+              <span>Vegan</span>World
+            </h3>
 
-          <p class="footer-links">
-            <a href="#" class="link-1">
-              Home
-            </a>
+            <p class="footer-links">
+              <a href="#" class="link-1">
+                Home
+              </a>
 
-            <a href="#">Blog</a>
+              <a href="#">Blog</a>
 
-            <a href="#">Pricing</a>
+              <a href="#">Pricing</a>
 
-            <a href="#">About</a>
+              <a href="#">About</a>
 
-            <a href="#">Faq</a>
+              <a href="#">Faq</a>
 
-            <a href="#">Contact</a>
-          </p>
-
-          <p class="footer-company-name">VeganWorld © 2023</p>
-        </div>
-
-        <div class="footer-center">
-          <div>
-            <i class="fa fa-map-marker"></i>
-            <p>
-              <span>Av. Rivadavia 9423</span> Capital Federal, Buenos Aires
+              <a href="#">Contact</a>
             </p>
+
+            <p class="footer-company-name">VeganWorld © 2023</p>
           </div>
 
-          <div>
-            <i class="fa fa-phone"></i>
-            <PhoneIcon marginRight="1em"></PhoneIcon>
-            <p>+54 9 1122309876</p>
+          <div class="footer-center">
+            <div>
+              <i class="fa fa-map-marker"></i>
+              <p>
+                <span>Av. Rivadavia 9423</span> Capital Federal, Buenos Aires
+              </p>
+            </div>
+
+            <div>
+              <i class="fa fa-phone"></i>
+              <PhoneIcon marginRight="1em"></PhoneIcon>
+              <p>+54 9 1122309876</p>
+            </div>
+
+            <div>
+              <i class="fa fa-envelope"></i>
+              <p>
+                <a href="mailto:support@company.com">veganworld@gmail.com</a>
+              </p>
+            </div>
           </div>
 
-          <div>
-            <i class="fa fa-envelope"></i>
-            <p>
-              <a href="mailto:support@company.com">veganworld@gmail.com</a>
+          <div class="footer-right">
+            <p class="footer-company-about">
+              <span>About the company</span>
+              Making it easier to be Vegan and order food!
             </p>
-          </div>
-        </div>
 
-        <div class="footer-right">
-          <p class="footer-company-about">
-            <span>About the company</span>
-            Making it easier to be Vegan and order food!
-          </p>
-
-          <div class="footer-icons">
-            <a href="#">
-              <SocialIcon
-                url="https://facebook.com/VeganWorld"
-                style={{ height: 30, width: 30 }}
-              />
-            </a>
-            <a href="#">
-              <SocialIcon
-                url="https://twitter.com/VeganWorld"
-                style={{ height: 30, width: 30 }}
-              />
-            </a>
-            <a href="#">
-              <SocialIcon
-                url="https://github.com/LucianoCygler/VeganWorld"
-                style={{ height: 30, width: 30 }}
-              />
-            </a>
+            <div class="footer-icons">
+              <a href="#">
+                <SocialIcon
+                  url="https://facebook.com/VeganWorld"
+                  style={{ height: 30, width: 30 }}
+                />
+              </a>
+              <a href="#">
+                <SocialIcon
+                  url="https://twitter.com/VeganWorld"
+                  style={{ height: 30, width: 30 }}
+                />
+              </a>
+              <a href="#">
+                <SocialIcon
+                  url="https://github.com/LucianoCygler/VeganWorld"
+                  style={{ height: 30, width: 30 }}
+                />
+              </a>
+            </div>
           </div>
-        </div>
+        </Grid>
       </footer>
     </Box>
   );

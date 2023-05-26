@@ -10,7 +10,8 @@ const updateClient = async (
   direccion,
   telefono,
   edad,
-  dni
+  dni,
+  imagen
 ) => {
   const clientById = await Client.findByPk(id);
   if (!clientById)
@@ -24,6 +25,7 @@ const updateClient = async (
   if (telefono) clientById.telefono = telefono;
   if (edad) clientById.edad = edad;
   if (dni) clientById.dni = dni;
+  if (imagen) clientById.imagen = imagen;
   await clientById.save();
 
   return clientById;

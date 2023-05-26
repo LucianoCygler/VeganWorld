@@ -1,11 +1,12 @@
 import React from "react";
-import { Box, Flex, Button, Image } from "@chakra-ui/react";
+import { Box, Flex, Button, Image, useMediaQuery } from "@chakra-ui/react";
 import "./Carousel.module.css";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import styles from "./Carousel.module.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
+
 const products = [
   {
     id: 1,
@@ -88,7 +89,26 @@ const chunkArray = (arr, chunkSize) => {
 };
 
 const CustomCarousel = () => {
-  const productsPerPage = 6;
+  const [isSmallerThanBase] = useMediaQuery("(max-width: 35em)");
+  const [isSmallerThanSd] = useMediaQuery("(max-width: 35em)");
+  const [isSmallerThanMd] = useMediaQuery("(max-width: 46em)");
+  const [isSmallerThanLg] = useMediaQuery("(max-width: 55em)");
+  const [isSmallerThanXl] = useMediaQuery("(max-width: 80em)");
+
+  let productsPerPage = 6;
+
+  if (isSmallerThanBase) {
+    productsPerPage = 1;
+  } else if (isSmallerThanSd) {
+    productsPerPage = 1;
+  } else if (isSmallerThanMd) {
+    productsPerPage = 4;
+  } else if (isSmallerThanLg) {
+    productsPerPage = 5;
+  } else if (isSmallerThanXl) {
+    productsPerPage = 6;
+  }
+
   const groupedProducts = chunkArray(products, productsPerPage);
 
   return (
@@ -118,7 +138,7 @@ const CustomCarousel = () => {
               {group.map((product) => (
                 <Box
                   key={product.id}
-                  w="100%"
+                  minW={"190px"}
                   p={4}
                   borderRadius="md"
                   className={styles.productCard}

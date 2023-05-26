@@ -44,8 +44,12 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     imagen: {
-      type: DataTypes.BLOB,
+      type: DataTypes.TEXT,
       allowNull: true,
+      validate: {
+        isUrl: true,
+      },
+      public_id: String,
     },
   });
 };

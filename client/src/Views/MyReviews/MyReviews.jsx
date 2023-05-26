@@ -64,9 +64,7 @@ const MyReviews = () => {
     <Box
       marginTop={"0"}
       minH="100vh"
-      backgroundImage={
-        "https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
-      }
+      backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
     >
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>

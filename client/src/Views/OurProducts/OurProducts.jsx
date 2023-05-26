@@ -46,7 +46,7 @@ function OurProducts() {
   }, [filterByType, sort]);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const itemsPerPage = 12;
+  const itemsPerPage = 10;
 
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -65,13 +65,18 @@ function OurProducts() {
       minH={"100vh"}
       bg={"# d8d8d8"}
       paddingTop={15}
-      backgroundImage={
-        "https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
-      }
+      backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
+      bgSize={"cover"}
+      bgRepeat={"no-repeat"}
     >
-      <h1 className={style.h1}>The best vegan food in town!</h1>
-
-      <Flex direction={"row"} margin={"auto"} justifyContent={"center"}>
+      {" "}
+      {/* <h1 className={style.h1}>The best vegan food in town!</h1> */}
+      <Flex
+        direction={"row"}
+        margin={"auto"}
+        justifyContent={"center"}
+        marginTop={"8em"}
+      >
         <Select onChange={handleFilter} w={200} marginRight={4} bg="#d8d8d8">
           <option value="">All</option>
           <option value="pasta">Pasta</option>
@@ -95,18 +100,39 @@ function OurProducts() {
           color="teal.500"
         /> // Muestra el componente de Loader mientras isLoading sea true
       ) : (
-        <Products products={currentItems} />
+        <Box>
+          {" "}
+          <Divider />
+          <Box display="flex" justifyContent="center">
+            <Box>
+              <Pagination
+                goToPrevPage={() => setCurrentPage(currentPage - 1)}
+                goToNextPage={() => setCurrentPage(currentPage + 1)}
+                goToPage={(page) => setCurrentPage(page)}
+                currentPage={currentPage}
+                lastPage={totalPages}
+              />
+            </Box>
+          </Box>
+          <Box marginTop={"5em"}>
+            <Box display="flex" justifyContent="center">
+              <Products products={currentItems} />
+            </Box>
+          </Box>
+          <Divider />
+          <Box display="flex" justifyContent="center">
+            <Box>
+              <Pagination
+                goToPrevPage={() => setCurrentPage(currentPage - 1)}
+                goToNextPage={() => setCurrentPage(currentPage + 1)}
+                goToPage={(page) => setCurrentPage(page)}
+                currentPage={currentPage}
+                lastPage={totalPages}
+              />
+            </Box>
+          </Box>
+        </Box>
       )}
-
-      <Divider />
-
-      <Pagination
-        goToPrevPage={() => setCurrentPage(currentPage - 1)}
-        goToNextPage={() => setCurrentPage(currentPage + 1)}
-        goToPage={(page) => setCurrentPage(page)}
-        currentPage={currentPage}
-        lastPage={totalPages}
-      />
     </Box>
   );
 }

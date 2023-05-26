@@ -12,6 +12,7 @@ const updateClientHandler = async (req, res) => {
     telefono,
     edad,
     dni,
+    imagen,
   } = req.body;
 
   try {
@@ -25,7 +26,8 @@ const updateClientHandler = async (req, res) => {
       direccion,
       telefono,
       edad,
-      dni
+      dni,
+      imagen
     );
 
     res.status(200).send(updatedClient);
