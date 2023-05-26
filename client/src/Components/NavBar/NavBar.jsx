@@ -85,7 +85,7 @@ function NavBar() {
         {location.pathname === "/OurProducts" ? <SearchBar /> : ""}
       </div>
       <div className={styles.divRight}>
-        <Link to="/OurProducts">Our Products</Link>
+        {/* <Link to="/OurProducts">Our Products</Link> */}
         {/* <Menu>
           <MenuButton
             as={IconButton}

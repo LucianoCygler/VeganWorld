@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Pagination, Products } from "../../Components/index";
 import { orderAndFilter } from "../../redux/actions/actions";
 import style from "./OurProducts.module.css";
-import { Select } from "@chakra-ui/react";
+import { Select, Text } from "@chakra-ui/react";
 import { Box, Flex, Grid, GridItem, Img } from "@chakra-ui/react";
 import { Divider } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
@@ -70,7 +70,25 @@ function OurProducts() {
       bgSize={"cover"}
       bgRepeat={"no-repeat"}
     >
-      {" "}
+      <Box marginTop={"10em"}>
+        <Text
+          fontSize={"30px"}
+          color="white"
+          textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+          position="relative"
+        >
+          PRODUCTS
+          <Text
+            as="span"
+            position="absolute"
+            left={"855px"}
+            bottom={-5} // Ajusta este valor según el espaciado deseado
+            width="10%"
+            height="3px"
+            background="orange"
+          />
+        </Text>
+      </Box>{" "}
       {/* <h1 className={style.h1}>The best vegan food in town!</h1> */}
       <Flex
         direction={"row"}

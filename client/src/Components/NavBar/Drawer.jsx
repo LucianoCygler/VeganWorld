@@ -11,6 +11,7 @@ import {
   Grid,
   Heading,
   Text,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useDisclosure } from "@chakra-ui/react";
@@ -36,7 +37,11 @@ function DrawerMenu() {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent bg={" rgba(34, 34, 34, 0.8)"} color={"white"}>
+        <DrawerContent
+          bg={" rgba(34, 34, 34, 0.8)"}
+          color={"white"}
+          minHeight={"100vh"}
+        >
           <DrawerCloseButton />
           <DrawerHeader
             bg={"  rgba(12, 92, 99, 0.5)"}
@@ -51,8 +56,8 @@ function DrawerMenu() {
             World
           </DrawerHeader>
 
-          <DrawerBody textAlign={"left"}>
-            <Grid templateRows={"repeat(6,1fr)"} gap={20} marginTop={"8em"}>
+          <DrawerBody textAlign={"left"} overflow="hidden">
+            <Grid templateRows={"repeat(6,1fr)"} gap={10} marginTop={"4em"}>
               <a href="/MyProfile">
                 <Heading
                   name="profile"
@@ -112,6 +117,21 @@ function DrawerMenu() {
                   onClick={handleSelected}
                 >
                   Reviews
+                </Heading>
+              </a>
+              <a href="/OurProducts">
+                <Heading
+                  name="products"
+                  fontWeight={"light"}
+                  textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
+                  fontSize={"25PX"}
+                  _hover={{
+                    textShadow: "1px 2px 11px #EEEEEE",
+                    cursor: "pointer",
+                  }}
+                  onClick={handleSelected}
+                >
+                  Our Products
                 </Heading>
               </a>
             </Grid>

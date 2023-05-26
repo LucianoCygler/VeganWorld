@@ -80,11 +80,17 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
           <Box>
             {!isFav ? (
               <Box position={"relative"} left={"5.5em"} top={"-20px"}>
-                <FontAwesomeIcon onClick={handleFavorite} icon={farHeart} />
+                {/* <FontAwesomeIcon onClick={handleFavorite} icon={farHeart} /> */}
+                <Box onClick={handleFavorite} _hover={{ cursor: "pointer" }}>
+                  🤍
+                </Box>
               </Box>
             ) : (
               <Box position={"relative"} left={"5.5em"} top={"-20px"}>
-                <FontAwesomeIcon onClick={handleFavorite} icon={fasHeart} />
+                {/* <FontAwesomeIcon onClick={handleFavorite} icon={fasHeart} /> */}
+                <Box onClick={handleFavorite} _hover={{ cursor: "pointer" }}>
+                  💗
+                </Box>
               </Box>
             )}
           </Box>
