@@ -80,12 +80,20 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
           <Box>
             {" "}
             {!isFav ? (
-              <div>
-                <FontAwesomeIcon onClick={handleFavorite} icon={farHeart} />
+              <div className={styles.favoriteContainer}>
+                <FontAwesomeIcon
+                  onClick={handleFavorite}
+                  className={styles.favButton}
+                  icon={farHeart}
+                />
               </div>
             ) : (
-              <div>
-                <FontAwesomeIcon onClick={handleFavorite} icon={fasHeart} />
+              <div className={styles.favoriteContainer}>
+                <FontAwesomeIcon
+                  onClick={handleFavorite}
+                  className={styles.favButton}
+                  icon={fasHeart}
+                />
               </div>
             )}
           </Box>

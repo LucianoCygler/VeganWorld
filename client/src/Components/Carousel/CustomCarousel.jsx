@@ -138,19 +138,7 @@ const CustomCarousel = () => {
               {group.map((product) => (
                 <Box
                   key={product.id}
-                  minW={
-                    isSmallerThanBase
-                      ? "200px"
-                      : isSmallerThanSd
-                      ? "100%"
-                      : isSmallerThanMd
-                      ? "50%"
-                      : isSmallerThanLg
-                      ? "40%"
-                      : isSmallerThanXl
-                      ? "33.33%"
-                      : "25%"
-                  }
+                  minW={"190px"}
                   p={4}
                   borderRadius="md"
                   className={styles.productCard}

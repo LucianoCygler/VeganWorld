@@ -10,7 +10,8 @@ async function createClient(
   direccion,
   telefono,
   edad,
-  dni
+  dni,
+  imagen
 ) {
   //const saltRounds = 10;
   // const hashedPassword = await bcrypt.hash(contraseña, saltRounds);
@@ -26,6 +27,7 @@ async function createClient(
     telefono,
     edad,
     dni,
+    imagen,
   });
   return client;
 }
