@@ -68,9 +68,7 @@ const MyOrders = () => {
   return (
     <>
       <Box
-        bgImg={
-          "https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
-        }
+        backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
         bgSize={"cover"}
         bgPosition={"center"}
         h={"100vh"}

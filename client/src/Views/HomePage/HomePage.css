@@ -13,7 +13,7 @@
   font: bold 16px sans-serif;
   padding: 55px 50px;
   padding-left: 10em;
-  height: 40vh;
+  max-height: 100vh;
   margin-top: 3em;
 }
 .footer-distributed .footer-left,

@@ -107,9 +107,7 @@ const ContactUs = () => {
 
   return (
     <Box
-      backgroundImage={
-        "https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
-      }
+      backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
       py="9em"
     >
       <Box

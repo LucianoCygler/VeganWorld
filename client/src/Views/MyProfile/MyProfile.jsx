@@ -68,6 +68,7 @@ const MyData = () => {
       telefono: editedPhone,
       direccion: editedAddress,
       DNI: editedDNI,
+      //imagen:imagenURL
     };
     setselectedUser(newUser);
     dispatch(updateClientData(id, newUser));

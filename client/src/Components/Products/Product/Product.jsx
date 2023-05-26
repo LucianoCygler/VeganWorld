@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 import "aos/dist/aos.css";
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import { addCartProduct, getProductById } from "../../../redux/actions/actions";
 import Pop_up from "../../../Utils/Pop_up/Pop_up";
 function Product({ nombre, imagen, precio, stock, descripcion, id }) {
@@ -71,72 +71,61 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
   };
 
   return (
-    <div
-      className={styles.mainContainer}
-      onMouseOver={() => setShowInfo(true)}
-      onMouseLeave={() => setShowInfo(false)}
-    >
-      {email ? (
-        <div>
-          {" "}
-          {!isFav ? (
-            <div className={styles.favoriteContainer}>
-              <FontAwesomeIcon
-                className={styles.favButton}
-                onClick={handleFavorite}
-                icon={farHeart}
-              />
-            </div>
-          ) : (
-            <div className={styles.favoriteContainer}>
-              <FontAwesomeIcon
-                className={styles.favButton}
-                onClick={handleFavorite}
-                icon={fasHeart}
-              />
-            </div>
-          )}
-        </div>
-      ) : (
-        ""
-      )}
-      <Box>
-        <Flex flexDirection={"column"}>
-          {" "}
-          <NavLink
-            className={styles.card}
-            to={`/Detail/${id}`}
-            style={{ textDecoration: "none" }}
-          >
-            <div>
+    <Box>
+      <div
+        onMouseOver={() => setShowInfo(true)}
+        onMouseLeave={() => setShowInfo(false)}
+      >
+        {email ? (
+          <Box>
+            {" "}
+            {!isFav ? (
               <div>
-                {" "}
-                <div className={styles.divImage}>
-                  <img className={styles.image} src={imagen} alt={nombre} />
-                </div>
-                <hr />
-                <h2 className={styles.subtitle}>{nombre}</h2>
-                {/* <h2 className={styles.subtitle}>{product.descripcion}</h2> */}
-                {showInfo && (
-                  <div className={styles.priceContainer}>
-                    <h2 className={styles.price}>${precio} </h2>
-                  </div>
-                )}
+                <FontAwesomeIcon onClick={handleFavorite} icon={farHeart} />
               </div>
-            </div>
-          </NavLink>
-          <Button
-            marginTop={2}
-            variant="solid"
-            colorScheme="teal"
-            onClick={handleClick}
-            isLoading={loading}
-          >
-            Add to cart
-          </Button>
-        </Flex>
-      </Box>
-    </div>
+            ) : (
+              <div>
+                <FontAwesomeIcon onClick={handleFavorite} icon={fasHeart} />
+              </div>
+            )}
+          </Box>
+        ) : (
+          ""
+        )}
+        <Box>
+          <Flex flexDirection={"column"}>
+            {" "}
+            <NavLink to={`/Detail/${id}`} style={{ textDecoration: "none" }}>
+              <div>
+                <div>
+                  {" "}
+                  <Box margin="2em">
+                    <Image src={imagen} alt={nombre} />
+                  </Box>
+                  <hr />
+                  <Text>{nombre}</Text>
+                  {/* <h2 className={styles.subtitle}>{product.descripcion}</h2> */}
+                  {showInfo && (
+                    <div>
+                      <Text>${precio}</Text>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </NavLink>
+            <Button
+              marginTop={"0.4em"}
+              variant="solid"
+              colorScheme="teal"
+              onClick={handleClick}
+              isLoading={loading}
+            >
+              Add to cart
+            </Button>
+          </Flex>
+        </Box>
+      </div>
+    </Box>
   );
 }
 
