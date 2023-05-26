@@ -65,16 +65,13 @@ const LoginForm = ({ handleCloseModal }) => {
 
         handleCloseModal();
         window.location.reload();
-      } else {
-        setPassError(true);
-        console.log(passError);
-        console.log("Contraseña incorrecta");
       }
     } catch (error) {
+      setPassError(true)      
       console.log(error);
     }
   };
-
+  
   const SignInWithGoogle = async () => {
     try {
       const userCredential = await signInWithPopup(auth, googleProvider);
@@ -119,8 +116,10 @@ const LoginForm = ({ handleCloseModal }) => {
   useEffect(() => {
     if (user && value === "") {
       localStorage.setItem("user", JSON.stringify(user));
-    }
+    } 
   }, [user]);
+
+  console.log(passError);
 
   const validarEmail = (email) => {
     const patron = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -157,11 +156,11 @@ const LoginForm = ({ handleCloseModal }) => {
           name="password"
           id="typePasswordX-2"
           className={`form-control form-control-lg ${
-            validPassword ? "" : "is-invalid"
+            validPassword && !passError ? "" : "is-invalid"
           }`}
           onChange={handleChange}
         />
-
+        {passError && (<span className="invalid-feedback">Invalid Password</span>)}
         {!validPassword && (
           <div className="invalid-feedback">
             La contraseña debe tener al menos 6 caracteres

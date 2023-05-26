@@ -33,11 +33,13 @@ export default function Pagination({
             background-color: teal; /* Cambia el color de fondo del elemento seleccionado */
             color: white;
             border-color: teal; /* Cambia el color del texto del elemento seleccionado */
+            font-weight: bold;
           }
 
           .page-item:not(.active) a.page-link {
             /* Estilos de los elementos no seleccionados */
             color: teal; /* Cambia el color del texto de los elementos no seleccionados */
+            font-weight: bold;
           }
 
           .page-item:not(.active) a.page-link:hover {
@@ -62,7 +64,7 @@ export default function Pagination({
         <ul className="pagination">
           <li className={`page-item ${currentPage === 0 ? "disabled" : ""}`}>
             <a className="page-link" onClick={goToPrevPage} href="#">
-              Previous
+              {"<"}
             </a>
           </li>
           {buttons}
@@ -72,7 +74,7 @@ export default function Pagination({
             }`}
           >
             <a className="page-link" onClick={goToNextPage} href="#">
-              Next
+              {">"}
             </a>
           </li>
         </ul>

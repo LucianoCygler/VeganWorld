@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Pagination, Products } from "../../Components/index";
 import { orderAndFilter } from "../../redux/actions/actions";
 import style from "./OurProducts.module.css";
-import { Select } from "@chakra-ui/react";
+import { Select, Text } from "@chakra-ui/react";
 import { Box, Flex, Grid, GridItem, Img } from "@chakra-ui/react";
 import { Divider } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
@@ -46,7 +46,7 @@ function OurProducts() {
   }, [filterByType, sort]);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const itemsPerPage = 10;
+  const itemsPerPage = 12;
 
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -63,19 +63,41 @@ function OurProducts() {
   return (
     <Box
       minH={"100vh"}
+      overflow={"hidden"}
       bg={"# d8d8d8"}
       paddingTop={15}
       backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
       bgSize={"cover"}
       bgRepeat={"no-repeat"}
     >
-      {" "}
+
+      <Box marginTop={"6em"} paddingTop={"0em"} >
+
+        <Text
+          fontSize={"30px"}
+          color="white"
+          textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+          position="relative"          
+          top={"0.2em"}
+        >
+          PRODUCTS
+          <Text
+            as="span"            
+            position="absolute"
+            left={"1%"}
+            bottom={-5} // Ajusta este valor según el espaciado deseado
+            width="100%"
+            height="3px"
+            background="orange"
+          />
+        </Text>
+      </Box>{" "}
       {/* <h1 className={style.h1}>The best vegan food in town!</h1> */}
       <Flex
         direction={"row"}
         margin={"auto"}
         justifyContent={"center"}
-        marginTop={"8em"}
+        marginTop={"3em"}
         marginBottom={"3em"}
       >
         <Select onChange={handleFilter} w={200} marginRight={4} bg="#d8d8d8">
@@ -115,8 +137,8 @@ function OurProducts() {
             </Box>
           </Box>
           <Divider />
-          <Box marginTop={"5em"}>
-            <Box display="flex" justifyContent="center">
+          <Box display="flex" marginTop={"5em"} justifyContent={"center"}>
+            <Box w={"80%"}>
               <Products products={currentItems} />
             </Box>
           </Box>

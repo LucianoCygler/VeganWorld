@@ -10,7 +10,15 @@ import styles from "./MyReviews.module.css";
 import { useNavigate } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
 import LoginForm from "../Login/LoginForm";
-import { Box, Flex, Grid, GridItem, Heading, Img } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Grid,
+  GridItem,
+  Heading,
+  Img,
+  Text,
+} from "@chakra-ui/react";
 import "./MyReviews.css";
 import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react";
 import { Divider } from "@chakra-ui/react";
@@ -65,6 +73,7 @@ const MyReviews = () => {
       marginTop={"0"}
       minH="100vh"
       backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
+      paddingBottom={"10em"}
     >
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
@@ -87,7 +96,25 @@ const MyReviews = () => {
       ) : (
         <>
           <Divider />
-
+          <Box marginTop={"10em"} display={"flex"} justifyContent={"center"}>
+            <Text
+              fontSize={"30px"}
+              color="white"
+              textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+              position="relative"
+            >
+              REVIEWS
+              <Text
+                as="span"
+                position="absolute"
+                left={"1%"}
+                bottom={-5} // Ajusta este valor según el espaciado deseado
+                width="100%"
+                height="3px"
+                background="orange"
+              />
+            </Text>
+          </Box>
           <Box
             paddingTop={10}
             minH="80vh"
@@ -96,18 +123,9 @@ const MyReviews = () => {
             margin="auto"
             shadow="0px 4px 1000px rgba(0, 0, 0, 0.2)"
             bg={"rgba(216, 216, 216, 0.5)"}
-            marginTop={"10em"}
+            marginTop={"4em"}
             borderRadius={"35px"}
           >
-            <Box>
-              <Heading
-                fontSize={"80px"}
-                color={"white"}
-                textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
-              >
-                Reviews
-              </Heading>
-            </Box>
             {reviews ? (
               reviews.map((review) => {
                 return (

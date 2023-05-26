@@ -194,7 +194,7 @@ function HomePage() {
                     navigate("/ourproducts");
                   }}
                 >
-                  <Text fontSize={"3xl"}>Let's start</Text>
+                  <Text fontSize={"3xl"} margin={"10px"}>Let's start</Text>
                 </Button>
               </CardFooter>
             </Stack>
@@ -231,14 +231,13 @@ function HomePage() {
         currentPage={currentPage}
         lastPage={totalPages}
       /> */}
-      <Carrusel />
+      {/* <Carrusel /> */}
       <Box marginTop={200} w={"fit-content"} margin="3em auto ">
         <Text
           as="b"
           fontSize="6xl"
           textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
           color="white"
-          bg={"rgba(0, 0, 0, 0.2)"}
           padding={"0.3em"}
           borderRadius={70}
         >
@@ -414,15 +413,9 @@ function HomePage() {
                 Home
               </a>
 
-              <a href="#">Blog</a>
+              <a href="/About">About</a>
 
-              <a href="#">Pricing</a>
-
-              <a href="#">About</a>
-
-              <a href="#">Faq</a>
-
-              <a href="#">Contact</a>
+              <a href="/ContactUs">Contact</a>
             </p>
 
             <p class="footer-company-name">VeganWorld © 2023</p>
@@ -445,7 +438,7 @@ function HomePage() {
             <div>
               <i class="fa fa-envelope"></i>
               <p>
-                <a href="mailto:support@company.com">veganworld@gmail.com</a>
+                <a href="mailto:support@company.com">veganworld36@gmail.com</a>
               </p>
             </div>
           </div>
