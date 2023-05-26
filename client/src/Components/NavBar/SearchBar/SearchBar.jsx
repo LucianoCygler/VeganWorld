@@ -42,7 +42,7 @@ function SearchBar() {
           placeholder="Search a product..."
           onChange={handleSearch}
         />
-        <FontAwesomeIcon className={styles.fontIcon} icon={faMagnifyingGlass} />
+        {/* <FontAwesomeIcon className={styles.fontIcon} icon={faMagnifyingGlass} /> */}
       </nav>
     </div>
   );

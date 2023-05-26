@@ -16,7 +16,7 @@ import { addCartProduct, getProductById } from "../../../redux/actions/actions";
 import Pop_up from "../../../Utils/Pop_up/Pop_up";
 function Product({ nombre, imagen, precio, stock, descripcion, id }) {
   const [isFav, setIsFav] = useState(false);
-  const [showInfo, setShowInfo] = useState(false); /* INFO */
+  const [showInfo, setShowInfo] = useState(true); /* INFO */
   // const product = { nombre, imagen, precio, stock, descripcion, id };
   const { user, favorites } = useSelector((state) => state);
   const [product] = useSelector((state) => state.product);
@@ -73,28 +73,20 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
   return (
     <Box>
       <div
-        onMouseOver={() => setShowInfo(true)}
-        onMouseLeave={() => setShowInfo(false)}
+      // onMouseOver={() => setShowInfo(true)}
+      // onMouseLeave={() => setShowInfo(false)}
       >
         {email ? (
           <Box>
             {" "}
             {!isFav ? (
-              <div className={styles.favoriteContainer}>
-                <FontAwesomeIcon
-                  onClick={handleFavorite}
-                  className={styles.favButton}
-                  icon={farHeart}
-                />
-              </div>
+              <Box position={"relative"} left={"5.5em"}>
+                <FontAwesomeIcon onClick={handleFavorite} icon={farHeart} />
+              </Box>
             ) : (
-              <div className={styles.favoriteContainer}>
-                <FontAwesomeIcon
-                  onClick={handleFavorite}
-                  className={styles.favButton}
-                  icon={fasHeart}
-                />
-              </div>
+              <Box position={"relative"} left={"5.5em"}>
+                <FontAwesomeIcon onClick={handleFavorite} icon={fasHeart} />
+              </Box>
             )}
           </Box>
         ) : (
