@@ -25,7 +25,12 @@ function Products({ products }) {
                 maxW={"200px"}
                 maxH="22em"
                 marginBottom={"3em"}
-                paddingTop={"2em"}
+                paddingTop={"1.5em"}
+                transition={"0.3s"}
+                _hover={{
+                  transform: "scale(1.05)",
+                  transition: "transform 0.3s ease-in-out",
+                }}
               >
                 {" "}
                 <Product

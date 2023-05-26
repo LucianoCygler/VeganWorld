@@ -94,7 +94,7 @@ const CardFav = ({ product, favorites }) => {
             <Heading size="md">{product?.Product?.nombre}</Heading>
             <Text>{product?.Product?.descripcion}</Text>
             <Text color="blue.600" fontSize="2xl">
-              $ {product?.Product?.precio}
+              $ {parseInt(product?.Product?.precio)}
             </Text>
           </Stack>
         </CardBody>

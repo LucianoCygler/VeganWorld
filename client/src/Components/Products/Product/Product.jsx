@@ -79,11 +79,11 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
         {email ? (
           <Box>
             {!isFav ? (
-              <Box position={"relative"} left={"5.5em"} top={"-30px"}>
+              <Box position={"relative"} left={"5.5em"} top={"-20px"}>
                 <FontAwesomeIcon onClick={handleFavorite} icon={farHeart} />
               </Box>
             ) : (
-              <Box position={"relative"} left={"5.5em"} top={"-30px"}>
+              <Box position={"relative"} left={"5.5em"} top={"-20px"}>
                 <FontAwesomeIcon onClick={handleFavorite} icon={fasHeart} />
               </Box>
             )}
@@ -110,14 +110,14 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
                       {nombre}
                     </Text>
                   </Box>
-                  <Box marginTop={"2em"}>
-                    <Text>${precio}</Text>
+                  <Box marginTop={"1em"}>
+                    <Text>${parseInt(precio)}</Text>
                   </Box>
                 </Grid>
               </Grid>
             </NavLink>
           </Flex>
-          <Box>
+          <Box marginTop={"1em"}>
             {" "}
             <Button
               variant="solid"

@@ -39,7 +39,7 @@ function DrawerMenu() {
             fontSize={"25px"}
             fontWeight={"bold"}
           >
-            <Text display={"inline"} color={"#26a353"}>
+            <Text display={"inline"} color={"lightseagreen"}>
               {" "}
               Vegan
             </Text>

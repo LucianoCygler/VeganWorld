@@ -413,15 +413,9 @@ function HomePage() {
                 Home
               </a>
 
-              <a href="#">Blog</a>
+              <a href="/About">About</a>
 
-              <a href="#">Pricing</a>
-
-              <a href="#">About</a>
-
-              <a href="#">Faq</a>
-
-              <a href="#">Contact</a>
+              <a href="/ContactUs">Contact</a>
             </p>
 
             <p class="footer-company-name">VeganWorld © 2023</p>
@@ -444,7 +438,7 @@ function HomePage() {
             <div>
               <i class="fa fa-envelope"></i>
               <p>
-                <a href="mailto:support@company.com">veganworld@gmail.com</a>
+                <a href="mailto:support@company.com">veganworld36@gmail.com</a>
               </p>
             </div>
           </div>
