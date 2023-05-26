@@ -52,7 +52,7 @@ const ContactUs = () => {
     } else if (!regEmail.test(form.email)) {
       error.email = "Check your email please";
     } else if (form.email.length > 40) {
-      error.email = "The email exceeds the maximum of 40 characters."
+      error.email = "The email exceeds the maximum of 40 characters.";
     }
 
     //COMENTARIOS
@@ -63,9 +63,9 @@ const ContactUs = () => {
     } else if (form.textContainer.length > 250) {
       error.textContainer = "Text must be shorter than 250 characters";
     }
-    
+
     return error;
-  };  
+  };
 
   const changeHandler = (event) => {
     const property = event.target.name;
@@ -103,7 +103,11 @@ const ContactUs = () => {
   return (
     <Box
       backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
-      py="9em"
+      height={"100vh"}
+      minHeight={"100vh"}
+      bgSize={"cover"}
+      bgRepeat={"no-repeat"}
+      paddingTop={"10em"}
     >
       <Box
         bg="rgba(216, 216, 216, 0.9)"

@@ -28,8 +28,7 @@ const LoginForm = ({ handleCloseModal }) => {
   const [canLogin, setCanLogin] = useState(false);
   const navigate = useNavigate();
   const [token, setToken] = useState("");
-  const [passError, setPassError] = useState(false)
-
+  const [passError, setPassError] = useState(false);
 
   const handleRememberPassword = () => {
     setRememberPassword(!rememberPassword);
@@ -65,8 +64,9 @@ const LoginForm = ({ handleCloseModal }) => {
         localStorage.setItem("email", user.email);
 
         handleCloseModal();
+        window.location.reload();
       } else {
-        setPassError(true)
+        setPassError(true);
         console.log(passError);
         console.log("Contraseña incorrecta");
       }
@@ -97,6 +97,7 @@ const LoginForm = ({ handleCloseModal }) => {
       localStorage.setItem("email", user.email);
       setValue(user.email);
       handleCloseModal();
+      window.location.reload();
     } catch (error) {}
   };
 
@@ -129,24 +130,26 @@ const LoginForm = ({ handleCloseModal }) => {
   return (
     <div>
       <div className="form-outline mb-4">
-      <label className="form-label" htmlFor="typeEmailX-2">
+        <label className="form-label" htmlFor="typeEmailX-2">
           Email
         </label>
         <input
           type="email"
           name="email"
           id="typeEmailX-2"
-          className={`form-control form-control-lg ${validEmail ? "" : "is-invalid"}`}
+          className={`form-control form-control-lg ${
+            validEmail ? "" : "is-invalid"
+          }`}
           onChange={handleChange}
         />
-        
+
         {!validEmail && (
           <div className="invalid-feedback">Correo electrónico inválido</div>
         )}
       </div>
 
       <div className="form-outline mb-4">
-      <label className="form-label" htmlFor="typePasswordX-2">
+        <label className="form-label" htmlFor="typePasswordX-2">
           Password
         </label>
         <input
@@ -158,7 +161,7 @@ const LoginForm = ({ handleCloseModal }) => {
           }`}
           onChange={handleChange}
         />
-        
+
         {!validPassword && (
           <div className="invalid-feedback">
             La contraseña debe tener al menos 6 caracteres

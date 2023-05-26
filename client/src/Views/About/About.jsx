@@ -18,7 +18,11 @@ const About = () => {
   return (
     <Box
       backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
-      py="3em"
+      height={"100vh"}
+      minHeight={"100vh"}
+      bgSize={"cover"}
+      bgRepeat={"no-repeat"}
+      paddingTop={"5em"}
     >
       <Flex
         flexDirection="column"

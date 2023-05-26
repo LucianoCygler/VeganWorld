@@ -8,11 +8,15 @@ import {
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./NavBar.module.css";
-import { logoutUser } from "../../redux/actions/actions";
+import {
+  getClientData,
+  getUserDataByEmail,
+  logoutUser,
+} from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import PopUpLogin from "../../Views/Login/PopUpLogin";
 import { useLocation } from "react-router-dom";
-import { Box, Flex, Grid, GridItem, Img } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Image, Img } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
 import {
   Menu,
@@ -32,6 +36,7 @@ import { auth } from "../../Firebase/firebase";
 function NavBar() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
+  const user = useSelector((state) => state.user);
 
   const handleLogout = () => {
     localStorage.removeItem("email");
@@ -44,9 +49,15 @@ function NavBar() {
       .catch((error) => console.log(error));
   };
   const location = useLocation();
+  const emailCurrent = localStorage.getItem("email");
   useEffect(() => {
     setEmail(localStorage.getItem("email"));
+  }, []);
+
+  useEffect(() => {
+    dispatch(getUserDataByEmail(email));
   }, [email]);
+
   //asd
   return (
     <div className={styles.mainContainer}>
@@ -111,14 +122,24 @@ function NavBar() {
             className={styles.fontAwesome}
           />
         </NavLink>
-        {email ? "" : <PopUpLogin />}
-        <NavLink to="/" className={styles.link}>
-          <FontAwesomeIcon
-            onClick={handleLogout}
-            icon={faRightFromBracket}
-            className={styles.fontAwesome}
-          />
-        </NavLink>
+        {email ? (
+          <Box w={"5%"}>
+            <Image src={user.imagen}></Image>
+          </Box>
+        ) : (
+          <PopUpLogin />
+        )}
+        {!email ? (
+          ""
+        ) : (
+          <NavLink to="/" className={styles.link}>
+            <FontAwesomeIcon
+              onClick={handleLogout}
+              icon={faRightFromBracket}
+              className={styles.fontAwesome}
+            />
+          </NavLink>
+        )}
       </div>
     </div>
   );
