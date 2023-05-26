@@ -73,13 +73,16 @@ const CardFav = ({ product, favorites }) => {
         transition: "transform 0.3s ease-in-out",
       }}
     >
-      <CardHeader>
-        <Button
-          onClick={() => dispatch(deleteFavoriteAction(product?.Product?.id))}
-        >
-          <FontAwesomeIcon icon={faHeartCrack} style={{ color: "#c11010" }} />
-        </Button>
-      </CardHeader>
+      <Button
+        margin={"auto"}
+        marginTop={1}
+        width={"19%"}
+        borderRadius={"50%"}
+        bg="rgba(10, 128, 99, 0.35)"
+        onClick={() => dispatch(deleteFavoriteAction(product?.Product?.id))}
+      >
+        <FontAwesomeIcon icon={faHeartCrack} style={{ color: "#c11010" }} />
+      </Button>
       <NavLink
         to={`/Detail/${product?.Product?.id}`}
         style={{ textDecoration: "none" }}
@@ -92,7 +95,6 @@ const CardFav = ({ product, favorites }) => {
           />
           <Stack mt="6" spacing="3">
             <Heading size="md">{product?.Product?.nombre}</Heading>
-            <Text>{product?.Product?.descripcion}</Text>
             <Text color="blue.600" fontSize="2xl">
               $ {parseInt(product?.Product?.precio)}
             </Text>
