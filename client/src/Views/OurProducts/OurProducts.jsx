@@ -63,6 +63,7 @@ function OurProducts() {
   return (
     <Box
       minH={"100vh"}
+      overflow={"hidden"}
       bg={"# d8d8d8"}
       paddingTop={15}
       backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
@@ -115,8 +116,13 @@ function OurProducts() {
             </Box>
           </Box>
           <Divider />
-          <Box marginTop={"5em"}>
-            <Box display="flex" justifyContent="center">
+          <Box
+            display="flex"
+            bg={"red"}
+            marginTop={"5em"}
+            justifyContent={"center"}
+          >
+            <Box w={"80%"}>
               <Products products={currentItems} />
             </Box>
           </Box>
