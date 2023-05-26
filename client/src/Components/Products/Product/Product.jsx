@@ -11,9 +11,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 import "aos/dist/aos.css";
-import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Grid, Image, Text } from "@chakra-ui/react";
 import { addCartProduct, getProductById } from "../../../redux/actions/actions";
 import Pop_up from "../../../Utils/Pop_up/Pop_up";
+
 function Product({ nombre, imagen, precio, stock, descripcion, id }) {
   const [isFav, setIsFav] = useState(false);
   const [showInfo, setShowInfo] = useState(true); /* INFO */
@@ -26,11 +27,13 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
   const email = localStorage.getItem("email");
   const [loading, setLoading] = useState(false);
   const quantity = 1;
+
   useEffect(() => {
     for (const item of favorites) {
       if (id == item.Product.id) setIsFav(true);
     }
   }, []);
+
   const handleClick = () => {
     dispatch(getProductById(id))
       .then(() => {
@@ -72,13 +75,9 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
 
   return (
     <Box>
-      <div
-      // onMouseOver={() => setShowInfo(true)}
-      // onMouseLeave={() => setShowInfo(false)}
-      >
+      <div>
         {email ? (
           <Box>
-            {" "}
             {!isFav ? (
               <Box position={"relative"} left={"5.5em"}>
                 <FontAwesomeIcon onClick={handleFavorite} icon={farHeart} />
@@ -93,35 +92,41 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
           ""
         )}
         <Box>
-          <Flex flexDirection={"column"}>
-            {" "}
+          <Flex>
             <NavLink to={`/Detail/${id}`} style={{ textDecoration: "none" }}>
-              <div>
-                <div>
+              <Grid templateRows={"repeat(3,80px)"}>
+                {" "}
+                <Box marginLeft="1em" marginRight="1em">
+                  <Image src={imagen} alt={nombre} w="100%" />
+                </Box>
+                <Grid templateRows={"repeat(3,30px)"} marginTop={"6em"}>
                   {" "}
-                  <Box margin="2em">
-                    <Image src={imagen} alt={nombre} />
+                  <Box>
+                    <Text
+                      fontWeight={"bold"}
+
+                      // fontSize={nombre.split("\n").length > 1 ? "10px" : "15px"}
+                    >
+                      {nombre}
+                    </Text>
                   </Box>
-                  <hr />
-                  <Text>{nombre}</Text>
-                  {/* <h2 className={styles.subtitle}>{product.descripcion}</h2> */}
-                  {showInfo && (
-                    <div>
-                      <Text>${precio}</Text>
-                    </div>
-                  )}
-                </div>
-              </div>
+                  <Box marginTop={"2em"}>
+                    <Text>${precio}</Text>
+                  </Box>
+                  <Box marginTop={"2em"}>
+                    {" "}
+                    <Button
+                      variant="solid"
+                      colorScheme="teal"
+                      onClick={handleClick}
+                      isLoading={loading}
+                    >
+                      Add to cart
+                    </Button>
+                  </Box>
+                </Grid>
+              </Grid>
             </NavLink>
-            <Button
-              marginTop={"0.4em"}
-              variant="solid"
-              colorScheme="teal"
-              onClick={handleClick}
-              isLoading={loading}
-            >
-              Add to cart
-            </Button>
           </Flex>
         </Box>
       </div>

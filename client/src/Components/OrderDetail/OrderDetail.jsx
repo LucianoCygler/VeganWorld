@@ -65,7 +65,7 @@ const OrderDetail = ({ order, cancelRef }) => {
               {fecha}
             </Box>
             <Box
-              paddingLeft={"40em"}
+              // paddingLeft={"40em"}
               as="span"
               flex="1"
               textAlign="left"
