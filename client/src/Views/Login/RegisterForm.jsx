@@ -24,8 +24,11 @@ const LoginForm = ({ handleCloseModal, setView }) => {
   const navigate = useNavigate();
   const [form, setForm] = useState(initialForm);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (event) => {    
+    event.preventDefault();    
+    if (Object.keys(error).length > 0) {
+      alert("Missing data...")        
+    } else {
     createUserWithEmailAndPassword(auth, form.email, form.contraseña)
       .then((userCredential) => {
         setView("login");
@@ -34,6 +37,7 @@ const LoginForm = ({ handleCloseModal, setView }) => {
         console.log(error);
       });
     dispatch(registerUser(form));
+  }
   };
   
   const validationsForm = (initialForm) => {
@@ -138,117 +142,125 @@ const LoginForm = ({ handleCloseModal, setView }) => {
      
       
       <div className="form-outline mb-4">
+      <label className="form-label" htmlFor="typeEmailX-2">
+          Email
+        </label>
         <input
+          placeholder="Email here..."
           type="email"
           name="email"
           id="typeEmailX-2"          
           className={`form-control form-control-lg ${!error.email ? "" : "is-invalid"}`}
           onChange={handleChange}
           onBlur={handleBlur}
-        />
-        <label className="form-label" htmlFor="typeEmailX-2">
-          Email
-        </label>
+        />        
         {error.email && ( <span className="invalid-feedback">{`${error.email}`}</span> )}                
       </div>
       
       <div className="form-outline mb-4">
+      <label className="form-label" htmlFor="typePasswordX-2">
+          Password
+        </label>
         <input
+          placeholder="Password here..."
           type="password"
           name="contraseña"
           id="typePasswordX-2"
           className={`form-control form-control-lg ${!error.contraseña ? "" : "is-invalid"}`}
           onChange={handleChange}
           onBlur={handleBlur}
-        />
-        <label className="form-label" htmlFor="typePasswordX-2">
-          Password
-        </label>
+        />        
         {error.contraseña && ( <span className="invalid-feedback">{`${error.contraseña}`}</span> )}
       </div>
        
 
       <div className="form-outline mb-4">
+      <label className="form-label" htmlFor="typeEmailX-2">
+          Name
+        </label>
         <input
+          placeholder="Name here..."        
           type="text"
           name="nombre"
           className={`form-control form-control-lg ${!error.nombre ? "" : "is-invalid"}`}
           onChange={handleChange}
           onBlur={handleBlur}
-        />
-        <label className="form-label" htmlFor="typeEmailX-2">
-          Name
-        </label>
+        />        
         {error.nombre && ( <span className="invalid-feedback">{`${error.nombre}`}</span> )}
       </div>
       
       <div className="form-outline mb-4">
+      <label className="form-label" htmlFor="typeEmailX-2">
+          SurName
+        </label>
         <input
+          placeholder="Surname aqui..."
           type="text"
           name="apellido"
           className={`form-control form-control-lg ${!error.apellido ? "" : "is-invalid"}`}
           onChange={handleChange}
           onBlur={handleBlur}
-        />
-        <label className="form-label" htmlFor="typeEmailX-2">
-          SurName
-        </label>
+        />        
         {error.apellido && ( <span className="invalid-feedback">{`${error.apellido}`}</span> )}
       </div>
       
       <div className="form-outline mb-4">
+      <label className="form-label" htmlFor="typeEmailX-2">
+          City
+        </label>
         <input
+          placeholder="City aqui..."
           type="text"
           name="ciudad"
           className={`form-control form-control-lg ${!error.ciudad ? "" : "is-invalid"}`}
           onChange={handleChange}
           onBlur={handleBlur}
-        />
-        <label className="form-label" htmlFor="typeEmailX-2">
-          City
-        </label>
+        />        
         {error.ciudad && ( <span className="invalid-feedback">{`${error.ciudad}`}</span> )}
       </div>
       
       <div className="form-outline mb-4">
+      <label className="form-label" htmlFor="typeEmailX-2">
+          Address
+        </label>
         <input
+          placeholder="Address aqui..."
           type="text"
           name="direccion"
           className={`form-control form-control-lg ${!error.direccion ? "" : "is-invalid"}`}
           onChange={handleChange}
           onBlur={handleBlur}
-        />
-        <label className="form-label" htmlFor="typeEmailX-2">
-          Address
-        </label>
+        />        
         {error.direccion && ( <span className="invalid-feedback">{`${error.direccion}`}</span> )}
       </div>
       
       <div className="form-outline mb-4">
+      <label className="form-label" htmlFor="typeEmailX-2">
+          Phone Number
+        </label>
         <input
+          placeholder="Phone here..."
           type="text"
           name="telefono"
           className={`form-control form-control-lg ${!error.telefono ? "" : "is-invalid"}`}
           onChange={handleChange}
           onBlur={handleBlur}
-        />
-        <label className="form-label" htmlFor="typeEmailX-2">
-          Phone Number
-        </label>
+        />        
         {error.telefono && ( <span className="invalid-feedback">{`${error.telefono}`}</span> )}
       </div>
       
       <div className="form-outline mb-4">
+      <label className="form-label" htmlFor="typeEmailX-2">
+          Edad
+        </label>
         <input
+          placeholder="Edad here..."
           type="text"
           name="edad"
           className={`form-control form-control-lg ${!error.edad ? "" : "is-invalid"}`}
           onChange={handleChange}
           onBlur={handleBlur}
-        />
-        <label className="form-label" htmlFor="typeEmailX-2">
-          Edad
-        </label>
+        />        
         {error.edad && ( <span className="invalid-feedback">{`${error.edad}`}</span> )}
       </div>
 
@@ -256,7 +268,7 @@ const LoginForm = ({ handleCloseModal, setView }) => {
       <button class="button2" type="button" onClick={handleSubmit}>
         Sign Up
       </button>
-
+      
     </div>
   );
 };
