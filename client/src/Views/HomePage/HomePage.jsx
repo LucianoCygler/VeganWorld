@@ -194,7 +194,7 @@ function HomePage() {
                     navigate("/ourproducts");
                   }}
                 >
-                  <Text fontSize={"3xl"}>Let's start</Text>
+                  <Text fontSize={"3xl"} margin={"10px"}>Let's start</Text>
                 </Button>
               </CardFooter>
             </Stack>

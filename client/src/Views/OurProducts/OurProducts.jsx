@@ -70,16 +70,19 @@ function OurProducts() {
       bgSize={"cover"}
       bgRepeat={"no-repeat"}
     >
-      <Box marginTop={"10em"} display={"flex"} justifyContent={"center"}>
+
+      <Box marginTop={"6em"} paddingTop={"0em"} >
+
         <Text
           fontSize={"30px"}
           color="white"
           textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
-          position="relative"
+          position="relative"          
+          top={"0.2em"}
         >
           PRODUCTS
           <Text
-            as="span"
+            as="span"            
             position="absolute"
             left={"1%"}
             bottom={-5} // Ajusta este valor según el espaciado deseado
@@ -94,7 +97,7 @@ function OurProducts() {
         direction={"row"}
         margin={"auto"}
         justifyContent={"center"}
-        marginTop={"8em"}
+        marginTop={"3em"}
         marginBottom={"3em"}
       >
         <Select onChange={handleFilter} w={200} marginRight={4} bg="#d8d8d8">
