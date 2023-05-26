@@ -8,6 +8,7 @@ import Link from '@mui/material/Link';
 import Navigator from '../../Components/Dashboard/Navigator';
 import Content from '../../Components/Dashboard/Content';
 import Header from '../../Components/Dashboard/Header';
+import CustomToolbarGrid from '../../Components/Dashboard/Tabla';
 
 function Copyright() {
   return (
@@ -195,6 +196,7 @@ export default function Dashboard() {
             PaperProps={{ style: { width: drawerWidth } }}
             sx={{ display: { sm: 'block', xs: 'none' } }}
           />
+          <CustomToolbarGrid />
         </Box>
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <Header onDrawerToggle={handleDrawerToggle} />

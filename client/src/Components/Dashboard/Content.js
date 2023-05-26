@@ -14,16 +14,10 @@ import { prodErrorMap } from "firebase/auth";
 import TableClient from "./TableClient";
 import FormPropsTextFields from "./FormProduct";
 import { useSelector } from "react-redux";
+import ReviewsDashboard from "./Reviews";
 
 export default function Content() {
 	const {Graph, Clients, Products, Reviews, Orders} = useSelector(state=>state.labels)
-
-	const client = {
-		id: 3,
-		name: "pedro",
-		direction: "false 123",
-		email: "pedro@correo.com",
-	};
 
 	return (
 		<Paper sx={{ maxWidth: 936, margin: "auto", overflow: "hidden" }}>
@@ -33,37 +27,11 @@ export default function Content() {
 				elevation={0}
 				sx={{ borderBottom: "1px solid rgba(0, 0, 0, 0.12)" }}
 			>
-				<Toolbar>
-					<Grid container spacing={2} alignItems="center">
-						<Grid item>
-							<SearchIcon color="inherit" sx={{ display: "block" }} />
-						</Grid>
-						<Grid item xs>
-							<TextField
-								fullWidth
-								placeholder="Search by email address, phone number, or user UID"
-								InputProps={{
-									disableUnderline: true,
-									sx: { fontSize: "default" },
-								}}
-								variant="standard"
-							/>
-						</Grid>
-						<Grid item>
-							<Button variant="contained" sx={{ mr: 1 }}>
-								Add user
-							</Button>
-							<Tooltip title="Reload">
-								<IconButton>
-									<RefreshIcon color="inherit" sx={{ display: "block" }} />
-								</IconButton>
-							</Tooltip>
-						</Grid>
-					</Grid>
-				</Toolbar>
+
 			</AppBar>
 			{Clients && <TableClient />}
 			{Products && <FormPropsTextFields />	}
+			{Reviews && <ReviewsDashboard/>}
 
 			<Typography sx={{ my: 5, mx: 2 }} color="text.secondary" align="center">
 				No users for this project yet
