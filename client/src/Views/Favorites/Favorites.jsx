@@ -78,7 +78,25 @@ const Favorites = () => {
             minH={"100vh"}
             pt={40}
           >
-            <h1 className={styles.h1}>These are your favorite products ♥</h1>
+            <Box marginBottom={"3em"}>
+              <Text
+                fontSize={"30px"}
+                color="white"
+                textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                position="relative"
+              >
+                FAVORITES
+                <Text
+                  as="span"
+                  position="absolute"
+                  left={"864px"}
+                  bottom={-5} // Ajusta este valor según el espaciado deseado
+                  width="10%"
+                  height="3px"
+                  background="orange"
+                />
+              </Text>
+            </Box>
             <Wrap py={5} spacing={"5"} justify={"center"}>
               {favorites && favorites.length > 0 ? (
                 favorites?.map((product, index) => {

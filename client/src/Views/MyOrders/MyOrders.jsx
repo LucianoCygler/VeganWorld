@@ -24,6 +24,7 @@ import {
   StepTitle,
   Stepper,
   useSteps,
+  Text,
 } from "@chakra-ui/react";
 import { Accordion } from "@chakra-ui/accordion";
 import styles from "./MyOrders.module.css";
@@ -76,12 +77,32 @@ const MyOrders = () => {
         display={"flex"}
         justifyContent={"center"}
       >
+        {" "}
         <Tabs
           variant="enclosed-colored"
           w={"80%"}
-          pt={"10em"}
+          mt={"12em"}
           // shadow={"lg"}
         >
+          <Box>
+            <Text
+              fontSize={"30px"}
+              color="white"
+              textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+              position="relative"
+            >
+              ORDERS
+              <Text
+                as="span"
+                position="absolute"
+                left={"690px"}
+                bottom={-5} // Ajusta este valor según el espaciado deseado
+                width="10%"
+                height="3px"
+                background="orange"
+              />
+            </Text>
+          </Box>
           <TabList color={"green.800"}>
             <Tab fontWeight={"extrabold"}>Pending</Tab>
             <Tab fontWeight={"extrabold"}>In Progress</Tab>

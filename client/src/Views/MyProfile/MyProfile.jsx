@@ -222,82 +222,95 @@ const MyData = () => {
               </Button>
             </div>
           ) : (
-            <div className={style.c}>
-              <Text
-                marginTop={"4em"}
-                marginBottom={"2em"}
-                color="white"
-                textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
-              >
-                <h1>My Profile</h1>
-              </Text>{" "}
-              {imagen ? (
-                <Image
-                  w={"220px"}
-                  h={"220px"}
-                  borderRadius={"50%"}
-                  alt="Default Profile"
-                  src={imagen}
-                  margin={"auto"}
-                  marginBottom={"3em"}
-                />
-              ) : (
-                <Box w={"30%"} margin={"auto"} marginBottom={"3em"}>
-                  {/* <Avatar bg="teal.500" size={60} /> */}
-                  <Image
-                    borderRadius={100}
-                    src="https://bit.ly/ryan-florence"
-                    alt="Default Profile"
+            <Box>
+              <Box marginTop={"10em"}>
+                <Text
+                  fontSize={"30px"}
+                  color="white"
+                  textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                  position="relative"
+                >
+                  PROFILE
+                  <Text
+                    as="span"
+                    position="absolute"
+                    left={"212px"}
+                    bottom={-5} // Ajusta este valor según el espaciado deseado
+                    width="30%"
+                    height="3px"
+                    background="orange"
                   />
-                </Box>
-              )}
-              <Text
-                color="white"
-                textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
-                marginBottom={"2em"}
-              >
-                {" "}
-                <h2>
-                  {nombre} {apellido}
-                </h2>
-              </Text>
-              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0,12)">
-                <p>
-                  <span style={{ fontWeight: "bold" }}> Email: </span>
-                  {email}
-                </p>
-              </Text>
-              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
-                <p>
-                  <span style={{ fontWeight: "bold" }}> Phone Number: </span>
-                  {telefono}
-                </p>
-              </Text>
-              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
-                {" "}
-                <p>
-                  <span style={{ fontWeight: "bold" }}> City: </span>
-                  {ciudad}
-                </p>
-              </Text>
-              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
-                {" "}
-                <p>
-                  <span style={{ fontWeight: "bold" }}> Address: </span>
-                  {direccion}
-                </p>
-              </Text>
-              {/* {!dni ? (
+                </Text>
+              </Box>
+              <div className={style.c}>
+                {imagen ? (
+                  <Image
+                    w={"220px"}
+                    h={"220px"}
+                    borderRadius={"50%"}
+                    alt="Default Profile"
+                    src={imagen}
+                    margin={"auto"}
+                    marginBottom={"3em"}
+                  />
+                ) : (
+                  <Box w={"30%"} margin={"auto"} marginBottom={"3em"}>
+                    {/* <Avatar bg="teal.500" size={60} /> */}
+                    <Image
+                      borderRadius={100}
+                      src="https://bit.ly/ryan-florence"
+                      alt="Default Profile"
+                    />
+                  </Box>
+                )}
+                <Text
+                  color="white"
+                  textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+                  marginBottom={"2em"}
+                >
+                  {" "}
+                  <h2>
+                    {nombre} {apellido}
+                  </h2>
+                </Text>
+                <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0,12)">
+                  <p>
+                    <span style={{ fontWeight: "bold" }}> Email: </span>
+                    {email}
+                  </p>
+                </Text>
+                <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
+                  <p>
+                    <span style={{ fontWeight: "bold" }}> Phone Number: </span>
+                    {telefono}
+                  </p>
+                </Text>
+                <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
+                  {" "}
+                  <p>
+                    <span style={{ fontWeight: "bold" }}> City: </span>
+                    {ciudad}
+                  </p>
+                </Text>
+                <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
+                  {" "}
+                  <p>
+                    <span style={{ fontWeight: "bold" }}> Address: </span>
+                    {direccion}
+                  </p>
+                </Text>
+                {/* {!dni ? (
             " "
           ) : (
             <p>
               <span style={{ fontWeight: "bold" }}> DNI: </span> {dni}
             </p>
           )} */}
-              <button className={style.buttonEdit} onClick={handleEditUser}>
-                Edit User
-              </button>
-            </div>
+                <button className={style.buttonEdit} onClick={handleEditUser}>
+                  Edit User
+                </button>
+              </div>
+            </Box>
           )}
         </div>
       )}
