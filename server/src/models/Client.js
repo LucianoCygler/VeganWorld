@@ -46,6 +46,8 @@ module.exports = (sequelize) => {
     imagen: {
       type: DataTypes.TEXT,
       allowNull: true,
+      defaultValue:
+        "https://png.pngtree.com/png-clipart/20210129/ourmid/pngtree-default-male-avatar-png-image_2811083.jpg", // Reemplaza 'URL_POR_DEFECTO' por la URL deseada
       validate: {
         isUrl: true,
       },
