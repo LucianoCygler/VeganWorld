@@ -231,7 +231,7 @@ function HomePage() {
         currentPage={currentPage}
         lastPage={totalPages}
       /> */}
-      <Carrusel />
+      {/* <Carrusel /> */}
       <Box marginTop={200} w={"fit-content"} margin="3em auto ">
         <Text
           as="b"

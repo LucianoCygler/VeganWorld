@@ -103,16 +103,16 @@ const ContactUs = () => {
   return (
     <Box
       backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
-      height={"100vh"}
       minHeight={"100vh"}
       bgSize={"cover"}
       bgRepeat={"no-repeat"}
       paddingTop={"10em"}
+      paddingBottom={"10em"}
     >
       <Box
         bg="rgba(216, 216, 216, 0.9)"
         shadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
-        w="60%"
+        w="40%"
         margin="auto"
         borderRadius={50}
         paddingBottom={"2em"}

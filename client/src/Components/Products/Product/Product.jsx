@@ -113,21 +113,21 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
                   <Box marginTop={"2em"}>
                     <Text>${precio}</Text>
                   </Box>
-                  <Box marginTop={"2em"}>
-                    {" "}
-                    <Button
-                      variant="solid"
-                      colorScheme="teal"
-                      onClick={handleClick}
-                      isLoading={loading}
-                    >
-                      Add to cart
-                    </Button>
-                  </Box>
                 </Grid>
               </Grid>
             </NavLink>
           </Flex>
+          <Box>
+            {" "}
+            <Button
+              variant="solid"
+              colorScheme="teal"
+              onClick={handleClick}
+              isLoading={loading}
+            >
+              Add to cart
+            </Button>
+          </Box>
         </Box>
       </div>
     </Box>
