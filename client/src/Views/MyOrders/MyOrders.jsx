@@ -72,7 +72,7 @@ const MyOrders = () => {
         backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
         bgSize={"cover"}
         bgPosition={"center"}
-        h={"100vh"}
+        minH={"100vh"}
         display={"flex"}
         justifyContent={"center"}
       >
