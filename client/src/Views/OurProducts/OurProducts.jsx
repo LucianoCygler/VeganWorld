@@ -70,7 +70,9 @@ function OurProducts() {
       bgSize={"cover"}
       bgRepeat={"no-repeat"}
     >
+
       <Box marginTop={"6em"} paddingTop={"0em"} >
+
         <Text
           fontSize={"30px"}
           color="white"
@@ -82,9 +84,9 @@ function OurProducts() {
           <Text
             as="span"            
             position="absolute"
-            left={"855px"}
+            left={"1%"}
             bottom={-5} // Ajusta este valor según el espaciado deseado
-            width="10%"
+            width="100%"
             height="3px"
             background="orange"
           />
