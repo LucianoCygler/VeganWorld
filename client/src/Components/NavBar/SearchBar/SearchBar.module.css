@@ -53,7 +53,13 @@
   height: 40px;
   margin-left: 25em;
 }
+@media (max-width: 1400px) {
+  .inputClass {
+    margin-left: 2em;
 
+    width: 600px;
+  }
+}
 @media (max-width: 1090px) {
   .inputClass {
     margin-left: 4em;
