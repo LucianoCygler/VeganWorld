@@ -1,12 +1,13 @@
 import Swal from "sweetalert2";
 import styles from "./popup.module.css";
 
-const Pop_up = (icon, tittle, text) => {
+const Pop_up = (icon, title, text) => {
+  // Corrección: "tittle" -> "title"
   const Toast = Swal.mixin({
     toast: true,
     position: "top",
     showConfirmButton: false,
-    timer: 1000,
+    timer: 2200,
     timerProgressBar: true,
     didOpen: (toast) => {
       toast.addEventListener("mouseenter", Swal.stopTimer);
@@ -16,7 +17,7 @@ const Pop_up = (icon, tittle, text) => {
 
   Toast.fire({
     icon: icon,
-    title: tittle,
+    title: title, // Corrección: "tittle" -> "title"
     text: text,
   });
 };

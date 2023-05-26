@@ -73,12 +73,12 @@
 
 @media (max-width: 1400px) {
   .tittle {
-    font-size: 10px;
+    font-size: 20px;
   }
 }
 @media (max-width: 1090px) {
   .tittle {
-    font-size: 10px;
+    font-size: 14px;
   }
 }
 /* Estilos del enlace */

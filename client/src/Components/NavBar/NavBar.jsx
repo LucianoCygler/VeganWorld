@@ -65,7 +65,20 @@ function NavBar() {
       <div className={styles.divLeft}>
         <DrawerMenu />
         <NavLink to="/" className={styles.link}>
-          <h1 className={styles.tittle}>VeganWorld!</h1>
+          <h1 className={styles.tittle}>
+            <Text
+              fontWeight={"semibold"}
+              display={"inline"}
+              color={"lightseagreen"}
+              marginRight={-2}
+            >
+              {" "}
+              Vegan
+            </Text>{" "}
+            <Text fontWeight={"hairline"} display="inline">
+              World!
+            </Text>
+          </h1>
         </NavLink>
       </div>
       <div className={styles.divMid}>
