@@ -231,14 +231,13 @@ function HomePage() {
         currentPage={currentPage}
         lastPage={totalPages}
       /> */}
-      <Carrusel />
+      {/* <Carrusel /> */}
       <Box marginTop={200} w={"fit-content"} margin="3em auto ">
         <Text
           as="b"
           fontSize="6xl"
           textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
           color="white"
-          bg={"rgba(0, 0, 0, 0.2)"}
           padding={"0.3em"}
           borderRadius={70}
         >

@@ -53,18 +53,26 @@
   height: 40px;
   margin-left: 25em;
 }
-@media (max-width: 1400px) {
+@media (max-width: 1920px) {
   .inputClass {
-    margin-left: 2em;
+    margin-left: 4em;
 
     width: 600px;
   }
 }
+@media (max-width: 1400px) {
+  .inputClass {
+    margin-left: 8em;
+
+    width: 600px;
+  }
+}
+
 @media (max-width: 1090px) {
   .inputClass {
-    margin-left: 4em;
+    margin-left: 7em;
     margin-right: 4em;
-    width: 300px;
+    width: 400px;
   }
 }
 
@@ -72,9 +80,10 @@
   .inputClass {
     margin-left: 2em;
     margin-right: 2em;
-    width: 140px;
+    width: 100px;
   }
 }
+
 .inputClass::-webkit-search-cancel-button {
   -webkit-appearance: none;
   appearance: none;
