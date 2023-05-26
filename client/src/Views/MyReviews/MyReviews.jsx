@@ -73,6 +73,7 @@ const MyReviews = () => {
       marginTop={"0"}
       minH="100vh"
       backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
+      paddingBottom={"10em"}
     >
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
@@ -95,7 +96,7 @@ const MyReviews = () => {
       ) : (
         <>
           <Divider />
-          <Box marginTop={"10em"}>
+          <Box marginTop={"10em"} display={"flex"} justifyContent={"center"}>
             <Text
               fontSize={"30px"}
               color="white"
@@ -106,9 +107,9 @@ const MyReviews = () => {
               <Text
                 as="span"
                 position="absolute"
-                left={"857px"}
+                left={"1%"}
                 bottom={-5} // Ajusta este valor según el espaciado deseado
-                width="10%"
+                width="100%"
                 height="3px"
                 background="orange"
               />
@@ -122,7 +123,7 @@ const MyReviews = () => {
             margin="auto"
             shadow="0px 4px 1000px rgba(0, 0, 0, 0.2)"
             bg={"rgba(216, 216, 216, 0.5)"}
-            marginTop={"10em"}
+            marginTop={"4em"}
             borderRadius={"35px"}
           >
             {reviews ? (

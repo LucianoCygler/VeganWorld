@@ -73,7 +73,6 @@ const MyOrders = () => {
         bgSize={"cover"}
         bgPosition={"center"}
         h={"100vh"}
-        w={"100%"}
         display={"flex"}
         justifyContent={"center"}
       >
@@ -84,7 +83,7 @@ const MyOrders = () => {
           mt={"12em"}
           // shadow={"lg"}
         >
-          <Box>
+          <Box marginBottom={"5em"} display={"flex"} justifyContent={"center"}>
             <Text
               fontSize={"30px"}
               color="white"
@@ -95,9 +94,9 @@ const MyOrders = () => {
               <Text
                 as="span"
                 position="absolute"
-                left={"690px"}
+                left={"1%"}
                 bottom={-5} // Ajusta este valor según el espaciado deseado
-                width="10%"
+                width="100%"
                 height="3px"
                 background="orange"
               />

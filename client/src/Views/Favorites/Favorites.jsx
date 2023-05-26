@@ -78,7 +78,11 @@ const Favorites = () => {
             minH={"100vh"}
             pt={40}
           >
-            <Box marginBottom={"3em"}>
+            <Box
+              marginBottom={"3em"}
+              display={"flex"}
+              justifyContent={"center"}
+            >
               <Text
                 fontSize={"30px"}
                 color="white"
@@ -89,9 +93,9 @@ const Favorites = () => {
                 <Text
                   as="span"
                   position="absolute"
-                  left={"864px"}
+                  left={"1%"}
                   bottom={-5} // Ajusta este valor según el espaciado deseado
-                  width="10%"
+                  width="100%"
                   height="3px"
                   background="orange"
                 />
