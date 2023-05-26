@@ -232,7 +232,15 @@ const MyData = () => {
                 <h1>My Profile</h1>
               </Text>{" "}
               {imagen ? (
-                <img className={style.img} src={imagen} alt="Profile" />
+                <Image
+                  w={"220px"}
+                  h={"220px"}
+                  borderRadius={"50%"}
+                  alt="Default Profile"
+                  src={imagen}
+                  margin={"auto"}
+                  marginBottom={"3em"}
+                />
               ) : (
                 <Box w={"30%"} margin={"auto"} marginBottom={"3em"}>
                   {/* <Avatar bg="teal.500" size={60} /> */}
