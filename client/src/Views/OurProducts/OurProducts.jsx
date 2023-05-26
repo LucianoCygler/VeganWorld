@@ -76,6 +76,7 @@ function OurProducts() {
         margin={"auto"}
         justifyContent={"center"}
         marginTop={"8em"}
+        marginBottom={"3em"}
       >
         <Select onChange={handleFilter} w={200} marginRight={4} bg="#d8d8d8">
           <option value="">All</option>
@@ -102,7 +103,6 @@ function OurProducts() {
       ) : (
         <Box>
           {" "}
-          <Divider />
           <Box display="flex" justifyContent="center">
             <Box>
               <Pagination
@@ -114,6 +114,7 @@ function OurProducts() {
               />
             </Box>
           </Box>
+          <Divider />
           <Box marginTop={"5em"}>
             <Box display="flex" justifyContent="center">
               <Products products={currentItems} />

@@ -73,12 +73,13 @@ const MyOrders = () => {
         bgPosition={"center"}
         h={"100vh"}
         w={"100%"}
+        display={"flex"}
+        justifyContent={"center"}
       >
         <Tabs
           variant="enclosed-colored"
           w={"80%"}
-          m={"auto"}
-          pt={"40"}
+          pt={"10em"}
           // shadow={"lg"}
         >
           <TabList color={"green.800"}>

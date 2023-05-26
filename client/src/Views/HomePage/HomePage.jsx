@@ -30,13 +30,8 @@ import "slick-carousel/slick/slick-theme.css";
 import ModalLogin from "../Login/ModalLogin";
 
 const images = [
-  "https://images.pexels.com/photos/1893563/pexels-photo-1893563.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.unsplash.com/photo-1520072959219-c595dc870360?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1590&q=80",
-  "https://images.unsplash.com/photo-1541014741259-de529411b96a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
-  "https://images.pexels.com/photos/1143754/pexels-photo-1143754.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/1640769/pexels-photo-1640769.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/3669638/pexels-photo-3669638.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/1351238/pexels-photo-1351238.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://res.cloudinary.com/da6d9ru3s/image/upload/v1685073896/Fresh_and_healthy_vegetables_banner_design_template_uetvqo.jpg",
+  "https://res.cloudinary.com/da6d9ru3s/image/upload/v1685074181/asdasda_zbypd9.png",
 ];
 
 const MySlider = () => {
@@ -65,7 +60,7 @@ const MySlider = () => {
     autoplay: true,
     autoplaySpeed: 5000, // Tiempo de espera entre imágenes (en milisegundos)
     speed: 900, // Velocidad de transición entre imágenes (en milisegundos)
-    slidesToShow: slidesToShow, // Número de imágenes a mostrar al mismo tiempo
+    slidesToShow: 1, // Número de imágenes a mostrar al mismo tiempo
     slidesToScroll: 1, // Número de imágenes a desplazar al avanzar o retroceder
   };
   return (
@@ -76,13 +71,11 @@ const MySlider = () => {
             <Image
               shadow="2px 2px 4px rgba(0, 0, 0, 1)"
               color={"white"}
-              marginLeft={"2em"}
-              w={"95%"}
-              h={"65vh"}
+              w={"100%"}
               maxH="95vh"
               src={image}
               alt={`Slide ${index + 1}`}
-              style={{ opacity: 0.7 }}
+              // style={{ opacity: 0.7 }}
             />{" "}
           </Box>
         </div>
@@ -124,7 +117,7 @@ function HomePage() {
       maxW={"100%"}
       vh={100}
       scrollBehavior={"smooth"}
-      paddingTop={200}
+      paddingTop={90}
       margin={0}
       backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
       bgSize={"cover"}
@@ -132,7 +125,9 @@ function HomePage() {
     >
       <ModalLogin show={showLogin}></ModalLogin>
       <Box>
-        <Box paddingTop={1} marginBottom={"2em"}>
+        {" "}
+        <MySlider />
+        <Box paddingTop={"2em"} marginBottom={"2em"}>
           <Flex direction={"row"} justify={"center"}>
             {/* <Box width={"80%"} height="700" bg="#d8d8d8">
             <Image
@@ -310,12 +305,14 @@ function HomePage() {
       <Box overflowWrap={"wrap"}></Box>
       <div data-aos="fade-left" data-aos-duration="2000">
         <Grid
+          marginLeft={"5em"}
           templateColumns={{
-            base: "1fr",
+            base: "repeat(1, 1fr)",
             sm: "repeat(1, 1fr)",
             md: "repeat(2, 1fr)",
-            lg: "repeat(3, 1fr)",
-            xl: "repeat(4, 1fr)",
+            lg: "repeat(2, 1fr)",
+            xl: "repeat(3, 1fr)",
+            "2xl": "repeat(4, 1fr)",
           }}
           gap={4}
           marginBottom="3em"
@@ -325,14 +322,17 @@ function HomePage() {
             margin="2px"
             borderRadius="120px 20px"
             shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+            h={"350px"}
+            w={"350px"}
           >
             <Image
+              marginTop={"1em"}
               padding="1em"
               marginLeft={20}
-              maxW={{ base: "100%", sm: "330px" }}
+              maxW={{ base: "100%", sm: "200px" }}
               src="https://static.vecteezy.com/system/resources/previews/004/542/032/non_2x/young-woman-sitting-on-floor-working-with-laptop-cartoon-style-illustration-isolated-on-white-background-vector.jpg"
             />
-            <Text fontSize="4xl" marginTop={4} fontWeight="bold">
+            <Text fontSize="2xl" marginTop={15} fontWeight="bold">
               Order Online
             </Text>
           </Box>
@@ -341,19 +341,24 @@ function HomePage() {
             margin="2px"
             borderRadius="120px 20px"
             shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+            h={"350px"}
+            w={"350px"}
           >
             <Image
+              marginTop={"1em"}
               padding="1em"
               marginLeft={20}
               paddingTop={5}
-              maxW={{ base: "100%", sm: "330px" }}
+              maxW={{ base: "100%", sm: "200px" }}
               src="https://img.freepik.com/vector-gratis/hombre-montando-scooter-sobre-fondo-blanco_1308-46379.jpg"
             />
-            <Text fontSize="4xl" marginTop={4} fontWeight="bold">
+            <Text fontSize="2xl" marginTop={4} fontWeight="bold">
               Fast Shipping
             </Text>
           </Box>
           <Box
+            h={"350px"}
+            w={"350px"}
             bg="white"
             margin="2px"
             borderRadius="120px 20px"
@@ -362,14 +367,16 @@ function HomePage() {
             <Image
               padding="2em"
               marginLeft={19.5}
-              maxW={{ base: "100%", sm: "370px" }}
+              maxW={{ base: "100%", sm: "300px" }}
               src="https://media.istockphoto.com/id/1152445566/es/vector/el-repartidor-est%C3%A1-sosteniendo-una-caja-de-paquetes.jpg?s=612x612&w=0&k=20&c=cUSmSP-hnxJSOTnGoNxstqDh9UGZyM2zE0OEebXt_UE="
             />
-            <Text fontSize="4xl" marginTop={4} fontWeight="bold">
-              Receive the order at the door of your house
+            <Text fontSize="2xl" marginTop={-5} fontWeight="bold">
+              Receive your order
             </Text>
           </Box>
           <Box
+            h={"350px"}
+            w={"350px"}
             bg="white"
             margin="2px"
             borderRadius="120px 20px"
@@ -378,16 +385,15 @@ function HomePage() {
             <Image
               padding="2em"
               marginLeft={19.5}
-              maxW={{ base: "100%", sm: "370px" }}
+              maxW={{ base: "100%", sm: "300px" }}
               src="https://media.istockphoto.com/id/1282103104/es/vector/ni%C3%B1a-comiendo-frutas-alimentos-saludables-mujer-aislada-en-dibujos-animados-planos-la.jpg?s=170667a&w=0&k=20&c=HpUGp0dItcE_lAzyYKe70xrm5xc0NnzyiGWy8el5Q4A="
             />
-            <Text fontSize="4xl" marginTop={4} fontWeight="bold">
-              Enjoy your order from Vegan World!
+            <Text fontSize="2xl" marginTop={-5} fontWeight="bold">
+              Enjoy!
             </Text>
           </Box>
         </Grid>
       </div>
-      <MySlider />
       <footer class="footer-distributed">
         <Grid
           templateColumns={{
