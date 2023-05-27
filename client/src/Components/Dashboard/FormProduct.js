@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct, getAllProducts } from "../../redux/actions/actions";
-import { Button, ButtonBase } from "@mui/material";
+import { Button, ButtonBase, colors } from "@mui/material";
 import axios from "axios";
 
 const uploadImage = async (file) => {
@@ -29,13 +29,9 @@ export default function FormPropsTextFields() {
 	const products = useSelector((state) => state.products);
 	const productsName = products.map((product) => product.nombre);
 
-
-
 	useEffect(() => {
 		dispatch(getAllProducts());
 	}, []);
-
-
 
 	const [product, setProduct] = useState({
 		nombre: "",
@@ -126,6 +122,7 @@ const [productImage, setProductImage] = useState('')
 						required
 						id="outlined-required"
 						name="precio"
+						type="number"
 						label="Price"
 						value={product.precio}
 						onChange={handleChange}
@@ -171,10 +168,8 @@ const [productImage, setProductImage] = useState('')
 					}}
 				/>{" "}
 			</Box>
-			<Box>
-				<ButtonBase>
-					<Button onClick={handleClick}>Create Product</Button>
-				</ButtonBase>
+			<Box m={2}>
+					<Button variant="contained" color="success" size="large" sx={{bgcolor:'olivedrab' , color:'whitesmoke', fontWeight:'bold'}} onClick={handleClick}>Create Product</Button>
 			</Box>
 		</>
 	);

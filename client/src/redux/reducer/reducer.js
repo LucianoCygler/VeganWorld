@@ -27,6 +27,7 @@ import {
   DELETE_FAVORITE,
   GET_PRODUCT_REVIEWS,
   GET_ALL_CLIENTS,
+  DELETE_CLIENT,
   SET_CREATED_ORDER_ID,
   CLEAN_CART,
   GET_MP_LINK,
@@ -59,6 +60,7 @@ const initialState = {
   isAuthenticated: false,
   productReviews: [],
   allClients: [],
+  deletedClient: "",
   MPLink: "",
   allReviews: [],
   labels: {
@@ -249,6 +251,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         allClients: [...action.payload],
       };
+    case DELETE_CLIENT:
+      return {
+        ...state,
+        deletedClient: action.payload
+      }
     case GET_MP_LINK:
       return {
         ...state,

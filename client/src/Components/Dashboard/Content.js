@@ -8,25 +8,29 @@ import { useSelector } from "react-redux";
 import ReviewsDashboard from "./Reviews";
 
 export default function Content() {
-	const {Graph, Clients, Products, Reviews, Orders} = useSelector(state=>state.labels)
+	const { Graph, Clients, Products, Reviews, Orders } = useSelector(
+		(state) => state.labels
+	);
 
 	return (
-		<Paper sx={{ minWidth: 850, maxWidth:'90%',margin: "auto", overflow: "hidden"}}>
+		<Paper
+			sx={{
+				minWidth: 850,
+				maxWidth: "90%",
+				margin: "auto",
+				overflow: "hidden",
+				padding: 4
+			}}
+		>
 			<AppBar
 				position="static"
 				color="default"
 				elevation={0}
 				sx={{ borderBottom: "1px solid rgba(0, 0, 0, 0.12)" }}
-			>
-
-			</AppBar>
+			></AppBar>
 			{Clients && <TableClient />}
-			{Products && <FormPropsTextFields />	}
-			{Reviews && <ReviewsDashboard/>}
-
-			<Typography sx={{ my: 5, mx: 2 }} color="text.secondary" align="center">
-				No users for this project yet
-			</Typography>
+			{Products && <FormPropsTextFields />}
+			{Reviews && <ReviewsDashboard />}
 		</Paper>
 	);
 }
