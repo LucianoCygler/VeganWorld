@@ -215,7 +215,7 @@ export default function rootReducer(state = initialState, action) {
     case ORDER_FILTER:
       return {
         ...state,
-        products: action.payload,
+        products: [...action.payload],
       };
     case SET_PRODUCT_SEARCH:
       return {
@@ -254,8 +254,8 @@ export default function rootReducer(state = initialState, action) {
     case DELETE_CLIENT:
       return {
         ...state,
-        deletedClient: action.payload
-      }
+        deletedClient: action.payload,
+      };
     case GET_MP_LINK:
       return {
         ...state,
