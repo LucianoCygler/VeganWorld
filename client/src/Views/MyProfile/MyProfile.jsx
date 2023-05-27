@@ -12,25 +12,28 @@ import { useNavigate } from "react-router-dom";
 import LoginForm from "../Login/LoginForm";
 import {
   Box,
-  Flex,
-  Grid,
-  GridItem,
-  Image,
-  Text,
   Button,
-  Avatar,
+  VStack,
+  HStack,
+  Heading,
+  Text,
+  Input,
+  FileUpload,
+  Image,
+  EditButton,
+  Image as Img,
+  InputGroup,
 } from "@chakra-ui/react";
-
 import axios from "axios";
 
 const uploadImage = async (file) => {
   try {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "ml_default");
+    formData.append("upload_preset", "my_upload_preset");
 
     const response = await axios.post(
-      "https://api.cloudinary.com/v1_1/dzv1xau8l/upload",
+      "https://api.cloudinary.com/v1_1/da6d9ru3s/upload",
       formData
     );
     console.log("Imagen subida:", response.data.secure_url);
@@ -138,171 +141,246 @@ const MyData = () => {
   }, [selectedUser]);
 
   return (
-    <div>
+    <Box>
       {!emailCurrent ? (
-        <div className={style.divLogin}>
-          <h2>
+        <Box className={style.divLogin}>
+          <Heading size="lg" mb={4}>
             Hey, I see that you are trying to access your Profile, but to do so,
             you must first be logged in.
-          </h2>
-          <Button variant="primary" onClick={handleShowModal}>
-            Click here to log in!{" "}
+          </Heading>
+          <Button colorScheme="blue" onClick={handleShowModal}>
+            Click here to log in!
           </Button>
-        </div>
+        </Box>
       ) : (
-        <div className={style.container}>
+        <Box className={style.container}>
           {editMode ? (
-            <div className={style.edit}>
-              <div className={style.divFlex}>
-                <h3 className={style.h3}>First Name:</h3>
-                <input
+            <VStack as="flex" justifyContent="space-between" alignItems="center" mb={4}>
+              <HStack>
+                <Text>First Name:</Text>
+                <Input
                   className={style.input1}
                   type="text"
                   value={editedName}
                   onChange={(e) => setEditedName(e.target.value)}
                 />
-              </div>
-              <div className={style.divFlex}>
-                <h3 className={style.h3}>Surname:</h3>
-                <input
+              </HStack>
+              <HStack>
+                <Text>Surname:</Text>
+                <Input
                   className={style.input2}
                   type="text"
                   value={editedSurname}
                   onChange={(e) => setEditedSurname(e.target.value)}
                 />
-              </div>
-              <div className={style.divFlex}>
-                <h3 className={style.h3}>Email:</h3>
-                <input
+              </HStack>
+              <HStack>
+                <Text>Email:</Text>
+                <Input
                   className={style.input3}
                   type="text"
                   value={editedEmail}
                   onChange={(e) => setEditedEmail(e.target.value)}
                 />
-              </div>
-              <div className={style.divFlex}>
-                <h3 className={style.h3}>Phone:</h3>
-                <input
+              </HStack>
+              <HStack>
+                <Text>Phone:</Text>
+                <Input
                   className={style.input4}
                   type="text"
                   value={editedPhone}
                   onChange={(e) => setEditedPhone(e.target.value)}
                 />
-              </div>
-              <div className={style.divFlex}>
-                <h3 className={style.h3}>City:</h3>
-                <input
+              </HStack>
+              <HStack>
+                <Text>City:</Text>
+                <Input
                   className={style.input5}
                   type="text"
                   value={editedCity}
                   onChange={(e) => setEditedCity(e.target.value)}
                 />
-              </div>
-              <div className={style.divFlex}>
-                <h3 className={style.h3}>Address</h3>
-                <input
+              </HStack>
+              <HStack>
+                <Text>Address:</Text>
+                <Input
                   className={style.input6}
                   type="text"
                   value={editedAddress}
                   onChange={(e) => setEditedAddress(e.target.value)}
-                />{" "}
-              </div>
-              <input
-                className={style.input8B}
-                type="file"
-                onChange={handleImageChange}
-              />{" "}
-              <Button
-                right={"170px"}
-                onClick={handleSaveUser}
-                marginTop={"10em"}
-                marginBottom={"3em"}
-              >
-                Save Data
-              </Button>
-            </div>
-          ) : (
-            <div className={style.c}>
-              <Text
-                marginTop={"4em"}
-                marginBottom={"2em"}
-                color="white"
-                textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
-              >
-                <h1>My Profile</h1>
-              </Text>{" "}
-              {imagen ? (
-                <Image
-                  w={"220px"}
-                  h={"220px"}
-                  borderRadius={"50%"}
-                  alt="Default Profile"
-                  src={imagen}
-                  margin={"auto"}
-                  marginBottom={"3em"}
                 />
-              ) : (
-                <Box w={"30%"} margin={"auto"} marginBottom={"3em"}>
-                  {/* <Avatar bg="teal.500" size={60} /> */}
-                  <Image
-                    borderRadius={100}
-                    src="https://bit.ly/ryan-florence"
-                    alt="Default Profile"
-                  />
-                </Box>
-              )}
-              <Text
-                color="white"
-                textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
-                marginBottom={"2em"}
-              >
-                {" "}
-                <h2>
-                  {nombre} {apellido}
-                </h2>
-              </Text>
-              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0,12)">
-                <p>
-                  <span style={{ fontWeight: "bold" }}> Email: </span>
-                  {email}
-                </p>
-              </Text>
-              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
-                <p>
-                  <span style={{ fontWeight: "bold" }}> Phone Number: </span>
-                  {telefono}
-                </p>
-              </Text>
-              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
-                {" "}
-                <p>
-                  <span style={{ fontWeight: "bold" }}> City: </span>
-                  {ciudad}
-                </p>
-              </Text>
-              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
-                {" "}
-                <p>
-                  <span style={{ fontWeight: "bold" }}> Address: </span>
-                  {direccion}
-                </p>
-              </Text>
-              {/* {!dni ? (
-            " "
+              </HStack>
+              <Button colorScheme="blue" onClick={handleSaveUser}>
+                Save
+              </Button>
+            </VStack>
           ) : (
-            <p>
-              <span style={{ fontWeight: "bold" }}> DNI: </span> {dni}
-            </p>
-          )} */}
-              <button className={style.buttonEdit} onClick={handleEditUser}>
-                Edit User
-              </button>
-            </div>
+            <Box className={style.container}>
+              {/* ... */}
+            </Box>
           )}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
+  
+  // <div>
+  //   {!emailCurrent ? (
+  //     <div className={style.divLogin}>
+  //       <h2>
+  //         Hey, I see that you are trying to access your Profile, but to do so,
+  //         you must first be logged in.
+  //       </h2>
+  //       <Button variant="primary" onClick={handleShowModal}>
+  //         Click here to log in!{" "}
+  //       </Button>
+  //     </div>
+  //   ) : (
+  //     <div className={style.container}>
+  //       {editMode ? (
+  //         <div className={style.edit}>
+  //           <div className={style.divFlex}>
+  //             <h3 className={style.h3}>First Name:</h3>
+  //             <input
+  //               className={style.input1}
+  //               type="text"
+  //               value={editedName}
+  //               onChange={(e) => setEditedName(e.target.value)}
+  //             />
+  //           </div>
+  //           <div className={style.divFlex}>
+  //             <h3 className={style.h3}>Surname:</h3>
+  //             <input
+  //               className={style.input2}
+  //               type="text"
+  //               value={editedSurname}
+  //               onChange={(e) => setEditedSurname(e.target.value)}
+  //             />
+  //           </div>
+  //           <div className={style.divFlex}>
+  //             <h3 className={style.h3}>Email:</h3>
+  //             <input
+  //               className={style.input3}
+  //               type="text"
+  //               value={editedEmail}
+  //               onChange={(e) => setEditedEmail(e.target.value)}
+  //             />
+  //           </div>
+  //           <div className={style.divFlex}>
+  //             <h3 className={style.h3}>Phone:</h3>
+  //             <input
+  //               className={style.input4}
+  //               type="text"
+  //               value={editedPhone}
+  //               onChange={(e) => setEditedPhone(e.target.value)}
+  //             />
+  //           </div>
+  //           <div className={style.divFlex}>
+  //             <h3 className={style.h3}>City:</h3>
+  //             <input
+  //               className={style.input5}
+  //               type="text"
+  //               value={editedCity}
+  //               onChange={(e) => setEditedCity(e.target.value)}
+  //             />
+  //           </div>
+  //           <div className={style.divFlex}>
+  //             <h3 className={style.h3}>Address</h3>
+  //             <input
+  //               className={style.input6}
+  //               type="text"
+  //               value={editedAddress}
+  //               onChange={(e) => setEditedAddress(e.target.value)}
+  //             />{" "}
+  //           </div>
+  //           <input
+  //             className={style.input8B}
+  //             type="file"
+  //             onChange={handleImageChange}
+  //           />{" "}
+  //           <Button
+  //             right={"170px"}
+  //             onClick={handleSaveUser}
+  //             marginTop={"10em"}
+  //             marginBottom={"3em"}
+  //           >
+  //             Save Data
+  //           </Button>
+  //         </div>
+  //       ) : (
+  //         <div className={style.c}>
+  //           <Text
+  //             marginTop={"4em"}
+  //             marginBottom={"2em"}
+  //             color="white"
+  //             textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+  //           >
+  //             <h1>My Profile</h1>
+  //           </Text>{" "}
+  //           {imagen ? (
+  //             <Image
+  //               w={"220px"}
+  //               h={"220px"}
+  //               borderRadius={"50%"}
+  //               alt="Default Profile"
+  //               src={imagen}
+  //               margin={"auto"}
+  //               marginBottom={"3em"}
+  //             />
+  //           ) : (
+  //             <Box w={"30%"} margin={"auto"} marginBottom={"3em"}>
+  //               {/* <Avatar bg="teal.500" size={60} /> */}
+  //               <Image
+  //                 borderRadius={100}
+  //                 src="https://bit.ly/ryan-florence"
+  //                 alt="Default Profile"
+  //               />
+  //             </Box>
+  //           )}
+  //           <Text
+  //             color="white"
+  //             textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+  //             marginBottom={"2em"}
+  //           >
+  //             {" "}
+  //             <h2>
+  //               {nombre} {apellido}
+  //             </h2>
+  //           </Text>
+  //           <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0,12)">
+  //             <p>
+  //               <span style={{ fontWeight: "bold" }}> Email: </span>
+  //               {email}
+  //             </p>
+  //           </Text>
+  //           <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
+  //             <p>
+  //               <span style={{ fontWeight: "bold" }}> Phone Number: </span>
+  //               {telefono}
+  //             </p>
+  //           </Text>
+  //           <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
+  //             {" "}
+  //             <p>
+  //               <span style={{ fontWeight: "bold" }}> City: </span>
+  //               {ciudad}
+  //             </p>
+  //           </Text>
+  //           <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
+  //             {" "}
+  //             <p>
+  //               <span style={{ fontWeight: "bold" }}> Address: </span>
+  //               {direccion}
+  //             </p>
+  //           </Text>
+  //           <button className={style.buttonEdit} onClick={handleEditUser}>
+  //             Edit User
+  //           </button>
+  //         </div>
+  //       )}
+  //     </div>
+  //   )}
+  // </div>
 };
 
 export default MyData;

@@ -6,7 +6,6 @@ import firebaseConfig from "./firebaseConfig";
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-// export var autho = getAuth();
 
 export const googleProvider = new GoogleAuthProvider();
 
