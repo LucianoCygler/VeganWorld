@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Pagination, Products } from "../../Components/index";
 import { orderAndFilter } from "../../redux/actions/actions";
 import style from "./OurProducts.module.css";
-import { Select } from "@chakra-ui/react";
+import { Select, Text } from "@chakra-ui/react";
 import { Box, Flex, Grid, GridItem, Img } from "@chakra-ui/react";
 import { Divider } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
@@ -28,6 +28,9 @@ function OurProducts() {
     dispatch(getAllProducts());
     // dispatch(getClientAllFavorites(user.id));
   }, []);
+  useEffect(() => {
+    dispatch(orderAndFilter(filterByType, sort));
+  }, [filterByType, sort]);
 
   useEffect(() => {
     dispatch(getUserDataByEmail(email));
@@ -40,10 +43,6 @@ function OurProducts() {
 
     return () => clearTimeout(timer); // Limpia el temporizador al desmontar el componente
   }, []);
-
-  useEffect(() => {
-    dispatch(orderAndFilter(filterByType, sort));
-  }, [filterByType, sort]);
   const [currentPage, setCurrentPage] = useState(0);
 
   const itemsPerPage = 12;
@@ -63,15 +62,46 @@ function OurProducts() {
   return (
     <Box
       minH={"100vh"}
+      overflow={"hidden"}
       bg={"# d8d8d8"}
       paddingTop={15}
-      backgroundImage={
-        "https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
-      }
+      backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
+      bgSize={"cover"}
+      bgRepeat={"no-repeat"}
     >
-      <h1 className={style.h1}>The best vegan food in town!</h1>
-
-      <Flex direction={"row"} margin={"auto"} justifyContent={"center"}>
+      <Box
+        marginTop={"6em"}
+        paddingTop={"0em"}
+        display={"center"}
+        justifyContent={"center"}
+      >
+        <Text
+          fontSize={"30px"}
+          color="white"
+          textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+          position="relative"
+          top={"0.2em"}
+        >
+          PRODUCTS
+          <Text
+            as="span"
+            position="absolute"
+            left={"1%"}
+            bottom={-5} // Ajusta este valor según el espaciado deseado
+            width="100%"
+            height="3px"
+            background="orange"
+          />
+        </Text>
+      </Box>{" "}
+      {/* <h1 className={style.h1}>The best vegan food in town!</h1> */}
+      <Flex
+        direction={"row"}
+        margin={"auto"}
+        justifyContent={"center"}
+        marginTop={"3em"}
+        marginBottom={"3em"}
+      >
         <Select onChange={handleFilter} w={200} marginRight={4} bg="#d8d8d8">
           <option value="">All</option>
           <option value="pasta">Pasta</option>
@@ -95,18 +125,39 @@ function OurProducts() {
           color="teal.500"
         /> // Muestra el componente de Loader mientras isLoading sea true
       ) : (
-        <Products products={currentItems} />
+        <Box>
+          {" "}
+          <Box display="flex" justifyContent="center">
+            <Box>
+              <Pagination
+                goToPrevPage={() => setCurrentPage(currentPage - 1)}
+                goToNextPage={() => setCurrentPage(currentPage + 1)}
+                goToPage={(page) => setCurrentPage(page)}
+                currentPage={currentPage}
+                lastPage={totalPages}
+              />
+            </Box>
+          </Box>
+          <Divider />
+          <Box display="flex" marginTop={"5em"} justifyContent={"center"}>
+            <Box w={"80%"}>
+              <Products products={currentItems} />
+            </Box>
+          </Box>
+          <Divider />
+          <Box display="flex" justifyContent="center">
+            <Box>
+              <Pagination
+                goToPrevPage={() => setCurrentPage(currentPage - 1)}
+                goToNextPage={() => setCurrentPage(currentPage + 1)}
+                goToPage={(page) => setCurrentPage(page)}
+                currentPage={currentPage}
+                lastPage={totalPages}
+              />
+            </Box>
+          </Box>
+        </Box>
       )}
-
-      <Divider />
-
-      <Pagination
-        goToPrevPage={() => setCurrentPage(currentPage - 1)}
-        goToNextPage={() => setCurrentPage(currentPage + 1)}
-        goToPage={(page) => setCurrentPage(page)}
-        currentPage={currentPage}
-        lastPage={totalPages}
-      />
     </Box>
   );
 }

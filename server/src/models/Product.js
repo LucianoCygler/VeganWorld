@@ -35,13 +35,19 @@ module.exports = (sequelize) => {
         validate: {
           isUrl: true,
         },
-        public_id:String
+        public_id: String,
+      },
+      deleted: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
       },
     },
     {
       sequelize,
       modelName: "Product",
       tableName: "Products", // Agrega esta propiedad
+      paranoid: true,
     }
   );
 };

@@ -1,75 +1,105 @@
 /************************************* DIVS ********************************/
 .mainContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .divLeft {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin-left: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-left: 15px;
 }
 
 .divMid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .divRight {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-right: 15px;
 }
 
 /************************************* ELEMENTOS **********************************/
 
 .link {
-    text-align: center;
+  text-align: center;
 }
 
 .tittle {
-    font-size: 15px;
-    text-shadow: 0 0 5px #F6FFDE;
+  font-size: 15px;
+  text-shadow: 0 0 5px #f6ffde;
 }
 
 .inputClass {
-    width: 500px;
-    position: relative;
-    opacity: 1;
-    right: 5px;
-    transition: all 0.5s ease;
-    background-color: #417D7A;
-    color: #F2F9F1;
-    border: transparent;
-    border-radius: 10px;
-    text-align: center;
-    outline: none;
-    height: 40px;
-    margin-right: 200px;
+  width: 500px;
+  position: relative;
+  opacity: 1;
+  right: 5px;
+  transition: all 0.5s ease;
+  background-color: #417d7a;
+  color: #f2f9f1;
+  border: transparent;
+  border-radius: 10px;
+  text-align: center;
+  outline: none;
+  height: 40px;
+  margin-left: 25em;
+}
+@media (max-width: 1920px) {
+  .inputClass {
+    margin-left: 4em;
+
+    width: 600px;
+  }
+}
+@media (max-width: 1400px) {
+  .inputClass {
+    margin-left: 8em;
+
+    width: 600px;
+  }
 }
 
-.inputClass::-webkit-search-cancel-button{
-    -webkit-appearance: none;
-    appearance: none;
+@media (max-width: 1090px) {
+  .inputClass {
+    margin-left: 7em;
+    margin-right: 4em;
+    width: 400px;
+  }
 }
 
-.inputClass::placeholder{
-    color: #F2F9F1;
+@media (max-width: 780px) {
+  .inputClass {
+    margin-left: 2em;
+    margin-right: 2em;
+    width: 100px;
+  }
+}
+
+.inputClass::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.inputClass::placeholder {
+  color: #f2f9f1;
 }
 
 .fontIcon {
-    position: relative;
-    right: 230px;
-    color: #F2F9F1;
-    transition: transform 0.2s ease-in-out;
+  position: relative;
+  right: 230px;
+  color: #f2f9f1;
+  transition: transform 0.2s ease-in-out;
 }
 
 .fontIcon:hover {
-    transform: scale(1.5);
+  transform: scale(1.5);
 }

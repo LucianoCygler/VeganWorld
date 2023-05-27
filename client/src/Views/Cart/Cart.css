@@ -1,55 +1,106 @@
 .buttonDelete {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: rgb(20, 20, 20);
-    border: none;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
-    cursor: pointer;
-    transition-duration: .3s;
-    overflow: hidden;
-    position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+
+.svgIcona {
+  width: 12px;
+  transition-duration: 0.3s;
+}
+
+.svgIcona path {
+  fill: white;
+}
+
+.buttonDelete:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: rgb(255, 69, 69);
+  align-items: center;
+}
+
+.buttonDelete:hover .svgIcon {
+  width: 50px;
+  transition-duration: 0.3s;
+  transform: translateY(60%);
+}
+
+.buttonDelete::before {
+  position: absolute;
+  top: -20px;
+  content: "Delete";
+  color: white;
+  transition-duration: 0.3s;
+  font-size: 2px;
+}
+
+.buttonDelete:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(30px);
+  transition-duration: 0.3s;
+}
+
+.loading {
+  width: 60px;
+  height: 60px;
+  position: relative;
+}
+
+.d1,
+.d2 {
+  border: 5px solid #64dfdf;
+  border-radius: 50px;
+}
+
+.loading .d1 {
+  width: 55px;
+  height: 55px;
+  position: absolute;
+  top: -9px;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  animation: load161 1s linear infinite;
+}
+
+.loading .d2 {
+  width: 40px;
+  height: 40px;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  margin: 7.5px;
+  animation: load2812 2s linear infinite;
+}
+
+@keyframes load161 {
+  0% {
+    transform: rotate(0);
   }
-  
-  .svgIcon {
-    width: 12px;
-    transition-duration: .3s;
+
+  100% {
+    transform: rotate(360deg);
   }
-  
-  .svgIcon path {
-    fill: white;
+}
+
+@keyframes load2812 {
+  0% {
+    transform: rotate(0);
   }
-  
-  .buttonDelete:hover {
-    width: 140px;
-    border-radius: 50px;
-    transition-duration: .3s;
-    background-color: rgb(255, 69, 69);
-    align-items: center;
+
+  100% {
+    transform: rotate(-360deg);
   }
-  
-  .buttonDelete:hover .svgIcon {
-    width: 50px;
-    transition-duration: .3s;
-    transform: translateY(60%);
-  }
-  
-  .buttonDelete::before {
-    position: absolute;
-    top: -20px;
-    content: "Delete";
-    color: white;
-    transition-duration: .3s;
-    font-size: 2px;
-  }
-  
-  .buttonDelete:hover::before {
-    font-size: 13px;
-    opacity: 1;
-    transform: translateY(30px);
-    transition-duration: .3s;
-  }
+}

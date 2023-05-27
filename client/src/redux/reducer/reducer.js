@@ -27,10 +27,12 @@ import {
   DELETE_FAVORITE,
   GET_PRODUCT_REVIEWS,
   GET_ALL_CLIENTS,
+  DELETE_CLIENT,
   SET_CREATED_ORDER_ID,
   CLEAN_CART,
   GET_MP_LINK,
   GET_REVIEWS,
+  CHANGE_LABEL,
   UPDATE_ADDRESS,
   CLEAN_ADDRESS,
 } from "../actions/Types/Types";
@@ -58,8 +60,16 @@ const initialState = {
   isAuthenticated: false,
   productReviews: [],
   allClients: [],
+  deletedClient: "",
   MPLink: "",
   allReviews: [],
+  labels: {
+    Graph: false,
+    Clients: false,
+    Products: false,
+    Reviews: false,
+    Orders: false,
+  },
   address: address,
   // createdOrderId: null,
 };
@@ -82,15 +92,13 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         reviews: [...action.payload],
       };
-
     case GET_ALL_PRODUCTS:
-      localStorage.setItem("products", JSON.stringify([...action.payload]));
+      // localStorage.setItem("products", JSON.stringify([...action.payload]));
       return {
         ...state,
         products: [...action.payload],
         filteredProducts: [...action.payload],
       };
-
     case GET_PRODUCT_BY_ID:
       return { ...state, product: [action.payload] };
 
@@ -168,10 +176,8 @@ export default function rootReducer(state = initialState, action) {
 
     case SET_PAGE:
       return { ...state, currentPage: [action.payload] };
-
     case CREATE_ORDER:
       return { ...state, success: action.payload };
-
     case GET_ORDER_BY_ID:
       return { ...state, order: [action.payload] };
 
@@ -188,7 +194,6 @@ export default function rootReducer(state = initialState, action) {
         ],
         orderDelete: [action.payload],
       };
-
     case UPDATE_REVIEW:
       const { id, titulo, descripcion } = action.payload;
       const fecha = new Date().toISOString().slice(0, 10);
@@ -207,11 +212,10 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         reviews: updatedReviews,
       };
-
     case ORDER_FILTER:
       return {
         ...state,
-        products: action.payload,
+        products: [...action.payload],
       };
     case SET_PRODUCT_SEARCH:
       return {
@@ -247,6 +251,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         allClients: [...action.payload],
       };
+    case DELETE_CLIENT:
+      return {
+        ...state,
+        deletedClient: action.payload,
+      };
     case GET_MP_LINK:
       return {
         ...state,
@@ -274,7 +283,18 @@ export default function rootReducer(state = initialState, action) {
     //     ...state,
     //     createdOrderId: action.payload,
     //   };
-
+    case CHANGE_LABEL:
+      return {
+        ...state,
+        labels: {
+          Graph: false,
+          Clients: false,
+          Products: false,
+          Reviews: false,
+          Orders: false,
+          [action.payload]: true,
+        },
+      };
     default:
       return { ...state };
   }

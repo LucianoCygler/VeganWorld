@@ -1,17 +1,16 @@
 /********************************** DIVS **********************/
 
-.mainContainer {
+/* .mainContainer {
   border-radius: 5px;
   width: 200px;
   height: 275px;
-  margin: 5px 10px;
   max-height: 275px;
   max-width: 200px;
   background-color: #d8d8d8;
   position: relative;
   transition: all 0.1s ease-in-out;
-}
-
+} */
+/* 
 .mainContainer:hover {
   top: 1px;
   box-shadow: 0 5px 15px 0 #757575;
@@ -20,9 +19,9 @@
 
 .mainContainer:hover .favButton {
   opacity: 1;
-}
+} */
 
-.favoriteContainer {
+/* .favoriteContainer {
   position: absolute;
   display: flex;
   justify-content: flex-start;
@@ -49,11 +48,11 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-}
+} */
 
 /************************************ ELEMENTS **********************************/
 
-.image {
+/* .image {
   width: 75%;
   padding: 1px;
   object-fit: cover;
@@ -73,14 +72,14 @@
 .price {
   margin-top: 5px;
   font-size: 18px;
-}
-.card {
+} */
+/* .card {
   color: #000;
   text-decoration: none;
   cursor: pointer;
   transition: color 0.3s;
-}
-
+} */
+/* 
 .favButton {
   background-color: transparent;
   border: none;
@@ -97,7 +96,7 @@
 .favButton:hover,
 .favButton:focus {
   color: #af0c0c;
-}
+} */
 /* .favButton.animate {
   animation: scale-rotate 0.5s ease-in-out;
 }

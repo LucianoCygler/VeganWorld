@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./HomePage.module.css";
 import {
+  getAllPageReviews,
   getAllProducts,
   getAllReviews,
   getClientData,
@@ -14,7 +15,15 @@ import CustomCarousel from "../../Components/Carousel/CustomCarousel";
 import Carrusel from "../../Components/Carousel/Carrusel";
 import "./HomePage.css";
 import { SocialIcon } from "react-social-icons";
-import { Box, Flex, Grid, GridItem, Img } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertIcon,
+  Box,
+  Flex,
+  Grid,
+  GridItem,
+  Img,
+} from "@chakra-ui/react";
 import { PhoneIcon, AddIcon, WarningIcon } from "@chakra-ui/icons";
 import { Divider } from "@chakra-ui/react";
 import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
@@ -30,44 +39,80 @@ import "slick-carousel/slick/slick-theme.css";
 import ModalLogin from "../Login/ModalLogin";
 
 const images = [
-  "https://images.pexels.com/photos/1893563/pexels-photo-1893563.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.unsplash.com/photo-1520072959219-c595dc870360?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1590&q=80",
-  "https://images.unsplash.com/photo-1541014741259-de529411b96a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
-  "https://images.pexels.com/photos/1143754/pexels-photo-1143754.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/1640769/pexels-photo-1640769.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/3669638/pexels-photo-3669638.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/1351238/pexels-photo-1351238.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://res.cloudinary.com/da6d9ru3s/image/upload/v1685073896/Fresh_and_healthy_vegetables_banner_design_template_uetvqo.jpg",
+  "https://res.cloudinary.com/da6d9ru3s/image/upload/v1685074181/asdasda_zbypd9.png",
 ];
-const settings = {
-  dots: true,
-  infinite: true,
-  autoplay: true,
-  autoplaySpeed: 5000, // Tiempo de espera entre imágenes (en milisegundos)
-  speed: 900, // Velocidad de transición entre imágenes (en milisegundos)
-  slidesToShow: 2, // Número de imágenes a mostrar al mismo tiempo
-  slidesToScroll: 1, // Número de imágenes a desplazar al avanzar o retroceder
+
+const MySlider = () => {
+  const [slidesToShow, setSlidesToShow] = useState(2);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        // Ajusta el valor según tus necesidades
+        setSlidesToShow(1);
+      } else {
+        setSlidesToShow(2);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Asegura que la configuración inicial sea correcta
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  const settings = {
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 5000, // Tiempo de espera entre imágenes (en milisegundos)
+    speed: 900, // Velocidad de transición entre imágenes (en milisegundos)
+    slidesToShow: 1, // Número de imágenes a mostrar al mismo tiempo
+    slidesToScroll: 1, // Número de imágenes a desplazar al avanzar o retroceder
+  };
+  return (
+    <Slider {...settings}>
+      {images.map((image, index) => (
+        <div key={index}>
+          <Box>
+            <Image
+              shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+              color={"white"}
+              w={"100%"}
+              maxH="95vh"
+              src={image}
+              alt={`Slide ${index + 1}`}
+              // style={{ opacity: 0.7 }}
+            />{" "}
+          </Box>
+        </div>
+      ))}
+    </Slider>
+  );
 };
+
 function HomePage() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
-  const allReviews = useSelector((state) => state.allReviews);
+  const pageReviews = useSelector((state) => state.pageReviews);
   const [filterByType, setFilterByType] = useState("");
   const [sort, setSort] = useState("");
   const navigate = useNavigate();
-  const shuffledReviews = shuffle(allReviews);
+  const shuffledReviews = shuffle(pageReviews);
   const randomReviews = shuffledReviews.slice(0, 4);
   const user = useSelector((state) => state.user);
 
   const location = useLocation();
-  const showLogin = location.state && location.state.showLogin;
-
+  const showLogin = (location.state && location.state.showLogin) || false;
   const email = localStorage.getItem("email");
   useEffect(() => {
     dispatch(getUserDataByEmail(email));
   }, [email]);
 
   useEffect(() => {
-    dispatch(getAllReviews());
+    dispatch(getAllPageReviews());
   }, []);
 
   useEffect(() => {
@@ -80,15 +125,26 @@ function HomePage() {
       maxW={"100%"}
       vh={100}
       scrollBehavior={"smooth"}
-      paddingTop={200}
+      paddingTop={90}
       margin={0}
-      backgroundImage={
-        "https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
-      }
+      backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
+      bgSize={"cover"}
+      bgRepeat={"no-repeat"}
     >
-      <ModalLogin show={showLogin}></ModalLogin>
+      {showLogin && (
+        <Alert status="warning" paddingTop={"2em"}>
+          <AlertIcon marginBottom={"1em"} />
+          <Text>
+            You cannot access this functionality because you are not logged in.
+            You can view our products in the "Our Products" tab.
+          </Text>
+        </Alert>
+      )}
+      {/* <ModalLogin show={showLogin}></ModalLogin> */}
       <Box>
-        <Box paddingTop={1}>
+        {" "}
+        <MySlider />
+        <Box paddingTop={"2em"} marginBottom={"2em"}>
           <Flex direction={"row"} justify={"center"}>
             {/* <Box width={"80%"} height="700" bg="#d8d8d8">
             <Image
@@ -111,8 +167,6 @@ function HomePage() {
         >
           <Card
             direction={{ base: "column", sm: "row" }}
-            overflow="hidden"
-            variant="outline"
             justifyContent={"center"}
             alignContent={"center"}
             height={400}
@@ -123,13 +177,13 @@ function HomePage() {
                 <Heading
                   size="md"
                   fontSize="5xl"
-                  paddingTop={30}
+                  marginTop={30}
                   color="white"
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
                 >
                   <Text> Welcome to your Vegan World!</Text>
                 </Heading>
-                <Box marginLeft={500} wordBreak="break-word" w={"50%"}>
+                <Box wordBreak="break-word" justify={"center"}>
                   <Text
                     marginTop={10}
                     py="2"
@@ -157,7 +211,9 @@ function HomePage() {
                     navigate("/ourproducts");
                   }}
                 >
-                  <Text fontSize={"3xl"}>Let's start</Text>
+                  <Text fontSize={"3xl"} margin={"10px"}>
+                    Let's start
+                  </Text>
                 </Button>
               </CardFooter>
             </Stack>
@@ -194,14 +250,13 @@ function HomePage() {
         currentPage={currentPage}
         lastPage={totalPages}
       /> */}
-      <Carrusel />
+      {/* <Carrusel /> */}
       <Box marginTop={200} w={"fit-content"} margin="3em auto ">
         <Text
           as="b"
           fontSize="6xl"
           textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
           color="white"
-          bg={"rgba(0, 0, 0, 0.2)"}
           padding={"0.3em"}
           borderRadius={70}
         >
@@ -224,39 +279,23 @@ function HomePage() {
           <h1>Our custommers</h1>
         </Text>{" "}
         <>
-          {allReviews ? (
+          {pageReviews ? (
             randomReviews.map((review) => (
-              <Box display="inline-block" marginRight="2em">
+              <Box display="inline-block" marginRight="2em" marginTop={"2em"}>
                 <div className="cardReview">
                   <div className="header">
-                    <div>
-                      <Avatar
-                        name="Ryan Florence"
-                        src="https://bit.ly/ryan-florence"
-                        size="xl"
-                      />
-                    </div>
-                    <div>
-                      <div className="stars">
-                        {Array.from({ length: review.estrellas }).map(
-                          (_, index) => (
-                            <svg
-                              key={index}
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                          )
-                        )}
-                      </div>
+                    <Box marginRight={"2em"}>
+                      <Avatar src={review.cliente_imagen} size="xl" />
+                    </Box>
+                    <Box>
                       <p className="name">{review.cliente_nombre}</p>
                       <p>{review.titulo}</p>
-                    </div>
+                    </Box>
                   </div>
-                  <p className="message">{review.descripcion}</p>
-                  <small className="message">{review.fecha}</small>
+                  <Box marginLeft={"3em"}>
+                    <p className="message">{review.descripcion}</p>
+                    <small className="message">{review.fecha}</small>
+                  </Box>
                 </div>
               </Box>
             ))
@@ -265,182 +304,176 @@ function HomePage() {
           )}
         </>
       </Box>
+      <Box overflowWrap={"wrap"}></Box>
       <div data-aos="fade-left" data-aos-duration="2000">
-        <Box
-          width={"100%"}
-          height={400}
-          bg={"none"}
-          padding={1}
-          marginBottom={300}
-          flexWrap={"wrap"}
+        <Grid
+          marginLeft={"5em"}
+          templateColumns={{
+            base: "repeat(1, 1fr)",
+            sm: "repeat(1, 1fr)",
+            md: "repeat(2, 1fr)",
+            lg: "repeat(2, 1fr)",
+            xl: "repeat(3, 1fr)",
+            "2xl": "repeat(4, 1fr)",
+          }}
+          gap={4}
+          marginBottom="3em"
         >
-          <Grid
-            templateColumns={"repeat(4,1fr)"}
-            templateRows={"repeat(2,1fr)"}
+          <Box
+            bg="white"
+            margin="2px"
+            borderRadius="120px 20px"
+            shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+            h={"350px"}
+            w={"350px"}
           >
-            <Box
-              bg={"white"}
-              margin="2px"
-              borderRadius={"120px 20px"}
-              shadow="2px 2px 4px rgba(0, 0, 0, 1)"
-            >
-              <Image
-                padding="1em  "
-                marginLeft={20}
-                maxW={{ base: "100%", sm: "330px" }}
-                src="https://static.vecteezy.com/system/resources/previews/004/542/032/non_2x/young-woman-sitting-on-floor-working-with-laptop-cartoon-style-illustration-isolated-on-white-background-vector.jpg"
-              ></Image>
-              <Text fontSize="4xl" marginTop={"64px"}>
-                <Text as="b">Order</Text> Online
-              </Text>
-            </Box>{" "}
-            <Box
-              shadow="2px 2px 4px rgba(0, 0, 0, 1)"
-              bg={"white"}
-              margin="2px"
-              borderRadius={"120px 20px"}
-            >
-              <Image
-                padding="1em  "
-                marginLeft={20}
-                paddingTop={5}
-                maxW={{ base: "100%", sm: "330px" }}
-                src="https://img.freepik.com/vector-gratis/hombre-montando-scooter-sobre-fondo-blanco_1308-46379.jpg"
-              ></Image>
-              <Text fontSize="4xl" marginTop={20}>
-                <Text as="b">Fast</Text> shipping
-              </Text>
-            </Box>
-            <Box
-              shadow="2px 2px 4px rgba(0, 0, 0, 1)"
-              bg={"white"}
-              margin="2px"
-              borderRadius={"120px 20px"}
-              paddingLeft={"3em"}
-            >
-              <Image
-                padding="2em  "
-                marginLeft={19.5}
-                maxW={{ base: "100%", sm: "370px" }}
-                src="https://media.istockphoto.com/id/1152445566/es/vector/el-repartidor-est%C3%A1-sosteniendo-una-caja-de-paquetes.jpg?s=612x612&w=0&k=20&c=cUSmSP-hnxJSOTnGoNxstqDh9UGZyM2zE0OEebXt_UE="
-              ></Image>{" "}
-              <Text fontSize="4xl" marginRight={20} paddingLeft={"1em"}>
-                <Text as="b">Receive</Text> the order at the door of your house
-              </Text>
-            </Box>
-            <Box
-              shadow="2px 2px 4px rgba(0, 0, 0, 1)"
-              bg={"white"}
-              margin="2px"
-              borderRadius={"120px 20px"}
-              paddingLeft={"3em"}
-            >
-              <Image
-                padding="2em"
-                marginLeft={19.5}
-                maxW={{ base: "100%", sm: "370px" }}
-                src="https://media.istockphoto.com/id/1282103104/es/vector/ni%C3%B1a-comiendo-frutas-alimentos-saludables-mujer-aislada-en-dibujos-animados-planos-la.jpg?s=170667a&w=0&k=20&c=HpUGp0dItcE_lAzyYKe70xrm5xc0NnzyiGWy8el5Q4A="
-              ></Image>{" "}
-              <Text fontSize="4xl" marginRight={20}>
-                <Text as="b">Enjoy</Text> your order from Vegan World!
-              </Text>
-            </Box>
-          </Grid>
-        </Box>
+            <Image
+              marginTop={"1em"}
+              padding="1em"
+              marginLeft={20}
+              maxW={{ base: "100%", sm: "200px" }}
+              src="https://static.vecteezy.com/system/resources/previews/004/542/032/non_2x/young-woman-sitting-on-floor-working-with-laptop-cartoon-style-illustration-isolated-on-white-background-vector.jpg"
+            />
+            <Text fontSize="2xl" marginTop={15} fontWeight="bold">
+              Order Online
+            </Text>
+          </Box>
+          <Box
+            bg="white"
+            margin="2px"
+            borderRadius="120px 20px"
+            shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+            h={"350px"}
+            w={"350px"}
+          >
+            <Image
+              marginTop={"1em"}
+              padding="1em"
+              marginLeft={20}
+              paddingTop={5}
+              maxW={{ base: "100%", sm: "200px" }}
+              src="https://img.freepik.com/vector-gratis/hombre-montando-scooter-sobre-fondo-blanco_1308-46379.jpg"
+            />
+            <Text fontSize="2xl" marginTop={4} fontWeight="bold">
+              Fast Shipping
+            </Text>
+          </Box>
+          <Box
+            h={"350px"}
+            w={"350px"}
+            bg="white"
+            margin="2px"
+            borderRadius="120px 20px"
+            shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+          >
+            <Image
+              padding="2em"
+              marginLeft={19.5}
+              maxW={{ base: "100%", sm: "300px" }}
+              src="https://media.istockphoto.com/id/1152445566/es/vector/el-repartidor-est%C3%A1-sosteniendo-una-caja-de-paquetes.jpg?s=612x612&w=0&k=20&c=cUSmSP-hnxJSOTnGoNxstqDh9UGZyM2zE0OEebXt_UE="
+            />
+            <Text fontSize="2xl" marginTop={-5} fontWeight="bold">
+              Receive your order
+            </Text>
+          </Box>
+          <Box
+            h={"350px"}
+            w={"350px"}
+            bg="white"
+            margin="2px"
+            borderRadius="120px 20px"
+            shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+          >
+            <Image
+              padding="2em"
+              marginLeft={19.5}
+              maxW={{ base: "100%", sm: "300px" }}
+              src="https://media.istockphoto.com/id/1282103104/es/vector/ni%C3%B1a-comiendo-frutas-alimentos-saludables-mujer-aislada-en-dibujos-animados-planos-la.jpg?s=170667a&w=0&k=20&c=HpUGp0dItcE_lAzyYKe70xrm5xc0NnzyiGWy8el5Q4A="
+            />
+            <Text fontSize="2xl" marginTop={-5} fontWeight="bold">
+              Enjoy!
+            </Text>
+          </Box>
+        </Grid>
       </div>
-      <Slider {...settings}>
-        {images.map((image, index) => (
-          <div key={index}>
-            <Box>
-              <Image
-                shadow="2px 2px 4px rgba(0, 0, 0, 1)"
-                color={"white"}
-                marginLeft={"2em"}
-                w={"95%"}
-                h={"65vh"}
-                maxH="95vh"
-                src={image}
-                alt={`Slide ${index + 1}`}
-                style={{ opacity: 0.7 }}
-              />{" "}
-            </Box>
-          </div>
-        ))}
-      </Slider>
       <footer class="footer-distributed">
-        <div class="footer-left">
-          <h3>
-            <span>Vegan</span>World
-          </h3>
+        <Grid
+          templateColumns={{
+            base: "1fr",
+            sm: "repeat(1, 100%)",
+            md: "repeat(2, 50%)",
+            lg: "repeat(3, 42%)",
+            xl: "repeat(3, 42%)",
+          }}
+        >
+          <div class="footer-left">
+            <h3>
+              <span>Vegan</span>World
+            </h3>
 
-          <p class="footer-links">
-            <a href="#" class="link-1">
-              Home
-            </a>
+            <p class="footer-links">
+              <a href="#" class="link-1">
+                Home
+              </a>
 
-            <a href="#">Blog</a>
+              <a href="/About">About</a>
 
-            <a href="#">Pricing</a>
-
-            <a href="#">About</a>
-
-            <a href="#">Faq</a>
-
-            <a href="#">Contact</a>
-          </p>
-
-          <p class="footer-company-name">VeganWorld © 2023</p>
-        </div>
-
-        <div class="footer-center">
-          <div>
-            <i class="fa fa-map-marker"></i>
-            <p>
-              <span>Av. Rivadavia 9423</span> Capital Federal, Buenos Aires
+              <a href="/ContactUs">Contact</a>
             </p>
+
+            <p class="footer-company-name">VeganWorld © 2023</p>
           </div>
 
-          <div>
-            <i class="fa fa-phone"></i>
-            <PhoneIcon marginRight="1em"></PhoneIcon>
-            <p>+54 9 1122309876</p>
+          <div class="footer-center">
+            <div>
+              <i class="fa fa-map-marker"></i>
+              <p>
+                <span>Av. Rivadavia 9423</span> Capital Federal, Buenos Aires
+              </p>
+            </div>
+
+            <div>
+              <i class="fa fa-phone"></i>
+              <PhoneIcon marginRight="1em"></PhoneIcon>
+              <p>+54 9 1122309876</p>
+            </div>
+
+            <div>
+              <i class="fa fa-envelope"></i>
+              <p>
+                <a href="mailto:support@company.com">veganworld36@gmail.com</a>
+              </p>
+            </div>
           </div>
 
-          <div>
-            <i class="fa fa-envelope"></i>
-            <p>
-              <a href="mailto:support@company.com">veganworld@gmail.com</a>
+          <div class="footer-right">
+            <p class="footer-company-about">
+              <span>About the company</span>
+              Making it easier to be Vegan and order food!
             </p>
-          </div>
-        </div>
 
-        <div class="footer-right">
-          <p class="footer-company-about">
-            <span>About the company</span>
-            Making it easier to be Vegan and order food!
-          </p>
-
-          <div class="footer-icons">
-            <a href="#">
-              <SocialIcon
-                url="https://facebook.com/VeganWorld"
-                style={{ height: 30, width: 30 }}
-              />
-            </a>
-            <a href="#">
-              <SocialIcon
-                url="https://twitter.com/VeganWorld"
-                style={{ height: 30, width: 30 }}
-              />
-            </a>
-            <a href="#">
-              <SocialIcon
-                url="https://github.com/LucianoCygler/VeganWorld"
-                style={{ height: 30, width: 30 }}
-              />
-            </a>
+            <div class="footer-icons">
+              <a href="#">
+                <SocialIcon
+                  url="https://facebook.com/VeganWorld"
+                  style={{ height: 30, width: 30 }}
+                />
+              </a>
+              <a href="#">
+                <SocialIcon
+                  url="https://twitter.com/VeganWorld"
+                  style={{ height: 30, width: 30 }}
+                />
+              </a>
+              <a href="#">
+                <SocialIcon
+                  url="https://github.com/LucianoCygler/VeganWorld"
+                  style={{ height: 30, width: 30 }}
+                />
+              </a>
+            </div>
           </div>
-        </div>
+        </Grid>
       </footer>
     </Box>
   );

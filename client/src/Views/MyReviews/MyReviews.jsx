@@ -10,7 +10,15 @@ import styles from "./MyReviews.module.css";
 import { useNavigate } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
 import LoginForm from "../Login/LoginForm";
-import { Box, Flex, Grid, GridItem, Img } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Grid,
+  GridItem,
+  Heading,
+  Img,
+  Text,
+} from "@chakra-ui/react";
 import "./MyReviews.css";
 import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react";
 import { Divider } from "@chakra-ui/react";
@@ -64,9 +72,8 @@ const MyReviews = () => {
     <Box
       marginTop={"0"}
       minH="100vh"
-      backgroundImage={
-        "https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
-      }
+      backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
+      paddingBottom={"10em"}
     >
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
@@ -89,6 +96,25 @@ const MyReviews = () => {
       ) : (
         <>
           <Divider />
+          <Box marginTop={"10em"} display={"flex"} justifyContent={"center"}>
+            <Text
+              fontSize={"30px"}
+              color="white"
+              textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+              position="relative"
+            >
+              REVIEWS
+              <Text
+                as="span"
+                position="absolute"
+                left={"1%"}
+                bottom={-5} // Ajusta este valor según el espaciado deseado
+                width="100%"
+                height="3px"
+                background="orange"
+              />
+            </Text>
+          </Box>
           <Box
             paddingTop={10}
             minH="80vh"
@@ -97,7 +123,7 @@ const MyReviews = () => {
             margin="auto"
             shadow="0px 4px 1000px rgba(0, 0, 0, 0.2)"
             bg={"rgba(216, 216, 216, 0.5)"}
-            marginTop={"10em"}
+            marginTop={"4em"}
             borderRadius={"35px"}
           >
             {reviews ? (
@@ -107,18 +133,14 @@ const MyReviews = () => {
                     <Box
                       display="inline-block"
                       marginRight="1.5em"
-                      paddingTop="8em"
+                      paddingTop="5em"
                       onClick={() => showPopupHandler(review)}
                     >
                       <div class="cardReview">
                         <div class="header">
                           <div>
                             {" "}
-                            <Avatar
-                              name="Ryan Florence"
-                              src="https://bit.ly/ryan-florence"
-                              size="xl"
-                            />
+                            <Avatar src={review.cliente_imagen} size="xl" />
                           </div>
                           <div>
                             <div class="stars">
@@ -154,7 +176,6 @@ const MyReviews = () => {
               </div>
             )}
           </Box>
-
           {/* // reviews.map((review) => (
             //   <div
             //     key={review.id}
@@ -169,17 +190,16 @@ const MyReviews = () => {
           {/* // ) : (
             
           // )} */}
-
           {isPopupOpen && (
             <>
-              <div className={styles.overlay} onClick={closePopup} />
-              <div className={styles.popupcontainer}>
+              {/* <div className={styles.overlay} onClick={closePopup} /> */}
+              <Box>
                 <ReviewDetail
                   review={selectedReview}
                   closePopup={closePopup}
                   handleDeleteReview={handleDeleteReview}
                 />
-              </div>
+              </Box>
             </>
           )}
         </>

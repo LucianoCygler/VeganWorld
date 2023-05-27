@@ -17,10 +17,12 @@ const About = () => {
 
   return (
     <Box
-      backgroundImage={
-        "https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
-      }
-      py="3em"
+      backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
+      minHeight={"100vh"}
+      bgSize={"cover"}
+      bgRepeat={"no-repeat"}
+      paddingTop={"5em"}
+      paddingBottom={"5em"}
     >
       <Flex
         flexDirection="column"
@@ -50,7 +52,7 @@ const About = () => {
             fontWeight="lighter"
             textAlign="center"
           >
-            Vegan World
+            Vegan World <small>🌿</small>
           </Heading>
           <Text as="h3" ml="100px" w="80%" color="white">
             Comes from our own needs. We wanted an app that could make it easier

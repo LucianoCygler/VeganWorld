@@ -18,10 +18,7 @@ import {
   GridItem,
   Center,
 } from "@chakra-ui/react";
-
 import { sendEmail } from "../../redux/actions/actions";
-
-import axios from "axios";
 
 const formContactUser = {
   name: "",
@@ -37,41 +34,38 @@ const ContactUs = () => {
 
   const validations = (form) => {
     let reg = /^[a-zA-Z\s]*$/;
-
     let regEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
     const error = {};
-
+    //NOMBRE
     if (!form.name) {
-      error.name = "Name is required in this field";
+      error.name = "Name is required";
+    } else if (!reg.test(form.name)) {
+      error.name = "Only accepts uppercase and lowercase letters.";
+    } else if (form.name.length > 20) {
+      error.name = "The name exceeds the maximum of 15 characters.";
     }
-    if (!reg.test(form.name)) {
-      error.name = "Numbers or special characters are not allowed";
-    }
-    if (form.name.length > 20) {
-      error.name = "Name must not be longer than 20 characters";
-    }
+
+    //EMAIL
     if (!form.email) {
       error.email = "Email is required in this field";
     } else if (!regEmail.test(form.email)) {
       error.email = "Check your email please";
+    } else if (form.email.length > 40) {
+      error.email = "The email exceeds the maximum of 40 characters.";
     }
+
+    //COMENTARIOS
     if (!form.textContainer) {
       error.textContainer = "Please give us a comment...";
     } else if (form.textContainer.length < 30) {
       error.textContainer = "Text must be longer than 30 characters";
+    } else if (form.textContainer.length > 250) {
+      error.textContainer = "Text must be shorter than 250 characters";
     }
 
-    if (!form.textContainer) {
-      error.textContainer = "This input is mandatory";
-
-    }
     return error;
   };
-
-  useEffect(() => {
-    setError(validations(form));
-  }, [form]);
 
   const changeHandler = (event) => {
     const property = event.target.name;
@@ -108,13 +102,16 @@ const ContactUs = () => {
 
   return (
     <Box
-      backgroundImage={
-        "https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
-      }
-      py="9em"
+      backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
+      minHeight={"100vh"}
+      bgSize={"cover"}
+      bgRepeat={"no-repeat"}
+      paddingTop={"10em"}
+      paddingBottom={"10em"}
     >
       <Box
-        bg="rgba(216, 216, 216, 0.5)"
+        bg="rgba(216, 216, 216, 0.9)"
+        shadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
         w="40%"
         margin="auto"
         borderRadius={50}
@@ -124,18 +121,19 @@ const ContactUs = () => {
           <Box>
             <Heading
               padding={"0.5em"}
+              marginTop={"0.1em"}
+              fontSize={"4em"}
               mb="1rem"
               color={"white"}
               textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
             >
-              Visit us:
+              Visit us 📍
             </Heading>
             <Box>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.703969221664!2d-58.497814741769595!3d-34.63692048947491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc93bc88e4279%3A0xc6e4c5cf528aa9fb!2sMundo%20Vegano!5e0!3m2!1ses!2sar!4v1684369093537!5m2!1ses!2sar"
-                width={400}
-                height={300}
-                style={{ border: 0 }}
+                width={"500em"}
+                height={"300em"}
                 allowFullScreen={true}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -151,14 +149,14 @@ const ContactUs = () => {
               color={"white"}
               textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
             >
-              ...or send us an email!
+              👇🏽 or leave us an email below 👇🏽
             </Heading>
             <Grid templateColumns="repeat(2, 1fr)" gap={6}>
               <GridItem>
                 <FormControl isInvalid={!!error.name}>
                   <FormLabel
                     htmlFor="name"
-                    color={"white"}
+                    color={"black"}
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
                   >
                     Name:
@@ -166,6 +164,7 @@ const ContactUs = () => {
                   <Input
                     name="name"
                     type="text"
+                    backgroundColor={"white"}
                     value={form.name}
                     onChange={(e) => changeHandler(e)}
                     borderColor={
@@ -184,7 +183,7 @@ const ContactUs = () => {
                 <FormControl isInvalid={!!error.email} mt="1rem">
                   <FormLabel
                     htmlFor="email"
-                    color={"white"}
+                    color={"black"}
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
                   >
                     Email:
@@ -192,6 +191,7 @@ const ContactUs = () => {
                   <Input
                     name="email"
                     type="text"
+                    backgroundColor={"white"}
                     value={form.email}
                     onChange={(e) => changeHandler(e)}
                     borderColor={
@@ -212,12 +212,14 @@ const ContactUs = () => {
                 <FormControl isInvalid={!!error.textContainer}>
                   <FormLabel
                     htmlFor="textContainer"
-                    color={"white"}
+                    color={"black"}
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
                   >
                     Comment:
                   </FormLabel>
                   <Textarea
+                    backgroundColor={"white"}
+                    resize={"none"}
                     name="textContainer"
                     type="text"
                     value={form.textContainer}
@@ -239,6 +241,7 @@ const ContactUs = () => {
             </Grid>
             <Button
               colorScheme="teal"
+              shadow="2px 2px 4px rgba(0, 0, 0, 0.6)"
               type="submit"
               mt="1rem"
               _hover={{

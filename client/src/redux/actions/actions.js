@@ -21,7 +21,6 @@ import {
   GET_CLIENT_DATA,
   CLAEN_CLIENT_ID,
   UPDATE_CLIENT_DATA,
-  DELETE_CLIENT,
   CREATE_REVIEW,
   UPDATE_REVIEW,
   DELETE_REVIEW,
@@ -40,15 +39,27 @@ import {
   LOGOUT,
   GET_PRODUCT_REVIEWS,
   GET_ALL_CLIENTS,
+  DELETE_CLIENT,
   // SET_CREATED_ORDER_ID,
   CLEAN_CART,
   GET_MP_LINK,
   GET_REVIEWS,
+  CHANGE_LABEL,
   UPDATE_ADDRESS,
   CLEAN_ADDRESS,
+  GET_PAGE_REVIEWS,
 } from "./Types/Types";
 
-// const URL_SERVIDOR = "http://localhost:3001";
+export const createProduct = (product) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post(`/product`, product);
+      const newOrder = res.data;
+    } catch (error) {
+      alert(error.response.data)
+    }
+  }
+}
 
 /*TODOS LOS PRODUCTOS*/
 export const getAllProducts = () => {
@@ -153,25 +164,6 @@ export const updateAddress = (address) => {
 export const cleanAddress = () => {
   return { type: CLEAN_ADDRESS };
 };
-
-// ACTIONS NECESARIAS:
-
-//* getAllProducts
-//* getProductById
-//* createOrder
-//* getOrders
-//* getOrderDetail
-//! deleteOrder
-//! updateOrder
-//! getClientData
-//! updateClientData
-//! deleteClient
-
-// order = {
-//   precioTotal: 1000,
-//   cliente_id: 1,
-//   productos: [1,3,2],
-// };
 
 /* CREAR ORDEN */
 export const createOrder = (order) => {
@@ -498,6 +490,17 @@ export const getAllReviews = () => {
     }
   };
 };
+export const getAllPageReviews = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/pagereview`);
+      const pageReviews = res.data;
+      return dispatch({ type: GET_PAGE_REVIEWS, payload: pageReviews });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
 
 export const getAllClients = () => {
   return async function (dispatch) {
@@ -550,3 +553,7 @@ export const sendEmail = (form, type) => {
 //     }
 //   };
 // };
+
+export const ChangeLabel = (id) => {
+  return { type: CHANGE_LABEL, payload: id };
+};

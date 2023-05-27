@@ -24,6 +24,7 @@ import {
   StepTitle,
   Stepper,
   useSteps,
+  Text,
 } from "@chakra-ui/react";
 import { Accordion } from "@chakra-ui/accordion";
 import styles from "./MyOrders.module.css";
@@ -68,19 +69,39 @@ const MyOrders = () => {
   return (
     <>
       <Box
-        bgImg={
-          "https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg"
-        }
-        h={"100vh"}
-        bgAttachment={"fixed"}
+        backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
+        bgSize={"cover"}
+        bgPosition={"center"}
+        minH={"100vh"}
+        display={"flex"}
+        justifyContent={"center"}
       >
+        {" "}
         <Tabs
           variant="enclosed-colored"
           w={"80%"}
-          m={"auto"}
-          pt={"40"}
-          shadow={"lg"}
+          mt={"12em"}
+          // shadow={"lg"}
         >
+          <Box marginBottom={"5em"} display={"flex"} justifyContent={"center"}>
+            <Text
+              fontSize={"30px"}
+              color="white"
+              textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+              position="relative"
+            >
+              ORDERS
+              <Text
+                as="span"
+                position="absolute"
+                left={"1%"}
+                bottom={-5} // Ajusta este valor según el espaciado deseado
+                width="100%"
+                height="3px"
+                background="orange"
+              />
+            </Text>
+          </Box>
           <TabList color={"green.800"}>
             <Tab fontWeight={"extrabold"}>Pending</Tab>
             <Tab fontWeight={"extrabold"}>In Progress</Tab>

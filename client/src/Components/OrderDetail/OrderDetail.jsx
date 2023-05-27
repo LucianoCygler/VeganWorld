@@ -27,46 +27,67 @@ const OrderDetail = ({ order, cancelRef }) => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-	return (
-		<AccordionItem
-			bg={"rgba(29, 92, 99, 0.8)"}
-			textColor={"white"}
-			fontWeight={"medium"}
-		>
-			<AccordionButton mb={2} boxShadow={"dark-lg"} borderRadius={'2xl'}>
-				{/* CABEZERA DE LA ORDEN */}
-				<Stack
-					flex
-					direction={"row"}
-					justify={"space-around"}
-					shouldWrapChildren={true}
-					m={"auto"}
-					spacing={"10"}
-				>
-					<Box as="span" flex="1" textAlign="left" fontWeight={"bold"}>
-						Order: {id}
-					</Box>
-					<Box as="span" flex="1" textAlign="left" fontWeight={"bold"}>
-						Date: {fecha}
-					</Box>
-					<Box as="span" flex="1" textAlign="left" fontWeight={"bold"}>
-						Total Amount: $ {importe}
-					</Box>
-				</Stack>
-				{/* BOTON DE CANCELAR */}
-				{estado === "Pendiente" && (
-					<>
-						<Button
-							mx={2}
-							colorScheme="red"
-							onClick={(event) => {
-								event.stopPropagation();
-								onOpen();
-							}}
-						>
-							Cancel Order
-						</Button>
-						{/* 
+  return (
+    <Box display={"flex"}>
+      <AccordionItem
+        textColor={"white"}
+        fontWeight={"medium"}
+        bg={"#1d5c51"}
+        borderRadius={"2xl"}
+        width={"100%"}
+      >
+        <AccordionButton
+          mb={2}
+          boxShadow={"dark-lg"}
+          borderRadius={"2xl"}
+          bg={"#1d5c59"}
+        >
+          {/* CABEZERA DE LA ORDEN */}
+          <Stack
+            flex
+            direction={"row"}
+            justify={"space-around"}
+            shouldWrapChildren={true}
+            m={"auto"}
+            marginLeft={2}
+            spacing={"40"}
+          >
+            <Box
+              as="span"
+              flex="1"
+              textAlign="left"
+              fontWeight={"bold"}
+              marginLeft={"3em"}
+            >
+              Order {id}
+            </Box>
+            <Box as="span" flex="1" textAlign="left" fontWeight={"bold"}>
+              {fecha}
+            </Box>
+            <Box
+              // paddingLeft={"40em"}
+              as="span"
+              flex="1"
+              textAlign="left"
+              fontWeight={"bold"}
+            >
+              $ {importe}
+            </Box>
+          </Stack>
+          {/* BOTON DE CANCELAR */}
+          {estado === "Pendiente" && (
+            <>
+              <Button
+                mx={2}
+                colorScheme="red"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onOpen();
+                }}
+              >
+                Cancel Order
+              </Button>
+              {/* 
 						<Button
 							mx={2}
 							colorScheme="whatsapp"
@@ -77,23 +98,24 @@ const OrderDetail = ({ order, cancelRef }) => {
 						>
 							Pay order
 						</Button> */}
-          </>
-        )}
-        {/* BOTON DE DESPLEGAR */}
-        <AccordionIcon />
-      </AccordionButton>
+            </>
+          )}
+          {/* BOTON DE DESPLEGAR */}
+          <AccordionIcon />
+        </AccordionButton>
 
-      <AccordionPanel pb={4}>
-        <TableOrder items={order.productos} />
-      </AccordionPanel>
+        <AccordionPanel pb={4}>
+          <TableOrder items={order.productos} />
+        </AccordionPanel>
 
-      <AlertPopUp
-        isOpen={isOpen}
-        cancelRef={cancelRef}
-        onClose={onClose}
-        orderId={id}
-      />
-    </AccordionItem>
+        <AlertPopUp
+          isOpen={isOpen}
+          cancelRef={cancelRef}
+          onClose={onClose}
+          orderId={id}
+        />
+      </AccordionItem>
+    </Box>
   );
 };
 

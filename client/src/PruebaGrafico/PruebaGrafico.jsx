@@ -76,7 +76,7 @@ export const dataLine = {
   ]
 };
 
-function PruebaGrafico() {
+export default function PruebaGrafico() {
   
     return (
       <div className={styles.main}>
@@ -87,5 +87,3 @@ function PruebaGrafico() {
       </div>
   );
 }
-
-export default PruebaGrafico;

@@ -21,8 +21,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-  margin-left: 15px;
+  gap: 2em;
+  margin-left: 1px;
 }
 
 .divMid {
@@ -45,10 +45,9 @@
 
 .divRight {
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
   gap: 1rem;
-  margin-right: 55px;
 
   color: #f2f9f1;
 }
@@ -68,11 +67,20 @@
 
 .tittle {
   color: #f2f9f1;
-
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-decoration: none;
 }
 
+@media (max-width: 1400px) {
+  .tittle {
+    font-size: 20px;
+  }
+}
+@media (max-width: 1090px) {
+  .tittle {
+    font-size: 14px;
+  }
+}
 /* Estilos del enlace */
 .link {
   text-decoration: none;

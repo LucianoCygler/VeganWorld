@@ -17,13 +17,24 @@ import {
 } from "../../redux/actions/actions";
 import Pop_up from "../../Utils/Pop_up/Pop_up";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import LoginForm from "../Login/LoginForm";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
-import { Box, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Card,
+  CardHeader,
+  CardBody,
+  Image,
+  Flex,
+  Button,
+  Grid,
+  Heading,
+} from "@chakra-ui/react";
 import AddressPopUp from "./AdressPopUp";
 import { DotSpinner, DotWave } from "@uiball/loaders";
-
+import "./Cart.css";
 function Cart() {
   const navigate = useNavigate();
   const { user, cart } = useSelector((state) => state);
@@ -171,18 +182,13 @@ function Cart() {
       Pop_up("error", "Failed to Create Order");
     }
   }, []);
-
-  return (
-    <div className={styles.mainContainer}>
-      {isLoading ? (
-        <>
-          {" "}
-          <Box
+  {
+    /* <Box
             display="flex"
             justifyContent="center"
             alignItems="center"
             alignContent={"center"}
-            height="100vh" // Ajusta la altura de la caja para que ocupe toda la altura de la ventana
+            height="100vh" 
             width={"100%"}
           >
             <Box
@@ -190,173 +196,267 @@ function Cart() {
               display="flex"
               justifyContent="center"
               alignItems="center"
-              width="200px" // Ajusta el ancho del contenedor del DotSpinner
-              height="200px" // Ajusta el alto del contenedor del DotSpinner
-              background="rgba(0, 0, 0, 0.5)" // Ajusta el color de fondo y la opacidad del contenedor
-              borderRadius="8px" // Ajusta el radio de borde del contenedor
+              width="200px" 
+              height="200px" 
+              background="rgba(0, 0, 0, 0.5)" 
+              borderRadius="8px" 
             >
               <DotWave size={80} speed={0.9} color="white" />{" "}
-              {/* Ajusta el tamaño del DotSpinner */}
             </Box>
-          </Box>
-        </>
+          </Box> */
+  }
+  return (
+    <Box
+      backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
+      bgSize={"cover"}
+      bgRepeat={"no-repeat"}
+      minH={"100vh"}
+      display={"flex"}
+      justifyContent={"center"}
+    >
+      {isLoading ? (
+        <Box paddingTop={"30em"}>
+          <div class="loading">
+            <div class="d1"></div>
+            <div class="d2"></div>
+          </div>{" "}
+        </Box>
       ) : (
         <>
+          {/* <Box display={"flex"} justifyContent={"left"}>
+            <Text
+              fontSize={"30px"}
+              color="white"
+              textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+              position="relative"
+            >
+              CART
+              <Text
+                as="span"
+                position="absolute"
+                left={"1%"}
+                bottom={-5} // Ajusta este valor según el espaciado deseado
+                width="100%"
+                height="3px"
+                background="orange"
+              />
+            </Text>
+          </Box> */}
           {cart !== null && updateCart.length > 0 ? (
-            <>
+            <Box w="100%" paddingTop={"10em"}>
               {updateCart.map((product, index) => {
                 return (
-                  <div
-                    className={styles.productsContainer}
-                    key={index}
-                    style={{ gridRow: `${index + 1}` }}
-                  >
-                    <div className={styles.flexContainer}>
-                      <h3 className={styles.subTittle}>
-                        subTotal: $ {product.importe}
-                      </h3>
-                    </div>
-
-                    <div className={styles.imagen}>
-                      <img
-                        src={product.imagen}
-                        alt=""
-                        style={{ width: "150px" }}
-                      />
-                    </div>
-
-                    <div className={styles.nombre}>
-                      <p className={styles.subTittle}>{product.nombre}</p>
-                    </div>
-
-                    <div className={styles.precio}>
-                      <p className={styles.subTittle}>
-                        Price: $ {product.precio}
-                      </p>
-                    </div>
-
-                    <div className={styles.qty}>
-                      <p>
-                        Qty: <span>{product.cantidad}</span>
-                      </p>
-                      <div className={styles.btnsQty}>
-                        <button
-                          name="decrement"
-                          onClick={() => {
-                            const updatedCart = [...updateCart];
-                            if (updatedCart[index].cantidad > 1) {
-                              updatedCart[index].cantidad -= 1;
-                              updatedCart[index].importe =
-                                updatedCart[index].precio *
-                                updatedCart[index].cantidad;
-                            }
-                            setUpdateCart(updatedCart);
-                          }}
-                        >
-                          -
-                        </button>
-                        <span>{` `}</span>
-                        <button
-                          name="increment"
-                          onClick={() => {
-                            const updatedCart = [...updateCart];
-                            updatedCart[index].cantidad += 1;
-                            updatedCart[index].importe =
-                              updatedCart[index].precio *
-                              updatedCart[index].cantidad;
-                            setUpdateCart(updatedCart);
-                          }}
-                        >
-                          +
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className={styles.delete}>
-                      <button
-                        className={styles.btn}
-                        name="delete"
-                        value={product.id}
-                        onClick={handleClick}
+                  <Box>
+                    <Box display={"flex"} justifyContent={"center"}>
+                      <Card
+                        w={"90%"}
+                        borderRadius={0}
+                        borderBottom={"1px"}
+                        borderColor={"grey"}
                       >
-                        <svg
-                          viewBox="0 0 15 17.5"
-                          height="17.5"
-                          width="15"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className={styles.icon}
-                        >
-                          <path
-                            transform="translate(-2.5 -1.25)"
-                            d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z"
-                            id="Fill"
-                          ></path>
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
+                        <CardBody>
+                          <Grid
+                            templateColumns={"repeat(6,1fr)"}
+                            alignItems={"center"}
+                            justifyContent={"space-around"}
+                          >
+                            {" "}
+                            <Box display={"flex"} justifyContent={"center"}>
+                              <NavLink
+                                to={`/Detail/${product.id}`}
+                                style={{ textDecoration: "none" }}
+                              >
+                                {" "}
+                                <Image
+                                  h={"150px"}
+                                  w={"150px"}
+                                  borderRadius={"5px"}
+                                  src={product.imagen}
+                                />
+                              </NavLink>
+                            </Box>
+                            <Box display={"flex"} justifyContent={"center"}>
+                              <NavLink
+                                to={`/Detail/${product.id}`}
+                                style={{ textDecoration: "none" }}
+                              >
+                                <Text
+                                  fontWeight={"bold"}
+                                  fontSize={"2xl"}
+                                  marginTop={"1em"}
+                                >
+                                  {product.nombre}
+                                </Text>{" "}
+                              </NavLink>
+                            </Box>
+                            <Box>
+                              <Text
+                                marginRight={"1em"}
+                                display={"inline"}
+                                fontSize={"20px"}
+                              >
+                                Quantity:
+                              </Text>
+                              <Text
+                                display={"inline"}
+                                fontWeight={"bold"}
+                                fontSize={"25px"}
+                              >
+                                {product.cantidad}
+                              </Text>
+                            </Box>
+                            <Box>
+                              {" "}
+                              <Button
+                                _hover={{ background: "#822727" }}
+                                bg="#F56565"
+                                color={"white"}
+                                name="decrement"
+                                onClick={() => {
+                                  const updatedCart = [...updateCart];
+                                  if (updatedCart[index].cantidad > 1) {
+                                    updatedCart[index].cantidad -= 1;
+                                    updatedCart[index].importe =
+                                      updatedCart[index].precio *
+                                      updatedCart[index].cantidad;
+                                  }
+                                  setUpdateCart(updatedCart);
+                                }}
+                              >
+                                -
+                              </Button>
+                              <span>{` `}</span>{" "}
+                              <Button
+                                colorScheme="teal"
+                                name="increment"
+                                onClick={() => {
+                                  const updatedCart = [...updateCart];
+                                  updatedCart[index].cantidad += 1;
+                                  updatedCart[index].importe =
+                                    updatedCart[index].precio *
+                                    updatedCart[index].cantidad;
+                                  setUpdateCart(updatedCart);
+                                }}
+                              >
+                                +
+                              </Button>
+                            </Box>
+                            <Box>
+                              <Text
+                                display="inline"
+                                fontSize={"20px"}
+                                marginRight={"1em"}
+                              >
+                                subTotal:
+                              </Text>
+                              $
+                              <Text
+                                display="inline"
+                                fontWeight={"bold"}
+                                fontSize={"25px"}
+                              >
+                                {product.importe}
+                              </Text>{" "}
+                            </Box>
+                            <Box display={"flex"} justifyContent={"center"}>
+                              <Button
+                                class="buttonDelete"
+                                value={product.id}
+                                onClick={handleClick}
+                                name="delete"
+                              >
+                                <svg viewBox="0 0 448 512" class="svgIcona">
+                                  <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                                </svg>
+                              </Button>
+                            </Box>
+                          </Grid>
+                        </CardBody>
+                      </Card>
+                    </Box>
+                  </Box>
                 );
               })}
-              <div className={styles.orderSumary}>
-                <div className={styles.subtotal}>
-                  <h3 className={styles.mount}>
-                    Total . . . . . . . . . . . . . . . . . . . $ {subTotal}
-                  </h3>
-                </div>
-                <div className={styles.titleOrder}>
-                  <h2>Order Summary</h2>
-                </div>
-                <div className={styles.btnOrder}>
-                  <>
-                    <p>
-                      {address == "" ? (
+              <Box display={"flex"} justifyContent={"center"}>
+                <Card w={"90%"} borderRadius={"0px"}>
+                  <CardBody>
+                    <Grid templateColumns={"repeat(2,1fr)"}>
+                      {" "}
+                      <Box>
                         <>
-                          {" "}
-                          <InfoOutlineIcon color={"red"} marginRight={1.5} />
-                          <Text display={"inline"} color={"red"}>
-                            Complete your addres first
-                          </Text>
+                          <Box marginBottom={"1em"}>
+                            {address == "" ? (
+                              <>
+                                {" "}
+                                <InfoOutlineIcon
+                                  color={"red"}
+                                  marginRight={1.5}
+                                />
+                                <Text display={"inline"} color={"red"}>
+                                  Complete your addres first
+                                </Text>
+                              </>
+                            ) : (
+                              <>
+                                {" "}
+                                <InfoOutlineIcon
+                                  color={"green"}
+                                  marginRight={1.5}
+                                />
+                                <Text display={"inline"} color={"green"}>
+                                  Once the order is created, you will be
+                                  reditected to the payment window.
+                                </Text>
+                              </>
+                            )}
+                          </Box>
+                          {address !== "" ? (
+                            <>
+                              {!isOrderGenerated ? (
+                                <Button
+                                  color={"teal"}
+                                  onClick={handleClick}
+                                  name="generateOrder"
+                                >
+                                  Generate order
+                                </Button>
+                              ) : (
+                                <Button
+                                  onClick={handleClick}
+                                  name="pay"
+                                  color={"teal"}
+                                >
+                                  Redirecting...
+                                </Button>
+                              )}
+                            </>
+                          ) : (
+                            <AddressPopUp />
+                          )}
                         </>
-                      ) : (
-                        <>
+                      </Box>
+                      <Box
+                        display={"flex"}
+                        justifyContent={"right"}
+                        marginRight={"3em"}
+                      >
+                        <Box>
                           {" "}
-                          <InfoOutlineIcon color={"green"} marginRight={1.5} />
-                          <Text display={"inline"} color={"green"}>
-                            Once the order is created, you will be reditected to
-                            the payment window.
+                          <h2>Order Summary</h2>
+                          <Text fontSize={"20px"}>
+                            {" "}
+                            Total . . . . . . . . . . . . . . . . . . . ${" "}
+                            <Text display="inline" fontWeight={"bold"}>
+                              {subTotal}
+                            </Text>
                           </Text>
-                        </>
-                      )}
-                    </p>
-                    {address !== "" ? (
-                      <>
-                        {!isOrderGenerated ? (
-                          <button
-                            className={styles.btnGenerate}
-                            onClick={handleClick}
-                            name="generateOrder"
-                          >
-                            Generate order
-                          </button>
-                        ) : (
-                          <button
-                            className={styles.btnGenerate}
-                            onClick={handleClick}
-                            name="pay"
-                          >
-                            Redirecting...
-                          </button>
-                        )}
-                      </>
-                    ) : (
-                      <AddressPopUp />
-                    )}
-                  </>
-                </div>
-
-                <div className={styles.orderTotal}></div>
-              </div>
-            </>
+                        </Box>
+                      </Box>
+                    </Grid>
+                  </CardBody>
+                </Card>{" "}
+              </Box>{" "}
+            </Box>
           ) : (
             <h2 className={styles.subTittle}>
               There is nothing in your cart...
@@ -364,7 +464,7 @@ function Cart() {
           )}
         </>
       )}
-    </div>
+    </Box>
   );
 }
 

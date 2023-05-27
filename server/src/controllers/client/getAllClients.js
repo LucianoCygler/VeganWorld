@@ -1,7 +1,7 @@
 const { Client } = require("../../db");
 
 async function getAllClients() {
-  const allClients = await Client.findAll();
+  const allClients = await Client.findAll({ paranoid: false });
   return allClients;
 }
 

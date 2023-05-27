@@ -8,15 +8,20 @@ const createProduct = async (
   stock,
   imagen
 ) => {
-  const product = await Product.create({
-    nombre,
-    tipo,
-    descripcion,
-    precio,
-    stock,
-    imagen,
-  });
-  return product;
+  if(nombre && tipo && descripcion && precio && stock&& imagen){
+
+    const product = await Product.create({
+      nombre,
+      tipo,
+      descripcion,
+      precio,
+      stock,
+      imagen,
+    });
+    return product;
+  } else {
+    throw Error ('Faltan datos por ingresar')
+  }
 };
 
 module.exports = createProduct;

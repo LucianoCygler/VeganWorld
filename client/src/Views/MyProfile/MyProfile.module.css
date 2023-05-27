@@ -3,22 +3,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+
   min-height: 100vh;
   width: 100%;
   /*   
   padding-top: 0.1em; */
-  background-image: url("https://wallpapercrafter.com/desktop/223806-vegan-vegan-cuisine-veggie-and-vegetarian-hd.jpg");
+
+  background-image: url("https://wallpaperaccess.com/full/1812875.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   text-transform: capitalize;
   color: #eef2e6;
+  padding-bottom: 5em;
 }
 
 .edit {
-  margin-top: 5em;
-  padding-top: 2em;
+  margin-top: 10em;
+  padding-top: 6em;
   flex-wrap: wrap;
   display: flex;
   align-items: center;
@@ -41,11 +43,12 @@
 .h3 {
   display: flex;
   justify-content: flex-start;
-  text-shadow: 0 0 5px #000000;
 }
 
 .c {
-  margin-top: 150px;
+  margin-top: 5em;
+  padding-top: 5em;
+
   border-radius: 0.75em;
   box-shadow: 9px 13px 13px 3px #0b0d0ca3;
   width: 600px;
@@ -69,9 +72,10 @@
   margin: 40px 0px 0px 255.5px;
   color: #eef2e6;
   border: transparent;
-  background-color: #1c6758;
+  border-radius: 15px;
+  background-color: #2f2e2e;
   border-radius: 8x;
-  box-shadow: 0 0 15px 5px #1c6758;
+  box-shadow: 0 0 15px 5px #000000;
   transition: transform 0.4s ease-in-out;
 }
 
@@ -90,7 +94,6 @@
   border-radius: 8px;
   text-align: center;
   margin-bottom: 3em;
-  text-shadow: 0 0 5px #000000;
   transition: transform 0.3s ease-in-out;
 }
 

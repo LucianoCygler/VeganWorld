@@ -126,52 +126,42 @@ function Detail() {
     navigate(-1);
   };
   return (
-    <Box minWidth="100%" minHeight="100vh" bg="white" paddingTop="10em">
+    <Box
+      backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
+      bgSize={"cover"}
+      bgRepeat={"no-repeat"}
+      minH={"100vh"}
+      paddingTop={"8em"}
+    >
       {product?.nombre ? (
         <>
-          <Box bg="white">
+          <Box>
             <Grid
-              bg="white"
               margin="auto"
-              height="80vh"
               position="relative"
-              templateRows="repeat(2, 0.1fr)"
+              templateColumns="repeat(2, 1fr)"
               justify="center"
               align="center"
-              boxShadow="0px 0px 10px rgba(0, 0, 0, 0.2)"
               maxWidth="80%"
             >
-              <Box marginTop="2em">
-                {" "}
-                <h1>{product.nombre}</h1>
-              </Box>
-              <Flex
-                direction="row"
-                margin="auto"
-                bg="white"
-                justify="center"
-                align="center"
-                paddingBottom="4em"
-                maxWidth="fit-content"
-
-                // Configuración de la sombra
-              >
+              <Box>
                 <Button
                   colorScheme="teal"
                   size="xs"
                   onClick={handleGoBack}
                   position="absolute"
-                  left="10px"
-                  top="10px"
+                  left="370px"
+                  top="20px"
                   zIndex="1"
+                  h={"50px"}
+                  w={"50px"}
                 >
-                  <FontAwesomeIcon icon={faArrowLeftLong} />
-                </Button>
+                  <FontAwesomeIcon icon={faArrowLeftLong} />{" "}
+                </Button>{" "}
                 <Box
-                  minWidth="500px"
-                  minheigth="500px"
-                  bg="white"
+                  width="60%"
                   margin="3em"
+                  marginTop={"9em"}
                   display="inline-flex"
                   alignItems="center"
                   justifyContent="center"
@@ -179,54 +169,74 @@ function Detail() {
                   <Img
                     src={product.imagen}
                     alt={product.nombre}
-                    borderRadius="full"
+                    // borderRadius="full"
                     shadow="0px 4px 10px rgba(0, 0, 0, 0.2)"
                     width="100%"
                   />
                 </Box>
-                <Box
-                  marginTop="5em"
-                  marginLeft="4em"
-                  bg="white"
-                  marginRight="2em"
+              </Box>
+              <Box
+                marginTop="5em"
+                marginLeft="4em"
+                marginRight="2em"
+                boxShadow="0px 0px 10px rgba(0, 0, 0, 0.2)"
+                padding={"3em"}
+                paddingTop={0}
+                height={"fit-content"}
+              >
+                {" "}
+                <Grid gridTemplateRows="3" gap="10" paddingTop="8em">
+                  <Heading
+                    fontSize="4xl"
+                    color="white"
+                    textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                  >
+                    {product.nombre}
+                  </Heading>
+                  <hr></hr>
+                  <Text
+                    fontSize="1xl"
+                    color="white"
+                    textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                  >
+                    {product.descripcion}Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Donec vel egestas dolor, nec dignissim
+                    metus. Donec augue elit, rhoncus ac sodales id, porttitor
+                    vitae est. Donec laoreet rutrum libero sed pharetra. Donec
+                    vel egestas dolor, nec dignissim metus. Donec augue elit,
+                    rhoncus ac sodales id, porttitor vitae est. Donec laoreet
+                    rutrum libero sed pharetra. Duis a arcu convallis, gravida
+                    purus eget, mollis diam.
+                  </Text>
+                  <hr></hr>
+                  <Text
+                    fontSize="1xl"
+                    color="white"
+                    textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                  >
+                    ${product.precio}
+                  </Text>
+                  <Text
+                    color="white"
+                    textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                  >
+                    Cantidad: {quantity}
+                  </Text>
+                </Grid>
+                <Button onClick={handleDecrement} marginRight="1em">
+                  -
+                </Button>
+                <Button onClick={handleIncrement} marginRight="1em">
+                  +
+                </Button>
+                <Button
+                  isLoading={loading}
+                  colorScheme="teal"
+                  onClick={handleClick}
                 >
-                  {" "}
-                  <Grid
-                    gridTemplateRows="3"
-                    gap="20"
-                    paddingTop="8em"
-                    minWidth="500px"
-                    minheigth="500px"
-                  >
-                    <p>
-                      {product.descripcion}Lorem ipsum dolor sit amet,
-                      consectetur adipiscing elit. Donec vel egestas dolor, nec
-                      dignissim metus. Donec augue elit, rhoncus ac sodales id,
-                      porttitor vitae est. Donec laoreet rutrum libero sed
-                      pharetra. Donec vel egestas dolor, nec dignissim metus.
-                      Donec augue elit, rhoncus ac sodales id, porttitor vitae
-                      est. Donec laoreet rutrum libero sed pharetra. Duis a arcu
-                      convallis, gravida purus eget, mollis diam.
-                    </p>
-
-                    <h1>${product.precio}</h1>
-                    <p>Cantidad: {quantity}</p>
-                  </Grid>
-                  <Button onClick={handleDecrement} marginRight="1em">
-                    -
-                  </Button>
-                  <Button onClick={handleIncrement} marginRight="1em">
-                    +
-                  </Button>
-                  <Button
-                    isLoading={loading}
-                    colorScheme="teal"
-                    onClick={handleClick}
-                  >
-                    Add To Cart
-                  </Button>
-                </Box>
-              </Flex>
+                  Add To Cart
+                </Button>
+              </Box>
             </Grid>
           </Box>
         </>
@@ -238,13 +248,20 @@ function Detail() {
           color="rgba(29, 103, 88, 0.6)"
         />
       )}
-      <Box
-        w="80%"
-        bg="white  "
-        paddingTop="2em"
-        margin="auto"
-        shadow="0px 4px 10px rgba(0, 0, 0, 0.2)"
-      >
+
+      <Box paddingTop={"4em"}>
+        <hr></hr>
+        <Box display={"flex"} justifyContent={"center"} paddingTop={"2em"}>
+          {" "}
+          <Heading
+            fontSize="3xl"
+            color="white"
+            textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+          >
+            Product Reviews
+          </Heading>
+        </Box>
+
         {productReviews
           ? productReviews.slice(0, 3).map((review) => {
               return (
@@ -253,11 +270,7 @@ function Detail() {
                     <div class="cardReview">
                       <div class="header">
                         <div>
-                          <Avatar
-                            name="Ryan Florence"
-                            src="https://bit.ly/ryan-florence"
-                            size="xl"
-                          />
+                          <Avatar src={review.cliente_imagen} size="xl" />
                         </div>
                         <div>
                           <div class="stars">

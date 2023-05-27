@@ -65,14 +65,24 @@ const CardFav = ({ product, favorites }) => {
   }, []);
 
   return (
-    <Card maxW="2xs">
-      <CardHeader>
-        <Button
-          onClick={() => dispatch(deleteFavoriteAction(product?.Product?.id))}
-        >
-          <FontAwesomeIcon icon={faHeartCrack} style={{ color: "#c11010" }} />
-        </Button>
-      </CardHeader>
+    <Card
+      maxW="2xs"
+      bg={"#d8d8d8"}
+      _hover={{
+        transform: "scale(1.05)",
+        transition: "transform 0.3s ease-in-out",
+      }}
+    >
+      <Button
+        marginLeft={"12em"}
+        marginTop={1}
+        width={"19%"}
+        borderRadius={"50%"}
+        bg="none"
+        onClick={() => dispatch(deleteFavoriteAction(product?.Product?.id))}
+      >
+        <FontAwesomeIcon icon={faHeartCrack} style={{ color: "#c11010" }} />
+      </Button>
       <NavLink
         to={`/Detail/${product?.Product?.id}`}
         style={{ textDecoration: "none" }}
@@ -85,9 +95,8 @@ const CardFav = ({ product, favorites }) => {
           />
           <Stack mt="6" spacing="3">
             <Heading size="md">{product?.Product?.nombre}</Heading>
-            <Text>{product?.Product?.descripcion}</Text>
             <Text color="blue.600" fontSize="2xl">
-              $ {product?.Product?.precio}
+              $ {parseInt(product?.Product?.precio)}
             </Text>
           </Stack>
         </CardBody>

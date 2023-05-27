@@ -1,4 +1,4 @@
-
+/* 
   .main {
     height: 100vh;
     width: 100vw;
@@ -11,7 +11,7 @@
   
   .main .container {
     /* height: 560px; */
-    margin-top: 550px;
+    /* margin-top: 550px;
     width: 900px;
     background-color: #fff;
     display: flex;
@@ -19,28 +19,28 @@
     padding: 20px 20px 20px 20px;
     align-self: center;
     position: relative;
-  }
+  } */
   
-  @media (min-width: 1000px) {
+  /* @media (min-width: 1000px) {
     .main .container {
       box-shadow: 2px 2px 20px;
     }
-  }
+  } */
   
-  .main .container #title {
+  /* .main .container #title {
     text-align: center;
     font-size: 2.5em;
-  }
+  } */
   
-  .main .container .visHolder {
+  /* .main .container .visHolder {
     position: absolute;
     top: 6em;
     width: 800px;
     height: 400px;
     margin: 0 auto;
-  }
+  } */
   
-  .tooltip {
+  /* .tooltip {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,27 +54,27 @@
     box-shadow: 1px 1px 10px;
     border-radius: 2px;
     pointer-events: none;
-    /* opacity: 0; */
-  }
-  
+    opacity: 0; 
+  } */
+/*   
   .overlay {
     position: absolute;
     background: #ff0000;
     pointer-events: none;
-  }
+  } */
   
-  #y-axis path {
+  /* #y-axis path {
     stroke: black;
     stroke-width: 1;
     fill: none;
-  }
+  } */
   
-  #x-axis path {
+  /* #x-axis path {
     stroke: black;
     stroke-width: 1;
     fill: none;
-  }
-  
+  } */
+/*   
   .info {
     font-size: 1.1em;
-  }
+  }  */
