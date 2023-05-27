@@ -48,6 +48,7 @@ import {
   UPDATE_ADDRESS,
   CLEAN_ADDRESS,
   GET_PAGE_REVIEWS,
+  GET_ORDERS,
 } from "./Types/Types";
 
 export const createProduct = (product) => {
@@ -56,10 +57,10 @@ export const createProduct = (product) => {
       const res = await axios.post(`/product`, product);
       const newOrder = res.data;
     } catch (error) {
-      alert(error.response.data)
+      alert(error.response.data);
     }
-  }
-}
+  };
+};
 
 /*TODOS LOS PRODUCTOS*/
 export const getAllProducts = () => {
@@ -191,7 +192,18 @@ export const getClientOrders = (id_client) => {
     }
   };
 };
-
+export const getOrders = () => {
+  //El id del cliente
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/order`);
+      const allOrders = res.data;
+      return dispatch({ type: GET_ORDERS, payload: allOrders });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
 /* OBTENER DETALLES DE LAS ORDENES POR ID */
 export const getOrderDetail = (id_order) => {
   return async function (dispatch) {
