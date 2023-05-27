@@ -6,6 +6,9 @@ import TableClient from "./TableClient";
 import FormPropsTextFields from "./FormProduct";
 import { useSelector } from "react-redux";
 import ReviewsDashboard from "./Reviews";
+import GraficoGanancias from "../../Graficos/GraficoGanancias";
+import GraficoReviews from "../../Graficos/GraficoReviews";
+import GraficoUsuarios from "../../Graficos/GraficoUsuarios";
 
 export default function Content() {
 	const { Graph, Clients, Products, Reviews, Orders } = useSelector(
@@ -31,6 +34,7 @@ export default function Content() {
 			{Clients && <TableClient />}
 			{Products && <FormPropsTextFields />}
 			{Reviews && <ReviewsDashboard />}
+			{Graph && <GraficoGanancias />}
 		</Paper>
 	);
 }

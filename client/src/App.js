@@ -43,10 +43,7 @@ function App() {
         <Route path="/ResetPass" element={<Resetpass />} />
         <Route path="/About" element={<About />} />
         <Route path="/OurProducts" element={<OurProducts />} />
-        <Route
-          path="/MyOrders"
-          element={<ProtectedRoute element={MyOrders} />}
-        />
+        <Route path="/MyOrders" element={<ProtectedRoute element={MyOrders} />} />
 
         <Route
           path="/MyProfile"
