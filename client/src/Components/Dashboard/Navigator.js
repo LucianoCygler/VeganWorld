@@ -17,6 +17,8 @@ import { useDispatch } from "react-redux";
 import { ChangeLabel } from "../../redux/actions/actions";
 
 export default function Navigator(props) {
+	console.log(props);
+
 	const categories = [
 		{
 			id: "Graph",
@@ -54,35 +56,37 @@ export default function Navigator(props) {
 	};
 
 	return (
-		<Drawer variant="permanent" {...other}>
-			<List disablePadding>
-				<ListItem
-					sx={{ ...item, ...itemCategory, fontSize: 22, color: "#fff" }}
-				>
-					VeganWorld
-				</ListItem>
-				<ListItem sx={{ ...item, ...itemCategory }}>
-					<ListItemIcon>
-						<HomeIcon />
-					</ListItemIcon>
-					<ListItemText>Project Overview</ListItemText>
-				</ListItem>
-				{categories.map(({ id, icon, active }) => (
-					<Box key={id} sx={{ bgcolor: "#101F33" }}>
-						<ListItem disablePadding key={id}>
-							<ListItemButton
-								selected={labels === id ? true : false}
-								sx={item}
-								onClick={() => handleLabel(id)}
-							>
-								<ListItemIcon>{icon}</ListItemIcon>
-								<ListItemText>{id}</ListItemText>
-							</ListItemButton>
-						</ListItem>
-						<Divider sx={{ mt: 2 }} />
-					</Box>
-				))}
-			</List>
-		</Drawer>
+		<>
+			<Drawer {...other}>
+				<List disablePadding>
+					<ListItem
+						sx={{ ...item, ...itemCategory, fontSize: 22, color: "#fff" }}
+					>
+						VeganWorld
+					</ListItem>
+					<ListItem sx={{ ...item, ...itemCategory }}>
+						<ListItemIcon>
+							<HomeIcon />
+						</ListItemIcon>
+						<ListItemText>Project Overview</ListItemText>
+					</ListItem>
+					{categories.map(({ id, icon, active }) => (
+						<Box key={id} sx={{ bgcolor: "#101F33" }}>
+							<ListItem disablePadding key={id}>
+								<ListItemButton
+									selected={labels === id ? true : false}
+									sx={item}
+									onClick={() => handleLabel(id)}
+								>
+									<ListItemIcon>{icon}</ListItemIcon>
+									<ListItemText>{id}</ListItemText>
+								</ListItemButton>
+							</ListItem>
+							<Divider sx={{ mt: 2 }} />
+						</Box>
+					))}
+				</List>
+			</Drawer>
+		</>
 	);
 }
