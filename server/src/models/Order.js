@@ -32,11 +32,17 @@ module.exports = (sequelize) => {
         type: DataTypes.DATEONLY,
         allowNull: false,
       },
+      deleted: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
     },
     {
       sequelize,
       modelName: "Order",
       tableName: "Orders", // Agrega esta propiedad
+      paranoid: true,
     }
   );
 };
