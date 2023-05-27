@@ -15,7 +15,15 @@ import CustomCarousel from "../../Components/Carousel/CustomCarousel";
 import Carrusel from "../../Components/Carousel/Carrusel";
 import "./HomePage.css";
 import { SocialIcon } from "react-social-icons";
-import { Box, Flex, Grid, GridItem, Img } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertIcon,
+  Box,
+  Flex,
+  Grid,
+  GridItem,
+  Img,
+} from "@chakra-ui/react";
 import { PhoneIcon, AddIcon, WarningIcon } from "@chakra-ui/icons";
 import { Divider } from "@chakra-ui/react";
 import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
@@ -97,8 +105,7 @@ function HomePage() {
   const user = useSelector((state) => state.user);
 
   const location = useLocation();
-  const showLogin = location.state && location.state.showLogin;
-
+  const showLogin = (location.state && location.state.showLogin) || false;
   const email = localStorage.getItem("email");
   useEffect(() => {
     dispatch(getUserDataByEmail(email));
@@ -124,7 +131,16 @@ function HomePage() {
       bgSize={"cover"}
       bgRepeat={"no-repeat"}
     >
-      <ModalLogin show={showLogin}></ModalLogin>
+      {showLogin && (
+        <Alert status="warning" paddingTop={"2em"}>
+          <AlertIcon marginBottom={"1em"} />
+          <Text>
+            You cannot access this functionality because you are not logged in.
+            You can view our products in the "Our Products" tab.
+          </Text>
+        </Alert>
+      )}
+      {/* <ModalLogin show={showLogin}></ModalLogin> */}
       <Box>
         {" "}
         <MySlider />

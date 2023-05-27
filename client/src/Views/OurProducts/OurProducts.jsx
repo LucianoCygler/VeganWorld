@@ -88,7 +88,7 @@ function OurProducts() {
             position="absolute"
             left={"1%"}
             bottom={-5} // Ajusta este valor según el espaciado deseado
-            width="30%"
+            width="100%"
             height="3px"
             background="orange"
           />
