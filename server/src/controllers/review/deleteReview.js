@@ -1,11 +1,12 @@
 const { Review } = require("../../db");
 
-const deleteReview = async (id) => {
+const deleteReview = async (id, data) => {
   const review = await Review.findOne({ where: { id } });
   if (!review) {
     throw new Error(`No se encontró ningun review con el id ${id}`);
   }
-  await review.destroy();
+  await review.update(data);
+  await review.destroy({ force: false });
   return `El Review con el id ${id} fue eliminado correctamente `;
 };
 
