@@ -93,25 +93,25 @@ const chunkArray = (arr, chunkSize) => {
 
 const CustomCarousel = () => {
   const [isSmallerThanBase] = useMediaQuery("(max-width: 35em)");
-  const [isSmallerThanSd] = useMediaQuery("(max-width: 35em)");
+  const [isSmallerThanSd] = useMediaQuery("(max-width: 20em)");
   const [isSmallerThanMd] = useMediaQuery("(max-width: 46em)");
-  const [isSmallerThanLg] = useMediaQuery("(max-width: 55em)");
+  const [isSmallerThanLg] = useMediaQuery("(max-width: 65em)");
   const [isSmallerThanXl] = useMediaQuery("(max-width: 80em)");
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  let productsPerPage = 6;
+  let productsPerPage = 5;
 
-  if (isSmallerThanBase) {
-    productsPerPage = 1;
-  } else if (isSmallerThanSd) {
-    productsPerPage = 1;
-  } else if (isSmallerThanMd) {
-    productsPerPage = 4;
-  } else if (isSmallerThanLg) {
-    productsPerPage = 5;
-  } else if (isSmallerThanXl) {
-    productsPerPage = 6;
-  }
+  // if (isSmallerThanBase) {
+  //   productsPerPage = 1;
+  // } else if (isSmallerThanSd) {
+  //   productsPerPage = 1;
+  // } else if (isSmallerThanMd) {
+  //   productsPerPage = 4;
+  // } else if (isSmallerThanLg) {
+  //   productsPerPage = 5;
+  // } else if (isSmallerThanXl) {
+  //   productsPerPage = 6;
+  // }
 
   useEffect(() => {
     dispatch(getAllProducts());
@@ -146,6 +146,7 @@ const CustomCarousel = () => {
               wrap="wrap"
               display={"flex"}
               justifyContent={"center"}
+              gap={4}
             >
               {group.map((product) => (
                 <Box

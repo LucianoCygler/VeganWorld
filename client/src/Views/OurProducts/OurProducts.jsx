@@ -28,6 +28,9 @@ function OurProducts() {
     dispatch(getAllProducts());
     // dispatch(getClientAllFavorites(user.id));
   }, []);
+  useEffect(() => {
+    dispatch(orderAndFilter(filterByType, sort));
+  }, [filterByType, sort]);
 
   useEffect(() => {
     dispatch(getUserDataByEmail(email));
@@ -40,10 +43,6 @@ function OurProducts() {
 
     return () => clearTimeout(timer); // Limpia el temporizador al desmontar el componente
   }, []);
-
-  useEffect(() => {
-    dispatch(orderAndFilter(filterByType, sort));
-  }, [filterByType, sort]);
   const [currentPage, setCurrentPage] = useState(0);
 
   const itemsPerPage = 12;
