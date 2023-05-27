@@ -79,7 +79,7 @@ function ToolbarGrid() {
 
 	function CustomToolbar() {
 		return (
-			<GridToolbarContainer>
+			<GridToolbarContainer sx={{ justifyContent:"center"}}>
 				<GridToolbarColumnsButton />
 				<GridToolbarFilterButton />
 				<GridToolbarDensitySelector />
@@ -95,6 +95,7 @@ function ToolbarGrid() {
 	return (
 		<div style={{ height: 500, width: "100%" }}>
 			<DataGrid
+				sx={{ justifySelf:"center"}}
 				rows={rows}
 				columns={columns}
 				components={{

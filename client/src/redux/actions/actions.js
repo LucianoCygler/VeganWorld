@@ -49,6 +49,17 @@ import {
   CLEAN_ADDRESS,
 } from "./Types/Types";
 
+export const createProduct = (product) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post(`/product`, product);
+      const newOrder = res.data;
+    } catch (error) {
+      alert(error.response.data)
+    }
+  }
+}
+
 /*TODOS LOS PRODUCTOS*/
 export const getAllProducts = () => {
   return async function (dispatch) {
