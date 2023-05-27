@@ -199,9 +199,6 @@ export default function Dashboard() {
 						<Copyright />
 					</Box>
 				</Box>
-				<Stack sx={{ display: "block" }}>
-					<Button onClick={handleDrawerToggle}>Drawer</Button>
-				</Stack>
 			</Box>
 		</ThemeProvider>
 	);
