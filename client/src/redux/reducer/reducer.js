@@ -35,6 +35,7 @@ import {
   CHANGE_LABEL,
   UPDATE_ADDRESS,
   CLEAN_ADDRESS,
+  GET_ORDERS,
 } from "../actions/Types/Types";
 const carritoa = JSON.parse(localStorage.getItem("carrito")) || [];
 const productsa = JSON.parse(localStorage.getItem("products")) || [];
@@ -48,6 +49,7 @@ const initialState = {
   customerComments: [],
   currentPage: 0,
   itemsPerPage: 1,
+  allOrders: [],
   orders: [],
   order: {},
   success: {},
@@ -180,6 +182,11 @@ export default function rootReducer(state = initialState, action) {
       return { ...state, success: action.payload };
     case GET_ORDER_BY_ID:
       return { ...state, order: [action.payload] };
+    case GET_ORDERS:
+      return {
+        ...state,
+        allOrders: [...action.payload],
+      };
 
     case GET_CLIENT_ORDERS:
       return { ...state, clientOrders: action.payload };
