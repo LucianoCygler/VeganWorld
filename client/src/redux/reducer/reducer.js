@@ -27,6 +27,7 @@ import {
   DELETE_FAVORITE,
   GET_PRODUCT_REVIEWS,
   GET_ALL_CLIENTS,
+  DELETE_CLIENT,
   SET_CREATED_ORDER_ID,
   CLEAN_CART,
   GET_MP_LINK,
@@ -59,6 +60,7 @@ const initialState = {
   isAuthenticated: false,
   productReviews: [],
   allClients: [],
+  deletedClient: "",
   MPLink: "",
   allReviews: [],
   labels: {
@@ -91,7 +93,7 @@ export default function rootReducer(state = initialState, action) {
         reviews: [...action.payload],
       };
     case GET_ALL_PRODUCTS:
-      localStorage.setItem("products", JSON.stringify([...action.payload]));
+      // localStorage.setItem("products", JSON.stringify([...action.payload]));
       return {
         ...state,
         products: [...action.payload],
@@ -213,7 +215,7 @@ export default function rootReducer(state = initialState, action) {
     case ORDER_FILTER:
       return {
         ...state,
-        products: action.payload,
+        products: [...action.payload],
       };
     case SET_PRODUCT_SEARCH:
       return {
@@ -248,6 +250,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         allClients: [...action.payload],
+      };
+    case DELETE_CLIENT:
+      return {
+        ...state,
+        deletedClient: action.payload,
       };
     case GET_MP_LINK:
       return {

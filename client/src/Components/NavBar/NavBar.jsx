@@ -32,6 +32,7 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import { Button, IconButton } from "@chakra-ui/react";
 import { signOut } from "firebase/auth";
 import { auth } from "../../Firebase/firebase";
+import DrawerMenu from "./Drawer";
 
 function NavBar() {
   const dispatch = useDispatch();
@@ -62,16 +63,30 @@ function NavBar() {
   return (
     <div className={styles.mainContainer}>
       <div className={styles.divLeft}>
+        <DrawerMenu />
         <NavLink to="/" className={styles.link}>
-          <h1 className={styles.tittle}>VeganWorld!</h1>
+          <h1 className={styles.tittle}>
+            <Text
+              fontWeight={"semibold"}
+              display={"inline"}
+              color={"lightseagreen"}
+              marginRight={-2}
+            >
+              {" "}
+              Vegan
+            </Text>{" "}
+            <Text fontWeight={"hairline"} display="inline">
+              World!
+            </Text>
+          </h1>
         </NavLink>
       </div>
       <div className={styles.divMid}>
         {location.pathname === "/OurProducts" ? <SearchBar /> : ""}
       </div>
       <div className={styles.divRight}>
-        <Link to="/OurProducts">Our Products</Link>{" "}
-        <Menu>
+        {/* <Link to="/OurProducts">Our Products</Link> */}
+        {/* <Menu>
           <MenuButton
             as={IconButton}
             aria-label="Options"
@@ -100,7 +115,7 @@ function NavBar() {
               About us
             </MenuItem>
           </MenuList>
-        </Menu>
+        </Menu> */}
         {/* <div className={styles.redirects}>
           <div className={styles.dropdown}>
             <FontAwesomeIcon className={styles.dropbtn} icon={faBars} />
@@ -123,8 +138,15 @@ function NavBar() {
           />
         </NavLink>
         {email ? (
-          <Box w={"5%"}>
-            <Image src={user.imagen}></Image>
+          <Box>
+            <NavLink to="/MyProfile">
+              <Image
+                w={"50px"}
+                h={"50px"}
+                borderRadius={"50%"}
+                src={user.imagen}
+              ></Image>
+            </NavLink>
           </Box>
         ) : (
           <PopUpLogin />

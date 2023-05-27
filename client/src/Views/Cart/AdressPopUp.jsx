@@ -54,7 +54,9 @@ function AddressPopUp() {
 
   return (
     <>
-      <Button onClick={onOpen}>Complete address</Button>
+      <Button onClick={onOpen} color={"teal"}>
+        Complete address
+      </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -84,7 +86,7 @@ function AddressPopUp() {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={handleAddAddress}>
+            <Button colorScheme="teal" mr={3} onClick={handleAddAddress}>
               Save
             </Button>
             <Button onClick={onClose}>Cancel</Button>

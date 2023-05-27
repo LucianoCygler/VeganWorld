@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+
   min-height: 100vh;
   width: 100%;
   /*   
@@ -15,11 +15,12 @@
   background-position: center;
   text-transform: capitalize;
   color: #eef2e6;
+  padding-bottom: 5em;
 }
 
 .edit {
-  margin-top: 5em;
-  padding-top: 2em;
+  margin-top: 10em;
+  padding-top: 6em;
   flex-wrap: wrap;
   display: flex;
   align-items: center;
@@ -42,11 +43,12 @@
 .h3 {
   display: flex;
   justify-content: flex-start;
-  text-shadow: 0 0 5px #000000;
 }
 
 .c {
-  margin-top: 150px;
+  margin-top: 5em;
+  padding-top: 5em;
+
   border-radius: 0.75em;
   box-shadow: 9px 13px 13px 3px #0b0d0ca3;
   width: 600px;
@@ -92,7 +94,6 @@
   border-radius: 8px;
   text-align: center;
   margin-bottom: 3em;
-  text-shadow: 0 0 5px #000000;
   transition: transform 0.3s ease-in-out;
 }
 

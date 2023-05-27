@@ -5,8 +5,8 @@ const filterProductByType = async (filterByType) => {
   if (filterByType === "") {
     return;
   }
-  if (filtered.length === 0)
-    throw new Error(`There are no products of type ${filterByType}.`);
+  // if (filtered.length === 0)
+  //   throw new Error(`There are no products of type ${filterByType}.`);
   return filtered;
 };
 

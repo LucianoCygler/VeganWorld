@@ -32,7 +32,7 @@ const OrderDetail = ({ order, cancelRef }) => {
       <AccordionItem
         textColor={"white"}
         fontWeight={"medium"}
-        bg={"grey"}
+        bg={"#1d5c51"}
         borderRadius={"2xl"}
         width={"100%"}
       >
@@ -40,7 +40,7 @@ const OrderDetail = ({ order, cancelRef }) => {
           mb={2}
           boxShadow={"dark-lg"}
           borderRadius={"2xl"}
-          bg={"grey"}
+          bg={"#1d5c59"}
         >
           {/* CABEZERA DE LA ORDEN */}
           <Stack
@@ -65,7 +65,7 @@ const OrderDetail = ({ order, cancelRef }) => {
               {fecha}
             </Box>
             <Box
-              paddingLeft={"40em"}
+              // paddingLeft={"40em"}
               as="span"
               flex="1"
               textAlign="left"

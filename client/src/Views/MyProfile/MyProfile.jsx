@@ -208,6 +208,7 @@ const MyData = () => {
                   type="text"
                   value={editedAddress}
                   onChange={(e) => setEditedAddress(e.target.value)}
+<<<<<<< HEAD
                 />
               </HStack>
               <Button colorScheme="blue" onClick={handleSaveUser}>
@@ -217,6 +218,145 @@ const MyData = () => {
           ) : (
             <Box className={style.container}>
               {/* ... */}
+=======
+                />{" "}
+              </div>
+              <input
+                className={style.input8B}
+                type="file"
+                onChange={handleImageChange}
+              />{" "}
+              <Button
+                right={"170px"}
+                onClick={handleSaveUser}
+                marginTop={"10em"}
+                marginBottom={"3em"}
+              >
+                Save Data
+              </Button>
+            </div>
+          ) : (
+            <Box>
+              <Box marginTop={"7em"}>
+                <Text
+                  fontSize={"30px"}
+                  color="white"
+                  textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                  position="relative"
+                >
+                  PROFILE
+                  <Text
+                    as="span"
+                    position="absolute"
+                    left={"212px"}
+                    bottom={-5} // Ajusta este valor según el espaciado deseado
+                    width="30%"
+                    height="3px"
+                    background="orange"
+                  />
+                </Text>
+              </Box>
+              <div className={style.c}>
+                {imagen ? (
+                  <Image
+                    w={"220px"}
+                    h={"220px"}
+                    borderRadius={"50%"}
+                    alt="Default Profile"
+                    src={imagen}
+                    margin={"auto"}
+                    marginBottom={"3em"}
+                  />
+                ) : (
+                  <Box w={"30%"} margin={"1em"}>
+                    {/* <Avatar bg="teal.500" size={60} /> */}
+                    <Image
+                      borderRadius={100}
+                      src="https://bit.ly/ryan-florence"
+                      alt="Default Profile"
+                    />
+                  </Box>
+                )}
+                <Text
+                  color="white"
+                  textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+                  marginBottom={"2em"}
+                >
+                  {" "}
+                  <h2>
+                    {nombre} {apellido}
+                  </h2>
+                </Text>
+                <Box
+                  borderRadius={"2em"}
+                  margin={"3em"}
+                  paddingTop={"2em"}
+                  backgroundColor={"#adadad"}
+                  boxShadow={"5px 8px 22px 5px rgba(0,0,0,0.85)"}
+                >
+                  <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0,12)">
+                    <p>
+                      <span style={{ fontWeight: "bold" }}> Email: </span>
+                      {email}
+                    </p>
+                  </Text>
+                  <Text
+                    color="white"
+                    textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+                  >
+                    <p>
+                      <span style={{ fontWeight: "bold" }}>
+                        {" "}
+                        Phone Number:{" "}
+                      </span>
+                      {telefono}
+                    </p>
+                  </Text>
+                  <Text
+                    color="white"
+                    textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+                  >
+                    {" "}
+                    <p>
+                      <span style={{ fontWeight: "bold" }}> City: </span>
+                      {ciudad}
+                    </p>
+                  </Text>
+                  <Text
+                    color="white"
+                    textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+                  >
+                    {" "}
+                    <p>
+                      <span style={{ fontWeight: "bold" }}> Address: </span>
+                      {direccion}
+                    </p>
+                  </Text>
+                  {/* {!dni ? (
+            " "
+          ) : (
+            <p>
+              <span style={{ fontWeight: "bold" }}> DNI: </span> {dni}
+            </p>
+          )} */}
+
+                  <Button
+                    shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+                    w={"100px"}
+                    h={"40px"}
+                    variant="solid"
+                    colorScheme="teal"
+                    marginTop={4}
+                    marginBottom={4}
+                    onClick={handleEditUser}
+                  >
+                    <Text fontSize={"15px"} margin={"10px"}>
+                      Edit User
+                    </Text>
+                  </Button>
+                </Box>
+              </div>
+>>>>>>> 48a382de59583d13f871c7876440a427cbe4b6fe
             </Box>
           )}
         </Box>
