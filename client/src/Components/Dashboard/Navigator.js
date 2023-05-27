@@ -17,7 +17,6 @@ import { useDispatch } from "react-redux";
 import { ChangeLabel } from "../../redux/actions/actions";
 
 export default function Navigator(props) {
-	console.log(props);
 
 	const categories = [
 		{
@@ -63,12 +62,6 @@ export default function Navigator(props) {
 						sx={{ ...item, ...itemCategory, fontSize: 22, color: "#fff" }}
 					>
 						VeganWorld
-					</ListItem>
-					<ListItem sx={{ ...item, ...itemCategory }}>
-						<ListItemIcon>
-							<HomeIcon />
-						</ListItemIcon>
-						<ListItemText>Project Overview</ListItemText>
 					</ListItem>
 					{categories.map(({ id, icon, active }) => (
 						<Box key={id} sx={{ bgcolor: "#101F33" }}>
