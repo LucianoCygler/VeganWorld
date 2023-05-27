@@ -93,7 +93,7 @@ export default function rootReducer(state = initialState, action) {
         reviews: [...action.payload],
       };
     case GET_ALL_PRODUCTS:
-      localStorage.setItem("products", JSON.stringify([...action.payload]));
+      // localStorage.setItem("products", JSON.stringify([...action.payload]));
       return {
         ...state,
         products: [...action.payload],

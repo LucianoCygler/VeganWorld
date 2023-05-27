@@ -11,8 +11,8 @@
 .productCard {
   flex: 1 0 calc(16.666% - 10px);
   background-color: rgba(19, 9, 3, 0.276);
-  max-width: calc(16.666% - 10px);
-  height: 360px;
+  height: 400px;
+  max-width: 250px;
   margin: 5px;
   box-sizing: border-box;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);

@@ -74,11 +74,11 @@ const CardFav = ({ product, favorites }) => {
       }}
     >
       <Button
-        margin={"auto"}
+        marginLeft={"12em"}
         marginTop={1}
         width={"19%"}
         borderRadius={"50%"}
-        bg="rgba(10, 128, 99, 0.35)"
+        bg="none"
         onClick={() => dispatch(deleteFavoriteAction(product?.Product?.id))}
       >
         <FontAwesomeIcon icon={faHeartCrack} style={{ color: "#c11010" }} />

@@ -193,7 +193,7 @@ function Detail() {
                   >
                     {product.nombre}
                   </Heading>
-
+                  <hr></hr>
                   <Text
                     fontSize="1xl"
                     color="white"
@@ -208,7 +208,7 @@ function Detail() {
                     rutrum libero sed pharetra. Duis a arcu convallis, gravida
                     purus eget, mollis diam.
                   </Text>
-
+                  <hr></hr>
                   <Text
                     fontSize="1xl"
                     color="white"
@@ -249,14 +249,19 @@ function Detail() {
         />
       )}
 
-      <Box paddingTop={"10em"}>
-        <Heading
-          fontSize="3xl"
-          color="white"
-          textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
-        >
-          Product Reviews
-        </Heading>
+      <Box paddingTop={"4em"}>
+        <hr></hr>
+        <Box display={"flex"} justifyContent={"center"} paddingTop={"2em"}>
+          {" "}
+          <Heading
+            fontSize="3xl"
+            color="white"
+            textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+          >
+            Product Reviews
+          </Heading>
+        </Box>
+
         {productReviews
           ? productReviews.slice(0, 3).map((review) => {
               return (
@@ -265,11 +270,7 @@ function Detail() {
                     <div class="cardReview">
                       <div class="header">
                         <div>
-                          <Avatar
-                            name="Ryan Florence"
-                            src="https://bit.ly/ryan-florence"
-                            size="xl"
-                          />
+                          <Avatar src={review.cliente_imagen} size="xl" />
                         </div>
                         <div>
                           <div class="stars">

@@ -140,11 +140,7 @@ const MyReviews = () => {
                         <div class="header">
                           <div>
                             {" "}
-                            <Avatar
-                              name="Ryan Florence"
-                              src="https://bit.ly/ryan-florence"
-                              size="xl"
-                            />
+                            <Avatar src={review.cliente_imagen} size="xl" />
                           </div>
                           <div>
                             <div class="stars">
@@ -196,14 +192,14 @@ const MyReviews = () => {
           // )} */}
           {isPopupOpen && (
             <>
-              <div className={styles.overlay} onClick={closePopup} />
-              <div className={styles.popupcontainer}>
+              {/* <div className={styles.overlay} onClick={closePopup} /> */}
+              <Box>
                 <ReviewDetail
                   review={selectedReview}
                   closePopup={closePopup}
                   handleDeleteReview={handleDeleteReview}
                 />
-              </div>
+              </Box>
             </>
           )}
         </>
