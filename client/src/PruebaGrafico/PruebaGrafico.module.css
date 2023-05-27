@@ -10,7 +10,8 @@
   }
   
   .main .container {
-    height: 560px;
+    /* height: 560px; */
+    margin-top: 550px;
     width: 900px;
     background-color: #fff;
     display: flex;
