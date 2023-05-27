@@ -47,6 +47,7 @@ import {
   CHANGE_LABEL,
   UPDATE_ADDRESS,
   CLEAN_ADDRESS,
+  GET_PAGE_REVIEWS,
 } from "./Types/Types";
 
 /*TODOS LOS PRODUCTOS*/
@@ -478,6 +479,17 @@ export const getAllReviews = () => {
     }
   };
 };
+export const getAllPageReviews = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/pagereview`);
+      const pageReviews = res.data;
+      return dispatch({ type: GET_PAGE_REVIEWS, payload: pageReviews });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
 
 export const getAllClients = () => {
   return async function (dispatch) {
@@ -531,8 +543,6 @@ export const sendEmail = (form, type) => {
 //   };
 // };
 
-
-export const ChangeLabel = (id)=>{
-
-  return{ type : CHANGE_LABEL, payload : id}
-}
+export const ChangeLabel = (id) => {
+  return { type: CHANGE_LABEL, payload: id };
+};

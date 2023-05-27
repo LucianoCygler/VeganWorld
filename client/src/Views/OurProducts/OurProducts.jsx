@@ -70,23 +70,26 @@ function OurProducts() {
       bgSize={"cover"}
       bgRepeat={"no-repeat"}
     >
-
-      <Box marginTop={"6em"} paddingTop={"0em"} >
-
+      <Box
+        marginTop={"6em"}
+        paddingTop={"0em"}
+        display={"center"}
+        justifyContent={"center"}
+      >
         <Text
           fontSize={"30px"}
           color="white"
           textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
-          position="relative"          
+          position="relative"
           top={"0.2em"}
         >
           PRODUCTS
           <Text
-            as="span"            
+            as="span"
             position="absolute"
             left={"1%"}
             bottom={-5} // Ajusta este valor según el espaciado deseado
-            width="100%"
+            width="30%"
             height="3px"
             background="orange"
           />

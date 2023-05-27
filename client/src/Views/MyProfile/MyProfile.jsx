@@ -223,13 +223,12 @@ const MyData = () => {
             </div>
           ) : (
             <Box>
-              <Box marginTop={"7em"} >
+              <Box marginTop={"7em"}>
                 <Text
                   fontSize={"30px"}
                   color="white"
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
                   position="relative"
-                  
                 >
                   PROFILE
                   <Text
@@ -255,7 +254,7 @@ const MyData = () => {
                     marginBottom={"3em"}
                   />
                 ) : (
-                  <Box w={"30%"} margin={"1em"}  >
+                  <Box w={"30%"} margin={"1em"}>
                     {/* <Avatar bg="teal.500" size={60} /> */}
                     <Image
                       borderRadius={100}
@@ -264,14 +263,6 @@ const MyData = () => {
                     />
                   </Box>
                 )}
-                <Box 
-                 
-                borderRadius={"2em"} 
-                margin={"3em"}
-                paddingTop={"2em"} 
-                backgroundColor={"#adadad"}
-                boxShadow={"5px 8px 22px 5px rgba(0,0,0,0.85)"}
-                > 
                 <Text
                   color="white"
                   textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
@@ -282,53 +273,73 @@ const MyData = () => {
                     {nombre} {apellido}
                   </h2>
                 </Text>
-                <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0,12)">
-                  <p>
-                    <span style={{ fontWeight: "bold" }}> Email: </span>
-                    {email}
-                  </p>
-                </Text>
-                <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
-                  <p>
-                    <span style={{ fontWeight: "bold" }}> Phone Number: </span>
-                    {telefono}
-                  </p>
-                </Text>
-                <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
-                  {" "}
-                  <p>
-                    <span style={{ fontWeight: "bold" }}> City: </span>
-                    {ciudad}
-                  </p>
-                </Text>
-                <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
-                  {" "}
-                  <p>
-                    <span style={{ fontWeight: "bold" }}> Address: </span>
-                    {direccion}
-                  </p>
-                </Text>
-                {/* {!dni ? (
+                <Box
+                  borderRadius={"2em"}
+                  margin={"3em"}
+                  paddingTop={"2em"}
+                  backgroundColor={"#adadad"}
+                  boxShadow={"5px 8px 22px 5px rgba(0,0,0,0.85)"}
+                >
+                  <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0,12)">
+                    <p>
+                      <span style={{ fontWeight: "bold" }}> Email: </span>
+                      {email}
+                    </p>
+                  </Text>
+                  <Text
+                    color="white"
+                    textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+                  >
+                    <p>
+                      <span style={{ fontWeight: "bold" }}>
+                        {" "}
+                        Phone Number:{" "}
+                      </span>
+                      {telefono}
+                    </p>
+                  </Text>
+                  <Text
+                    color="white"
+                    textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+                  >
+                    {" "}
+                    <p>
+                      <span style={{ fontWeight: "bold" }}> City: </span>
+                      {ciudad}
+                    </p>
+                  </Text>
+                  <Text
+                    color="white"
+                    textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+                  >
+                    {" "}
+                    <p>
+                      <span style={{ fontWeight: "bold" }}> Address: </span>
+                      {direccion}
+                    </p>
+                  </Text>
+                  {/* {!dni ? (
             " "
           ) : (
             <p>
               <span style={{ fontWeight: "bold" }}> DNI: </span> {dni}
             </p>
           )} */}
-                
-                <Button
-                  shadow="2px 2px 4px rgba(0, 0, 0, 1)"
-                  w={"100px"}
-                  h={"40px"}                  
-                  variant="solid"
-                  colorScheme="teal"
-                  
-                  marginTop={4}
-                  marginBottom={4}
-                  onClick={handleEditUser}
-                >
-                  <Text fontSize={"15px"} margin={"10px"}>Edit User</Text>
-                </Button>
+
+                  <Button
+                    shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+                    w={"100px"}
+                    h={"40px"}
+                    variant="solid"
+                    colorScheme="teal"
+                    marginTop={4}
+                    marginBottom={4}
+                    onClick={handleEditUser}
+                  >
+                    <Text fontSize={"15px"} margin={"10px"}>
+                      Edit User
+                    </Text>
+                  </Button>
                 </Box>
               </div>
             </Box>

@@ -7,7 +7,8 @@ const createReview = async (
   estrellas,
   cliente_id,
   product_id,
-  cliente_nombre
+  cliente_nombre,
+  cliente_imagen
 ) => {
   const fecha = new Date().toISOString().slice(0, 10);
   const review = await Review.create({
@@ -16,6 +17,7 @@ const createReview = async (
     estrellas,
     fecha,
     cliente_nombre,
+    cliente_imagen,
   });
 
   await review.setClient(cliente_id);
