@@ -43,16 +43,27 @@ const About = () => {
           bgColor="#3D8361"
           h="780px"
         >
-          <Heading
-            as="h2"
-            fontSize="60px"
-            textShadow="1px 1px rgb(0, 0, 0), 1px 1px rgb(13, 5, 25), -3px 0 4px #000000"
-            fontFamily="Arial, Helvetica, sans-serif"
-            color="#e2edce"
-            fontWeight="lighter"
-            textAlign="center"
-          >
-            Vegan World <small>🌿</small>
+         <Heading
+              padding={"0.5em"}
+              marginTop={"0.1em"}
+              fontSize={"4em"}
+              mb="1rem"
+              color={"white"}
+              textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+            >
+            <Text
+              fontWeight={"semibold"}
+              display={"inline"}
+              color={"lightseagreen"}
+              marginRight={-2}
+            >
+              {" "}
+              Vegan
+            </Text>{" "}
+            <Text fontWeight={"hairline"} display="inline">
+              World!
+            </Text>
+            <small>🌿</small>
           </Heading>
           <Text as="h3" ml="100px" w="80%" color="white">
             Comes from our own needs. We wanted an app that could make it easier
@@ -65,13 +76,13 @@ const About = () => {
             completed. And that means that a lot of people are eating healthy
             and delicious food.
           </Text>
-          <Flex flexDirection="row" alignItems="center">
+          <Flex flexDirection="row" justifyContent="center" alignItems="center">
             <Image
               src={imagenUno.imageUrl}
               p="6"
               borderRadius="200"
-              w="250px"
-              h="250px"
+              w="150px"
+              h="150px"
               objectFit="cover"
               m="30px"
               boxShadow="0px 0px 15px #7fb69b"
@@ -80,8 +91,8 @@ const About = () => {
               src={imagenDos.imageUrl}
               p="6"
               borderRadius="200"
-              w="250px"
-              h="250px"
+              w="150px"
+              h="150px"
               objectFit="cover"
               m="30px"
               boxShadow="0px 0px 15px #7fb69b"
@@ -90,8 +101,8 @@ const About = () => {
               src={imagenTres.imageUrl}
               p="6"
               borderRadius="200"
-              w="250px"
-              h="250px"
+              w="150px"
+              h="150px"
               objectFit="cover"
               m="30px"
               boxShadow="0px 0px 15px #7fb69b"

@@ -17,6 +17,7 @@ import {
   Grid,
   GridItem,
   Center,
+  Text
 } from "@chakra-ui/react";
 import { sendEmail } from "../../redux/actions/actions";
 
@@ -127,7 +128,19 @@ const ContactUs = () => {
               color={"white"}
               textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
             >
-              Visit us 📍
+              <Text
+              fontWeight={"semibold"}
+              display={"inline"}
+              color={"lightseagreen"}
+              marginRight={-2}
+            >
+              {" "}
+              Visit
+            </Text>{" "}
+            <Text fontWeight={"hairline"} display="inline">
+              Us! 
+            </Text>
+            <small>📍</small>
             </Heading>
             <Box>
               <iframe
@@ -149,7 +162,7 @@ const ContactUs = () => {
               color={"white"}
               textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
             >
-              👇🏽 or leave us an email below 👇🏽
+              👇🏽 or send us an email below 👇🏽
             </Heading>
             <Grid templateColumns="repeat(2, 1fr)" gap={6}>
               <GridItem>

@@ -49,11 +49,18 @@ function DrawerMenu() {
             fontSize={"25px"}
             fontWeight={"bold"}
           >
-            <Text display={"inline"} color={"lightseagreen"}>
+            <Text
+              fontWeight={"semibold"}
+              display={"inline"}
+              color={"lightseagreen"}
+              marginRight={-2}
+            >
               {" "}
               Vegan
+            </Text>{" "}
+            <Text fontWeight={"hairline"} display="inline">
+              World!
             </Text>
-            World
           </DrawerHeader>
 
           <DrawerBody textAlign={"left"} overflow="hidden">

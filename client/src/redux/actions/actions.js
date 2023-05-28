@@ -273,7 +273,6 @@ export const validateUserExistenceInDb = (email) => {
     try {
       const res = await axios.post(`/client/checkclient/`, email);
       const userData = res.data;
-      console.log(userData);
       return dispatch({ type: VALIDATE_LOGIN, payload: userData });
     } catch (error) {
       console.log(error.response.data);
