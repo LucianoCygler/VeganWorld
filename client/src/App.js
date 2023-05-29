@@ -20,6 +20,7 @@ import {
 import OurProducts from "./Views/OurProducts/OurProducts";
 import { NavBar } from "./Components/index";
 import Dashboard from "./Views/Dashboard/Dashboard";
+import NotFound from "./Views/NotFound/NotFound";
 
 const ProtectedRoute = ({ element: Component, ...rest }) => {
   const isAuthenticated = localStorage.getItem("token");
@@ -44,9 +45,12 @@ function App() {
         <Route path="/ResetPass" element={<Resetpass />} />
         <Route path="/About" element={<About />} />
         <Route path="/OurProducts" element={<OurProducts />} />
-        <Route path="/MyOrders" element={<ProtectedRoute element={MyOrders} />} />
-        <Route path='/PageReview' element={<CreatePageReview />}/>
-
+        <Route path="/PageReview" element={<CreatePageReview />}/>
+        <Route path={"*"} element={<NotFound />} />
+        <Route
+          path="/MyOrders"
+          element={<ProtectedRoute element={MyOrders} />}
+        />
         <Route
           path="/MyProfile"
           element={<ProtectedRoute element={MyProfile} />}
