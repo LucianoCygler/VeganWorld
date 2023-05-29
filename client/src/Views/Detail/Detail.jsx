@@ -12,25 +12,28 @@ import Pop_up from "../../Utils/Pop_up/Pop_up";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Box, Flex, Grid, GridItem, Img } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/react";
-import { Text, Heading } from "@chakra-ui/react";
-
-
-import { Avatar } from "@chakra-ui/react";
-
-
-
+import { Button, IconButton } from "@chakra-ui/react";
+import { Text, Heading, Link, Image } from "@chakra-ui/react";
+import { Avatar, Badge, Tag } from "@chakra-ui/react";
 import "./Detail.css";
+import CreateReview from "./createReview";
+
+
 function Detail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const [product] = useSelector((state) => state.product);
   const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
   const productReviews = useSelector((state) => state.productReviews);
+
   const [quantity, setQuantity] = useState(1);
   const product_id = id;
+
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     dispatch(getProductById(id));
     return () => dispatch(cleanDetail());
@@ -40,6 +43,7 @@ function Detail() {
       dispatch(getProductReviews(product_id));
     }
   }, [product_id]);
+
   const handleClick = () => {
     setLoading(true);
     setTimeout(() => {
@@ -53,9 +57,11 @@ function Detail() {
       Pop_up("info", "Product added", message);
     }
   };
+
   const handleDecrement = () => {
     setQuantity(quantity > 1 ? quantity - 1 : 1);
   };
+
   const handleIncrement = () => {
     if (quantity < 100) {
       setQuantity(quantity + 1);
@@ -103,12 +109,12 @@ function Detail() {
                   marginTop={"9em"}
                   display="inline-flex"
                   alignItems="center"
-                  justifyContent="center"                  
+                  justifyContent="center"
                 >
                   <Img
                     src={product.imagen}
-                    alt={product.nombre}   
-                    borderRadius={"10px"}                
+                    alt={product.nombre}
+                    borderRadius={"10px"}
                     shadow="0px 4px 10px rgba(0, 0, 0, 0.2)"
                     width="100%"
                   />
@@ -156,7 +162,7 @@ function Detail() {
                     ${product.precio}
                   </Text>
                   <Text
-                    fontSize={"2xl"}
+                  fontSize={"2xl"}
                     color="white"
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
                   >
@@ -182,14 +188,16 @@ function Detail() {
                     cursor: "pointer",
                   }}>
                   +
-                </Button>
+                </Button> 
                 <Button
                   isLoading={loading}
                   colorScheme="teal"
                   onClick={handleClick}
+                  mr={"0.5em"}
                 >
                   Add To Cart
                 </Button>
+                <CreateReview  product_id={product_id} cliente_id={user.id} />
               </Box>
             </Grid>
           </Box>
@@ -205,7 +213,7 @@ function Detail() {
 
       <Box paddingTop={"4em"}>
         <hr></hr>
-        <Box display={"flex"} justifyContent={"center"} paddingTop={"0em"}>
+        <Box display={"flex"} justifyContent={"center"} paddingTop={"2em"}>
           {" "}
           <Heading
             fontSize="3xl"
@@ -215,6 +223,7 @@ function Detail() {
             Product Reviews
           </Heading>
         </Box>
+
         {productReviews
           ? productReviews.slice(0, 3).map((review) => {
               return (
@@ -225,25 +234,37 @@ function Detail() {
                         <div>
                           <Avatar src={review.cliente_imagen} size="xl" />
                         </div>
-                        <div>
-                          <div class="stars">
-                            {Array.from({ length: review.estrellas }).map(
-                              (_, index) => (
-                                <svg
-                                  key={index}
-                                  fill="currentColor"
-                                  viewBox="0 0 20 20"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                </svg>
-                              )
-                            )}
-                          </div>
-                          <p class="name">{review.cliente_nombre}</p>
-                          <p>{review.titulo}</p>
-                        </div>
+                        <Flex
+                          flexDirection={"column"}
+                          justifyContent={"center"}
+                        >
+                          <Box>
+                            <div class="stars">
+                              {Array.from({ length: review.estrellas }).map(
+                                (_, index) => (
+                                  <svg
+                                    key={index}
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                  </svg>
+                                )
+                              )}
+                            </div>
+                          </Box>
+                          <Box>
+                            {" "}
+                            <p class="name">{review.cliente_nombre}</p>
+                          </Box>
+                          <Box>
+                            {" "}
+                            <p>{review.titulo}</p>
+                          </Box>
+                        </Flex>
                       </div>
+
                       <p class="message">{review.descripcion}</p>
                       <small class="message">{review.fecha}</small>
                     </div>
