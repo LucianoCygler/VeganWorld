@@ -80,7 +80,7 @@ const MyOrders = () => {
         <Tabs
           variant="enclosed-colored"
           w={"100%"}
-          mt={"12em"}
+          mt={"8em"}
           // shadow={"lg"}
         >
           <Box marginBottom={"5em"} display={"flex"} justifyContent={"center"}>
