@@ -170,10 +170,9 @@ const MyReviews = () => {
                 );
               })
             ) : (
-              <div>
-                <h2>You have no reviews yet.</h2>
-                <h3>Let's make one...</h3>
-              </div>
+              <Box display={"flex"} alignItems={"center"}>
+                <Heading color={"white"}>You don´t have reviews yet.</Heading>
+              </Box>
             )}
           </Box>
           {/* // reviews.map((review) => (

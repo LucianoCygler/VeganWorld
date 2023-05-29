@@ -9,7 +9,7 @@ import styles from "./Favorites.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Button, Image, Modal } from "react-bootstrap";
 import LoginForm from "../Login/LoginForm";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import "./Favorites.css";
 
 import { Wrap, WrapItem } from "@chakra-ui/react";
@@ -111,14 +111,18 @@ const Favorites = () => {
                   );
                 })
               ) : (
-                <Text
-                  color={"whiteAlpha.900"}
-                  fontSize="5xl"
-                  as="b"
-                  textShadow="2px 2px 4px rgba(0, 0, 0, 0.5)"
-                >
-                  You don't have favorites
-                </Text>
+                <Box display={"flex"} alignItems={"center"}>
+                  {" "}
+                  <Heading
+                    color={"whiteAlpha.900"}
+                    fontSize="5xl"
+                    as="b"
+                    textShadow="2px 2px 4px rgba(0, 0, 0,
+                    0.5)"
+                  >
+                    You don't have favorites
+                  </Heading>
+                </Box>
               )}
             </Wrap>
           </Box>

@@ -49,7 +49,9 @@ import {
   CLEAN_ADDRESS,
   GET_PAGE_REVIEWS,
   GET_ORDERS,
+  CREATE_PAGE_REVIEW,
 } from "./Types/Types";
+import PageReview from "../../../../server/src/models/PageReview";
 
 export const createProduct = (product) => {
   return async function (dispatch) {
@@ -513,6 +515,18 @@ export const getAllPageReviews = () => {
     }
   };
 };
+
+export const createPageReview = (review)=>{
+  return async (dispatch)=>{
+    try {
+      const res = await axios.post('/pagereview', review);
+      const pageReview = res.data;
+      return dispatch({ type: CREATE_PAGE_REVIEW, payload: pageReview });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  }
+}
 
 export const getAllClients = () => {
   return async function (dispatch) {
