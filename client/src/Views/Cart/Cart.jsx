@@ -458,9 +458,11 @@ function Cart() {
               </Box>{" "}
             </Box>
           ) : (
-            <h2 className={styles.subTittle}>
-              There is nothing in your cart...
-            </h2>
+            <Box display={"flex"} alignItems={"center"}>
+              <Heading color={"white"}>
+                There is nothing in your cart...
+              </Heading>
+            </Box>
           )}
         </>
       )}

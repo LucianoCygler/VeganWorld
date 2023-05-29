@@ -12,7 +12,7 @@ const facturaRouter = require("./routerFactura");
 const pageReviewRouter = require("./routerPageReview");
 const routerPayments = require("./routerPayments");
 const mailerRouter = require("./routerMailer");
-
+const getAdminRouter = require("./routerGetAdmin");
 
 router.use("/admin", adminRouter);
 router.use("/review", reviewRouter);
@@ -24,6 +24,6 @@ router.use("/favorite", favoriteRouter);
 router.use("/pagereview", pageReviewRouter);
 router.use("/payment", routerPayments);
 router.use("/mail", mailerRouter);
-
+router.use("/getadmin", getAdminRouter);
 
 module.exports = router;
