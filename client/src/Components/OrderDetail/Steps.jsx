@@ -21,7 +21,7 @@ const steps = [
 
 function Example() {
   const { activeStep } = useSteps({
-    index: 1,
+    index: 3,
     count: steps.length,
   });
 
