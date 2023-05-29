@@ -342,8 +342,8 @@ export const createReview = (newReview) => {
   return async function (dispatch) {
     try {
       const res = await axios.post(`/review`, newReview);
-      const reviewDB = res.data;
-      return dispatch({ type: CREATE_REVIEW, payload: reviewDB });
+      // const reviewDB = res.data;
+      // return dispatch({ type: CREATE_REVIEW, payload: reviewDB });
     } catch (error) {
       alert(error.response.data);
     }

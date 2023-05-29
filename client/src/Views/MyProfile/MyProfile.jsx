@@ -12,27 +12,16 @@ import { useNavigate } from "react-router-dom";
 import LoginForm from "../Login/LoginForm";
 import {
   Box,
-  Button,
-  VStack,
-  HStack,
-  Heading,
-  Text,
-  Input,
-  FileUpload,
-  Image,
-  EditButton,
-  Image as Img,
-  InputGroup,
   Flex,
-  Center,
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  FormErrorMessage
+  Grid,
+  GridItem,
+  Image,
+  Text,
+  Button,
+  Avatar,
 } from "@chakra-ui/react";
 
 import axios from "axios";
-import { Container } from "react-bootstrap";
 
 const uploadImage = async (file) => {
   try {
@@ -51,52 +40,6 @@ const uploadImage = async (file) => {
     return null;
   }
 };
-
-// const validations = (form) => {
-//   let reg = /^[a-zA-Z\s]*$/;
-//   let regEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-
-//   const error = {};
-//   //NOMBRE
-//   if (!form.name) {
-//     error.name = "Name is required";
-//   } else if (!reg.test(form.name)) {
-//     error.name = "Only accepts uppercase and lowercase letters.";
-//   } else if (form.name.length > 20) {
-//     error.name = "The name exceeds the maximum of 15 characters.";
-//   }
-
-//   //EMAIL
-//   if (!form.email) {
-//     error.email = "Email is required in this field";
-//   } else if (!regEmail.test(form.email)) {
-//     error.email = "Check your email please";
-//   } else if (form.email.length > 40) {
-//     error.email = "The email exceeds the maximum of 40 characters.";
-//   }
-
-//   //COMENTARIOS
-//   if (!form.textContainer) {
-//     error.textContainer = "Please give us a comment...";
-//   } else if (form.textContainer.length < 30) {
-//     error.textContainer = "Text must be longer than 30 characters";
-//   } else if (form.textContainer.length > 250) {
-//     error.textContainer = "Text must be shorter than 250 characters";
-//   }
-
-//   return error;
-// };
-
-// const changeHandler = (event) => {
-//   const property = event.target.name;
-//   const value = event.target.value;
-//   setForm({
-//     ...form,
-//     [property]: value,
-//   });
-//   setError(validations({ ...form, [property]: value }));
-// };
-
 
 const MyData = () => {
   const dispatch = useDispatch();
@@ -123,7 +66,6 @@ const MyData = () => {
   const [editedAddress, setEditedAddress] = useState(direccion || "");
   const [profileImage, setProfileImage] = useState(null);
   const [selectedUser, setselectedUser] = useState(user);
-  const [isError, setIsError] = useState(false);
   const emailCurrent = localStorage.getItem("email");
 
   const [showModal, setShowModal] = useState(false);
@@ -196,202 +138,112 @@ const MyData = () => {
   }, [selectedUser]);
 
   return (
-
-    <Box
-      backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
-      minHeight={"100vh"}
-      bgSize={"cover"}
-      bgRepeat={"no-repeat"}
-      paddingTop={"10em"}
-      paddingBottom={"10em"}
-    >
+    <div>
       {!emailCurrent ? (
-        <Container>
-          <Heading>
+        <div className={style.divLogin}>
+          <h2>
             Hey, I see that you are trying to access your Profile, but to do so,
             you must first be logged in.
-          </Heading>
-          <Button
-            colorScheme="teal"
-            shadow="2px 2px 4px rgba(0, 0, 0, 0.6)"
-            type="submit"
-            mt="1rem"
-            _hover={{
-              backgroundColor: "#1c6758",
-              color: "rgb(214, 187, 187)",
-            }}
-            onClick={handleShowModal}
-          >
+          </h2>
+          <Button variant="primary" onClick={handleShowModal}>
             Click here to log in!{" "}
           </Button>
-        </Container>
+        </div>
       ) : (
-        <Center>
+        <div className={style.container}>
           {editMode ? (
-            <Box
-              pl="5em"
-              pr="5em"
-              bg="rgba(216, 216, 216, 0.9)"
-              shadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
-              w="40%"
-              margin="auto"
-              borderRadius={50}
-              paddingBottom="2em"
-            >
-              <Heading
-                padding={"0.5em"}
-                marginTop={"0.1em"}
-                fontSize={"4em"}
-                mb="1rem"
-                color={"white"}
-                textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
-              >
-                <Text
-                  fontWeight={"semibold"}
-                  display={"inline"}
-                  color={"lightseagreen"}
-                  marginRight={-2}
-                >
-                  {" "}
-                  Edit
-                </Text>{" "}
-                <Text fontWeight={"hairline"} display="inline">
-                  User
-                </Text>
-                <small>👤</small>
-              </Heading>
-              <Box>
-                {/* <FormControl isInvalid={isError}>
-                  <FormLabel>First Name</FormLabel>
-                  <Input
-                    name="name"
-                    type="text"
-                    backgroundColor={"white"}
-                    value={editedName}
-                    onChange={(e) => setEditedName(e.target.value)}
-                    borderColor={
-                      editedName.length
-                        ? error.name
-                          ? "#e74c3c"
-                          : "#2ecc71"
-                        : "#52b3d3"
-                    }
-                    autoComplete="off"
-                    placeholder="Name"
-                    isRequired
-                  />
-                </FormControl>
-                <FormControl isInvalid={isError}>
-                  <FormLabel>Surname</FormLabel>
-                  <Input
-                    type="text"
-                    value={editedSurname}
-                    onChange={(e) => setEditedSurname(e.target.value)}
-                  />
-                </FormControl>
-                <FormControl isInvalid={isError}>
-                  <FormLabel>Email</FormLabel>
-                  <Input
-                    type="text"
-                    value={editedEmail}
-                    onChange={(e) => setEditedEmail(e.target.value)}
-                  />
-                  {!isError ? (
-                    <FormHelperText>
-                      Enter the email you'd like to receive the newsletter on.
-                    </FormHelperText>
-                  ) : (
-                    <FormErrorMessage>Email is required.</FormErrorMessage>
-                  )}
-                </FormControl>
-                <FormControl isInvalid={isError}>
-                  <FormLabel>Phone</FormLabel>
-                  <Input
-                    type="text"
-                    value={editedPhone}
-                    onChange={(e) => setEditedPhone(e.target.value)}
-                  />
-                </FormControl>
-                <FormControl isInvalid={isError}>
-                  <FormLabel>City</FormLabel>
-                  <Input
-                    type="text"
-                    value={editedCity}
-                    onChange={(e) => setEditedCity(e.target.value)}
-                  />
-                </FormControl>
-                <FormControl isInvalid={isError}>
-                  <FormLabel>Address</FormLabel>
-                  <Input
-                    type="text"
-                    value={editedAddress}
-                    onChange={(e) => setEditedAddress(e.target.value)}
-                  />
-                </FormControl> */}
-              </Box>
-              <Input
+            <div className={style.edit}>
+              <div className={style.divFlex}>
+                <h3 className={style.h3}>First Name:</h3>
+                <input
+                  className={style.input1}
+                  type="text"
+                  value={editedName}
+                  onChange={(e) => setEditedName(e.target.value)}
+                />
+              </div>
+              <div className={style.divFlex}>
+                <h3 className={style.h3}>Surname:</h3>
+                <input
+                  className={style.input2}
+                  type="text"
+                  value={editedSurname}
+                  onChange={(e) => setEditedSurname(e.target.value)}
+                />
+              </div>
+              <div className={style.divFlex}>
+                <h3 className={style.h3}>Email:</h3>
+                <input
+                  className={style.input3}
+                  type="text"
+                  value={editedEmail}
+                  onChange={(e) => setEditedEmail(e.target.value)}
+                />
+              </div>
+              <div className={style.divFlex}>
+                <h3 className={style.h3}>Phone:</h3>
+                <input
+                  className={style.input4}
+                  type="text"
+                  value={editedPhone}
+                  onChange={(e) => setEditedPhone(e.target.value)}
+                />
+              </div>
+              <div className={style.divFlex}>
+                <h3 className={style.h3}>City:</h3>
+                <input
+                  className={style.input5}
+                  type="text"
+                  value={editedCity}
+                  onChange={(e) => setEditedCity(e.target.value)}
+                />
+              </div>
+              <div className={style.divFlex}>
+                <h3 className={style.h3}>Address</h3>
+                <input
+                  className={style.input6}
+                  type="text"
+                  value={editedAddress}
+                  onChange={(e) => setEditedAddress(e.target.value)}
+                />{" "}
+              </div>
+              <input
                 className={style.input8B}
                 type="file"
                 onChange={handleImageChange}
-              />
+              />{" "}
               <Button
-                colorScheme="teal"
-                shadow="2px 2px 4px rgba(0, 0, 0, 0.6)"
-                type="submit"
-                mt="1rem"
-                _hover={{
-                  backgroundColor: "#1c6758",
-                  color: "rgb(214, 187, 187)",
-                }}
+                right={"170px"}
                 onClick={handleSaveUser}
+                marginTop={"10em"}
+                marginBottom={"3em"}
               >
                 Save Data
               </Button>
-            </Box>
+            </div>
           ) : (
-            <Box
-              bg="rgba(216, 216, 216, 0.9)"
-              shadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
-              w="40%"
-              margin="auto"
-              borderRadius={50}
-              paddingBottom={"2em"}
-            >
-              <Heading
-                padding={"0.5em"}
-                marginTop={"0.1em"}
-                fontSize={"4em"}
-                mb="1rem"
-                color={"white"}
-                textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
-              >
+            <Box>
+              <Box marginTop={"7em"}>
                 <Text
-                  fontWeight={"semibold"}
-                  display={"inline"}
-                  color={"lightseagreen"}
-                  marginRight={-2}
+                  fontSize={"30px"}
+                  color="white"
+                  textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                  position="relative"
                 >
-                  {" "}
-                  My
-                </Text>{" "}
-                <Text fontWeight={"hairline"} display="inline">
-                  Profile
+                  PROFILE
+                  <Text
+                    as="span"
+                    position="absolute"
+                    left={"212px"}
+                    bottom={-5} // Ajusta este valor según el espaciado deseado
+                    width="30%"
+                    height="3px"
+                    background="orange"
+                  />
                 </Text>
-                <small>🌱</small>
-              </Heading>
-              {imagen ? (
-                <Image
-                  w={"220px"}
-                  h={"220px"}
-                  borderRadius={"50%"}
-                  alt="Default Profile"
-                  src={imagen}
-                  margin={"auto"}
-                  marginBottom={"3em"}
-                />
-              ) : (
-                <Box w={"30%"} margin={"auto"} marginBottom={"3em"}>
-                  {/* <Avatar bg="teal.500" size={60} /> */}
+              </Box>
+              <div className={style.c}>
+                {imagen ? (
                   <Image
                     w={"220px"}
                     h={"220px"}
@@ -401,70 +253,101 @@ const MyData = () => {
                     margin={"auto"}
                     marginBottom={"3em"}
                   />
-                </Box>
-              )}
-              <Text
-                color="white"
-                textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
-                marginBottom={"2em"}
-              >
-                {" "}
-                <Heading
-                  marginTop={"1em"}
-                  as="h1"
-                  color={"white"}
-                  textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                ) : (
+                  <Box w={"30%"} margin={"1em"}>
+                    {/* <Avatar bg="teal.500" size={60} /> */}
+                    <Image
+                      borderRadius={100}
+                      src="https://bit.ly/ryan-florence"
+                      alt="Default Profile"
+                    />
+                  </Box>
+                )}
+                <Text
+                  color="white"
+                  textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+                  marginBottom={"2em"}
                 >
-                  {nombre} {apellido}
-                </Heading>
-              </Text>
-              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0,12)">
-                <p>
-                  <span style={{ fontWeight: "bold" }}> Email: </span>
-                  {email}
-                </p>
-              </Text>
-              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
-                <p>
-                  <span style={{ fontWeight: "bold" }}> Phone Number: </span>
-                  {telefono}
-                </p>
-              </Text>
-              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
-                {" "}
-                <p>
-                  <span style={{ fontWeight: "bold" }}> City: </span>
-                  {ciudad}
-                </p>
-              </Text>
-              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
-                {" "}
-                <p>
-                  <span style={{ fontWeight: "bold" }}> Address: </span>
-                  {direccion}
-                </p>
-              </Text>
-              <Button
-                colorScheme="teal"
-                shadow="2px 2px 4px rgba(0, 0, 0, 0.6)"
-                type="submit"
-                mt="1rem"
-                _hover={{
-                  backgroundColor: "#1c6758",
-                  color: "rgb(214, 187, 187)",
-                }}
-                onClick={handleEditUser}
-              >
-                Edit User
-              </Button>
+                  {" "}
+                  <h2>
+                    {nombre} {apellido}
+                  </h2>
+                </Text>
+                <Box
+                  borderRadius={"2em"}
+                  margin={"3em"}
+                  paddingTop={"2em"}
+                  backgroundColor={"#adadad"}
+                  boxShadow={"5px 8px 22px 5px rgba(0,0,0,0.85)"}
+                >
+                  <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0,12)">
+                    <p>
+                      <span style={{ fontWeight: "bold" }}> Email: </span>
+                      {email}
+                    </p>
+                  </Text>
+                  <Text
+                    color="white"
+                    textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+                  >
+                    <p>
+                      <span style={{ fontWeight: "bold" }}>
+                        {" "}
+                        Phone Number:{" "}
+                      </span>
+                      {telefono}
+                    </p>
+                  </Text>
+                  <Text
+                    color="white"
+                    textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+                  >
+                    {" "}
+                    <p>
+                      <span style={{ fontWeight: "bold" }}> City: </span>
+                      {ciudad}
+                    </p>
+                  </Text>
+                  <Text
+                    color="white"
+                    textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+                  >
+                    {" "}
+                    <p>
+                      <span style={{ fontWeight: "bold" }}> Address: </span>
+                      {direccion}
+                    </p>
+                  </Text>
+                  {/* {!dni ? (
+            " "
+          ) : (
+            <p>
+              <span style={{ fontWeight: "bold" }}> DNI: </span> {dni}
+            </p>
+          )} */}
+
+                  <Button
+                    shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+                    w={"100px"}
+                    h={"40px"}
+                    variant="solid"
+                    colorScheme="teal"
+                    marginTop={4}
+                    marginBottom={4}
+                    onClick={handleEditUser}
+                  >
+                    <Text fontSize={"15px"} margin={"10px"}>
+                      Edit User
+                    </Text>
+                  </Button>
+                </Box>
+              </div>
             </Box>
           )}
-        </Center>
+        </div>
       )}
-    </Box>
+    </div>
   );
 };
-
-
 
 export default MyData;
