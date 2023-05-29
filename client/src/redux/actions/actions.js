@@ -51,7 +51,7 @@ import {
   GET_ORDERS,
   CREATE_PAGE_REVIEW,
 } from "./Types/Types";
-import PageReview from "../../../../server/src/models/PageReview";
+// import PageReview from "../../../../server/src/models/PageReview";
 
 export const createProduct = (product) => {
   return async function (dispatch) {

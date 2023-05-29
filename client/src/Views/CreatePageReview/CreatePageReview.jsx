@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {createPageReview} from '../../redux/actions/actions';
 
 const CreatePageReview = ()=>{
+    const dispatch = useDispatch()
     const [input, setInput] = useState ({
         title: '',
         desc: '',
