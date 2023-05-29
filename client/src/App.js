@@ -15,6 +15,7 @@ import {
   About,
   Register,
   Login,
+  CreatePageReview,
 } from "./Views/index";
 import OurProducts from "./Views/OurProducts/OurProducts";
 import { NavBar } from "./Components/index";
