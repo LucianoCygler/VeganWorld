@@ -44,6 +44,7 @@ function App() {
         <Route path="/About" element={<About />} />
         <Route path="/OurProducts" element={<OurProducts />} />
         <Route path="/MyOrders" element={<ProtectedRoute element={MyOrders} />} />
+        <Route path='/PageReview' element={<CreatePageReview />}/>
 
         <Route
           path="/MyProfile"
