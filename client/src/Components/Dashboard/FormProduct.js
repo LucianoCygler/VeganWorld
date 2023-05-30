@@ -13,9 +13,11 @@ import {
 	MenuItem,
 	Paper,
 	Select,
+	Typography,
 } from "@mui/material";
 import axios from "axios";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import Pop_up from "../../Utils/Pop_up/Pop_up";
 
 const uploadImage = async (file) => {
 	try {
@@ -35,11 +37,11 @@ const uploadImage = async (file) => {
 };
 export default function FormPropsTextFields() {
 	const fileInputRef = useRef(null);
-	
+
 	const handleOpenFileBrowser = () => {
 		fileInputRef.current.click();
 	};
-	
+
 	const handleFileSelect = (event) => {
 		const selectedFile = event.target.files[0];
 		// Hacer algo con el archivo seleccionado
@@ -47,10 +49,10 @@ export default function FormPropsTextFields() {
 	};
 	const dispatch = useDispatch();
 	const { products } = useSelector((state) => state);
-	const productsName = products.map((product) => product.nombre);
+	const productsType = [...new Set(products.map((product) => product.tipo))];
 
 	useEffect(() => {
-		!getAllProducts && dispatch(getAllProducts());
+		dispatch(getAllProducts());
 	}, []);
 
 	const [product, setProduct] = useState({
@@ -62,13 +64,15 @@ export default function FormPropsTextFields() {
 	});
 
 	const handleClick = async () => {
-		if (productImage) {
+	
+			if (productImage) {
 			// Subir imagen a Cloudinary
 			const url = await uploadImage(productImage);
 			if (url) {
 				var imageUrl = url;
 			}
 		}
+			try {
 		const newProduct = {
 			nombre: product.nombre,
 			tipo: product.tipo,
@@ -78,6 +82,10 @@ export default function FormPropsTextFields() {
 			imagen: imageUrl,
 		};
 		dispatch(createProduct(newProduct));
+		} catch ({message}) {
+		Pop_up('error','Error',`${message}`,'bottom-start')	
+		}
+		
 	};
 
 	const [productImage, setProductImage] = useState("");
@@ -96,39 +104,30 @@ export default function FormPropsTextFields() {
 	const handleChange = (event) => {
 		const name = event.target.name;
 		const value = event.target.value;
+		const text = event.target.innerText
+		text 
+		? setProduct({ ...product, tipo: text })
+		:
 		setProduct({ ...product, [name]: value });
 	};
 
-	const [age, setAge] = React.useState("");
+	const [editProduct, setEditProduct] = useState(false);
 
-	const handleChange2 = (event) => {
-		setAge(event.target.value);
-	};
-
-	const [editProduct, setEditProduct] = useState(false)
-
-	const lista = [
-		{ nombre: "agua", tipo: "bebida" },
-		{
-			nombre: "pizza",
-			tipo: "comida",
-		},
-		{
-			nombre: "papas fritas",
-			tipo: "snack",
-		},
-	];
 	return (
 		<>
 			<Box
 				sx={{
-					fontSize: "h6.fontSize",
+					fontSize: "h5.fontSize",
 					textAlign: "left",
 					fontWeight: "bold",
 					padding: "1rem",
+					color:"whitesmoke"
+					
 				}}
 			>
-				Create a new product
+				<Typography variant="h5">
+				{!editProduct ? "Create a new product" : "Edit product"}
+				</Typography>
 			</Box>
 			<Grid container spacing={2}>
 				{/* ================PRODUCT NAME==================== */}
@@ -139,6 +138,7 @@ export default function FormPropsTextFields() {
 							textAlign: "left",
 							padding: "1rem",
 							fontWeight: "bold",
+							color:"whitesmoke"
 						}}
 					>
 						Basic details
@@ -146,7 +146,7 @@ export default function FormPropsTextFields() {
 				</Grid>
 
 				<Grid sm={8} xs={12}>
-					<Paper elevation={2} sx={{ padding: 2, marginBottom: 2 }}>
+					<Paper elevation={2} sx={{ padding: 2, marginBottom: 2 , backgroundColor:"AppWorkspace"}}>
 						<TextField
 							sx={{ width: "90%" }}
 							required
@@ -155,7 +155,6 @@ export default function FormPropsTextFields() {
 							name="nombre"
 							value={product.nombre}
 							onChange={handleChange}
-							error={!product.nombre}
 						/>
 						<Box
 							sx={{
@@ -174,7 +173,6 @@ export default function FormPropsTextFields() {
 							label="Description"
 							multiline
 							rows={4}
-							placeholder="Desciption"
 							value={product.descripcion}
 							onChange={handleChange}
 						/>
@@ -188,14 +186,15 @@ export default function FormPropsTextFields() {
 							textAlign: "left",
 							padding: "1rem",
 							fontWeight: "bold",
+							color:"whitesmoke"
 						}}
 					>
 						Image
 					</Box>
 				</Grid>
 				<Grid sm={8} xs={12}>
-					<Paper elevation={2} sx={{ padding: 2, marginBottom: 2 }}>
-						{/* <Box>
+					<Paper elevation={2} sx={{ padding: 2, marginBottom: 2, backgroundColor:"AppWorkspace" }}>
+						<Box>
 							<TextField
 								required
 								fullWidth={true}
@@ -210,25 +209,25 @@ export default function FormPropsTextFields() {
 								}}
 							/>{" "}
 						</Box>
-						<div> */}
-							<TextField
-								required
-								fullWidth
-								id="outlined-required"
-								name="imagen"
-								type="file"
-								label="Image"
-								value=""
-								onChange={handleFileSelect}
-								InputLabelProps={{
-									shrink: true,
-								}}
-								style={{ display: "none" }}
-								inputRef={fileInputRef}
-							/>
-							<Button variant="outlined" onClick={handleOpenFileBrowser}>
-								Seleccionar archivo
-							</Button>
+						{/* <div>  */}
+						{/* <TextField
+							required
+							fullWidth
+							id="outlined-required"
+							name="imagen"
+							type="file"
+							label="Image"
+							value=""
+							onChange={handleFileSelect}
+							InputLabelProps={{
+								shrink: true,
+							}}
+							style={{ display: "none" }}
+							inputRef={fileInputRef}
+						/>
+						<Button variant="outlined" onClick={handleOpenFileBrowser}>
+							Seleccionar archivo
+						</Button> */}
 						{/* </div> */}
 					</Paper>
 				</Grid>
@@ -240,13 +239,14 @@ export default function FormPropsTextFields() {
 							textAlign: "left",
 							padding: "1rem",
 							fontWeight: "bold",
+							color:"whitesmoke"
 						}}
 					>
 						Pricing
 					</Box>
 				</Grid>
 				<Grid sm={8} xs={12}>
-					<Paper elevation={2} sx={{ padding: 2, marginBottom: 2 }}>
+					<Paper elevation={2} sx={{ padding: 2, marginBottom: 2 , backgroundColor:"AppWorkspace"}}>
 						<Box
 							sx={{
 								display: "flex",
@@ -255,14 +255,16 @@ export default function FormPropsTextFields() {
 								gap: 2,
 							}}
 						>
-					{	editProduct &&	<TextField
-								id="outlined-required"
-								name="OldPrice"
-								type="number"
-								label="Old Price"
-								// value={product.precio}
-								// onChange={handleChange}
-							/>}
+							{editProduct && (
+								<TextField
+									id="outlined-required"
+									name="OldPrice"
+									type="number"
+									label="Old Price"
+									// value={product.precio}
+									// onChange={handleChange}
+								/>
+							)}
 							<TextField
 								required
 								id="outlined-required"
@@ -294,6 +296,7 @@ export default function FormPropsTextFields() {
 							textAlign: "left",
 							padding: "1rem",
 							fontWeight: "bold",
+							color:"whitesmoke"
 						}}
 					>
 						Categories
@@ -308,9 +311,10 @@ export default function FormPropsTextFields() {
 							display: "flex",
 							justifyContent: "space-evenly",
 							flexWrap: "wrap",
+							backgroundColor:"AppWorkspace"
 						}}
 					>
-						<TextField
+						{/* <TextField
 							select
 							label="Select a category"
 							sx={{ width:300, marginRight: 2 }}
@@ -328,8 +332,17 @@ export default function FormPropsTextFields() {
 										/>
 									);
 								})}
-						</TextField>
+						</TextField> */}
+						<Autocomplete
+							disablePortal
+							options={productsType}
+							sx={{ width: [300], margin: 2 }}
+							renderInput={(params) => (
+								<TextField {...params} label="Categorys" />
+							)}
+							onChange={handleChange}
 
+						/>
 						<TextField
 							required
 							name="tipo"
@@ -341,13 +354,6 @@ export default function FormPropsTextFields() {
 					</Paper>
 				</Grid>
 			</Grid>
-			{/* <Autocomplete
-				disablePortal
-				id="combo-box-demo"
-				options={productsName}
-				sx={{ width: "500px", margin: 5, background: "yellow" }}
-				renderInput={(params) => <TextField {...params} label="Products" />}
-			/> */}
 			<Box m={2}>
 				<Button
 					variant="contained"
