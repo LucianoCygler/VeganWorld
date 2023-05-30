@@ -1,8 +1,8 @@
-const { Review } = require("../../db");
+const { PageReview } = require("../../db");
 
-async function getClientPageReview(id) {
-  const clientPageReview = await Review.findOne({
-    where: { ClientId: id },
+async function getClientPageReview(nombre) {
+  const clientPageReview = await PageReview.findOne({
+    where: { cliente_nombre: nombre },
   });
 
   return clientPageReview;
