@@ -37,6 +37,7 @@ import {
   CLEAN_ADDRESS,
   GET_ORDERS,
   GET_PAGE_REVIEWS,
+  GET_CLIENT_PAGE_REVIEW,
 } from "../actions/Types/Types";
 const carritoa = JSON.parse(localStorage.getItem("carrito")) || [];
 const productsa = JSON.parse(localStorage.getItem("products")) || [];
@@ -67,6 +68,7 @@ const initialState = {
   MPLink: "",
   allReviews: [],
   pageReviews: [],
+  clientPageReview: {},
   labels: {
     Graph: false,
     Clients: false,
@@ -279,6 +281,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         pageReviews: [...action.payload],
+      };
+    case GET_CLIENT_PAGE_REVIEW:
+      return {
+        ...state,
+        clientPageReview: action.payload,
       };
     case UPDATE_ADDRESS:
       localStorage.setItem("address", action.payload);
