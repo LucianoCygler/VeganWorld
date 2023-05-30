@@ -104,7 +104,7 @@ export default function Graficos() {
         <Bar options={optionsBox} data={dataBox} responsive={true} maintainAspectRatio={false} />
       </Grid>
       <Grid sm={12} xs={12} md={6} lg={6} sx={{ minHeight: [200, 300, 400, 600] }}>
-        <Line options={optionsLine} data={dataLine} responsive={true} maintainAspectRatio={false} />
+        <Line options={optionsLine} data={dataLine} responsive={true} maintainAspectRatio={false} height={"250px"} />
       </Grid>
       <Grid sm={12} xs={12} md={6} lg={6} sx={{ minHeight: [200, 300, 400, 600] }}>
         <PolarArea options={optionsRadar} data={dataRadar} responsive={true} maintainAspectRatio={false} />
