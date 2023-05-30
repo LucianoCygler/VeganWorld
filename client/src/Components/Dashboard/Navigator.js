@@ -22,9 +22,9 @@ export default function Navigator(props) {
 		{
 			id: "Graph",
 			icon: <LeaderboardIcon />,
-			active: false,
+			active: true,
 		},
-		{ id: "Clients", icon: <PeopleIcon />, active: true },
+		{ id: "Clients", icon: <PeopleIcon />, active: false },
 		{ id: "Products", icon: <DnsRoundedIcon />, active: false },
 		{ id: "Reviews", icon: <ReviewsIcon />, active: false },
 		{ id: "Orders", icon: <WarehouseIcon />, active: false },

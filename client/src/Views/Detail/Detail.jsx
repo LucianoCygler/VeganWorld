@@ -11,70 +11,13 @@ import {
 import Pop_up from "../../Utils/Pop_up/Pop_up";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavLink } from "react-router-dom";
 import { Box, Flex, Grid, GridItem, Img } from "@chakra-ui/react";
 import { Button, IconButton } from "@chakra-ui/react";
 import { Text, Heading, Link, Image } from "@chakra-ui/react";
-import { Input, Textarea, Select } from "@chakra-ui/react";
-import { Checkbox, Radio, Switch } from "@chakra-ui/react";
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-} from "@chakra-ui/react";
-import { Stack, VStack, HStack } from "@chakra-ui/react";
-import { Spacer, Divider } from "@chakra-ui/react";
 import { Avatar, Badge, Tag } from "@chakra-ui/react";
-import { Progress, Spinner, Skeleton } from "@chakra-ui/react";
-import { Alert, CloseButton } from "@chakra-ui/react";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-} from "@chakra-ui/react";
-import {
-  AlertDialog,
-  AlertDialogOverlay,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogBody,
-  AlertDialogFooter,
-} from "@chakra-ui/react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-} from "@chakra-ui/react";
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuGroup,
-  MenuDivider,
-} from "@chakra-ui/react";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
-import { Pagination } from "@chakra-ui/react";
-import { Icon } from "@chakra-ui/react";
-import {
-  Tooltip,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverArrow,
-  PopoverCloseButton,
-} from "@chakra-ui/react";
 import "./Detail.css";
+import CreateReview from "./createReview";
+
 function Detail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -82,6 +25,7 @@ function Detail() {
 
   const [product] = useSelector((state) => state.product);
   const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
   const productReviews = useSelector((state) => state.productReviews);
 
   const [quantity, setQuantity] = useState(1);
@@ -132,6 +76,8 @@ function Detail() {
       bgRepeat={"no-repeat"}
       minH={"100vh"}
       paddingTop={"8em"}
+      minWidth={"100%"}
+      overflow={"hidden"}
     >
       {product?.nombre ? (
         <>
@@ -169,7 +115,7 @@ function Detail() {
                   <Img
                     src={product.imagen}
                     alt={product.nombre}
-                    // borderRadius="full"
+                    borderRadius={"10px"}
                     shadow="0px 4px 10px rgba(0, 0, 0, 0.2)"
                     width="100%"
                   />
@@ -210,32 +156,59 @@ function Detail() {
                   </Text>
                   <hr></hr>
                   <Text
-                    fontSize="1xl"
+                    fontSize="3xl"
                     color="white"
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
                   >
                     ${product.precio}
                   </Text>
                   <Text
+                    fontSize={"2xl"}
                     color="white"
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
                   >
-                    Cantidad: {quantity}
+                    Quantity: {quantity}
                   </Text>
                 </Grid>
-                <Button onClick={handleDecrement} marginRight="1em">
+                <Button
+                  onClick={handleDecrement}
+                  marginRight="0.5em"
+                  fontSize={"3xl"}
+                  width={"40px"}
+                  _hover={{
+                    color: "white",
+                    backgroundColor: "red",
+                    transition: "color 0.3s ease, text-shadow 0.3s ease",
+                    textShadow: "1px 2px 11px #EEEEEE",
+                    cursor: "pointer",
+                  }}
+                >
                   -
                 </Button>
-                <Button onClick={handleIncrement} marginRight="1em">
+                <Button
+                  onClick={handleIncrement}
+                  marginRight="1em"
+                  fontSize={"2xl"}
+                  width={"40px"}
+                  _hover={{
+                    color: "white",
+                    backgroundColor: "green",
+                    transition: "color 0.3s ease, text-shadow 0.3s ease",
+                    textShadow: "1px 2px 11px #EEEEEE",
+                    cursor: "pointer",
+                  }}
+                >
                   +
                 </Button>
                 <Button
                   isLoading={loading}
                   colorScheme="teal"
                   onClick={handleClick}
+                  mr={"0.5em"}
                 >
                   Add To Cart
                 </Button>
+                <CreateReview product_id={product_id} cliente_id={user.id} />
               </Box>
             </Grid>
           </Box>
@@ -261,45 +234,73 @@ function Detail() {
             Product Reviews
           </Heading>
         </Box>
-
-        {productReviews
-          ? productReviews.slice(0, 3).map((review) => {
-              return (
-                <>
-                  <Box display="inline-block" marginRight="1.5em">
-                    <div class="cardReview">
-                      <div class="header">
-                        <div>
-                          <Avatar src={review.cliente_imagen} size="xl" />
-                        </div>
-                        <div>
-                          <div class="stars">
-                            {Array.from({ length: review.estrellas }).map(
-                              (_, index) => (
-                                <svg
-                                  key={index}
-                                  fill="currentColor"
-                                  viewBox="0 0 20 20"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                </svg>
-                              )
-                            )}
+        <Box display="flex" justifyContent={"center"}>
+          {productReviews
+            ? productReviews.slice(0, 3).map((review) => {
+                return (
+                  <>
+                    <Box display="inline-block" marginRight="1.5em">
+                      <Box
+                        bg="rgba(243, 244, 246, 1);"
+                        padding={"2em"}
+                        borderRadius={"10px"}
+                        boxShadow={"0 20px 30px -20px rgba(5, 5, 5, 0.24);"}
+                        marginBottom={"2em"}
+                        w="380px"
+                        maxHeight={"300px"}
+                        minH={"300px"}
+                        mt="2em"
+                      >
+                        <div class="header">
+                          <div>
+                            <Avatar
+                              src={review.cliente_imagen}
+                              size="xl"
+                              mr="1em"
+                            />
                           </div>
-                          <p class="name">{review.cliente_nombre}</p>
-                          <p>{review.titulo}</p>
+                          <Grid templateRows={5}>
+                            <Box>
+                              <div class="stars">
+                                {Array.from({ length: review.estrellas }).map(
+                                  (_, index) => (
+                                    <svg
+                                      key={index}
+                                      fill="currentColor"
+                                      viewBox="0 0 20 20"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                    </svg>
+                                  )
+                                )}
+                              </div>
+                            </Box>
+                            <Box mt="1em">
+                              <p class="name">{review.cliente_nombre}</p>
+                            </Box>
+                            <Box>
+                              <Text fontSize={"15px"}>{review.titulo}</Text>
+                            </Box>
+                            <Box display={"flex"} justifyContent={"center"}>
+                              <Text fontSize={"15px"}>
+                                {review.descripcion}
+                              </Text>
+                            </Box>
+                            <Box display={"flex"} justifyContent={"center"}>
+                              <Text fontSize={"10px"} color={"grey"}>
+                                {review.fecha}
+                              </Text>
+                            </Box>
+                          </Grid>
                         </div>
-                      </div>
-
-                      <p class="message">{review.descripcion}</p>
-                      <small class="message">{review.fecha}</small>
-                    </div>
-                  </Box>
-                </>
-              );
-            })
-          : ""}
+                      </Box>
+                    </Box>
+                  </>
+                );
+              })
+            : ""}
+        </Box>
       </Box>
     </Box>
   );

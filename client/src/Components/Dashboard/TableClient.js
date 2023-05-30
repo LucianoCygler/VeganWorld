@@ -93,11 +93,11 @@ function ToolbarGrid() {
   }
 
   useEffect(() => {
-    dispatch(getAllClients());
+    !clients && dispatch(getAllClients());
   }, [deletedClient]);
 
   return (
-    <div style={{ height: 500, width: "100%" }}>
+    <div style={{ height: 500, minWidth: "100%" }}>
       <Box>
         List Clients
       </Box>

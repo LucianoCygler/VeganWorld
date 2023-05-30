@@ -96,7 +96,7 @@ const MyReviews = () => {
       ) : (
         <>
           <Divider />
-          <Box marginTop={"10em"} display={"flex"} justifyContent={"center"}>
+          <Box marginTop={"8em"} display={"flex"} justifyContent={"center"}>
             <Text
               fontSize={"30px"}
               color="white"
@@ -130,50 +130,71 @@ const MyReviews = () => {
               reviews.map((review) => {
                 return (
                   <>
-                    <Box
-                      display="inline-block"
-                      marginRight="1.5em"
-                      paddingTop="5em"
-                      onClick={() => showPopupHandler(review)}
-                    >
-                      <div class="cardReview">
+                    <Box display="inline-block" marginRight="1.5em">
+                      <Box
+                        bg="rgba(243, 244, 246, 1);"
+                        padding={"2em"}
+                        borderRadius={"10px"}
+                        boxShadow={"0 20px 30px -20px rgba(5, 5, 5, 0.24);"}
+                        marginBottom={"2em"}
+                        w="380px"
+                        maxHeight={"300px"}
+                        minH={"300px"}
+                        mt="2em"
+                        onClick={() => showPopupHandler(review)}
+                      >
                         <div class="header">
                           <div>
-                            {" "}
-                            <Avatar src={review.cliente_imagen} size="xl" />
+                            <Avatar
+                              src={review.cliente_imagen}
+                              size="xl"
+                              mr="1em"
+                            />
                           </div>
-                          <div>
-                            <div class="stars">
-                              {Array.from({ length: review.estrellas }).map(
-                                (_, index) => (
-                                  <svg
-                                    key={index}
-                                    fill="currentColor"
-                                    viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                  </svg>
-                                )
-                              )}
-                            </div>
-                            <p class="name">{review.cliente_nombre}</p>
-                            <p>{review.titulo}</p>
-                          </div>
+                          <Grid templateRows={5}>
+                            <Box>
+                              <div class="stars">
+                                {Array.from({ length: review.estrellas }).map(
+                                  (_, index) => (
+                                    <svg
+                                      key={index}
+                                      fill="currentColor"
+                                      viewBox="0 0 20 20"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                    </svg>
+                                  )
+                                )}
+                              </div>
+                            </Box>
+                            <Box mt="1em">
+                              <p class="name">{review.cliente_nombre}</p>
+                            </Box>
+                            <Box>
+                              <Text fontSize={"15px"}>{review.titulo}</Text>
+                            </Box>
+                            <Box display={"flex"} justifyContent={"center"}>
+                              <Text fontSize={"15px"}>
+                                {review.descripcion}
+                              </Text>
+                            </Box>
+                            <Box display={"flex"} justifyContent={"center"}>
+                              <Text fontSize={"10px"} color={"grey"}>
+                                {review.fecha}
+                              </Text>
+                            </Box>
+                          </Grid>
                         </div>
-
-                        <p class="message">{review.descripcion}</p>
-                        <small class="message">{review.fecha}</small>
-                      </div>
+                      </Box>
                     </Box>
                   </>
                 );
               })
             ) : (
-              <div>
-                <h2>You have no reviews yet.</h2>
-                <h3>Let's make one...</h3>
-              </div>
+              <Box display={"flex"} alignItems={"center"}>
+                <Heading color={"white"}>You don´t have reviews yet.</Heading>
+              </Box>
             )}
           </Box>
           {/* // reviews.map((review) => (

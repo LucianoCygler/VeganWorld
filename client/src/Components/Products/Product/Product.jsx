@@ -47,11 +47,12 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
         Pop_up(
           "success",
           "Product added",
-          "You can find your products in Cart!"
+          "You can find your products in Cart!",
+          "top"
         );
       })
       .catch(({ message }) => {
-        Pop_up("info", "Product added", message);
+        Pop_up("info", "Product added", message, 'top');
       });
   };
 

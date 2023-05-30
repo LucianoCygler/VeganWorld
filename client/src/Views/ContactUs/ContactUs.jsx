@@ -17,7 +17,7 @@ import {
   Grid,
   GridItem,
   Center,
-  Text
+  Text,
 } from "@chakra-ui/react";
 import { sendEmail } from "../../redux/actions/actions";
 
@@ -117,6 +117,8 @@ const ContactUs = () => {
         margin="auto"
         borderRadius={50}
         paddingBottom={"2em"}
+        paddingRight={"2em"}
+        paddingLeft={"2em"}
       >
         <Center>
           <Box>
@@ -129,23 +131,23 @@ const ContactUs = () => {
               textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
             >
               <Text
-              fontWeight={"semibold"}
-              display={"inline"}
-              color={"lightseagreen"}
-              marginRight={-2}
-            >
-              {" "}
-              Visit
-            </Text>{" "}
-            <Text fontWeight={"hairline"} display="inline">
-              Us! 
-            </Text>
-            <small>📍</small>
+                fontWeight={"semibold"}
+                display={"inline"}
+                color={"lightseagreen"}
+                marginRight={-2}
+              >
+                {" "}
+                Visit
+              </Text>{" "}
+              <Text fontWeight={"hairline"} display="inline">
+                Us!
+              </Text>
+              <small>📍</small>
             </Heading>
             <Box>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.703969221664!2d-58.497814741769595!3d-34.63692048947491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc93bc88e4279%3A0xc6e4c5cf528aa9fb!2sMundo%20Vegano!5e0!3m2!1ses!2sar!4v1684369093537!5m2!1ses!2sar"
-                width={"500em"}
+                width={"100%em"}
                 height={"300em"}
                 allowFullScreen={true}
                 loading="lazy"

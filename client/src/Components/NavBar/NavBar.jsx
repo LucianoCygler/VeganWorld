@@ -75,9 +75,7 @@ function NavBar() {
               {" "}
               Vegan
             </Text>{" "}
-            <Text fontWeight={"hairline"} display="inline">
-              World!
-            </Text>
+            <Text display="inline">World!</Text>
           </h1>
         </NavLink>
       </div>
@@ -85,52 +83,6 @@ function NavBar() {
         {location.pathname === "/OurProducts" ? <SearchBar /> : ""}
       </div>
       <div className={styles.divRight}>
-        {/* <Link to="/OurProducts">Our Products</Link> */}
-        {/* <Menu>
-          <MenuButton
-            as={IconButton}
-            aria-label="Options"
-            icon={<HamburgerIcon />}
-            variant="unstyled"
-            _hover={{ bg: "teal.500" }}
-            _selected={{ bg: "teal.500" }}
-          />
-          <MenuList color={"black"} zIndex={9}>
-            <MenuItem as={NavLink} to="/MyProfile">
-              Profile
-            </MenuItem>
-            <MenuItem as={NavLink} to="/Favorites">
-              Favorites
-            </MenuItem>
-            <MenuItem as={NavLink} to="/MyOrders">
-              Orders
-            </MenuItem>
-            <MenuItem as={NavLink} to="/MyReviews">
-              Reviews
-            </MenuItem>
-            <MenuItem as={NavLink} to="/ContactUs">
-              Contact
-            </MenuItem>
-            <MenuItem as={NavLink} to="/About">
-              About us
-            </MenuItem>
-          </MenuList>
-        </Menu> */}
-        {/* <div className={styles.redirects}>
-          <div className={styles.dropdown}>
-            <FontAwesomeIcon className={styles.dropbtn} icon={faBars} />
-
-            <div className={styles.dropdownContent}>
-              <div className={styles.triangle}></div>
-              <Link to="/MyProfile">Profile</Link>
-              <Link to="/Favorites">Favorites</Link>
-              <Link to="/MyOrders">Orders</Link>
-              <Link to="/MyReviews">Reviews</Link>
-              <Link to="/ContactUs">Contact</Link>
-              <Link to="/About">About</Link>
-            </div>
-          </div>
-        </div> */}
         <NavLink to="/Cart" className={styles.link}>
           <FontAwesomeIcon
             icon={faCartShopping}
