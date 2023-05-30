@@ -111,9 +111,10 @@ const Favorites = () => {
                   );
                 })
               ) : (
-                <Box display={"flex"} alignItems={"center"}>
+                <Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
                   {" "}
                   <Heading
+                    marginBottom={"3em"}
                     color={"whiteAlpha.900"}
                     fontSize="5xl"
                     as="b"
@@ -122,6 +123,8 @@ const Favorites = () => {
                   >
                     You don't have favorites
                   </Heading>
+                  <Image   src='https://cdn.pixabay.com/photo/2013/07/12/19/25/favorite-154758_1280.png' className="img-fluid" style={{ width: '200px', height: 'auto' }} alt="Imagen">
+                  </Image>
                 </Box>
               )}
             </Wrap>
