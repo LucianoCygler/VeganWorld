@@ -21,8 +21,8 @@ const About = () => {
       minHeight={"100vh"}
       bgSize={"cover"}
       bgRepeat={"no-repeat"}
-      paddingTop={"5em"}
-      paddingBottom={"5em"}
+      paddingTop={"10em"}
+      paddingBottom={"10em"}
     >
       <Flex
         flexDirection="column"
@@ -30,20 +30,17 @@ const About = () => {
         alignItems="center"
         color="#EEF2E6"
       >
-        <Box
-          mt="125px"
-          p="50px"
-          flexDirection="column"
-          flexWrap="wrap"
-          justifyContent="center"
-          alignItems="center"
-          borderRadius="0.75em"
-          boxShadow="9px 13px 13px 3px #1C6758"
-          w="1000px"
-          bgColor="#3D8361"
-          h="780px"
-        >
-         <Heading
+          <Box
+            bg="#1d5c63"
+            boxShadow="0 0 15px #1a3c40"
+            margin="auto"
+            borderRadius={50}
+            paddingBottom={"2em"}
+            w="1000px"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Heading
               padding={"0.5em"}
               marginTop={"0.1em"}
               fontSize={"4em"}
@@ -51,64 +48,64 @@ const About = () => {
               color={"white"}
               textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
             >
-            <Text
-              fontWeight={"semibold"}
-              display={"inline"}
-              color={"lightseagreen"}
-              marginRight={-2}
-            >
-              {" "}
-              Vegan
-            </Text>{" "}
-            <Text fontWeight={"hairline"} display="inline">
-              World!
+              <Text
+                fontWeight={"semibold"}
+                display={"inline"}
+                color={"lightseagreen"}
+                marginRight={-2}
+              >
+                {" "}
+                Vegan
+              </Text>{" "}
+              <Text fontWeight={"hairline"} display="inline">
+                World!
+              </Text>
+              <small>🌿</small>
+            </Heading>
+            <Text as="h3" ml="100px" w="80%" color="white" fontFamily={"Montserrat"}>
+              Comes from our own needs. We wanted an app that could make it easier
+              to be a vegan and order food like everybody else. So we teamed up
+              and built our own company to facilitate this. And we couldn't be
+              happier about the results.
             </Text>
-            <small>🌿</small>
-          </Heading>
-          <Text as="h3" ml="100px" w="80%" color="white">
-            Comes from our own needs. We wanted an app that could make it easier
-            to be a vegan and order food like everybody else. So we teamed up
-            and built our own company to facilitate this. And we couldn't be
-            happier about the results.
-          </Text>
-          <Text as="h2" ml="100px" w="80%" color="green.200">
-            Day after day more than 3000 orders from our website are being
-            completed. And that means that a lot of people are eating healthy
-            and delicious food.
-          </Text>
-          <Flex flexDirection="row" justifyContent="center" alignItems="center">
-            <Image
-              src={imagenUno.imageUrl}
-              p="6"
-              borderRadius="200"
-              w="150px"
-              h="150px"
-              objectFit="cover"
-              m="30px"
-              boxShadow="0px 0px 15px #7fb69b"
-            />
-            <Image
-              src={imagenDos.imageUrl}
-              p="6"
-              borderRadius="200"
-              w="150px"
-              h="150px"
-              objectFit="cover"
-              m="30px"
-              boxShadow="0px 0px 15px #7fb69b"
-            />
-            <Image
-              src={imagenTres.imageUrl}
-              p="6"
-              borderRadius="200"
-              w="150px"
-              h="150px"
-              objectFit="cover"
-              m="30px"
-              boxShadow="0px 0px 15px #7fb69b"
-            />
-          </Flex>
-        </Box>
+            <Text as="h2" ml="100px" w="80%" color="green.200"  fontFamily={"Montserrat"}>
+              Day after day more than 3000 orders from our website are being
+              completed. And that means that a lot of people are eating healthy
+              and delicious food.
+            </Text>
+            <Flex flexDirection="row" justifyContent="center" alignItems="center">
+              <Image
+                src={imagenUno.imageUrl}
+                p="6"
+                borderRadius="200"
+                w="200px"
+                h="200px"
+                objectFit="cover"
+                m="30px"
+                boxShadow="0px 0px 15px #7fb69b"
+              />
+              <Image
+                src={imagenDos.imageUrl}
+                p="6"
+                borderRadius="200"
+                w="200px"
+                h="200px"
+                objectFit="cover"
+                m="30px"
+                boxShadow="0px 0px 15px #7fb69b"
+              />
+              <Image
+                src={imagenTres.imageUrl}
+                p="6"
+                borderRadius="200"
+                w="200px"
+                h="200px"
+                objectFit="cover"
+                m="30px"
+                boxShadow="0px 0px 15px #7fb69b"
+              />
+            </Flex>
+          </Box>
       </Flex>
     </Box>
   );
