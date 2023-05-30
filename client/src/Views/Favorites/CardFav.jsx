@@ -69,6 +69,7 @@ const CardFav = ({ product, favorites }) => {
     <Card
       maxW="2xs"
       bg={"#d8d8d8"}
+      transition={"0.3s"}
       _hover={{
         transform: "scale(1.05)",
         transition: "transform 0.3s ease-in-out",
