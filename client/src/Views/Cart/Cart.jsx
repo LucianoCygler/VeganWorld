@@ -385,54 +385,66 @@ function Cart() {
                       {" "}
                       <Box>
                         <>
-                          <Box marginBottom={"1em"}>
-                            {address == "" ? (
-                              <>
-                                {" "}
-                                <InfoOutlineIcon
-                                  color={"red"}
-                                  marginRight={1.5}
-                                />
-                                <Text display={"inline"} color={"red"}>
-                                  Complete your addres first
-                                </Text>
-                              </>
-                            ) : (
-                              <>
-                                {" "}
-                                <InfoOutlineIcon
-                                  color={"green"}
-                                  marginRight={1.5}
-                                />
-                                <Text display={"inline"} color={"green"}>
-                                  Once the order is created, you will be
-                                  reditected to the payment window.
-                                </Text>
-                              </>
-                            )}
-                          </Box>
-                          {address !== "" ? (
-                            <>
-                              {!isOrderGenerated ? (
-                                <Button
-                                  color={"teal"}
-                                  onClick={handleClick}
-                                  name="generateOrder"
-                                >
-                                  Generate order
-                                </Button>
+                          {" "}
+                          {email ? (
+                            <Box marginBottom={"1em"}>
+                              {address == "" ? (
+                                <>
+                                  {" "}
+                                  <InfoOutlineIcon
+                                    color={"red"}
+                                    marginRight={1.5}
+                                  />
+                                  <Text display={"inline"} color={"red"}>
+                                    Complete your addres first
+                                  </Text>
+                                </>
                               ) : (
-                                <Button
-                                  onClick={handleClick}
-                                  name="pay"
-                                  color={"teal"}
-                                >
-                                  Redirecting...
-                                </Button>
+                                <>
+                                  {" "}
+                                  <InfoOutlineIcon
+                                    color={"green"}
+                                    marginRight={1.5}
+                                  />
+                                  <Text display={"inline"} color={"green"}>
+                                    Once the order is created, you will be
+                                    reditected to the payment window.
+                                  </Text>
+                                </>
                               )}
-                            </>
+                            </Box>
                           ) : (
-                            <AddressPopUp />
+                            ""
+                          )}
+                          {email ? (
+                            <Box>
+                              {" "}
+                              {address !== "" ? (
+                                <>
+                                  {!isOrderGenerated ? (
+                                    <Button
+                                      color={"teal"}
+                                      onClick={handleClick}
+                                      name="generateOrder"
+                                    >
+                                      Generate order
+                                    </Button>
+                                  ) : (
+                                    <Button
+                                      onClick={handleClick}
+                                      name="pay"
+                                      color={"teal"}
+                                    >
+                                      Redirecting...
+                                    </Button>
+                                  )}
+                                </>
+                              ) : (
+                                <AddressPopUp />
+                              )}
+                            </Box>
+                          ) : (
+                            ""
                           )}
                         </>
                       </Box>
