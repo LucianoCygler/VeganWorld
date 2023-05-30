@@ -75,9 +75,7 @@ function NavBar() {
               {" "}
               Vegan
             </Text>{" "}
-            <Text fontWeight={"hairline"} display="inline">
-              World!
-            </Text>
+            <Text display="inline">World!</Text>
           </h1>
         </NavLink>
       </div>

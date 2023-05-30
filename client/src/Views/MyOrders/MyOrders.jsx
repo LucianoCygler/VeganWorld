@@ -79,8 +79,8 @@ const MyOrders = () => {
         {" "}
         <Tabs
           variant="enclosed-colored"
-          w={"80%"}
-          mt={"12em"}
+          w={"100%"}
+          mt={"8em"}
           // shadow={"lg"}
         >
           <Box marginBottom={"5em"} display={"flex"} justifyContent={"center"}>
@@ -103,49 +103,40 @@ const MyOrders = () => {
             </Text>
           </Box>
           <TabList color={"green.800"}>
-            <Tab fontWeight={"extrabold"}>Pending</Tab>
-            <Tab fontWeight={"extrabold"}>In Progress</Tab>
-            <Tab fontWeight={"extrabold"}>Delivered</Tab>
-            <Tab fontWeight={"extrabold"}>Cancelled</Tab>
+            <Tab fontWeight={"extrabold"} color={"teal"}>
+              Pending
+            </Tab>
+            {/* <Tab fontWeight={"extrabold"}>In Progress</Tab>
+            <Tab fontWeight={"extrabold"}>Delivered</Tab> */}
+            <Tab fontWeight={"extrabold"} color={"teal"}>
+              Cancelled
+            </Tab>
           </TabList>
 
           <TabPanels>
             <TabPanel>
               {/* PENDING */}
               {/* Aca debajo se rendiza los TabPanels con un map de la cantidad de ordenes */}
-              <Accordion allowMultiple w={"95%"}>
+              <Accordion allowMultiple w={"100%"}>
                 {clientOrders.map((order, index) => {
-                  return (
-                    order.estado === "Pendiente" && (
-                      <OrderDetail order={order} cancelRef={cancelRef} />
-                    )
-                  );
+                  if (
+                    order.estado === "Pendiente" ||
+                    order.estado === "Preparación" ||
+                    order.estado === "Envío"
+                  ) {
+                    return (
+                      <Box key={index}>
+                        <OrderDetail order={order} cancelRef={cancelRef} />
+                      </Box>
+                    );
+                  }
+                  return null;
                 })}
               </Accordion>
             </TabPanel>
             {/* TABPANEL EN PROCESO */}
-            <TabPanel>
+            {/* <TabPanel>
               IN PROGRESS
-              <Stepper size="sm" index={activeStep} w={"90%"} m={"auto"}>
-                {steps.map((step, index) => (
-                  <Step key={index}>
-                    <StepIndicator>
-                      <StepStatus
-                        complete={<StepIcon />}
-                        incomplete={<StepNumber />}
-                        active={<StepNumber />}
-                      />
-                    </StepIndicator>
-
-                    <Box flexShrink="0">
-                      <StepTitle>{step.title}</StepTitle>
-                      <StepDescription>{step.description}</StepDescription>
-                    </Box>
-
-                    <StepSeparator />
-                  </Step>
-                ))}
-              </Stepper>
               <Accordion defaultIndex={[0]} allowMultiple>
                 {clientOrders.map((order, index) => {
                   return (
@@ -159,10 +150,30 @@ const MyOrders = () => {
                     )
                   );
                 })}
+                <Stepper size="sm" index={activeStep} w={"100%"}>
+                  {steps.map((step, index) => (
+                    <Step key={index}>
+                      <StepIndicator>
+                        <StepStatus
+                          complete={<StepIcon />}
+                          incomplete={<StepNumber />}
+                          active={<StepNumber />}
+                        />
+                      </StepIndicator>
+
+                      <Box flexShrink="0">
+                        <StepTitle>{step.title}</StepTitle>
+                        <StepDescription>{step.description}</StepDescription>
+                      </Box>
+
+                      <StepSeparator />
+                    </Step>
+                  ))}
+                </Stepper>
               </Accordion>
-            </TabPanel>{" "}
+            </TabPanel>{" "} */}
             {/* TABPANEL ENTREGADOS */}
-            <TabPanel>
+            {/* <TabPanel>
               <p>DELIVERED</p>
               <Accordion defaultIndex={[0]} allowMultiple>
                 {clientOrders.map((order, index) => {
@@ -178,11 +189,10 @@ const MyOrders = () => {
                   );
                 })}
               </Accordion>
-            </TabPanel>{" "}
+            </TabPanel>{" "} */}
             {/* TABPANEL CANCELADOS */}
             <TabPanel>
-              <p>CANCELLED</p>
-              <Accordion defaultIndex={[0]} allowMultiple>
+              <Accordion allowMultiple>
                 {clientOrders.map((order, index) => {
                   return (
                     order.estado === "Cancelado" && (

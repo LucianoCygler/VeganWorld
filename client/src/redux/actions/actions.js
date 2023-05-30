@@ -49,6 +49,7 @@ import {
   CLEAN_ADDRESS,
   GET_PAGE_REVIEWS,
   GET_ORDERS,
+  CREATE_PAGE_REVIEW,
 } from "./Types/Types";
 
 export const createProduct = (product) => {
@@ -273,6 +274,7 @@ export const validateUserExistenceInDb = (email) => {
     try {
       const res = await axios.post(`/client/checkclient/`, email);
       const userData = res.data;
+      console.log(userData);
       return dispatch({ type: VALIDATE_LOGIN, payload: userData });
     } catch (error) {
       console.log(error.response.data);
@@ -507,6 +509,18 @@ export const getAllPageReviews = () => {
       const res = await axios.get(`/pagereview`);
       const pageReviews = res.data;
       return dispatch({ type: GET_PAGE_REVIEWS, payload: pageReviews });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
+
+export const createPageReview = (review) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.post("/pagereview", review);
+      // const pageReview = res.data;
+      // return dispatch({ type: CREATE_PAGE_REVIEW, payload: pageReview });
     } catch (error) {
       console.log(error.response.data);
     }

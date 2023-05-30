@@ -16,6 +16,7 @@ import {
 import React, { useState } from "react";
 import { useDisclosure } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
+
 function DrawerMenu() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
@@ -58,13 +59,11 @@ function DrawerMenu() {
               {" "}
               Vegan
             </Text>{" "}
-            <Text fontWeight={"hairline"} display="inline">
-              World!
-            </Text>
+            <Text display="inline">World!</Text>
           </DrawerHeader>
 
-          <DrawerBody textAlign={"left"} overflow="hidden">
-            <Grid templateRows={"repeat(6,1fr)"} gap={10} marginTop={"4em"}>
+          <DrawerBody textAlign={"left"}>
+            <Grid templateRows={"repeat(6,1fr)"} gap={10} marginTop={"3em"}>
               <a href="/MyProfile">
                 <Heading
                   name="profile"
@@ -73,6 +72,8 @@ function DrawerMenu() {
                   fontSize={"25PX"}
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                   _hover={{
+                    color:"#22FF2C",
+                    transition: "color 0.3s ease, text-shadow 0.3s ease",
                     textShadow: "1px 2px 11px #EEEEEE",
                     cursor: "pointer",
                   }}
@@ -88,6 +89,8 @@ function DrawerMenu() {
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                   fontSize={"25PX"}
                   _hover={{
+                    color:"#22FF2C",
+                    transition: "color 0.3s ease, text-shadow 0.3s ease",
                     textShadow: "1px 2px 11px #EEEEEE",
                     cursor: "pointer",
                   }}
@@ -103,6 +106,8 @@ function DrawerMenu() {
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                   fontSize={"25PX"}
                   _hover={{
+                    color:"#22FF2C",
+                    transition: "color 0.3s ease, text-shadow 0.3s ease",
                     textShadow: "1px 2px 11px #EEEEEE",
                     cursor: "pointer",
                   }}
@@ -118,6 +123,8 @@ function DrawerMenu() {
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                   fontSize={"25PX"}
                   _hover={{
+                    color:"#22FF2C",
+                    transition: "color 0.3s ease, text-shadow 0.3s ease",
                     textShadow: "1px 2px 11px #EEEEEE",
                     cursor: "pointer",
                   }}
@@ -129,16 +136,37 @@ function DrawerMenu() {
               <a href="/OurProducts">
                 <Heading
                   name="products"
+                  color={"yellow.400"}
                   fontWeight={"light"}
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                   fontSize={"25PX"}
                   _hover={{
+                    color:"yellow",
+                    transition: "color 0.3s ease, text-shadow 0.3s ease",
                     textShadow: "1px 2px 11px #EEEEEE",
                     cursor: "pointer",
                   }}
                   onClick={handleSelected}
                 >
                   Our Products
+                </Heading>
+              </a>
+              <a href="/MyPageReview">
+                <Heading
+                  name="pageReview"
+                  color={selectedOption === "pageReview" ? "teal" : "white"}
+                  fontWeight={"light"}
+                  fontSize={"25PX"}
+                  textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
+                  _hover={{
+                    color:"#22FF2C",
+                    transition: "color 0.3s ease, text-shadow 0.3s ease",
+                    textShadow: "1px 2px 11px #EEEEEE",
+                    cursor: "pointer",
+                  }}
+                  onClick={handleSelected}
+                >
+                  My page review
                 </Heading>
               </a>
             </Grid>
@@ -153,6 +181,8 @@ function DrawerMenu() {
                 textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                 fontSize={"15px"}
                 _hover={{
+                  color:"#22FF2C",
+                  transition: "color 0.3s ease, text-shadow 0.3s ease",
                   textShadow: "1px 2px 11px #EEEEEE",
                   cursor: "pointer",
                 }}
@@ -167,6 +197,8 @@ function DrawerMenu() {
                 fontWeight={"light"}
                 fontSize={"15PX"}
                 _hover={{
+                  color:"#22FF2C",
+                  transition: "color 0.3s ease, text-shadow 0.3s ease",
                   textShadow: "1px 2px 11px #EEEEEE",
                   cursor: "pointer",
                 }}

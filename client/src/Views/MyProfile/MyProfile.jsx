@@ -253,15 +253,34 @@ const MyData = () => {
   }, [selectedUser]);
 
   return (
-
     <Box
       backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
       minHeight={"100vh"}
       bgSize={"cover"}
       bgRepeat={"no-repeat"}
-      paddingTop={"10em"}
-      paddingBottom={"10em"}
+      paddingTop={"8em"}
+      paddingBottom={"1em"}
     >
+      {" "}
+      <Box marginBottom={"4em"}>
+        <Text
+          fontSize={"30px"}
+          color="white"
+          textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+          position="relative"
+        >
+          PROFILE
+          <Text
+            as="span"
+            position="absolute"
+            left={"45%"}
+            bottom={-5} // Ajusta este valor según el espaciado deseado
+            width="10%"
+            height="3px"
+            background="orange"
+          />
+        </Text>
+      </Box>
       {!emailCurrent ? (
         <Container>
           <Heading>
@@ -479,10 +498,11 @@ const MyData = () => {
               shadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
               w="40%"
               margin="auto"
+              pt="2em"
               borderRadius={50}
               paddingBottom={"2em"}
             >
-              <Heading
+              {/* <Heading
                 padding={"0.5em"}
                 marginTop={"0.1em"}
                 fontSize={"4em"}
@@ -503,7 +523,7 @@ const MyData = () => {
                   Profile
                 </Text>
                 <small>🌱</small>
-              </Heading>
+              </Heading> */}
               {imagen ? (
                 <Image
                   w={"220px"}
