@@ -5,6 +5,7 @@ import { Chart as ChartJs, CategoryScale, PointElement, RadialLinearScale,
 import { Line, PolarArea, Bar } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
 import { Box } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 //.
 ChartJs.register( CategoryScale, PointElement, LineElement, RadialLinearScale, 
   ArcElement, LinearScale,
@@ -15,7 +16,6 @@ export const labels = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", 
 /* USUARIOS */
 
 export const optionsLine = {
-  responsive: true,
   plugins: {
     legend: {
       position: "top",
@@ -42,7 +42,6 @@ export const dataLine = {
 /* REVIEWS */
 
 export const optionsRadar = {
-  responsive: true,
   plugins: {
     legend: {
       position: "top"
@@ -76,7 +75,6 @@ export const dataRadar = {
 /* GANANCIAS */
 
 export const optionsBox = {
-  responsive: true,
   plugins: {
     legend: {
       position: "top",
@@ -94,21 +92,23 @@ export const dataBox = {
     {
       label: "Total profit",
       data: labels.map(() => faker.datatype.number({ min: 0, max: 1000000 })),
-      backgroundColor: "rgba(255, 99, 132, 0.5",
+      backgroundColor: "rgba(255, 99, 132, 0.5"
     }
   ]
 }
 
 export default function Graficos() {
   return (
-    <Box>
-      <Box width={"1000px"} marginLeft={"100px"}>
-        <Bar options={optionsBox} data={dataBox} />
-      </Box>
-      <Box width={"600px"} display={"flex"}>
-        <Line options={optionsLine} data={dataLine} height={"300px"} />
-        <PolarArea options={optionsRadar} data={dataRadar} />
-      </Box>
-    </Box>
+    <Grid container spacing={6}>
+      <Grid sm={12} xs={12} md={12} lg={12} sx={{ minHeight: [200, 300, 400, 600] }}>
+        <Bar options={optionsBox} data={dataBox} responsive={true} maintainAspectRatio={false} />
+      </Grid>
+      <Grid sm={12} xs={12} md={6} lg={6} sx={{ minHeight: [200, 300, 400, 600] }}>
+        <Line options={optionsLine} data={dataLine} responsive={true} maintainAspectRatio={false} />
+      </Grid>
+      <Grid sm={12} xs={12} md={6} lg={6} sx={{ minHeight: [200, 300, 400, 600] }}>
+        <PolarArea options={optionsRadar} data={dataRadar} responsive={true} maintainAspectRatio={false} />
+      </Grid>
+    </Grid>
   )
 }
