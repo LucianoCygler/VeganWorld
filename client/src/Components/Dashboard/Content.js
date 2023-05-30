@@ -10,6 +10,7 @@ import GraficoGanancias from "../../Graficos/GraficoGanancias";
 import GraficoReviews from "../../Graficos/GraficoReviews";
 import GraficoUsuarios from "../../Graficos/GraficoUsuarios";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import DashOrders from "./OrdersClient";
 
 export default function Content() {
 	const { Graph, Clients, Products, Reviews, Orders } = useSelector(
@@ -28,11 +29,12 @@ export default function Content() {
 					backgroundColor:"InfoBackground"
 				}}
 			>
-				{Clients && <TableClient />}
-				{Products && <FormPropsTextFields />}
-				{Reviews && <ReviewsDashboard />}
-				{Graph && <GraficoGanancias />}
-			</Paper>
-		</Grid>
+
+			{Clients && <TableClient />}
+			{Products && <FormPropsTextFields />}
+			{Reviews && <ReviewsDashboard />}
+			{Graph && <GraficoGanancias />}
+			{Orders && <DashOrders />} 
+		</Paper>
 	);
 }

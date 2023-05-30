@@ -6,7 +6,8 @@ async function deleteOrder(id, data) {
     throw new Error(`No se encontró un order con el id ${id}`);
   }
   await order.update(data);
-  await order.destroy({ force: false });
+  await order.update({ estado: "Cancelado" });
+  // await order.destroy({ force: false });
   return `el order con el id ${id} fue eliminado correctamente`;
 }
 

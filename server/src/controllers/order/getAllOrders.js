@@ -1,7 +1,7 @@
 const { Order } = require("../../db");
 
 async function getAllOrders() {
-  const allOrders = await Order.findAll();
+  const allOrders = await Order.findAll({ paranoid: false });
   return allOrders;
 }
 
