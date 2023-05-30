@@ -123,7 +123,7 @@ const Favorites = () => {
                   >
                     You don't have favorites
                   </Heading>
-                  <Image   src='https://cdn.pixabay.com/photo/2013/07/12/19/25/favorite-154758_1280.png' className="img-fluid" style={{ width: '200px', height: 'auto' }} alt="Imagen">
+                  <Image   src="https://res.cloudinary.com/da6d9ru3s/image/upload/v1685459046/favorite-154758_1280_jruydu.png" className="img-fluid" style={{ width: '200px', height: 'auto' }} alt="Imagen">
                   </Image>
                 </Box>
               )}
