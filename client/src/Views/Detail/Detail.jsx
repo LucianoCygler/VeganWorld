@@ -11,71 +11,14 @@ import {
 import Pop_up from "../../Utils/Pop_up/Pop_up";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavLink } from "react-router-dom";
 import { Box, Flex, Grid, GridItem, Img } from "@chakra-ui/react";
 import { Button, IconButton } from "@chakra-ui/react";
 import { Text, Heading, Link, Image } from "@chakra-ui/react";
-import { Input, Textarea, Select } from "@chakra-ui/react";
-import { Checkbox, Radio, Switch } from "@chakra-ui/react";
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-} from "@chakra-ui/react";
-import { Stack, VStack, HStack } from "@chakra-ui/react";
-import { Spacer, Divider } from "@chakra-ui/react";
 import { Avatar, Badge, Tag } from "@chakra-ui/react";
-import { Progress, Spinner, Skeleton } from "@chakra-ui/react";
-import { Alert, CloseButton } from "@chakra-ui/react";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-} from "@chakra-ui/react";
-import {
-  AlertDialog,
-  AlertDialogOverlay,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogBody,
-  AlertDialogFooter,
-} from "@chakra-ui/react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-} from "@chakra-ui/react";
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuGroup,
-  MenuDivider,
-} from "@chakra-ui/react";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
-import { Pagination } from "@chakra-ui/react";
-import { Icon } from "@chakra-ui/react";
-import {
-  Tooltip,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverArrow,
-  PopoverCloseButton,
-} from "@chakra-ui/react";
 import "./Detail.css";
 import CreateReview from "./createReview";
+
+
 function Detail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -171,7 +114,7 @@ function Detail() {
                   <Img
                     src={product.imagen}
                     alt={product.nombre}
-                    // borderRadius="full"
+                    borderRadius={"10px"}
                     shadow="0px 4px 10px rgba(0, 0, 0, 0.2)"
                     width="100%"
                   />
@@ -212,33 +155,49 @@ function Detail() {
                   </Text>
                   <hr></hr>
                   <Text
-                    fontSize="1xl"
+                    fontSize="3xl"
                     color="white"
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
                   >
                     ${product.precio}
                   </Text>
                   <Text
+                  fontSize={"2xl"}
                     color="white"
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
                   >
-                    Cantidad: {quantity}
+                    Quantity: {quantity}
                   </Text>
                 </Grid>
-                <Button onClick={handleDecrement} marginRight="1em">
+                <Button onClick={handleDecrement} marginRight="0.5em" fontSize={"3xl"} width={"40px"}  
+                _hover={{
+                  color: "white",
+                  backgroundColor: "red",
+                  transition: "color 0.3s ease, text-shadow 0.3s ease",
+                  textShadow: "1px 2px 11px #EEEEEE",
+                  cursor: "pointer",
+                }}  
+                  >
                   -
                 </Button>
-                <Button onClick={handleIncrement} marginRight="1em">
+                <Button onClick={handleIncrement} marginRight="1em" fontSize={"2xl"} width={"40px"}  _hover={{
+                  color: "white",
+                    backgroundColor: "green",
+                    transition: "color 0.3s ease, text-shadow 0.3s ease",
+                    textShadow: "1px 2px 11px #EEEEEE",
+                    cursor: "pointer",
+                  }}>
                   +
-                </Button>
+                </Button> 
                 <Button
                   isLoading={loading}
                   colorScheme="teal"
                   onClick={handleClick}
+                  mr={"0.5em"}
                 >
                   Add To Cart
                 </Button>
-                <CreateReview product_id={product_id} cliente_id={user.id} />
+                <CreateReview  product_id={product_id} cliente_id={user.id} />
               </Box>
             </Grid>
           </Box>
