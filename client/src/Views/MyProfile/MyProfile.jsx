@@ -28,27 +28,13 @@ import {
   FormControl,
   FormLabel,
   FormHelperText,
-
   FormErrorMessage,
-  useToast
-
+  useToast,
 } from "@chakra-ui/react";
 import { sendEmail } from "../../redux/actions/actions";
 
 import axios from "axios";
 import { Container } from "react-bootstrap";
-
-
-
-const formMyProfile = {
-  nombre: "",
-  apellido: "",
-  email: "",
-  telefono: "",
-  ciudad: "",
-  direccion: "",
-};
-
 
 const MyData = () => {
   const dispatch = useDispatch();
@@ -66,18 +52,25 @@ const MyData = () => {
     imagen,
   } = user;
   const [editMode, setEditMode] = useState(false);
-  const [editedName, setEditedName] = useState(nombre || "");
-  const [editedSurname, setEditedSurname] = useState(apellido || "");
-  const [editedEmail, setEditedEmail] = useState(email || "");
-  const [editedPhone, setEditedPhone] = useState(telefono || "");
-  const [editedCity, setEditedCity] = useState(ciudad || "");
-  const [editedDNI, setEditedDNI] = useState(dni || "");
-  const [editedAddress, setEditedAddress] = useState(direccion || "");
+  const [editedName, setEditedName] = useState(user?.nombre || "");
+  const [editedSurname, setEditedSurname] = useState(user?.apellido || "");
+  const [editedEmail, setEditedEmail] = useState(user?.email || "");
+  const [editedPhone, setEditedPhone] = useState(user?.telefono || "");
+  const [editedCity, setEditedCity] = useState(user?.ciudad || "");
+  const [editedDNI, setEditedDNI] = useState(user?.dni || "");
+  const [editedAddress, setEditedAddress] = useState(user?.direccion || "");
   const [profileImage, setProfileImage] = useState(null);
   const [selectedUser, setselectedUser] = useState(user);
   const [isError, setIsError] = useState(false);
 
-
+  const formMyProfile = {
+    nombre: editedName,
+    apellido: editedSurname,
+    email: editedEmail,
+    telefono: editedPhone,
+    ciudad: editedCity,
+    direccion: editedAddress,
+  };
 
   const emailCurrent = localStorage.getItem("email");
 
@@ -104,7 +97,7 @@ const MyData = () => {
   };
 
   const [form, setForm] = useState(formMyProfile);
-  const [error, setError] = useState(formMyProfile);
+  const [error, setError] = useState("");
 
   const validations = (form) => {
     let reg = /^[a-zA-Z\s]*$/;
@@ -168,12 +161,9 @@ const MyData = () => {
     setError(validations({ ...form, [property]: value }));
   };
 
-
   const submitHandler = (event) => {
     event.preventDefault();
-    if (
-      Object.keys(error).length === 0
-    ) {
+    if (Object.keys(error).length === 0) {
       dispatch(setEditMode(form, "contact"));
       toast({
         title: "Thanks for your time.",
@@ -215,18 +205,9 @@ const MyData = () => {
         }
       }
 
-      const newUser = {
-        nombre: editedName,
-        apellido: editedSurname,
-        email: editedEmail,
-        ciudad: editedCity,
-        telefono: editedPhone,
-        direccion: editedAddress,
-        DNI: editedDNI,
-        imagen: imageUrl,
-      };
+      const newUser = { ...form, imagen: imageUrl };
 
-      setselectedUser(newUser);
+      setselectedUser(form);
       dispatch(updateClientData(id, newUser));
       alert("Client Data updated");
       setEditMode(false);
@@ -253,10 +234,9 @@ const MyData = () => {
     if (user) {
       dispatch(getClientData(user.id));
     }
-  }, [selectedUser]);
+  }, [selectedUser, form]);
 
   return (
-
     <Box
       backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
       minHeight={"100vh"}
@@ -321,7 +301,7 @@ const MyData = () => {
                 <small>👤</small>
               </Heading>
               <Box>
-                <form id="fm" onSubmit={submitHandler}>
+                <form id="fm" onSubmit={handleSaveUser}>
                   <FormControl isInvalid={!!error.nombre}>
                     <FormLabel>First Name</FormLabel>
                     <Input
@@ -344,6 +324,7 @@ const MyData = () => {
                   <FormControl isInvalid={!!error.apellido}>
                     <FormLabel>Surname</FormLabel>
                     <Input
+                      isDisabled={false}
                       name="apellido"
                       type="text"
                       backgroundColor={"white"}
@@ -361,12 +342,10 @@ const MyData = () => {
                     <FormErrorMessage>{error.apellido}</FormErrorMessage>
                   </FormControl>
 
-
-
-
                   <FormControl isInvalid={!!error.email}>
                     <FormLabel>Email</FormLabel>
                     <Input
+                      isDisabled={false}
                       name="email"
                       type="text"
                       backgroundColor={"white"}
@@ -384,10 +363,10 @@ const MyData = () => {
                     <FormErrorMessage>{error.email}</FormErrorMessage>
                   </FormControl>
 
-
                   <FormControl isInvalid={!!error.telefono}>
                     <FormLabel>Phone</FormLabel>
                     <Input
+                      isDisabled={false}
                       name="telefono"
                       type="number"
                       backgroundColor={"white"}
@@ -405,10 +384,10 @@ const MyData = () => {
                     <FormErrorMessage>{error.telefono}</FormErrorMessage>
                   </FormControl>
 
-
                   <FormControl isInvalid={!!error.ciudad}>
                     <FormLabel>City</FormLabel>
                     <Input
+                      isDisabled={false}
                       name="ciudad"
                       type="text"
                       backgroundColor={"white"}
@@ -429,6 +408,7 @@ const MyData = () => {
                   <FormControl isInvalid={!!error.direccion}>
                     <FormLabel>Address</FormLabel>
                     <Input
+                      isDisabled={false}
                       name="direccion"
                       type="text"
                       backgroundColor={"white"}
@@ -445,13 +425,10 @@ const MyData = () => {
                     />
                     <FormErrorMessage>{error.direccion}</FormErrorMessage>
                   </FormControl>
-
-
-
-
                 </form>
               </Box>
               <Input
+                isDisabled={false}
                 type="file"
                 onChange={handleImageChange}
                 variant="unstyled"
@@ -474,7 +451,6 @@ const MyData = () => {
               >
                 Save Data
               </Button>
-
             </Box>
           ) : (
             <Box
@@ -588,14 +564,9 @@ const MyData = () => {
             </Box>
           )}
         </Center>
-      )
-      }
-    </Box >
+      )}
+    </Box>
   );
 };
 
-
-
 export default MyData;
-
-
