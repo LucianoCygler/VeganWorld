@@ -35,6 +35,7 @@ let theme = createTheme({
 	},
 	typography: {
 		h5: {
+			fontFamily:"Montserrat",
 			fontWeight: 500,
 			fontSize: 26,
 			letterSpacing: 0.5,
@@ -193,7 +194,7 @@ export default function Dashboard() {
 						onClose={handleDrawerToggle}
 					/>
 				</Box>
-				<Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
+				<Box sx={{ flex: 1, display: "flex", flexDirection: "column" , backgroundColor:"#1d5c63"}}>
 					<Header onDrawerToggle={handleDrawerToggle} />
 					<Box
 						component="main"
