@@ -13,28 +13,28 @@ import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import DashOrders from "./OrdersClient";
 
 export default function Content() {
-	const { Graph, Clients, Products, Reviews, Orders } = useSelector(
-		(state) => state.labels
-	);
+  const { Graph, Clients, Products, Reviews, Orders } = useSelector(
+    (state) => state.labels
+  );
 
-	return (
-		<Grid>
-			<Paper
-				elevation={8}
-				sx={{
-					maxWidth: "90%",
-					margin: "auto",
-					overflow: "hidden",
-					padding: 4,
-					backgroundColor: "InfoBackground",
-				}}
-			>
-				{Clients && <TableClient />}
-				{Products && <FormPropsTextFields />}
-				{Reviews && <ReviewsDashboard />}
-				{Graph && <GraficoGanancias />}
-				{Orders && <DashOrders />}
-			</Paper>
-		</Grid>
-	);
+  return (
+    <Grid>
+      <Paper
+        elevation={8}
+        sx={{
+          maxWidth: "90%",
+          margin: "auto",
+          overflow: "hidden",
+          padding: 4,
+          backgroundColor: "InfoBackground",
+        }}
+      >
+        {Clients && <TableClient />}
+        {Products && <FormPropsTextFields />}
+        {Reviews && <ReviewsDashboard />}
+        {Graph && <GraficoGanancias />}
+        {Orders && <DashOrders />}
+      </Paper>
+    </Grid>
+  );
 }

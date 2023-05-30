@@ -28,16 +28,15 @@ import {
   FormControl,
   FormLabel,
   FormHelperText,
-
   FormErrorMessage,
-  useToast
-
+  useToast,
 } from "@chakra-ui/react";
 import { sendEmail } from "../../redux/actions/actions";
 
 import axios from "axios";
 import { Container } from "react-bootstrap";
 
+<<<<<<< HEAD
 
 const initialForm = {
   nombre: "",
@@ -49,6 +48,8 @@ const initialForm = {
 };
 
 
+=======
+>>>>>>> cefddee7167b3a804f5c171d737db5eb579b592f
 const MyData = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -76,6 +77,7 @@ const MyData = () => {
   const [selectedUser, setselectedUser] = useState(user);
   const [isError, setIsError] = useState(false);
 
+<<<<<<< HEAD
 
   const [form, setForm] = useState(initialForm);
   const [error, setError] = useState(initialForm);
@@ -83,6 +85,16 @@ const MyData = () => {
 
 
 
+=======
+  const formMyProfile = {
+    nombre: editedName,
+    apellido: editedSurname,
+    email: editedEmail,
+    telefono: editedPhone,
+    ciudad: editedCity,
+    direccion: editedAddress,
+  };
+>>>>>>> cefddee7167b3a804f5c171d737db5eb579b592f
 
   const emailCurrent = localStorage.getItem("email");
 
@@ -108,6 +120,11 @@ const MyData = () => {
     }
   };
 
+<<<<<<< HEAD
+=======
+  const [form, setForm] = useState(formMyProfile);
+  const [error, setError] = useState("");
+>>>>>>> cefddee7167b3a804f5c171d737db5eb579b592f
 
   const validations = (form) => {
     let reg = /^[a-zA-Z\s]*$/;
@@ -171,13 +188,17 @@ const MyData = () => {
     setError(validations({ ...form, [property]: value }));
   };
 
-
   const submitHandler = (event) => {
     event.preventDefault();
+<<<<<<< HEAD
     if (
       Object.keys(error).length === 0
     ) {
       dispatch(setEditMode(form, form.name));
+=======
+    if (Object.keys(error).length === 0) {
+      dispatch(setEditMode(form, "contact"));
+>>>>>>> cefddee7167b3a804f5c171d737db5eb579b592f
       toast({
         title: "Thanks for your time.",
         description: "Good job!",
@@ -229,8 +250,8 @@ const MyData = () => {
         imagen: imageUrl,
       };
 
-      setselectedUser(newUser);
-      dispatch(updateClientData(id, newUser));
+      setselectedUser(form);
+      dispatch(updateClientData(id, form));
       alert("Client Data updated");
       setEditMode(false);
     } catch (error) {
@@ -256,10 +277,9 @@ const MyData = () => {
     if (user) {
       dispatch(getClientData(user.id));
     }
-  }, [selectedUser]);
+  }, [selectedUser, form]);
 
   return (
-
     <Box
       backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
       minHeight={"100vh"}
@@ -324,7 +344,7 @@ const MyData = () => {
                 <small>👤</small>
               </Heading>
               <Box>
-                <form id="fm" onSubmit={submitHandler}>
+                <form id="fm" onSubmit={handleSaveUser}>
                   <FormControl isInvalid={!!error.nombre}>
                     <FormLabel>First Name</FormLabel>
                     <Input
@@ -347,6 +367,7 @@ const MyData = () => {
                   <FormControl isInvalid={!!error.apellido}>
                     <FormLabel>Surname</FormLabel>
                     <Input
+                      isDisabled={false}
                       name="apellido"
                       type="text"
                       backgroundColor={"white"}
@@ -364,12 +385,10 @@ const MyData = () => {
                     <FormErrorMessage>{error.apellido}</FormErrorMessage>
                   </FormControl>
 
-
-
-
                   <FormControl isInvalid={!!error.email}>
                     <FormLabel>Email</FormLabel>
                     <Input
+                      isDisabled={false}
                       name="email"
                       type="text"
                       backgroundColor={"white"}
@@ -387,10 +406,10 @@ const MyData = () => {
                     <FormErrorMessage>{error.email}</FormErrorMessage>
                   </FormControl>
 
-
                   <FormControl isInvalid={!!error.telefono}>
                     <FormLabel>Phone</FormLabel>
                     <Input
+                      isDisabled={false}
                       name="telefono"
                       type="number"
                       backgroundColor={"white"}
@@ -408,10 +427,10 @@ const MyData = () => {
                     <FormErrorMessage>{error.telefono}</FormErrorMessage>
                   </FormControl>
 
-
                   <FormControl isInvalid={!!error.ciudad}>
                     <FormLabel>City</FormLabel>
                     <Input
+                      isDisabled={false}
                       name="ciudad"
                       type="text"
                       backgroundColor={"white"}
@@ -432,6 +451,7 @@ const MyData = () => {
                   <FormControl isInvalid={!!error.direccion}>
                     <FormLabel>Address</FormLabel>
                     <Input
+                      isDisabled={false}
                       name="direccion"
                       type="text"
                       backgroundColor={"white"}
@@ -448,13 +468,10 @@ const MyData = () => {
                     />
                     <FormErrorMessage>{error.direccion}</FormErrorMessage>
                   </FormControl>
-
-
-
-
                 </form>
               </Box>
               <Input
+                isDisabled={false}
                 type="file"
                 onChange={handleImageChange}
                 variant="unstyled"
@@ -477,7 +494,6 @@ const MyData = () => {
               >
                 Save Data
               </Button>
-
             </Box>
           ) : (
             <Box
@@ -591,14 +607,9 @@ const MyData = () => {
             </Box>
           )}
         </Center>
-      )
-      }
-    </Box >
+      )}
+    </Box>
   );
 };
 
-
-
 export default MyData;
-
-
