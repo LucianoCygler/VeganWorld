@@ -51,6 +51,7 @@ import {
   GET_ORDERS,
   CREATE_PAGE_REVIEW,
 } from "./Types/Types";
+import Pop_up from "../../Utils/Pop_up/Pop_up";
 // import PageReview from "../../../../server/src/models/PageReview";
 
 export const createProduct = (product) => {
@@ -58,8 +59,9 @@ export const createProduct = (product) => {
     try {
       const res = await axios.post(`/product`, product);
       const newOrder = res.data;
+      Pop_up('success','Product created','Your product is already published','bottom')
     } catch (error) {
-      alert(error.response.data);
+      Pop_up('error','There was a mistake',`${error.response.data}`)
     }
   };
 };

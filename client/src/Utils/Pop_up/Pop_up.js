@@ -1,11 +1,17 @@
 import Swal from "sweetalert2";
 import styles from "./popup.module.css";
-
-const Pop_up = (icon, title, text) => {
+/**
+ * 
+ * @param {*} icon success | error | info
+ * @param {*} title title alert
+ * @param {*} text message
+ * @param {*} position top | bottom | center | <position>-start | <position>-end | <position>-left | <position>-right
+ */
+const Pop_up = (icon, title, text, position) => {
   // Corrección: "tittle" -> "title"
   const Toast = Swal.mixin({
     toast: true,
-    position: "top",
+    position: position,
     showConfirmButton: false,
     timer: 2200,
     timerProgressBar: true,
