@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -10,6 +10,8 @@ import Content from "../../Components/Dashboard/Content";
 import Header from "../../Components/Dashboard/Header";
 import { Button, Stack } from "@mui/material";
 import { GridMenuIcon, GridSearchIcon } from "@mui/x-data-grid";
+import { useDispatch } from "react-redux";
+import { ChangeLabel } from "../../redux/actions/actions";
 
 function Copyright() {
 	return (
@@ -33,6 +35,7 @@ let theme = createTheme({
 	},
 	typography: {
 		h5: {
+			fontFamily:"Montserrat",
 			fontWeight: 500,
 			fontSize: 26,
 			letterSpacing: 0.5,
@@ -170,10 +173,14 @@ const drawerWidth = 256;
 
 export default function Dashboard() {
 	const [drawerOpen, setDrawerOpen] = useState(false);
-
+	const dispatch = useDispatch()
 	const handleDrawerToggle = () => {
 		setDrawerOpen(!drawerOpen);
 	};
+
+	// useEffect(()=>{
+	// 	dispatch(ChangeLabel('Graph'));
+	// },[])
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -187,7 +194,7 @@ export default function Dashboard() {
 						onClose={handleDrawerToggle}
 					/>
 				</Box>
-				<Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
+				<Box sx={{ flex: 1, display: "flex", flexDirection: "column" , backgroundColor:"#1d5c63"}}>
 					<Header onDrawerToggle={handleDrawerToggle} />
 					<Box
 						component="main"

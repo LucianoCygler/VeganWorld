@@ -103,15 +103,16 @@ function Cart() {
           Pop_up(
             "success",
             "Order Ceated",
-            "You can find your orders in MyOrders!",
-            "An E-mail has been sent to your address with the order details."
+            `You can find your orders in MyOrders!, 
+            an E-mail has been sent to your address with the order details.`,
+            "top"
           );
           setIsOrderGenerated(true);
           const form = { user, order };
           dispatch(sendEmail(form, "genOrder"));
           dispatch(cleanAddress());
-        } catch ({ message }) {
-          Pop_up("error", "Failed to Create Order", message);
+        } catch ({ response }) {
+          Pop_up("error", "Failed to Create Order", response.data);
         }
         break;
       case "delete":
