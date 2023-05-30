@@ -49,7 +49,8 @@ const CardFav = ({ product, favorites }) => {
         Pop_up(
           "success",
           "Product added",
-          "You can find your products in Cart!"
+          "You can find your products in Cart!",
+          "top"
         );
       })
       .catch(({ message }) => {

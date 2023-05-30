@@ -26,15 +26,15 @@ export default function Content() {
 					margin: "auto",
 					overflow: "hidden",
 					padding: 4,
-					backgroundColor:"InfoBackground"
+					backgroundColor: "InfoBackground",
 				}}
 			>
-
-			{Clients && <TableClient />}
-			{Products && <FormPropsTextFields />}
-			{Reviews && <ReviewsDashboard />}
-			{Graph && <GraficoGanancias />}
-			{Orders && <DashOrders />} 
-		</Paper>
+				{Clients && <TableClient />}
+				{Products && <FormPropsTextFields />}
+				{Reviews && <ReviewsDashboard />}
+				{Graph && <GraficoGanancias />}
+				{Orders && <DashOrders />}
+			</Paper>
+		</Grid>
 	);
 }

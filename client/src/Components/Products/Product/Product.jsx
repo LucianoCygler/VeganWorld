@@ -52,7 +52,7 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
         );
       })
       .catch(({ message }) => {
-        Pop_up("info", "Product added", message);
+        Pop_up("info", "Product added", message, 'top');
       });
   };
 
