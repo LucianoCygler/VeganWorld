@@ -72,7 +72,7 @@ function DrawerMenu() {
                   fontSize={"25PX"}
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                   _hover={{
-                    color:"#22FF2C",
+                    color: "#22FF2C",
                     transition: "color 0.3s ease, text-shadow 0.3s ease",
                     textShadow: "1px 2px 11px #EEEEEE",
                     cursor: "pointer",
@@ -89,7 +89,7 @@ function DrawerMenu() {
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                   fontSize={"25PX"}
                   _hover={{
-                    color:"#22FF2C",
+                    color: "#22FF2C",
                     transition: "color 0.3s ease, text-shadow 0.3s ease",
                     textShadow: "1px 2px 11px #EEEEEE",
                     cursor: "pointer",
@@ -106,7 +106,7 @@ function DrawerMenu() {
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                   fontSize={"25PX"}
                   _hover={{
-                    color:"#22FF2C",
+                    color: "#22FF2C",
                     transition: "color 0.3s ease, text-shadow 0.3s ease",
                     textShadow: "1px 2px 11px #EEEEEE",
                     cursor: "pointer",
@@ -123,7 +123,7 @@ function DrawerMenu() {
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                   fontSize={"25PX"}
                   _hover={{
-                    color:"#22FF2C",
+                    color: "#22FF2C",
                     transition: "color 0.3s ease, text-shadow 0.3s ease",
                     textShadow: "1px 2px 11px #EEEEEE",
                     cursor: "pointer",
@@ -141,7 +141,7 @@ function DrawerMenu() {
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                   fontSize={"25PX"}
                   _hover={{
-                    color:"yellow",
+                    color: "yellow",
                     transition: "color 0.3s ease, text-shadow 0.3s ease",
                     textShadow: "1px 2px 11px #EEEEEE",
                     cursor: "pointer",
@@ -151,7 +151,7 @@ function DrawerMenu() {
                   Our Products
                 </Heading>
               </a>
-              <a href="/MyPageReview">
+              <a href="/PageReview">
                 <Heading
                   name="pageReview"
                   color={selectedOption === "pageReview" ? "teal" : "white"}
@@ -159,7 +159,7 @@ function DrawerMenu() {
                   fontSize={"25PX"}
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                   _hover={{
-                    color:"#22FF2C",
+                    color: "#22FF2C",
                     transition: "color 0.3s ease, text-shadow 0.3s ease",
                     textShadow: "1px 2px 11px #EEEEEE",
                     cursor: "pointer",
@@ -181,7 +181,7 @@ function DrawerMenu() {
                 textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                 fontSize={"15px"}
                 _hover={{
-                  color:"#22FF2C",
+                  color: "#22FF2C",
                   transition: "color 0.3s ease, text-shadow 0.3s ease",
                   textShadow: "1px 2px 11px #EEEEEE",
                   cursor: "pointer",
@@ -197,7 +197,7 @@ function DrawerMenu() {
                 fontWeight={"light"}
                 fontSize={"15PX"}
                 _hover={{
-                  color:"#22FF2C",
+                  color: "#22FF2C",
                   transition: "color 0.3s ease, text-shadow 0.3s ease",
                   textShadow: "1px 2px 11px #EEEEEE",
                   cursor: "pointer",

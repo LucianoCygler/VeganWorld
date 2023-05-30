@@ -28,8 +28,10 @@ import {
   FormControl,
   FormLabel,
   FormHelperText,
+
   FormErrorMessage,
   useToast
+
 } from "@chakra-ui/react";
 import { sendEmail } from "../../redux/actions/actions";
 
@@ -46,6 +48,7 @@ const formMyProfile = {
   ciudad: "",
   direccion: "",
 };
+
 
 const MyData = () => {
   const dispatch = useDispatch();
@@ -594,4 +597,5 @@ const MyData = () => {
 
 
 export default MyData;
+
 

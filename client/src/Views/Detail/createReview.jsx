@@ -38,7 +38,7 @@ function CreateReview({ product_id, cliente_id }) {
   const handleCreate = () => {
     dispatch(createReview(newReview));
     onClose();
-    window.location.reload();
+    // window.location.reload();
   };
 
   useEffect(() => {
