@@ -8,7 +8,7 @@ import {
   getUserDataByEmail,
 } from "../../redux/actions/actions";
 import style from "./MyProfile.module.css";
-import { useNavigate } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import LoginForm from "../Login/LoginForm";
 import {
   Box,
@@ -39,8 +39,7 @@ import axios from "axios";
 import { Container } from "react-bootstrap";
 
 
-
-const formMyProfile = {
+const initialForm = {
   nombre: "",
   apellido: "",
   email: "",
@@ -78,6 +77,12 @@ const MyData = () => {
   const [isError, setIsError] = useState(false);
 
 
+  const [form, setForm] = useState(initialForm);
+  const [error, setError] = useState(initialForm);
+
+
+
+
 
   const emailCurrent = localStorage.getItem("email");
 
@@ -103,8 +108,6 @@ const MyData = () => {
     }
   };
 
-  const [form, setForm] = useState(formMyProfile);
-  const [error, setError] = useState(formMyProfile);
 
   const validations = (form) => {
     let reg = /^[a-zA-Z\s]*$/;
@@ -174,7 +177,7 @@ const MyData = () => {
     if (
       Object.keys(error).length === 0
     ) {
-      dispatch(setEditMode(form, "contact"));
+      dispatch(setEditMode(form, form.name));
       toast({
         title: "Thanks for your time.",
         description: "Good job!",
@@ -182,7 +185,7 @@ const MyData = () => {
         duration: 5000,
         isClosable: true,
       });
-      setForm(formMyProfile);
+      setselectedUser(Form);
     } else {
       alert("Error, all fields must be validated in order to continue");
     }
@@ -328,8 +331,8 @@ const MyData = () => {
                       name="nombre"
                       type="text"
                       backgroundColor={"white"}
-                      value={form.user?.nombre}
-                      onChange={(e) => changeHandler(e)}
+                      value={form.nombre}
+                      onChange={changeHandler}
                       borderColor={
                         editedName.length
                           ? error.nombre
