@@ -20,7 +20,7 @@ const createProduct = async (
     });
     return product;
   } else {
-    throw Error ('Faltan datos por ingresar')
+    throw Error ('You must complete all required fields *')
   }
 };
 
