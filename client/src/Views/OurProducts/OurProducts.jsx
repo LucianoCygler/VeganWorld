@@ -17,6 +17,7 @@ import { Spinner } from "@chakra-ui/react";
 function OurProducts() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
+  const favorites = useSelector((state) => state.favorites);
   const user = useSelector((state) => state.user);
   const filteredProducts = useSelector((state) => state.filteredProducts);
   const [filterByType, setFilterByType] = useState("");
@@ -34,7 +35,14 @@ function OurProducts() {
 
   useEffect(() => {
     dispatch(getUserDataByEmail(email));
-  }, [email]);
+  }, []);
+
+  const client_id = user?.id;
+  useEffect(() => {
+    if (user) {
+      dispatch(getClientAllFavorites(client_id));
+    }
+  }, [client_id]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
