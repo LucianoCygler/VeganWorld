@@ -11,12 +11,13 @@ import ContactUs from "./ContactUs/ContactUs";
 import About from "./About/About";
 import Register from "./Register/Register";
 import Resetpass from "./ResetPass/Resetpass";
-import  CreatePageReview from "./CreatePageReview/CreatePageReview"
-   
+import CreatePageReview from "./CreatePageReview/CreatePageReview";
+
 export {
   HomePage,
   LandingPage,
   Detail,
+  CreatePageReview,
   Cart,
   Favorites,
   MyOrders,
