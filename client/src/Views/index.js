@@ -27,4 +27,5 @@ export {
   About,
   Resetpass,
   Register,
+  CreatePageReview
 };

@@ -104,7 +104,8 @@ function Cart() {
             "success",
             "Order Ceated",
             "You can find your orders in MyOrders!",
-            "An E-mail has been sent to your address with the order details."
+            "An E-mail has been sent to your address with the order details.",
+            "top"
           );
           setIsOrderGenerated(true);
           const form = { user, order };

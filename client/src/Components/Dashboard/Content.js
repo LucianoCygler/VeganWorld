@@ -9,6 +9,7 @@ import ReviewsDashboard from "./Reviews";
 import GraficoGanancias from "../../Graficos/GraficoGanancias";
 import GraficoReviews from "../../Graficos/GraficoReviews";
 import GraficoUsuarios from "../../Graficos/GraficoUsuarios";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import DashOrders from "./OrdersClient";
 
 export default function Content() {
@@ -17,21 +18,18 @@ export default function Content() {
 	);
 
 	return (
-		<Paper
-			sx={{
-				minWidth: 850,
-				maxWidth: "90%",
-				margin: "auto",
-				overflow: "hidden",
-				padding: 4
-			}}
-		>
-			<AppBar
-				position="static"
-				color="default"
-				elevation={0}
-				sx={{ borderBottom: "1px solid rgba(0, 0, 0, 0.12)" }}
-			></AppBar>
+		<Grid>
+			<Paper
+				elevation={8}
+				sx={{
+					maxWidth: "90%",
+					margin: "auto",
+					overflow: "hidden",
+					padding: 4,
+					backgroundColor:"InfoBackground"
+				}}
+			>
+
 			{Clients && <TableClient />}
 			{Products && <FormPropsTextFields />}
 			{Reviews && <ReviewsDashboard />}
