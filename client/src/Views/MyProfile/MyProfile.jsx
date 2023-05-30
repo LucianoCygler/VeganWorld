@@ -8,7 +8,7 @@ import {
   getUserDataByEmail,
 } from "../../redux/actions/actions";
 import style from "./MyProfile.module.css";
-import { Form, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import LoginForm from "../Login/LoginForm";
 import {
   Box,
@@ -36,20 +36,6 @@ import { sendEmail } from "../../redux/actions/actions";
 import axios from "axios";
 import { Container } from "react-bootstrap";
 
-<<<<<<< HEAD
-
-const initialForm = {
-  nombre: "",
-  apellido: "",
-  email: "",
-  telefono: "",
-  ciudad: "",
-  direccion: "",
-};
-
-
-=======
->>>>>>> cefddee7167b3a804f5c171d737db5eb579b592f
 const MyData = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -77,15 +63,6 @@ const MyData = () => {
   const [selectedUser, setselectedUser] = useState(user);
   const [isError, setIsError] = useState(false);
 
-<<<<<<< HEAD
-
-  const [form, setForm] = useState(initialForm);
-  const [error, setError] = useState(initialForm);
-
-
-
-
-=======
   const formMyProfile = {
     nombre: editedName,
     apellido: editedSurname,
@@ -93,8 +70,8 @@ const MyData = () => {
     telefono: editedPhone,
     ciudad: editedCity,
     direccion: editedAddress,
+    imagen: profileImage
   };
->>>>>>> cefddee7167b3a804f5c171d737db5eb579b592f
 
   const emailCurrent = localStorage.getItem("email");
 
@@ -106,10 +83,10 @@ const MyData = () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "my_upload_preset");
+      formData.append("upload_preset", "ml_default");
 
       const response = await axios.post(
-        "https://api.cloudinary.com/v1_1/da6d9ru3s/upload",
+        "https://api.cloudinary.com/v1_1/dzv1xau8l/upload",
         formData
       );
       console.log("Imagen subida:", response.data.secure_url);
@@ -120,11 +97,8 @@ const MyData = () => {
     }
   };
 
-<<<<<<< HEAD
-=======
   const [form, setForm] = useState(formMyProfile);
   const [error, setError] = useState("");
->>>>>>> cefddee7167b3a804f5c171d737db5eb579b592f
 
   const validations = (form) => {
     let reg = /^[a-zA-Z\s]*$/;
@@ -190,15 +164,8 @@ const MyData = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-<<<<<<< HEAD
-    if (
-      Object.keys(error).length === 0
-    ) {
-      dispatch(setEditMode(form, form.name));
-=======
     if (Object.keys(error).length === 0) {
       dispatch(setEditMode(form, "contact"));
->>>>>>> cefddee7167b3a804f5c171d737db5eb579b592f
       toast({
         title: "Thanks for your time.",
         description: "Good job!",
@@ -206,7 +173,7 @@ const MyData = () => {
         duration: 5000,
         isClosable: true,
       });
-      setselectedUser(Form);
+      setForm(formMyProfile);
     } else {
       alert("Error, all fields must be validated in order to continue");
     }
@@ -232,23 +199,20 @@ const MyData = () => {
   const handleSaveUser = async () => {
     try {
       if (profileImage) {
-        // Subir imagen a Cloudinary
         const url = await uploadImage(profileImage);
         if (url) {
           var imageUrl = url;
         }
       }
-
-      const newUser = { ...form, imagen: imageUrl };
-
       setselectedUser(form);
-      dispatch(updateClientData(id, newUser));
+      dispatch(updateClientData(id, form));
       alert("Client Data updated");
       setEditMode(false);
     } catch (error) {
       alert("Error al guardar los datos del cliente");
     }
   };
+  
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -343,7 +307,7 @@ const MyData = () => {
                       type="text"
                       backgroundColor={"white"}
                       value={form.nombre}
-                      onChange={changeHandler}
+                      onChange={(e) => changeHandler(e)}
                       borderColor={
                         editedName.length
                           ? error.nombre
@@ -535,7 +499,7 @@ const MyData = () => {
                     h={"220px"}
                     borderRadius={"50%"}
                     alt="Default Profile"
-                    src={imagen}
+                    src={profileImage}
                     margin={"auto"}
                     marginBottom={"3em"}
                   />
