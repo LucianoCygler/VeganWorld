@@ -205,19 +205,10 @@ const MyData = () => {
         }
       }
 
-      const newUser = {
-        nombre: editedName,
-        apellido: editedSurname,
-        email: editedEmail,
-        ciudad: editedCity,
-        telefono: editedPhone,
-        direccion: editedAddress,
-        DNI: editedDNI,
-        imagen: imageUrl,
-      };
+      const newUser = { ...form, imagen: imageUrl };
 
       setselectedUser(form);
-      dispatch(updateClientData(id, form));
+      dispatch(updateClientData(id, newUser));
       alert("Client Data updated");
       setEditMode(false);
     } catch (error) {
