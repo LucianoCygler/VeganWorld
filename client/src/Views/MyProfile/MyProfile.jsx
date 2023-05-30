@@ -28,74 +28,26 @@ import {
   FormControl,
   FormLabel,
   FormHelperText,
-  FormErrorMessage
+
+  FormErrorMessage,
+  useToast
+
 } from "@chakra-ui/react";
+import { sendEmail } from "../../redux/actions/actions";
 
 import axios from "axios";
 import { Container } from "react-bootstrap";
 
-const uploadImage = async (file) => {
-  try {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "my_upload_preset");
 
-    const response = await axios.post(
-      "https://api.cloudinary.com/v1_1/da6d9ru3s/upload",
-      formData
-    );
-    console.log("Imagen subida:", response.data.secure_url);
-    return response.data.secure_url;
-  } catch (error) {
-    alert("Error al cargar la imagen:", error);
-    return null;
-  }
+
+const formMyProfile = {
+  nombre: "",
+  apellido: "",
+  email: "",
+  telefono: "",
+  ciudad: "",
+  direccion: "",
 };
-
-// const validations = (form) => {
-//   let reg = /^[a-zA-Z\s]*$/;
-//   let regEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-
-//   const error = {};
-//   //NOMBRE
-//   if (!form.name) {
-//     error.name = "Name is required";
-//   } else if (!reg.test(form.name)) {
-//     error.name = "Only accepts uppercase and lowercase letters.";
-//   } else if (form.name.length > 20) {
-//     error.name = "The name exceeds the maximum of 15 characters.";
-//   }
-
-//   //EMAIL
-//   if (!form.email) {
-//     error.email = "Email is required in this field";
-//   } else if (!regEmail.test(form.email)) {
-//     error.email = "Check your email please";
-//   } else if (form.email.length > 40) {
-//     error.email = "The email exceeds the maximum of 40 characters.";
-//   }
-
-//   //COMENTARIOS
-//   if (!form.textContainer) {
-//     error.textContainer = "Please give us a comment...";
-//   } else if (form.textContainer.length < 30) {
-//     error.textContainer = "Text must be longer than 30 characters";
-//   } else if (form.textContainer.length > 250) {
-//     error.textContainer = "Text must be shorter than 250 characters";
-//   }
-
-//   return error;
-// };
-
-// const changeHandler = (event) => {
-//   const property = event.target.name;
-//   const value = event.target.value;
-//   setForm({
-//     ...form,
-//     [property]: value,
-//   });
-//   setError(validations({ ...form, [property]: value }));
-// };
 
 
 const MyData = () => {
@@ -124,9 +76,117 @@ const MyData = () => {
   const [profileImage, setProfileImage] = useState(null);
   const [selectedUser, setselectedUser] = useState(user);
   const [isError, setIsError] = useState(false);
+
+
+
   const emailCurrent = localStorage.getItem("email");
 
   const [showModal, setShowModal] = useState(false);
+
+  const toast = useToast();
+
+  const uploadImage = async (file) => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "my_upload_preset");
+
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/da6d9ru3s/upload",
+        formData
+      );
+      console.log("Imagen subida:", response.data.secure_url);
+      return response.data.secure_url;
+    } catch (error) {
+      alert("Error al cargar la imagen:", error);
+      return null;
+    }
+  };
+
+  const [form, setForm] = useState(formMyProfile);
+  const [error, setError] = useState(formMyProfile);
+
+  const validations = (form) => {
+    let reg = /^[a-zA-Z\s]*$/;
+    let regEmail = /^$|^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+    let regNum = /^[0-9]*$/;
+    let regAddress = /^[a-zA-Z0-9\s]*$/;
+
+    const error = {};
+    //NAME
+    if (!reg.test(form.nombre)) {
+      error.nombre = "Only accepts uppercase and lowercase letters.";
+    } else if (form.nombre.length > 20) {
+      error.nombre = "The name exceeds the maximum of 20 characters.";
+    }
+
+    //SURNAME
+    if (!reg.test(form.apellido)) {
+      error.apellido = "Only accepts uppercase and lowercase letters.";
+    } else if (form.apellido.length > 20) {
+      error.apellido = "The surname exceeds the maximum of 20 characters.";
+    }
+
+    //EMAIL
+    if (!regEmail.test(form.email)) {
+      error.email = "Check your email please";
+    } else if (form.email.length > 40) {
+      error.email = "The email exceeds the maximum of 40 characters.";
+    }
+
+    //PHONE
+    if (!regNum.test(form.telefono)) {
+      error.telefono = "Only numbers are accepted";
+    } else if (form.telefono.length > 15) {
+      error.telefono = "Text must be shorter than 15 characters";
+    }
+
+    //CITY
+    if (!reg.test(form.ciudad)) {
+      error.ciudad = "Only accepts uppercase and lowercase letters.";
+    } else if (form.ciudad.length > 20) {
+      error.ciudad = "The city exceeds the maximum of 20 characters.";
+    }
+
+    //ADDRESS
+    if (!regAddress.test(form.direccion)) {
+      error.direccion = "Only numbers and letters are allowed.";
+    } else if (form.direccion.length > 20) {
+      error.direccion = "The city exceeds the maximum of 20 characters.";
+    }
+
+    return error;
+  };
+
+  const changeHandler = (event) => {
+    const property = event.target.name;
+    const value = event.target.value;
+    setForm({
+      ...form,
+      [property]: value,
+    });
+    setError(validations({ ...form, [property]: value }));
+  };
+
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    if (
+      Object.keys(error).length === 0
+    ) {
+      dispatch(setEditMode(form, "contact"));
+      toast({
+        title: "Thanks for your time.",
+        description: "Good job!",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      setForm(formMyProfile);
+    } else {
+      alert("Error, all fields must be validated in order to continue");
+    }
+  };
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -261,78 +321,145 @@ const MyData = () => {
                 <small>👤</small>
               </Heading>
               <Box>
-                {/* <FormControl isInvalid={isError}>
-                  <FormLabel>First Name</FormLabel>
-                  <Input
-                    name="name"
-                    type="text"
-                    backgroundColor={"white"}
-                    value={editedName}
-                    onChange={(e) => setEditedName(e.target.value)}
-                    borderColor={
-                      editedName.length
-                        ? error.name
-                          ? "#e74c3c"
-                          : "#2ecc71"
-                        : "#52b3d3"
-                    }
-                    autoComplete="off"
-                    placeholder="Name"
-                    isRequired
-                  />
-                </FormControl>
-                <FormControl isInvalid={isError}>
-                  <FormLabel>Surname</FormLabel>
-                  <Input
-                    type="text"
-                    value={editedSurname}
-                    onChange={(e) => setEditedSurname(e.target.value)}
-                  />
-                </FormControl>
-                <FormControl isInvalid={isError}>
-                  <FormLabel>Email</FormLabel>
-                  <Input
-                    type="text"
-                    value={editedEmail}
-                    onChange={(e) => setEditedEmail(e.target.value)}
-                  />
-                  {!isError ? (
-                    <FormHelperText>
-                      Enter the email you'd like to receive the newsletter on.
-                    </FormHelperText>
-                  ) : (
-                    <FormErrorMessage>Email is required.</FormErrorMessage>
-                  )}
-                </FormControl>
-                <FormControl isInvalid={isError}>
-                  <FormLabel>Phone</FormLabel>
-                  <Input
-                    type="text"
-                    value={editedPhone}
-                    onChange={(e) => setEditedPhone(e.target.value)}
-                  />
-                </FormControl>
-                <FormControl isInvalid={isError}>
-                  <FormLabel>City</FormLabel>
-                  <Input
-                    type="text"
-                    value={editedCity}
-                    onChange={(e) => setEditedCity(e.target.value)}
-                  />
-                </FormControl>
-                <FormControl isInvalid={isError}>
-                  <FormLabel>Address</FormLabel>
-                  <Input
-                    type="text"
-                    value={editedAddress}
-                    onChange={(e) => setEditedAddress(e.target.value)}
-                  />
-                </FormControl> */}
+                <form id="fm" onSubmit={submitHandler}>
+                  <FormControl isInvalid={!!error.nombre}>
+                    <FormLabel>First Name</FormLabel>
+                    <Input
+                      name="nombre"
+                      type="text"
+                      backgroundColor={"white"}
+                      value={form.nombre}
+                      onChange={(e) => changeHandler(e)}
+                      borderColor={
+                        editedName.length
+                          ? error.nombre
+                            ? "#e74c3c"
+                            : "#2ecc71"
+                          : "#52b3d3"
+                      }
+                      placeholder="Name"
+                    />
+                    <FormErrorMessage>{error.nombre}</FormErrorMessage>
+                  </FormControl>
+                  <FormControl isInvalid={!!error.apellido}>
+                    <FormLabel>Surname</FormLabel>
+                    <Input
+                      name="apellido"
+                      type="text"
+                      backgroundColor={"white"}
+                      value={form.apellido}
+                      onChange={(e) => changeHandler(e)}
+                      borderColor={
+                        editedSurname.length
+                          ? error.apellido
+                            ? "#e74c3c"
+                            : "#2ecc71"
+                          : "#52b3d3"
+                      }
+                      placeholder="Surname"
+                    />
+                    <FormErrorMessage>{error.apellido}</FormErrorMessage>
+                  </FormControl>
+
+
+
+
+                  <FormControl isInvalid={!!error.email}>
+                    <FormLabel>Email</FormLabel>
+                    <Input
+                      name="email"
+                      type="text"
+                      backgroundColor={"white"}
+                      value={form.email}
+                      onChange={(e) => changeHandler(e)}
+                      borderColor={
+                        editedEmail.length
+                          ? error.email
+                            ? "#e74c3c"
+                            : "#2ecc71"
+                          : "#52b3d3"
+                      }
+                      placeholder="Email"
+                    />
+                    <FormErrorMessage>{error.email}</FormErrorMessage>
+                  </FormControl>
+
+
+                  <FormControl isInvalid={!!error.telefono}>
+                    <FormLabel>Phone</FormLabel>
+                    <Input
+                      name="telefono"
+                      type="number"
+                      backgroundColor={"white"}
+                      value={form.telefono}
+                      onChange={(e) => changeHandler(e)}
+                      borderColor={
+                        editedPhone.length
+                          ? error.telefono
+                            ? "#e74c3c"
+                            : "#2ecc71"
+                          : "#52b3d3"
+                      }
+                      placeholder="Phone"
+                    />
+                    <FormErrorMessage>{error.telefono}</FormErrorMessage>
+                  </FormControl>
+
+
+                  <FormControl isInvalid={!!error.ciudad}>
+                    <FormLabel>City</FormLabel>
+                    <Input
+                      name="ciudad"
+                      type="text"
+                      backgroundColor={"white"}
+                      value={form.ciudad}
+                      onChange={(e) => changeHandler(e)}
+                      borderColor={
+                        editedCity.length
+                          ? error.ciudad
+                            ? "#e74c3c"
+                            : "#2ecc71"
+                          : "#52b3d3"
+                      }
+                      placeholder="City "
+                    />
+                    <FormErrorMessage>{error.ciudad}</FormErrorMessage>
+                  </FormControl>
+
+                  <FormControl isInvalid={!!error.direccion}>
+                    <FormLabel>Address</FormLabel>
+                    <Input
+                      name="direccion"
+                      type="text"
+                      backgroundColor={"white"}
+                      value={form.direccion}
+                      onChange={(e) => changeHandler(e)}
+                      borderColor={
+                        editedAddress.length
+                          ? error.direccion
+                            ? "#e74c3c"
+                            : "#2ecc71"
+                          : "#52b3d3"
+                      }
+                      placeholder="Address "
+                    />
+                    <FormErrorMessage>{error.direccion}</FormErrorMessage>
+                  </FormControl>
+
+
+
+
+                </form>
               </Box>
               <Input
-                className={style.input8B}
                 type="file"
                 onChange={handleImageChange}
+                variant="unstyled"
+                borderWidth="1px"
+                borderColor="gray.200"
+                borderRadius="md"
+                p={2}
+                mt={"1.5rem"}
               />
               <Button
                 colorScheme="teal"
@@ -347,6 +474,7 @@ const MyData = () => {
               >
                 Save Data
               </Button>
+
             </Box>
           ) : (
             <Box
@@ -460,11 +588,14 @@ const MyData = () => {
             </Box>
           )}
         </Center>
-      )}
-    </Box>
+      )
+      }
+    </Box >
   );
 };
 
 
 
 export default MyData;
+
+
