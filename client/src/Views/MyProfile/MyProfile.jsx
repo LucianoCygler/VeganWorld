@@ -21,7 +21,6 @@ import {
   FileUpload,
   Image,
   EditButton,
-  Image as Img,
   InputGroup,
   Flex,
   Center,
@@ -212,6 +211,7 @@ const MyData = () => {
       alert("Error al guardar los datos del cliente");
     }
   };
+  
   
   const handleImageChange = (event) => {
     const file = event.target.files[0];
