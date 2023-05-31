@@ -123,3 +123,8 @@
 .shadow {
   box-shadow: 4px 8px rgba(0, 0, 0, 0.732);
 }
+
+.button2.small {
+  padding: 8px 12px;
+  font-size: 12px;
+}
