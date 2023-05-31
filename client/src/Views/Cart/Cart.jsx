@@ -351,13 +351,12 @@ function Cart() {
                               >
                                 subTotal:
                               </Text>
-                              $
                               <Text
                                 display="inline"
                                 fontWeight={"bold"}
                                 fontSize={"25px"}
                               >
-                                {product.importe}
+                                ${product.importe}
                               </Text>{" "}
                             </Box>
                             <Box display={"flex"} justifyContent={"center"}>
@@ -397,7 +396,7 @@ function Cart() {
                                     marginRight={1.5}
                                   />
                                   <Text display={"inline"} color={"red"}>
-                                    Complete your addres first
+                                    Complete your address first
                                   </Text>
                                 </>
                               ) : (

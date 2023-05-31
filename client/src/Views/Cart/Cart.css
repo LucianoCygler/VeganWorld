@@ -38,14 +38,14 @@
   transform: translateY(60%);
 }
 
-.buttonDelete::before {
+/* .buttonDelete::before {
   position: absolute;
   top: -20px;
   content: "Delete";
   color: white;
   transition-duration: 0.3s;
   font-size: 2px;
-}
+} */
 
 .buttonDelete:hover::before {
   font-size: 13px;
