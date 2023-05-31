@@ -66,6 +66,10 @@
   margin: auto;
 }
 
-.h1footer{
+.h1footer {
   white-space: nowrap;
+}
+
+.divPhone {
+  margin-left: 30px;
 }
