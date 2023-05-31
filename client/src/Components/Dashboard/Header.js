@@ -15,77 +15,94 @@ import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
+import { adminLogOut } from "../../redux/actions/actions";
+import { useDispatch } from "react-redux";
 
 const lightColor = "rgba(255, 255, 255, 0.7)";
 
 function Header(props) {
-	const { onDrawerToggle } = props;
-
-	return (
-		<React.Fragment>
-			<AppBar color="primary" position="sticky" elevation={0}  sx={{backgroundColor:"#1d5c63"}}>
-				<Toolbar>
-					<Grid container spacing={1} alignItems="center">
-						{/* <Grid sx={{ display: { sm: "none", xs: "block" } }} item></Grid> */}
-						<IconButton
-							color="inherit"
-							aria-label="open drawer"
-							onClick={onDrawerToggle}
-							edge="start"
-						>
-							<MenuIcon />
-						</IconButton>
-						<Grid item xs />
-						<Grid item>
-							<Link
-								href="/"
-								variant="body2"
-								sx={{
-									textDecoration: "none",
-									color: lightColor,
-									"&:hover": {
-										color: "common.white",
-									},
-								}}
-								rel="noopener noreferrer"
-								target="_blank"
-							>
-								Go to VeganWorld
-							</Link>
-						</Grid>
-						<Grid item>
-							<Tooltip title="Alerts • No alerts">
-								<IconButton color="inherit">
-									<NotificationsIcon />
-								</IconButton>
-							</Tooltip>
-						</Grid>
-						<Grid item>
-							<IconButton color="inherit" sx={{ p: 0.5 }}>
+  const { onDrawerToggle } = props;
+  const dispatch = useDispatch();
+  return (
+    <React.Fragment>
+      <AppBar
+        color="primary"
+        position="sticky"
+        elevation={0}
+        sx={{ backgroundColor: "#1d5c63" }}
+      >
+        <Toolbar>
+          <Grid container spacing={1} alignItems="center">
+            {/* <Grid sx={{ display: { sm: "none", xs: "block" } }} item></Grid> */}
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={onDrawerToggle}
+              edge="start"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Grid item xs />
+            <Grid item>
+              <Link
+                href="/"
+                variant="body2"
+                sx={{
+                  textDecoration: "none",
+                  color: lightColor,
+                  "&:hover": {
+                    color: "common.white",
+                  },
+                }}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Go to VeganWorld
+              </Link>
+            </Grid>
+            <Grid item>
+              <Tooltip title="Alerts • No alerts">
+                <IconButton color="inherit">
+                  <NotificationsIcon />
+                </IconButton>
+              </Tooltip>
+            </Grid>
+            <Grid item>
+              <Button
+                colorScheme="white"
+                onClick={() => {
+                  dispatch(adminLogOut());
+                  localStorage.removeItem("admin");
+                  window.location.reload();
+                }}
+              >
+                Log out
+              </Button>
+              {/* <IconButton color="inherit" sx={{ p: 0.5 }}>
 								<Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
-							</IconButton>
-						</Grid>
-					</Grid>
-				</Toolbar>
-			</AppBar>
-			<AppBar
-				component="div"
-				color="primary"
-				position="static"
-				elevation={0}
-				sx={{zIndex: 0, backgroundColor:"#1d5c63"}}
-			>
-				<Toolbar>
-					<Grid container alignItems="center" spacing={1} >
-						<Grid item xs>
-							<Typography color="inherit" variant="h5" component="h1">
-								Dashboard
-							</Typography>
-						</Grid>
-					</Grid>
-				</Toolbar>
-			</AppBar>
-			{/* <AppBar
+							</IconButton> */}
+            </Grid>
+          </Grid>
+        </Toolbar>
+      </AppBar>
+      <AppBar
+        component="div"
+        color="primary"
+        position="static"
+        elevation={0}
+        sx={{ zIndex: 0, backgroundColor: "#1d5c63" }}
+      >
+        <Toolbar>
+          <Grid container alignItems="center" spacing={1}>
+            <Grid item xs>
+              <Typography color="inherit" variant="h5" component="h1">
+                Dashboard
+              </Typography>
+            </Grid>
+          </Grid>
+        </Toolbar>
+      </AppBar>
+      {/* <AppBar
 				component="div"
 				position="static"
 				elevation={0}
@@ -98,12 +115,12 @@ function Header(props) {
 					<Tab label="Usage" />
 				</Tabs>
 			</AppBar> */}
-		</React.Fragment>
-	);
+    </React.Fragment>
+  );
 }
 
 Header.propTypes = {
-	onDrawerToggle: PropTypes.func.isRequired,
+  onDrawerToggle: PropTypes.func.isRequired,
 };
 
 export default Header;

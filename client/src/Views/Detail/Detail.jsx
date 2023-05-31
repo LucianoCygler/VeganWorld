@@ -63,7 +63,7 @@ function Detail() {
   };
 
   const handleIncrement = () => {
-    if (quantity < 100) {
+    if (quantity < 10) {
       setQuantity(quantity + 1);
     }
   };
@@ -281,7 +281,7 @@ function Detail() {
                               <Text fontSize={"15px"}>{review.titulo}</Text>
                             </Box>
                             <Box display={"flex"} justifyContent={"center"}>
-                              <Text fontSize={"15px"}>
+                              <Text fontSize={"15px"} wordBreak={"break-word"}>
                                 {review.descripcion}
                               </Text>
                             </Box>
