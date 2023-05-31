@@ -316,10 +316,10 @@ export const validateUserExistenceInDb = (email) => {
 };
 
 /* MODIFICAR ORDEN POR ID */
-export const updateOrder = (order_id) => {
+export const updateOrder = (newOrder) => {
   return async function (dispatch) {
     try {
-      const res = await axios.patch(`/order/${order_id}`);
+      const res = await axios.patch(`/order/`, newOrder);
       const orderDB = res.data;
       return dispatch({ type: UPDATE_ORDER, payload: orderDB });
     } catch (error) {

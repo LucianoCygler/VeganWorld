@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { registerUser } from "../../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { sendEmail } from "../../../../redux/actions/actions";
 const useForm = (initialForm, validationsForm) => {
   const [register, setRegister] = useState(initialForm);
   const [error, serError] = useState({});
@@ -27,6 +28,7 @@ const useForm = (initialForm, validationsForm) => {
     createUserWithEmailAndPassword(auth, register.email, register.contraseña)
       .then((userCredential) => {
         console.log(userCredential);
+        dispatch(sendEmail(userCredential, "register"));
         navigate("/");
       })
       .catch((error) => {

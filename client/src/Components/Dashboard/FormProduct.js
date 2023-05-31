@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { createProduct, getAllProducts, getAllProductsAdmin } from "../../redux/actions/actions";
+import {
+	createProduct,
+	getAllProducts,
+	getAllProductsAdmin,
+} from "../../redux/actions/actions";
 import { Button, Paper, Tab, Tabs, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -31,8 +35,10 @@ const uploadImage = async (file) => {
 export default function FormProducts() {
 	const fileInputRef = useRef(null);
 	const dispatch = useDispatch();
-	const { productsAdmin , deleteProduct} = useSelector((state) => state);
-	const productsType = [...new Set(productsAdmin.map((product) => product.tipo))];
+	const { productsAdmin, deleteProduct } = useSelector((state) => state);
+	const productsType = [
+		...new Set(productsAdmin.map((product) => product.tipo)),
+	];
 
 	useEffect(() => {
 		dispatch(getAllProductsAdmin());
@@ -88,7 +94,7 @@ export default function FormProducts() {
 		const text = event.target.innerText;
 		text
 			? setProduct({ ...product, tipo: text })
-			: value >= 0 && setProduct({ ...product, [name]: value });
+			: setProduct({ ...product, [name]: value });
 	};
 
 	const [valueTab, setValueTab] = useState("list");
@@ -96,42 +102,41 @@ export default function FormProducts() {
 		setValueTab(value);
 	};
 
-	const columns = [
-		{field:"id" , headerName : "ID", width:50},
-		{field:"name" , headerName : "NAME", width:150},
-		{field:"stock" , headerName : "STOCK"},
-		{field:"price" , headerName : "PRICE"},
-		{field:"status" , headerName : "STATUS"},
+	// const columns = [
+	// 	{field:"id" , headerName : "ID", width:50},
+	// 	{field:"name" , headerName : "NAME", width:150},
+	// 	{field:"stock" , headerName : "STOCK"},
+	// 	{field:"price" , headerName : "PRICE"},
+	// 	{field:"status" , headerName : "STATUS"},
 
-	]
+	// ]
 
 	return (
 		<>
 			<Paper>
-				<Box sx={{ borderBottom: 1, borderColor: "divider" , margin:2}}>
+				<Box sx={{ borderBottom: 1, borderColor: "divider", margin: 2 }}>
 					<Tabs value={valueTab} onChange={handleTab}>
 						<Tab value={"list"} label={"-List Products"} />
 						<Tab value={"create"} label={"-Create Product"} />
 					</Tabs>
 				</Box>
 			</Paper>
-			{valueTab === "list" &&
-			
-			<ListProducts products={productsAdmin}/>
-			// <Box container id="list-products">
-			// <DataGrid
-      //   rows={rows}
-      //   columns={columns}
-      //   initialState={{
-      //     pagination: {
-      //       paginationModel: { page: 0, pageSize: 5 },
-      //     },
-      //   }}
-      //   pageSizeOptions={[5, 10]}
-				
-      // />
-			// 	</Box>
-				}
+			{
+				valueTab === "list" && <ListProducts products={productsAdmin} />
+				// <Box container id="list-products">
+				// <DataGrid
+				//   rows={rows}
+				//   columns={columns}
+				//   initialState={{
+				//     pagination: {
+				//       paginationModel: { page: 0, pageSize: 5 },
+				//     },
+				//   }}
+				//   pageSizeOptions={[5, 10]}
+
+				// />
+				// 	</Box>
+			}
 
 			{valueTab === "create" && (
 				<Box container id="create-product">

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Chart as ChartJs, CategoryScale, PointElement, RadialLinearScale, ArcElement, LineElement, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import { Line, PolarArea, Bar } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
@@ -7,12 +7,16 @@ import { Box, Button } from "@mui/material";
 import { Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrders } from "../redux/actions/actions";
+import axios from "axios";
 
 ChartJs.register( CategoryScale, PointElement, LineElement, RadialLinearScale, ArcElement, LinearScale, BarElement, Title, Tooltip, Legend );
 
 export const labels = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 
-/* USUARIOS */
+//! USUARIOS !//
+
+const storeUsersData = localStorage.getItem("datosUsuarios");
+let totalUsersRegister = storeUsersData ? JSON.parse(storeUsersData) : [];
 
 export const optionsLine = {
   plugins: {
@@ -31,14 +35,14 @@ export const dataLine = {
   datasets: [
     {
       label: "Users",
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      borderColor: "rgb(55, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
+      data: totalUsersRegister,
+      borderColor: "rgba(255, 99, 132, 0.5)",
+      backgroundColor: "rgb(81, 199, 26)",
     },
   ],
 };
 
-/* REVIEWS */
+//? REVIEWS ?//
 
 export const optionsRadar = {
   plugins: {
@@ -70,7 +74,8 @@ export const dataRadar = {
   ]
 }
 
-/* GANANCIAS */
+//* GANANCIAS *//
+
 
 export const optionsBox = {
   plugins: {
@@ -83,7 +88,9 @@ export const optionsBox = {
     }
   }
 }
-const totalMonthAmount = [];
+
+const storedData = localStorage.getItem("datosGrafico");
+let totalMonthAmount = storedData ? JSON.parse(storedData) : [];
 
 export const dataBox = {
   labels,
@@ -91,40 +98,100 @@ export const dataBox = {
     {
       label: "Total profit",
       data: totalMonthAmount,
-      backgroundColor: "rgba(255, 99, 132, 0.5"
+      backgroundColor: "rgba(255, 99, 132, 0.5)"
     }
   ]
 }
 
-
 export default function Graficos() {
+
+  //* GRAFICO GANANCIA *//
+
   const dispatch = useDispatch();
   const importe = useSelector((state) => state.allOrders);
-  const totalImport = importe.map((order) => Number(order.importe));
-  const sumImport = totalImport.reduce((total, imp) => total + imp, 0);
-
+  const [sumImport, setSumImport] = useState(0);
+  
   useEffect(() => {
     dispatch(getOrders());
   }, []);
+  
+  useEffect(() => {
+    const totalImport = importe.map((order) => Number(order.importe));
+    const newSumImport = totalImport.reduce((total, imp) => total + imp, 0);
+    setSumImport(newSumImport);
+  }, [importe]);
 
   const handleClick = () => {
+    const storedData = localStorage.getItem("datosGrafico");
+    const totalMonthAmount = storedData ? JSON.parse(storedData) : [];
+
     totalMonthAmount.push(sumImport);
+
+    localStorage.setItem("datosGrafico", JSON.stringify(totalMonthAmount));
+    setSumImport(0);
   }
+
+  const handleReset = () => {
+    totalMonthAmount = [];
+    localStorage.removeItem("datosGrafico");
+  }
+
+  //* GRAFICO GANANCIA *//
+
+  //! GRAFICO USUARIOS !//
+
+  let [userCount, setUserCount] = useState(0);
+
+  useEffect(() => {
+    axios.get("/client")
+    .then(response => {
+      setUserCount(response.data.length);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }, []);
+
+  const handleClickUsers = () => {
+    const storeDataUsers = localStorage.getItem("datosUsuarios");
+    const totalUsersRegister = storeDataUsers ? JSON.parse(storeDataUsers) : [];
+
+    totalUsersRegister.push(userCount);
+
+    localStorage.setItem("datosUsuarios", JSON.stringify(totalUsersRegister));
+    setUserCount = 0;
+  }
+
+  const handleResetUsers = () => {
+    totalUsersRegister = [];
+    localStorage.removeItem("datosUsuarios");
+  }
+  
+  //! GRAFICO USUARIOS !//
+
+  //? GRAFICO REVIEWS ?//
+
+  
 
   return (
     <Grid container spacing={2}>
       <Grid sm={12} xs={12} md={10} lg={10} sx={{ minHeight: [200, 300, 400, 600] }}>
-        <Box display={"flex"} justifyContent={"flex-end"} marginLeft={"50px"} sx={{ minHeight: [200, 300, 400, 600] }}>
-          <Bar options={optionsBox} data={dataBox} responsive={true} maintainAspectRatio={false} />
-          <Box display={"flex"} flexDirection={"column"} position={"relative"} left={"100px"}>
-            <Text>Actualy amount:</Text>
-            <Text display={"flex"}>${sumImport}</Text>
-            <Button onClick={handleClick}>Send Import</Button>
+        <Box display={"flex"} justifyContent={"flex-end"} marginLeft={"120px"} sx={{ minHeight: [200, 300, 400, 600] }}>
+        <Bar options={optionsBox} data={dataBox} responsive={true} maintainAspectRatio={false} />
+          <Box display={"flex"} flexDirection={"column"} position={"relative"} left={"100px"} gap={"15px"}>
+            <Text whiteSpace={"nowrap"} color={"rgba(255, 7, 7, 0.87)"}>Actualy amount:</Text>
+            <Text display={"flex"} fontSize={"30px"} whiteSpace={"nowrap"} color={"rgb(255, 99, 132)"}>${sumImport}</Text>
+            <Button onClick={handleClick} variant="contained" >Send amount!</Button>
+            <Button onClick={handleReset} variant="contained" color="error">Reset graph</Button>
           </Box>
         </Box>
       </Grid>
       <Grid sm={12} xs={12} md={6} lg={6} sx={{ minHeight: [200, 300, 400, 600] }}>
-        <Line options={optionsLine} data={dataLine} responsive={true} maintainAspectRatio={false} height={"250px"} />
+        <Box display={"flex"} flexDirection={"column"} gap={"15px"}>
+          <Line options={optionsLine} data={dataLine} responsive={true} maintainAspectRatio={false} height={"250px"} />
+          <Button onClick={handleClickUsers} variant="contained">Send clients!</Button>
+          <Button onClick={handleResetUsers} variant="contained" color="error">Reset graph</Button>
+        </Box>
       </Grid>
       <Grid sm={12} xs={12} md={6} lg={6} sx={{ minHeight: [200, 300, 400, 600] }}>
         <PolarArea options={optionsRadar} data={dataRadar} responsive={true} maintainAspectRatio={false} />

@@ -1,8 +1,7 @@
 const updateOrder = require("../../controllers/order/updateOrder");
 
 async function updateOrderHandler(req, res) {
-  const { id } = req.params;
-  const { importe, productos, estado } = req.body;
+  const { id, importe, productos, estado } = req.body;
   try {
     const modifiedOrder = await updateOrder(id, importe, productos, estado);
     res.status(200).send(modifiedOrder);
