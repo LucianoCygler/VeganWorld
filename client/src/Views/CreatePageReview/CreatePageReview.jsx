@@ -65,7 +65,6 @@ const CreatePageReview = () => {
     setError(validate({ ...input, [e.target.name]: e.target.value }, error));
   };
 
-
   const submitHandler = (e) => {
     e.preventDefault();
     try {
@@ -74,15 +73,19 @@ const CreatePageReview = () => {
         cliente_id: user?.id,
       };
       dispatch(createPageReview(pageReview));
-      Pop_up("success", "Congratulations", "Your review was added", "center", 2800)
+      Pop_up(
+        "success",
+        "Congratulations",
+        "Your review was added",
+        "center",
+        2800
+      );
       window.location.reload();
     } catch (error) {
       alert(error.message);
     }
     return;
   };
-
-
 
   const handleSaveReview = () => {
     const newPageReview = {
@@ -95,19 +98,15 @@ const CreatePageReview = () => {
     window.location.reload();
   };
 
-
-
   useEffect(() => {
     dispatch(getUserDataByEmail(emailCurrent));
   }, [emailCurrent]);
-
 
   useEffect(() => {
     if (user) {
       dispatch(getClientPageReviews(user?.nombre));
     }
   }, [user]);
-
 
   return (
     <Box
@@ -134,7 +133,7 @@ const CreatePageReview = () => {
           />
         </Text>
       </Box>
-      {clientPageReview ? (
+      {clientPageReview > 0 ? (
         <Box display="flex" justifyContent={"center"} paddingTop={"2em"}>
           <Card
             marginRight="2em"
