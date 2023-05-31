@@ -99,7 +99,7 @@ const LoginAdmin = () => {
             </FormLabel>
             <Input
               name="contraseña"
-              type="text"
+              type="password"
               bg="white"
               marginBottom={"2em"}
               onChange={handleChange}

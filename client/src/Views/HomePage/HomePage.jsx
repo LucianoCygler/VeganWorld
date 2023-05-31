@@ -23,6 +23,7 @@ import {
   Grid,
   GridItem,
   Img,
+  StylesProvider,
 } from "@chakra-ui/react";
 import { PhoneIcon, AddIcon, WarningIcon } from "@chakra-ui/icons";
 import { Divider } from "@chakra-ui/react";
@@ -453,7 +454,7 @@ function HomePage() {
           }}
         >
           <div class="footer-left">
-            <h3>
+            <h3 className={style.h1footer}>
               <span>Vegan</span>World
             </h3>
 
@@ -480,10 +481,10 @@ function HomePage() {
               </p>
             </div>
 
-            <div>
-              <i class="fa fa-phone"></i>
+            <div className={style.divPhone}>
+              {/* <i class="fa fa-phone"></i> */}
               <PhoneIcon marginRight="1em"></PhoneIcon>
-              <p>+54 9 1122309876</p>
+              <p className={style.phone}>+54 9 1122309876</p>
             </div>
 
             <div>

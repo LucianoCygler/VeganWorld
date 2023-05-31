@@ -111,10 +111,14 @@ const MyOrders = () => {
             <Tab fontWeight={"extrabold"} color={"teal"}>
               Pending
             </Tab>
+
             {/* <Tab fontWeight={"extrabold"}>In Progress</Tab>
             <Tab fontWeight={"extrabold"}>Delivered</Tab> */}
             <Tab fontWeight={"extrabold"} color={"teal"}>
               Cancelled
+            </Tab>
+            <Tab fontWeight={"extrabold"} color={"teal"}>
+              Finished
             </Tab>
           </TabList>
 
@@ -201,6 +205,22 @@ const MyOrders = () => {
                 {clientOrders.map((order, index) => {
                   return (
                     order.estado === "Cancelado" && (
+                      <OrderDetail
+                        order={order}
+                        cancelRef={cancelRef}
+                        state={order.estado}
+                        //   client_id={client_id}
+                      />
+                    )
+                  );
+                })}
+              </Accordion>
+            </TabPanel>{" "}
+            <TabPanel>
+              <Accordion allowMultiple>
+                {clientOrders.map((order, index) => {
+                  return (
+                    order.estado === "Finalizado" && (
                       <OrderDetail
                         order={order}
                         cancelRef={cancelRef}

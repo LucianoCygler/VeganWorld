@@ -5,6 +5,8 @@ import { validateLogin, loginUser } from "../../../redux/actions/actions";
 import { useNavigate } from "react-router-dom";
 import { auth, googleProvider } from "../../../Firebase/firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { Box, Button, Input, FormControl } from "@chakra-ui/react";
+
 
 const LoginSignup = () => {
   const dispatch = useDispatch();
@@ -15,12 +17,13 @@ const LoginSignup = () => {
     contraseña: "",
   });
 
+  const [error, setError] = useState({
+    email: "",
+    constraseña: ""
+  });
+
   const [userValue, setUserValue] = useState("");
   console.log(userValue);
-
-  const handleInputChange = (event) => {
-    setLogin({ ...login, [event.target.name]: event.target.value });
-  };
 
   const handleButtonAccess = async (event) => {
     event.preventDefault();
@@ -30,6 +33,16 @@ const LoginSignup = () => {
       dispatch(loginUser());
       navigate("/");
     }
+  };
+
+  const changeHandler = (event) => {
+    const property = event.target.name;
+    const value = event.target.value;
+    setLogin({
+      ...login,
+      [property]: value,
+    });
+    setError(validateLogin({ ...login, [property]: value }));
   };
 
   const handleOnClick = () => {
@@ -61,46 +74,48 @@ const LoginSignup = () => {
   };
 
   return (
-    <div className={style.container}>
+    <Box className={style.container}>
       <form className={style.form}>
-        <div className={style.form_front}>
-          <div className={style.form_details}>Login</div>
+        <Box className={style.form_front}>
+          <Box className={style.form_details}>Login</Box>
+          <FormControl isInvalid={!!error.username}>
+            <Input
+              type="text"
+              className={style.input}
+              placeholder="Username"
+              onChange={changeHandler}
+              name="email"
+              value={login.username}
+            />
+            </FormControl>
 
-          <input
-            type="text"
-            className={style.input}
-            placeholder="Username"
-            onChange={handleInputChange}
-            name="email"
-            value={login.username}
-          />
+            <Input
+              type="password"
+              className={style.input}
+              placeholder="Password"
+              onChange={changeHandler}
+              name="contraseña"
+              value={login.password}
+            />
 
-          <input
-            type="password"
-            className={style.input}
-            placeholder="Password"
-            onChange={handleInputChange}
-            name="contraseña"
-            value={login.password}
-          />
-
-          <button className={style.btn} onClick={handleLogin}>
-            Login
-          </button>
-          <button className={style.btn} type="button" onClick={handleLogGoogle}>
-            Google
-          </button>
-          <span className={style.switch}>
-            Don't have an account?{"        "}
-            <label htmlFor="signup_toggle" className={style.signup_tog}>
-              <span className={style.signup} onClick={handleOnClick}>
-                Sign Up
-              </span>
-            </label>
-          </span>
-        </div>
+            <Button className={style.btn} onClick={handleLogin}>
+              Login
+            </Button>
+            <Button className={style.btn} type="button" onClick={handleLogGoogle}>
+              Google
+            </Button>
+            <Box className={style.switch}>
+              Don't have an account?{"        "}
+              <label htmlFor="signup_toggle" className={style.signup_tog}>
+                <Box className={style.signup} onClick={handleOnClick}>
+                  Sign Up
+                </Box>
+              </label>
+            </Box>
+        </Box>
       </form>
-    </div>
+    </Box>
   );
-};
+}
+
 export default LoginSignup;

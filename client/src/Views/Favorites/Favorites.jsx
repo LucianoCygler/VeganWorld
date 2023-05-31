@@ -111,11 +111,7 @@ const Favorites = () => {
                   );
                 })
               ) : (
-                <Box
-                  display={"flex"}
-                  flexDirection={"column"}
-                  alignItems={"center"}
-                >
+                <Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
                   {" "}
                   <Heading
                     marginBottom={"3em"}
@@ -127,12 +123,8 @@ const Favorites = () => {
                   >
                     You don't have favorites
                   </Heading>
-                  <Image
-                    src="https://res.cloudinary.com/da6d9ru3s/image/upload/v1685459046/favorite-154758_1280_jruydu.png"
-                    className="img-fluid"
-                    style={{ width: "200px", height: "auto" }}
-                    alt="Imagen"
-                  ></Image>
+                  <Image   src="https://res.cloudinary.com/da6d9ru3s/image/upload/v1685459046/favorite-154758_1280_jruydu.png" className="img-fluid" style={{ width: '200px', height: 'auto' }} alt="Imagen">
+                  </Image>
                 </Box>
               )}
             </Wrap>

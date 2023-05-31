@@ -70,6 +70,7 @@ const MyData = () => {
     telefono: editedPhone,
     ciudad: editedCity,
     direccion: editedAddress,
+    imagen: profileImage
   };
 
   const emailCurrent = localStorage.getItem("email");
@@ -82,10 +83,10 @@ const MyData = () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "my_upload_preset");
+      formData.append("upload_preset", "ml_default");
 
       const response = await axios.post(
-        "https://api.cloudinary.com/v1_1/da6d9ru3s/upload",
+        "https://api.cloudinary.com/v1_1/dzv1xau8l/upload",
         formData
       );
       console.log("Imagen subida:", response.data.secure_url);
@@ -161,22 +162,7 @@ const MyData = () => {
     setError(validations({ ...form, [property]: value }));
   };
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-    if (Object.keys(error).length === 0) {
-      dispatch(setEditMode(form, "contact"));
-      toast({
-        title: "Thanks for your time.",
-        description: "Good job!",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-      });
-      setForm(formMyProfile);
-    } else {
-      alert("Error, all fields must be validated in order to continue");
-    }
-  };
+ 
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -205,16 +191,15 @@ const MyData = () => {
         }
       }
 
-      const newUser = { ...form, imagen: imageUrl };
-
       setselectedUser(form);
-      dispatch(updateClientData(id, newUser));
+      dispatch(updateClientData(id, form));
       alert("Client Data updated");
       setEditMode(false);
     } catch (error) {
       alert("Error al guardar los datos del cliente");
     }
   };
+  
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -450,7 +435,7 @@ const MyData = () => {
                     />
                     <FormErrorMessage>{error.direccion}</FormErrorMessage>
                   </FormControl>
-                </form>
+                  </form>
               </Box>
               <Input
                 isDisabled={false}
@@ -460,6 +445,7 @@ const MyData = () => {
                 borderWidth="1px"
                 borderColor="gray.200"
                 borderRadius="md"
+                value={form.imagen}
                 p={2}
                 mt={"1.5rem"}
               />
@@ -473,7 +459,7 @@ const MyData = () => {
                   color: "rgb(214, 187, 187)",
                 }}
                 onClick={handleSaveUser}
-              >
+                >
                 Save Data
               </Button>
             </Box>

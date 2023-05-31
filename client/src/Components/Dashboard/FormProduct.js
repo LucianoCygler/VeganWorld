@@ -22,7 +22,7 @@ const uploadImage = async (file) => {
 		formData.append("upload_preset", "my_upload_preset");
 
 		const response = await axios.post(
-			"https://api.cloudinary.com/v1_1/da6d9ru3s/upload",
+			"https://api.cloudinary.com/v1_1/dzv1xau8l/upload",
 			formData
 		);
 		return response.data.secure_url;
