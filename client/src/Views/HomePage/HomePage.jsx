@@ -23,6 +23,7 @@ import {
   Grid,
   GridItem,
   Img,
+  StylesProvider,
 } from "@chakra-ui/react";
 import { PhoneIcon, AddIcon, WarningIcon } from "@chakra-ui/icons";
 import { Divider } from "@chakra-ui/react";
@@ -443,7 +444,7 @@ function HomePage() {
           }}
         >
           <div class="footer-left">
-            <h3>
+            <h3 className={style.h1footer}>
               <span>Vegan</span>World
             </h3>
 

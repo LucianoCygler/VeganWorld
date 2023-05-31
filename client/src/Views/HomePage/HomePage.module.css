@@ -65,3 +65,7 @@
   width: 90%;
   margin: auto;
 }
+
+.h1footer{
+  white-space: nowrap;
+}
