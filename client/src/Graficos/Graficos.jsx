@@ -32,8 +32,8 @@ export const dataLine = {
     {
       label: "Users",
       data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      borderColor: "rgb(55, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
+      borderColor: "rgb(255, 45, 143)",
+      backgroundColor: "rgb(81, 199, 26)",
     },
   ],
 };
@@ -93,7 +93,7 @@ export const dataBox = {
     {
       label: "Total profit",
       data: totalMonthAmount,
-      backgroundColor: "rgba(255, 99, 132, 0.5"
+      backgroundColor: "rgba(255, 99, 132, 0.5)"
     }
   ]
 }
@@ -141,12 +141,12 @@ export default function Graficos() {
   return (
     <Grid container spacing={2}>
       <Grid sm={12} xs={12} md={10} lg={10} sx={{ minHeight: [200, 300, 400, 600] }}>
-        <Box display={"flex"} justifyContent={"flex-end"} marginLeft={"50px"} sx={{ minHeight: [200, 300, 400, 600] }}>
+        <Box display={"flex"} justifyContent={"flex-end"} marginLeft={"120px"} sx={{ minHeight: [200, 300, 400, 600] }}>
         <Bar options={optionsBox} data={{ ...dataBox, datasets: [{ ...dataBox.datasets[0], data: totalMonthAmount }] }} responsive={true} maintainAspectRatio={false} />
           <Box display={"flex"} flexDirection={"column"} position={"relative"} left={"100px"} >
-            <Text>Actualy amount:</Text>
-            <Text display={"flex"}>${sumImport}</Text>
-            <Button onClick={handleReset}>Reset graph</Button>
+            <Text whiteSpace={"nowrap"} color={"rgba(255, 7, 7, 0.87)"}>Actualy amount:</Text>
+            <Text display={"flex"} fontSize={"30px"} whiteSpace={"nowrap"} color={"rgb(255, 99, 132)"}>${sumImport}</Text>
+            <Button onClick={handleReset} variant="contained" color="error">Reset graph</Button>
           </Box>
         </Box>
       </Grid>
