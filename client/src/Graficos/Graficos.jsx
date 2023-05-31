@@ -85,7 +85,7 @@ export const optionsBox = {
 }
 
 const storedData = localStorage.getItem("datosGrafico");
-const totalMonthAmount = storedData ? JSON.parse(storedData) : [];
+let totalMonthAmount = storedData ? JSON.parse(storedData) : [];
 
 export const dataBox = {
   labels,
@@ -103,7 +103,7 @@ export default function Graficos() {
   const dispatch = useDispatch();
   const importe = useSelector((state) => state.allOrders);
   const totalImport = importe.map((order) => Number(order.importe));
-  const sumImport = totalImport.reduce((total, imp) => total + imp, 0);
+  let sumImport = totalImport.reduce((total, imp) => total + imp, 0);
 
   useEffect(() => {
     dispatch(getOrders());
@@ -116,8 +116,27 @@ export default function Graficos() {
     totalMonthAmount.push(sumImport);
 
     localStorage.setItem("datosGrafico", JSON.stringify(totalMonthAmount));
+
+    sumImport = 0;
   }
 
+  const handleReset = () => {
+    totalMonthAmount = [];
+    localStorage.removeItem("datosGrafico");
+  }
+
+  const isLastDayOfMonth = () => {
+    const currentDate = new Date();
+    const nextDay = new Date(currentDate);
+    nextDay.setDate(currentDate.getDate() + 1);
+    return nextDay.getDate() === 1;
+  }
+
+  useEffect(() => {
+    if(isLastDayOfMonth){
+      handleClick();
+    }
+  })
 
   return (
     <Grid container spacing={2}>
@@ -127,7 +146,7 @@ export default function Graficos() {
           <Box display={"flex"} flexDirection={"column"} position={"relative"} left={"100px"} >
             <Text>Actualy amount:</Text>
             <Text display={"flex"}>${sumImport}</Text>
-            <Button onClick={handleClick}>Send Import</Button>
+            <Button onClick={handleReset}>Reset graph</Button>
           </Box>
         </Box>
       </Grid>
