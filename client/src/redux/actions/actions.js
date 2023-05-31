@@ -50,6 +50,7 @@ import {
   GET_PAGE_REVIEWS,
   GET_ORDERS,
   CREATE_PAGE_REVIEW,
+  GET_CLIENT_PAGE_REVIEW,
 } from "./Types/Types";
 import Pop_up from "../../Utils/Pop_up/Pop_up";
 
@@ -58,9 +59,14 @@ export const createProduct = (product) => {
     try {
       const res = await axios.post(`/product`, product);
       const newOrder = res.data;
-      Pop_up('success','Product created','Your product is already published','bottom')
+      Pop_up(
+        "success",
+        "Product created",
+        "Your product is already published",
+        "bottom"
+      );
     } catch (error) {
-      Pop_up('error','There was a mistake',`${error.response.data}`)
+      Pop_up("error", "There was a mistake", `${error.response.data}`);
     }
   };
 };
@@ -523,6 +529,29 @@ export const createPageReview = (review) => {
       const res = await axios.post("/pagereview", review);
       // const pageReview = res.data;
       // return dispatch({ type: CREATE_PAGE_REVIEW, payload: pageReview });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
+export const updatePageReview = (review) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.patch("/pagereview", review);
+      // const pageReview = res.data;
+      // return dispatch({ type: CREATE_PAGE_REVIEW, payload: pageReview });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
+
+export const getClientPageReviews = (nombre) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/pagereview/client/${nombre}`);
+      const clientPageReview = res.data;
+      dispatch({ type: GET_CLIENT_PAGE_REVIEW, payload: clientPageReview });
     } catch (error) {
       console.log(error.response.data);
     }

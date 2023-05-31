@@ -22,6 +22,7 @@ function Detail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const userON = localStorage.getItem("email");
 
   const [product] = useSelector((state) => state.product);
   const cart = useSelector((state) => state.cart);
@@ -201,7 +202,11 @@ function Detail() {
                 >
                   Add To Cart
                 </Button>
-                <CreateReview product_id={product_id} cliente_id={user.id} />
+                {userON ? (
+                  <CreateReview product_id={product_id} cliente_id={user.id} />
+                ) : (
+                  ""
+                )}
               </Box>
             </Grid>
           </Box>

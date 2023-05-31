@@ -5,6 +5,7 @@ const createPageReviewHandler = require("../handlers/pagereview/createPageReview
 const deletePageReviewHandler = require("../handlers/pagereview/deletePageReviewHandler");
 const updateReviewHandler = require("../handlers/review/updateReviewhandler");
 const getClientPageReviewHandler = require("../handlers/pagereview/getClientPageReviewHandler");
+const updatePageReviewHandler = require("../handlers/pagereview/updatePageReviewHandler");
 
 const pageReviewRouter = Router();
 
@@ -16,7 +17,7 @@ pageReviewRouter.post("/", createPageReviewHandler);
 
 pageReviewRouter.delete("/:id", deletePageReviewHandler);
 
-pageReviewRouter.patch("/:id", updateReviewHandler);
+pageReviewRouter.patch("/", updatePageReviewHandler);
 
 pageReviewRouter.get("/client/:id", getClientPageReviewHandler);
 

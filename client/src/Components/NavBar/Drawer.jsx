@@ -17,7 +17,7 @@ import {
 import React, { useState } from "react";
 import { useDisclosure } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
-import { useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 function DrawerMenu() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -68,7 +68,7 @@ function DrawerMenu() {
           <DrawerBody textAlign={"left"}>
             {userON ? (
               <Grid templateRows={"repeat(6,1fr)"} gap={10} marginTop={"3em"}>
-                <a href="/MyProfile">
+                <NavLink to="/MyProfile">
                   <Heading
                     name="profile"
                     color={selectedOption === "profile" ? "teal" : "white"}
@@ -85,8 +85,8 @@ function DrawerMenu() {
                   >
                     Profile
                   </Heading>
-                </a>{" "}
-                <a href="/Favorites">
+                </NavLink>{" "}
+                <NavLink to="/Favorites">
                   <Heading
                     name="favorites"
                     fontWeight={"light"}
@@ -102,8 +102,8 @@ function DrawerMenu() {
                   >
                     Favorites
                   </Heading>
-                </a>
-                <a href="/MyOrders">
+                </NavLink>
+                <NavLink to="/MyOrders">
                   <Heading
                     name="orders"
                     fontWeight={"light"}
@@ -119,8 +119,8 @@ function DrawerMenu() {
                   >
                     Orders
                   </Heading>
-                </a>
-                <a href="/MyReviews">
+                </NavLink>
+                <NavLink to="/MyReviews">
                   <Heading
                     name="reviews"
                     fontWeight={"light"}
@@ -136,8 +136,8 @@ function DrawerMenu() {
                   >
                     Reviews
                   </Heading>
-                </a>{" "}
-                <a href="/PageReview">
+                </NavLink>{" "}
+                <NavLink to="/PageReview">
                   <Heading
                     name="pageReview"
                     color={selectedOption === "pageReview" ? "teal" : "white"}
@@ -154,8 +154,8 @@ function DrawerMenu() {
                   >
                     My page review
                   </Heading>
-                </a>{" "}
-                <a href="/OurProducts">
+                </NavLink>{" "}
+                <NavLink to="/OurProducts">
                   <Heading
                     name="products"
                     color={"yellow.400"}
@@ -172,12 +172,12 @@ function DrawerMenu() {
                   >
                     Our Products
                   </Heading>
-                </a>
+                </NavLink>
               </Grid>
             ) : (
               <Box mt="3em">
                 {" "}
-                <a href="/OurProducts">
+                <NavLink to="/OurProducts">
                   <Heading
                     name="products"
                     color={"yellow.400"}
@@ -194,7 +194,7 @@ function DrawerMenu() {
                   >
                     Our Products
                   </Heading>
-                </a>
+                </NavLink>
               </Box>
             )}
           </DrawerBody>
