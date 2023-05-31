@@ -7,12 +7,16 @@ import { Box, Button } from "@mui/material";
 import { Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrders } from "../redux/actions/actions";
+import axios from "axios";
 
 ChartJs.register( CategoryScale, PointElement, LineElement, RadialLinearScale, ArcElement, LinearScale, BarElement, Title, Tooltip, Legend );
 
 export const labels = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 
-/* USUARIOS */
+//! USUARIOS !//
+
+const storeUsersData = localStorage.getItem("datosUsuarios");
+let totalUsersRegister = storeUsersData ? JSON.parse(storeUsersData) : [];
 
 export const optionsLine = {
   plugins: {
@@ -31,14 +35,14 @@ export const dataLine = {
   datasets: [
     {
       label: "Users",
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      borderColor: "rgb(255, 45, 143)",
+      data: totalUsersRegister,
+      borderColor: "rgba(255, 99, 132, 0.5)",
       backgroundColor: "rgb(81, 199, 26)",
     },
   ],
 };
 
-/* REVIEWS */
+//? REVIEWS ?//
 
 export const optionsRadar = {
   plugins: {
@@ -70,7 +74,8 @@ export const dataRadar = {
   ]
 }
 
-/* GANANCIAS */
+//* GANANCIAS *//
+
 
 export const optionsBox = {
   plugins: {
@@ -99,6 +104,8 @@ export const dataBox = {
 }
 
 export default function Graficos() {
+
+  //* GRAFICO GANANCIA *//
 
   const dispatch = useDispatch();
   const importe = useSelector((state) => state.allOrders);
@@ -129,6 +136,43 @@ export default function Graficos() {
     localStorage.removeItem("datosGrafico");
   }
 
+  //* GRAFICO GANANCIA *//
+
+  //! GRAFICO USUARIOS !//
+
+  let [userCount, setUserCount] = useState(0);
+
+  useEffect(() => {
+    axios.get("/client")
+    .then(response => {
+      setUserCount(response.data.length);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }, []);
+
+  const handleClickUsers = () => {
+    const storeDataUsers = localStorage.getItem("datosUsuarios");
+    const totalUsersRegister = storeDataUsers ? JSON.parse(storeDataUsers) : [];
+
+    totalUsersRegister.push(userCount);
+
+    localStorage.setItem("datosUsuarios", JSON.stringify(totalUsersRegister));
+    setUserCount = 0;
+  }
+
+  const handleResetUsers = () => {
+    totalUsersRegister = [];
+    localStorage.removeItem("datosUsuarios");
+  }
+  
+  //! GRAFICO USUARIOS !//
+
+  //? GRAFICO REVIEWS ?//
+
+  
+
   return (
     <Grid container spacing={2}>
       <Grid sm={12} xs={12} md={10} lg={10} sx={{ minHeight: [200, 300, 400, 600] }}>
@@ -143,7 +187,11 @@ export default function Graficos() {
         </Box>
       </Grid>
       <Grid sm={12} xs={12} md={6} lg={6} sx={{ minHeight: [200, 300, 400, 600] }}>
-        <Line options={optionsLine} data={dataLine} responsive={true} maintainAspectRatio={false} height={"250px"} />
+        <Box display={"flex"} flexDirection={"column"} gap={"15px"}>
+          <Line options={optionsLine} data={dataLine} responsive={true} maintainAspectRatio={false} height={"250px"} />
+          <Button onClick={handleClickUsers} variant="contained">Send clients!</Button>
+          <Button onClick={handleResetUsers} variant="contained" color="error">Reset graph</Button>
+        </Box>
       </Grid>
       <Grid sm={12} xs={12} md={6} lg={6} sx={{ minHeight: [200, 300, 400, 600] }}>
         <PolarArea options={optionsRadar} data={dataRadar} responsive={true} maintainAspectRatio={false} />
