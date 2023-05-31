@@ -99,12 +99,11 @@ function Cart() {
           dispatch(createOrder(order)).then((data) => {
             localStorage.setItem("orderId", data.id);
           });
-
+          //, an E-mail has been sent to your address with the order details.
           Pop_up(
             "success",
             "Order Ceated",
-            `You can find your orders in MyOrders!, 
-            an E-mail has been sent to your address with the order details.`,
+            `You can find your orders in MyOrders!`,
             "top"
           );
           setIsOrderGenerated(true);
@@ -444,7 +443,16 @@ function Cart() {
                               )}
                             </Box>
                           ) : (
-                            ""
+                            <Box mt={"2em"}>
+                              {" "}
+                              <InfoOutlineIcon
+                                color={"red"}
+                                marginRight={1.5}
+                              />
+                              <Text display={"inline"} color={"red"}>
+                                You must be signed in to create your order{" "}
+                              </Text>
+                            </Box>
                           )}
                         </>
                       </Box>

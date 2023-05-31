@@ -101,7 +101,7 @@ function HomePage() {
   const [sort, setSort] = useState("");
   const navigate = useNavigate();
   const shuffledReviews = shuffle(pageReviews);
-  const randomReviews = shuffledReviews.slice(0, 4);
+  const randomReviews = shuffledReviews.slice(0, 3);
   const user = useSelector((state) => state.user);
 
   const location = useLocation();
@@ -163,7 +163,7 @@ function HomePage() {
           data-aos="fade-right"
           data-aos-offset="300"
           data-aos-easing="ease-in-sine"
-          data-aos-duration="1000"
+          data-aos-duration="2000"
         >
           <Card
             direction={{ base: "column", sm: "row" }}
@@ -279,33 +279,69 @@ function HomePage() {
           <h1>Our custommers</h1>
         </Text>{" "}
         <>
-          {pageReviews ? (
-            randomReviews.map((review) => (
-              <Box display="inline-block" marginRight="2em" marginTop={"2em"}>
-                <div className="cardReview">
-                  <div className="header">
-                    <Box marginRight={"2em"}>
-                      <Avatar src={review.cliente_imagen} size="xl" />
-                    </Box>
-                    <Box>
-                      <p className="name">{review.cliente_nombre}</p>
-                      <p>{review.titulo}</p>
-                    </Box>
-                  </div>
-                  <Box marginLeft={"3em"}>
-                    <p className="message">{review.descripcion}</p>
-                    <small className="message">{review.fecha}</small>
-                  </Box>
-                </div>
-              </Box>
-            ))
-          ) : (
-            <p>No hay comentarios disponibles.</p>
-          )}
+          <Flex
+            flexDirection={"row"}
+            justifyContent={"center"}
+            marginLeft={"1em"}
+          >
+            {pageReviews
+              ? randomReviews.map((review) => (
+                  <Card
+                    marginRight="2em"
+                    marginTop={"2em"}
+                    padding={"2em"}
+                    minWidth={"10%"}
+                    width={{ base: "30%", md: "30%", lg: "30%", xl: "20%" }}
+                    overflow={"hidden"}
+                  >
+                    <Grid templateColumns={"repeat(2,1fr)"}>
+                      <Box
+                        marginBottom={"2em"}
+                        display="flex"
+                        justifyContent={"left"}
+                      >
+                        <Avatar src={review.cliente_imagen} size="xl" />
+                      </Box>
+                      <Box>
+                        {" "}
+                        <Box display={"flex"} justifyContent={"center"}>
+                          <Text fontWeight={"semibold"} color={"#3eb86b"}>
+                            {review.cliente_nombre}
+                          </Text>
+                        </Box>
+                        <Box display={"flex"} justifyContent={"center"}>
+                          <Text fontWeight={"extrabold"}>{review.titulo}</Text>
+                        </Box>
+                        <Box display={"flex"} justifyContent={"center"}>
+                          <Text
+                            fontSize={"14px"}
+                            whiteSpace="pre-wrap"
+                            wordWrap="break-word"
+                          >
+                            {review.descripcion}
+                          </Text>{" "}
+                        </Box>
+                        <Box
+                          display={"flex"}
+                          justifyContent={"center"}
+                          position={"absolute"}
+                          right="1em"
+                          bottom={"0.5em"}
+                        >
+                          <Text color="grey" fontSize={"10px"}>
+                            {review.fecha}
+                          </Text>
+                        </Box>
+                      </Box>
+                    </Grid>
+                  </Card>
+                ))
+              : ""}
+          </Flex>
         </>
       </Box>
       <Box overflowWrap={"wrap"}></Box>
-      <div data-aos="fade-left" data-aos-duration="2000">
+      <div data-aos="fade-left" data-aos-duration="3000">
         <Grid
           marginLeft={"5em"}
           templateColumns={{

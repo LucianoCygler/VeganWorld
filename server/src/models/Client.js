@@ -49,7 +49,7 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: true,
         defaultValue:
-          "https://png.pngtree.com/png-clipart/20210129/ourmid/pngtree-default-male-avatar-png-image_2811083.jpg", // Reemplaza 'URL_POR_DEFECTO' por la URL deseada
+          "https://res.cloudinary.com/da6d9ru3s/image/upload/v1685498460/Avatar-Profile-Vector-PNG-Pic_aobyn6.png", // Reemplaza 'URL_POR_DEFECTO' por la URL deseada
         validate: {
           isUrl: true,
         },

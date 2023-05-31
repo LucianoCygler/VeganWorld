@@ -1,8 +1,8 @@
 const updatePageReview = require("../../controllers/pagereview/updatePageReview");
 
 const updatePageReviewHandler = async (req, res) => {
-  const { id } = req.params;
-  const { titulo, descripcion } = req.body;
+  // const { id } = req.params;
+  const { id, titulo, descripcion } = req.body;
 
   try {
     const pageReview = await updatePageReview(id, titulo, descripcion);

@@ -50,6 +50,12 @@ import {
   GET_PAGE_REVIEWS,
   GET_ORDERS,
   CREATE_PAGE_REVIEW,
+  GET_CLIENT_PAGE_REVIEW,
+  GET_ALL_ADMIN_CLIENTS,
+  GET_ALL_PRODUCTS_CLIENTS,
+  DELETE_PRODUCT_ADMIN,
+  VALIDATE_ADMIN_LOGIN,
+  ADMIN_LOG_OUT,
 } from "./Types/Types";
 import Pop_up from "../../Utils/Pop_up/Pop_up";
 
@@ -58,9 +64,14 @@ export const createProduct = (product) => {
     try {
       const res = await axios.post(`/product`, product);
       const newOrder = res.data;
-      Pop_up('success','Product created','Your product is already published','bottom')
+      Pop_up(
+        "success",
+        "Product created",
+        "Your product is already published",
+        "bottom"
+      );
     } catch (error) {
-      Pop_up('error','There was a mistake',`${error.response.data}`)
+      Pop_up("error", "There was a mistake", `${error.response.data}`);
     }
   };
 };
@@ -232,7 +243,27 @@ export const validateLogin = (user) => {
     }
   };
 };
+export const validateAdminLogin = (admin) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post(`/admin/checkadmin`, admin);
+      const adminDB = res.data;
+      return dispatch({ type: VALIDATE_ADMIN_LOGIN, payload: adminDB });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
 
+export const adminLogOut = () => {
+  return async function (dispatch) {
+    try {
+      return dispatch({ type: ADMIN_LOG_OUT });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
 export const getUserDataByEmail = (email) => {
   return async function (dispatch) {
     try {
@@ -528,6 +559,29 @@ export const createPageReview = (review) => {
     }
   };
 };
+export const updatePageReview = (review) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.patch("/pagereview", review);
+      // const pageReview = res.data;
+      // return dispatch({ type: CREATE_PAGE_REVIEW, payload: pageReview });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
+
+export const getClientPageReviews = (nombre) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/pagereview/client/${nombre}`);
+      const clientPageReview = res.data;
+      dispatch({ type: GET_CLIENT_PAGE_REVIEW, payload: clientPageReview });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
 
 export const getAllClients = () => {
   return async function (dispatch) {
@@ -583,4 +637,40 @@ export const sendEmail = (form, type) => {
 
 export const ChangeLabel = (id) => {
   return { type: CHANGE_LABEL, payload: id };
+};
+
+export const getAllClientsAdmin = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/getadmin/clients`);
+      const clients = res.data;
+      dispatch({ type: GET_ALL_ADMIN_CLIENTS, payload: clients });
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
+};
+
+export const getAllProductsAdmin = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/getadmin/products`);
+      const products = res.data;
+      dispatch({ type: GET_ALL_PRODUCTS_CLIENTS, payload: products });
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
+};
+
+export const deleteProductAdmin = (id) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.delete(`/product/${id}`);
+      const product = res.data;
+      dispatch({ type: DELETE_PRODUCT_ADMIN, payload: product });
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
 };
