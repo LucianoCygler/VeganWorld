@@ -16,35 +16,35 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { deleteProductAdmin } from "../../../redux/actions/actions";
 
-function createData(name, price, stock, state) {
+function createData(name, price, stock, state, image, description, id, type) {
 	return {
 		name,
 		price,
 		stock,
 		state,
-		history: [
-			{
-				date: "2020-01-05",
-				customerId: "11091700",
-				amount: 3,
-			},
-			{
-				date: "2020-01-02",
-				customerId: "Anonymous",
-				amount: 1,
-			},
-		],
+		image,
+		description,
+		id,
+		type
 	};
 }
 
 function Row(props) {
 	const { row } = props;
 	const [open, setOpen] = React.useState(false);
-
+	const dispatch = useDispatch()
+	const handleDelete = (id) =>{
+		dispatch(deleteProductAdmin(id))
+	}
+	const handleUpdate = (id) =>{
+		console.log(id);
+	}
 	return (
 		<React.Fragment>
-			<TableRow sx={{ "& > *": { borderBottom: "unset" }}}>
+			<TableRow sx={{ "& > *": { borderBottom: "unset" } , bgcolor:"lightgrey"}}>
 				<TableCell>
 					<IconButton
 						aria-label="expand row"
@@ -55,47 +55,51 @@ function Row(props) {
 					</IconButton>
 				</TableCell>
 				<TableCell component="th" scope="row">
+					{/* <Grid2>
+						{row.image}
+					</Grid2> */}
 					<Grid2>
-						imagen
-						{row.imagen}
-					</Grid2>
-					<Grid2>
-						nombre
-						{row.nombre}
+						{row.name}
 					</Grid2>
 				</TableCell>
 				<TableCell align="right">{row.stock}</TableCell>
-				<TableCell align="right">{row.importe}</TableCell>
-				<TableCell align="right">{row.status}</TableCell>
+				<TableCell align="right">{row.price}</TableCell>
+				<TableCell align="right">{!row.state ? 'active' : 'inactive'}</TableCell>
 			</TableRow>
 			<TableRow>
-				<TableCell style={{ paddingBottom: 0, paddingTop: 0 , width:"100%"}} colSpan={6}>
+				<TableCell
+					style={{ paddingBottom: 0, paddingTop: 0, width: "100%" }}
+					colSpan={6}
+				>
 					<Collapse in={open} timeout="auto" unmountOnExit>
 						<Box sx={{ margin: 2, width: "100%" }}>
 							<Typography variant="h6" gutterBottom component="div">
 								Basic details
 							</Typography>
 							<Grid2 container gap>
-								<Grid2 >
+								<Grid2>
 									<TextField
 										label="Product name"
+										value={row.name}
 										InputLabelProps={{
 											shrink: true,
 										}}
 									></TextField>
 								</Grid2>
-								<Grid2 >
+								<Grid2>
 									<TextField
 										label="Category"
+										value={row.type}
 										InputLabelProps={{
 											shrink: true,
 										}}
 									></TextField>
 								</Grid2>
-								<Grid2 >
+								<Grid2>
 									<TextField
 										type="number"
 										label="Old price"
+										value={row.price}
 										InputLabelProps={{
 											shrink: true,
 										}}
@@ -118,8 +122,8 @@ function Row(props) {
 											padding: "5",
 										}}
 									>
-										<Button>Update</Button>
-										<Button sx={{ color: "red" }}>Delete</Button>
+										<Button onClick={()=>handleUpdate(row.id)}>Update</Button>
+										<Button onClick={()=>handleDelete(row.id)} sx={{ color: "red" }}>Delete</Button>
 									</Box>
 								</Grid2>
 							</Grid2>
@@ -140,16 +144,25 @@ Row.propTypes = {
 	}).isRequired,
 };
 
-export default function ListProducts(products) {
-	const rows = [];
-	for (const product of products) {
-		rows.push(createData(product.nombre,product.stock, product.importe,product.estado))
-	}
+export default function ListProducts({ products }) {
+console.log(products);
+	const rows = products.map((product) =>
+		createData(
+			product.nombre,
+			product.precio,
+			product.stock,
+			product.deleted,
+			product.imagen,
+			product.descripcion,
+			product.id,
+			product.tipo
+		)
+	);
 	return (
 		<TableContainer component={Paper}>
 			<Table aria-label="collapsible table">
 				<TableHead>
-					<TableRow sx={{bgcolor:"#319795", color:"white",}}>
+					<TableRow sx={{ bgcolor: "#319795", color: "white" }}>
 						<TableCell />
 						<TableCell>NAME</TableCell>
 						<TableCell align="right">STOCK</TableCell>
