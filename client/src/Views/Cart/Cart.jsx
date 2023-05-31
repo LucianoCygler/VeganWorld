@@ -443,7 +443,16 @@ function Cart() {
                               )}
                             </Box>
                           ) : (
-                            ""
+                            <Box mt={"2em"}>
+                              {" "}
+                              <InfoOutlineIcon
+                                color={"red"}
+                                marginRight={1.5}
+                              />
+                              <Text display={"inline"} color={"red"}>
+                                You must be signed in to create your order{" "}
+                              </Text>
+                            </Box>
                           )}
                         </>
                       </Box>
