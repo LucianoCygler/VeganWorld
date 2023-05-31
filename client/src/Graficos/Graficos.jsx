@@ -83,7 +83,9 @@ export const optionsBox = {
     }
   }
 }
-const totalMonthAmount = [];
+
+const storedData = localStorage.getItem("datosGrafico");
+const totalMonthAmount = storedData ? JSON.parse(storedData) : [];
 
 export const dataBox = {
   labels,
@@ -96,8 +98,8 @@ export const dataBox = {
   ]
 }
 
-
 export default function Graficos() {
+
   const dispatch = useDispatch();
   const importe = useSelector((state) => state.allOrders);
   const totalImport = importe.map((order) => Number(order.importe));
@@ -108,15 +110,21 @@ export default function Graficos() {
   }, []);
 
   const handleClick = () => {
+    const storedData = localStorage.getItem("datosGrafico");
+    const totalMonthAmount = storedData ? JSON.parse(storedData) : [];
+
     totalMonthAmount.push(sumImport);
+
+    localStorage.setItem("datosGrafico", JSON.stringify(totalMonthAmount));
   }
+
 
   return (
     <Grid container spacing={2}>
       <Grid sm={12} xs={12} md={10} lg={10} sx={{ minHeight: [200, 300, 400, 600] }}>
         <Box display={"flex"} justifyContent={"flex-end"} marginLeft={"50px"} sx={{ minHeight: [200, 300, 400, 600] }}>
-          <Bar options={optionsBox} data={dataBox} responsive={true} maintainAspectRatio={false} />
-          <Box display={"flex"} flexDirection={"column"} position={"relative"} left={"100px"}>
+        <Bar options={optionsBox} data={{ ...dataBox, datasets: [{ ...dataBox.datasets[0], data: totalMonthAmount }] }} responsive={true} maintainAspectRatio={false} />
+          <Box display={"flex"} flexDirection={"column"} position={"relative"} left={"100px"} >
             <Text>Actualy amount:</Text>
             <Text display={"flex"}>${sumImport}</Text>
             <Button onClick={handleClick}>Send Import</Button>
