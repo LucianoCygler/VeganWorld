@@ -271,65 +271,75 @@ function HomePage() {
         data-aos-duration="1400"
         marginTop={60}
         marginBottom={180}
+        display={"flex"}
+        flexDirection={"column"}
+        justifyContent={"center"}
       >
-        <Text
-          as={"b"}
-          textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
-          color="white"
-        >
-          <h1>Our custommers</h1>
-        </Text>{" "}
-        <>
-          <Flex
-            flexDirection={"row"}
-            justifyContent={"center"}
-            marginLeft={"1em"}
+        <Box display={"flex"} justifyContent={"center"}>
+          {" "}
+          <Text
+            as={"b"}
+            textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+            color="white"
+          >
+            Our custommers
+          </Text>{" "}
+        </Box>
+
+        <Box display={"flex"} justifyContent={"center"}>
+          <Grid
+            templateColumns={{
+              base: "repeat(1, 1fr)",
+              md: "repeat(2, 1fr)",
+              lg: "repeat(2, 1fr)",
+              xl: "repeat(2 , 1fr)",
+            }}
+            gap={4}
           >
             {pageReviews
               ? randomReviews.map((review) => (
                   <Card
+                    key={review.id}
                     marginRight="2em"
-                    marginTop={"2em"}
-                    padding={"2em"}
-                    minWidth={"10%"}
-                    width={{ base: "30%", md: "30%", lg: "30%", xl: "20%" }}
-                    overflow={"hidden"}
+                    marginTop="2em"
+                    padding="2em"
+                    width="400px"
+                    overflow="hidden"
                   >
-                    <Grid templateColumns={"repeat(2,1fr)"}>
+                    <Grid templateColumns={"repeat(2, 1fr)"}>
                       <Box
-                        marginBottom={"2em"}
+                        marginBottom="2em"
                         display="flex"
-                        justifyContent={"left"}
+                        justifyContent="left"
                       >
                         <Avatar src={review.cliente_imagen} size="xl" />
                       </Box>
                       <Box>
-                        {" "}
-                        <Box display={"flex"} justifyContent={"center"}>
-                          <Text fontWeight={"semibold"} color={"#3eb86b"}>
+                        <Box display="flex" justifyContent="center">
+                          <Text fontWeight="semibold" color="#3eb86b">
                             {review.cliente_nombre}
                           </Text>
                         </Box>
-                        <Box display={"flex"} justifyContent={"center"}>
-                          <Text fontWeight={"extrabold"}>{review.titulo}</Text>
+                        <Box display="flex" justifyContent="center">
+                          <Text fontWeight="extrabold">{review.titulo}</Text>
                         </Box>
-                        <Box display={"flex"} justifyContent={"center"}>
+                        <Box display="flex" justifyContent="center">
                           <Text
-                            fontSize={"14px"}
+                            fontSize="14px"
                             whiteSpace="pre-wrap"
                             wordWrap="break-word"
                           >
                             {review.descripcion}
-                          </Text>{" "}
+                          </Text>
                         </Box>
                         <Box
-                          display={"flex"}
-                          justifyContent={"center"}
-                          position={"absolute"}
+                          display="flex"
+                          justifyContent="center"
+                          position="absolute"
                           right="1em"
-                          bottom={"0.5em"}
+                          bottom="0.5em"
                         >
-                          <Text color="grey" fontSize={"10px"}>
+                          <Text color="grey" fontSize="10px">
                             {review.fecha}
                           </Text>
                         </Box>
@@ -338,8 +348,8 @@ function HomePage() {
                   </Card>
                 ))
               : ""}
-          </Flex>
-        </>
+          </Grid>
+        </Box>
       </Box>
       <Box overflowWrap={"wrap"}></Box>
       <div data-aos="fade-left" data-aos-duration="3000">
