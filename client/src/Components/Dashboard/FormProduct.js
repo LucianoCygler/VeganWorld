@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { createProduct, getAllProducts } from "../../redux/actions/actions";
+import { createProduct, getAllProducts, getAllProductsAdmin } from "../../redux/actions/actions";
 import { Button, Paper, Tab, Tabs, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -31,11 +31,11 @@ const uploadImage = async (file) => {
 export default function FormProducts() {
 	const fileInputRef = useRef(null);
 	const dispatch = useDispatch();
-	const { products } = useSelector((state) => state);
-	const productsType = [...new Set(products.map((product) => product.tipo))];
+	const { productsAdmin } = useSelector((state) => state);
+	const productsType = [...new Set(productsAdmin.map((product) => product.tipo))];
 
 	useEffect(() => {
-		dispatch(getAllProducts());
+		dispatch(getAllProductsAdmin());
 	}, []);
 
 	const [product, setProduct] = useState({
@@ -118,7 +118,7 @@ export default function FormProducts() {
 			</Paper>
 			{valueTab === "list" &&
 			
-			<ListProducts/>
+			<ListProducts products={productsAdmin}/>
 			// <Box container id="list-products">
 			// <DataGrid
       //   rows={rows}
@@ -142,7 +142,7 @@ export default function FormProducts() {
 							textAlign: "left",
 							fontWeight: "bold",
 							padding: "1rem",
-							color: "whitesmoke",
+							// color: "whitesmoke",
 						}}
 					>
 						<Typography variant="h5">Create a new product</Typography>
@@ -155,8 +155,8 @@ export default function FormProducts() {
 									fontSize: "1.38rem",
 									textAlign: "left",
 									padding: "1rem",
-									fontWeight: "bold",
-									color: "whitesmoke",
+									// fontWeight: "bold",
+									// color: "whitesmoke",
 									fontFamily: "Montserrat",
 								}}
 							>
@@ -212,8 +212,8 @@ export default function FormProducts() {
 									fontSize: "1.38rem",
 									textAlign: "left",
 									padding: "1rem",
-									fontWeight: "bold",
-									color: "whitesmoke",
+									// fontWeight: "bold",
+									// color: "whitesmoke",
 									fontFamily: "Montserrat",
 								}}
 							>
@@ -253,8 +253,8 @@ export default function FormProducts() {
 									fontSize: "1.38rem",
 									textAlign: "left",
 									padding: "1rem",
-									fontWeight: "bold",
-									color: "whitesmoke",
+									// fontWeight: "bold",
+									// color: "whitesmoke",
 									fontFamily: "Montserrat",
 								}}
 							>
@@ -308,8 +308,8 @@ export default function FormProducts() {
 									fontSize: "1.38rem",
 									textAlign: "left",
 									padding: "1rem",
-									fontWeight: "bold",
-									color: "whitesmoke",
+									// fontWeight: "bold",
+									// color: "whitesmoke",
 									fontFamily: "Montserrat",
 								}}
 							>

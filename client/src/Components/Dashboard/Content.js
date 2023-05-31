@@ -23,7 +23,7 @@ export default function Content() {
 					margin: "auto",
 					overflow: "hidden",
 					padding: 4,
-					backgroundColor: "#9799a6",
+					// backgroundColor: "#9799a6",
 				}}
 			>
 				{Clients && <TableClient />}
