@@ -122,7 +122,7 @@ const MyReviews = () => {
             bg="#d8d8d8  "
             margin="auto"
             shadow="0px 4px 1000px rgba(0, 0, 0, 0.2)"
-            bg={"rgba(216, 216, 216, 0.5)"}
+            // bg={"rgba(216, 216, 216, 0.5)"}
             marginTop={"4em"}
             borderRadius={"35px"}
           >
