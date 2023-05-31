@@ -50,12 +50,13 @@ function Row(props) {
 	const handleNewValue = (event) =>{
 		const { name, value } = event.target;
     setNewValue({ ...newValue, [name]: value });
+
 		setHasChange(!hasChange)
 	}
 	return (
 		<React.Fragment>
 			<TableRow
-				sx={{ "& > *": { borderBottom: "unset" }, bgcolor: "lightgrey" }}
+				sx={{ "& > *": { borderBottom: "unset" }, bgcolor: "aliceblue" }}
 				onClick={() => setOpen(!open)}
 			>
 				<TableCell>
@@ -77,7 +78,7 @@ function Row(props) {
 				<TableCell align="right">{row.stock}</TableCell>
 				<TableCell align="right">{row.price}</TableCell>
 				<TableCell align="right">
-					{!row.state ? "active" : "inactive"}
+					{!row.state ?<Box sx={{color:"green"}}children={"Active"}/>  : <Box sx={{color:"red"}}children={"Inactive"}/>}
 				</TableCell>
 			</TableRow>
 			<TableRow>
@@ -85,7 +86,7 @@ function Row(props) {
 					style={{ paddingBottom: 0, paddingTop: 0, width: "100%" }}
 					colSpan={6}
 				>
-					<Collapse in={open} timeout="auto" unmountOnExit>
+					<Collapse in={open} timeout="auto" unmountOnExit state={row.state}>
 						<Box sx={{ margin: 2, width: "100%" }}>
 							<Typography variant="h6" gutterBottom component="div">
 								Basic details
@@ -93,6 +94,7 @@ function Row(props) {
 							<Grid2 container gap>
 								<Grid2>
 									<TextField
+										disabled={row.state}
 										name="name"
 										label="Product name"
 										defaultValue={row.name}
@@ -105,6 +107,7 @@ function Row(props) {
 								</Grid2>
 								<Grid2>
 									<TextField
+										disabled={row.state}
 										name="type"
 										label="Category"
 										defaultValue={row.type}
@@ -117,7 +120,7 @@ function Row(props) {
 								</Grid2>
 								<Grid2>
 									<TextField
-										
+										disabled={row.state}
 										name="oldPrice"
 										type="number"
 										label="Old price"
@@ -132,6 +135,7 @@ function Row(props) {
 								</Grid2>
 								<Grid2>
 									<TextField
+										disabled={row.state}
 										name="newPrice"
 										type="number"
 										label="New price"
@@ -142,7 +146,7 @@ function Row(props) {
 										}}
 									></TextField>
 								</Grid2>
-								<Grid2 xs={12} px={8}>
+								{!row.state && <Grid2 xs={12} px={8}>
 									<Box
 										sx={{
 											display: "flex",
@@ -158,7 +162,7 @@ function Row(props) {
 											Delete
 										</Button>
 									</Box>
-								</Grid2>
+								</Grid2>}
 							</Grid2>
 						</Box>
 					</Collapse>

@@ -113,7 +113,8 @@ export default function FormProducts() {
 
 	return (
 		<>
-			<Paper>
+					
+			<Paper sx={{backgroundColor: "#ffe6aa"}}>
 				<Box sx={{ borderBottom: 1, borderColor: "divider", margin: 2 }}>
 					<Tabs value={valueTab} onChange={handleTab}>
 						<Tab value={"list"} label={"-List Products"} />
@@ -139,7 +140,7 @@ export default function FormProducts() {
 			}
 
 			{valueTab === "create" && (
-				<Box container id="create-product">
+				<Box container id="create-product" sx={{bgcolor:"aliceblue", padding:2}}>
 					<Box
 						sx={{
 							fontSize: "h5.fontSize",

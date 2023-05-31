@@ -187,7 +187,7 @@ export default function Dashboard() {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Box sx={{ display: "flex", minHeight: "100vh", bgcolor: "#319795" }}>
+			<Box sx={{ display: "flex", minHeight: "100vh", bgcolor: "#ffe6aa" }}>
 				<CssBaseline />
 				<Box component="nav" sx={{bgcolor:"Window"}}>
 					<Navigator
@@ -208,7 +208,7 @@ export default function Dashboard() {
 					<Header onDrawerToggle={handleDrawerToggle} />
 					<Box
 						component="main"
-						sx={{ flex: 1, py: 6, px: 4, bgcolor: "#eaeff1" }}
+						sx={{ flex: 1, py: 6, px: 4, bgcolor: "#c6ba9f" }}
 					>
 						<Content />
 					</Box>

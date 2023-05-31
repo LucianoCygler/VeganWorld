@@ -112,9 +112,9 @@ export default function Graficos() {
   }
 
   return (
-    <Grid container spacing={2}>
-      <Grid sm={12} xs={12} md={10} lg={10} sx={{ minHeight: [200, 300, 400, 600] }}>
-        <Box display={"flex"} justifyContent={"flex-end"} marginLeft={"50px"} sx={{ minHeight: [200, 300, 400, 600] }}>
+    <Grid container spacing={2} >
+      <Grid sm={12} xs={12} md={10} lg={10} p={2} sx={{ minHeight: [200, 300, 400, 600] }}>
+        <Box display={"flex"} justifyContent={"flex-end"} marginLeft={"50px"} sx={{ minHeight: [200, 300, 400, 600] } }>
           <Bar options={optionsBox} data={dataBox} responsive={true} maintainAspectRatio={false} />
           <Box display={"flex"} flexDirection={"column"} position={"relative"} left={"100px"}>
             <Text>Actualy amount:</Text>
