@@ -15,6 +15,6 @@ orderRouter.post("/", createOrderHandler);
 
 orderRouter.delete("/:id", deleteOrderHandler);
 
-orderRouter.patch("/:id", updateOrderHandler);
+orderRouter.patch("/", updateOrderHandler);
 
 module.exports = orderRouter;
