@@ -20,6 +20,8 @@ import {
   Text,
   Textarea,
 } from "@chakra-ui/react";
+import Pop_up from "../../Utils/Pop_up/Pop_up";
+import { Check } from "@mui/icons-material";
 
 const CreatePageReview = () => {
   const user = useSelector((state) => state.user);
@@ -62,6 +64,8 @@ const CreatePageReview = () => {
     });
     setError(validate({ ...input, [e.target.name]: e.target.value }, error));
   };
+
+
   const submitHandler = (e) => {
     e.preventDefault();
     try {
@@ -70,16 +74,15 @@ const CreatePageReview = () => {
         cliente_id: user?.id,
       };
       dispatch(createPageReview(pageReview));
-      // setInput({
-      //   titulo: "",
-      //   descripcion: "",
-      // });
+      Pop_up("success", "Congratulations", "Your review was added", "center", 2800)
       window.location.reload();
     } catch (error) {
       alert(error.message);
     }
     return;
   };
+
+
 
   const handleSaveReview = () => {
     const newPageReview = {
@@ -91,15 +94,21 @@ const CreatePageReview = () => {
     setEditing(false);
     window.location.reload();
   };
+
+
+
   useEffect(() => {
     dispatch(getUserDataByEmail(emailCurrent));
   }, [emailCurrent]);
+
 
   useEffect(() => {
     if (user) {
       dispatch(getClientPageReviews(user?.nombre));
     }
   }, [user]);
+
+
   return (
     <Box
       backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
