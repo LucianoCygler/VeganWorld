@@ -5,6 +5,9 @@ import { registerUser } from "../../../src/redux/actions/actions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import { Input, FormControl, FormLabel, FormErrorMessage, Button, Box } from "@chakra-ui/react";
+
+
 
 const initialForm = {
   nombre: "",
@@ -19,257 +22,237 @@ const initialForm = {
 };
 const LoginForm = ({ handleCloseModal, setView }) => {
   const [value, setValue] = useState("");
-  const [error, setError] = useState(initialForm);
+  const [errors, setErrors] = useState(initialForm);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [form, setForm] = useState(initialForm);
 
-  const handleSubmit = (event) => {    
-    event.preventDefault();    
-    if (Object.keys(error).length > 0) {
-      alert("Missing data...")        
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (Object.values(errors).some(error => error)) {
+      alert("Missing data...")
     } else {
-    createUserWithEmailAndPassword(auth, form.email, form.contraseña)
-      .then((userCredential) => {
-        setView("login");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    dispatch(registerUser(form));
-  }
+      createUserWithEmailAndPassword(auth, form.email, form.contraseña)
+        .then((userCredential) => {
+          setView("login");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      dispatch(registerUser(form));
+    }
   };
-  
-  const validationsForm = (initialForm) => {
+
+  const validationsForm = (form) => {
     let errors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const regexname = /^[a-zA-Z ]+$/;
-    const regexDireccion = /^[a-zA-Z0-9\s]+$/ ;
+    const regexDireccion = /^[a-zA-Z0-9\s]+$/;
 
     //EMAIL
-    if (!initialForm.email) {
-      errors.email = "Email is required";      
-    } else if (initialForm.email.length > 40) {
+    if (!form.email) {
+      errors.email = "Email is required";
+    } else if (form.email.length > 40) {
       errors.email = "The email exceeds the maximum of 40 characters.";
-    } else if (!emailRegex.test(initialForm.email.trim())) {
+    } else if (!emailRegex.test(form.email.trim())) {
       errors.email = "Invalid email format";
     }
-    
+
     //PASSWORD
-    if (!initialForm.contraseña) {
+    if (!form.contraseña) {
       errors.contraseña = "Must create a password";
-    } else if (initialForm.contraseña.length > 12 || initialForm.contraseña.length < 6) {
+    } else if (form.contraseña.length > 12 || form.contraseña.length < 6) {
       errors.contraseña = "it must have between 6 and 12 characters";
     }
 
     //NOMBRE
-    if (!initialForm.nombre.trim()) {
+    if (!form.nombre.trim()) {
       errors.nombre = "Name is required";
-    } else if (!regexname.test(initialForm.nombre.trim())){
+    } else if (!regexname.test(form.nombre.trim())) {
       errors.nombre = "Only accepts uppercase and lowercase letters.";
-    } else if (initialForm.nombre.length > 15) {
+    } else if (form.nombre.length > 15) {
       errors.nombre = "The name exceeds the maximum of 15 characters.";
     }
-      
+
     //APELLIDO
-    if (!initialForm.apellido.trim()) {
+    if (!form.apellido.trim()) {
       errors.apellido = "The surname is required";
-    } else if (!regexname.test(initialForm.apellido.trim())) {
+    } else if (!regexname.test(form.apellido.trim())) {
       errors.apellido = "Only accepts uppercase and lowercase letters.";
-    } else if (initialForm.apellido.length > 15) {
+    } else if (form.apellido.length > 15) {
       errors.apellido = "The surname exceeds the maximum of 15 characters.";
     }
-      
+
 
     //TELEFONO 
-    if (!initialForm.telefono) {
+    if (!form.telefono) {
       errors.telefono = "The Phone field is required.";
-    } else if (isNaN(initialForm.telefono))
+    } else if (isNaN(form.telefono))
       errors.telefono = "The Phone field only accepts numbers.";
-    else if (initialForm.telefono.length > 10) {
+    else if (form.telefono.length > 10) {
       errors.telefono = "The Phone cannot have more than 10 digits.";
     }
 
     //CIUDAD
-    if (!initialForm.ciudad) {
+    if (!form.ciudad) {
       errors.ciudad = "City is required"
-    } else if (!regexname.test(initialForm.ciudad.trim())) {
+    } else if (!regexname.test(form.ciudad.trim())) {
       errors.ciudad = "Only accepts uppercase and lowercase letters."
-    } else if (initialForm.ciudad.length > 20) {
+    } else if (form.ciudad.length > 20) {
       errors.ciudad = "The city exceeds the maximum of 20 characters."
     }
 
     //DIRECCION
-    if (!initialForm.direccion) {
+    if (!form.direccion) {
       errors.direccion = "Adress is required"
-    } else if (!regexDireccion.test(initialForm.direccion.trim())) {
+    } else if (!regexDireccion.test(form.direccion.trim())) {
       errors.direccion = "Only accepts uppercase and lowercase letters."
-    } else if (initialForm.direccion.length > 20) {
+    } else if (form.direccion.length > 20) {
       errors.direccion = "The Adress exceeds the maximum of 20 characters."
     }
 
     //EDAD
-    const edad = parseInt(initialForm.edad)
-    if (!initialForm.edad) {
+    const edad = parseInt(form.edad)
+    if (!form.edad) {
       errors.edad = "The age is required";
-    } else if (isNaN(initialForm.edad)) {
+    } else if (isNaN(form.edad)) {
       errors.edad = "Only numbers accepts";
     } else if (edad > 100 || edad < 18) {
       errors.edad = "you must be over 18 and under 100 years old"
-    } else if (initialForm.edad.length > 2) {
+    } else if (form.edad.length > 2) {
       errors.edad = "you must be over 18 and under 100 years old"
     }
-      
 
     return errors;
   };
 
-  
-
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     setForm({ ...form, [name]: value });
-    setError(validationsForm({ ...form, [name]: value }));
+    const fieldErrors = validationsForm({ ...form, [name]: value });
+    setErrors({ ...errors, [name]: fieldErrors[name] });
   };
 
   const handleBlur = (event) => {
-    handleChange(event);
-    setError(validationsForm(form));
+    const { name, value } = event.target;
+    const fieldErrors = validationsForm(form);
+    if (!value.trim()) {
+      delete fieldErrors[name];
+    }
+    setErrors({ ...errors, [name]: fieldErrors[name] });
   };
+
   return (
-    <div>
-     
-      
-      <div className="form-outline mb-4">
-      <label className="form-label" htmlFor="typeEmailX-2">
-          Email
-        </label>
-        <input
+    <Box display="flex" flexDirection="column" alignItems="center">
+      <FormControl mb={4} isInvalid={errors.email}>
+        <FormLabel htmlFor="typeEmailX-2">Email</FormLabel>
+        <Input
           placeholder="Email here..."
           type="email"
           name="email"
-          id="typeEmailX-2"          
-          className={`form-control form-control-lg ${!error.email ? "" : "is-invalid"}`}
+          id="typeEmailX-2"
           onChange={handleChange}
           onBlur={handleBlur}
-        />        
-        {error.email && ( <span className="invalid-feedback">{`${error.email}`}</span> )}                
-      </div>
-      
-      <div className="form-outline mb-4">
-      <label className="form-label" htmlFor="typePasswordX-2">
-          Password
-        </label>
-        <input
+        />
+        {errors.email && <FormErrorMessage>{errors.email}</FormErrorMessage>}
+      </FormControl>
+
+      <FormControl mb={4} isInvalid={errors.contraseña}>
+        <FormLabel htmlFor="typePasswordX-2">Password</FormLabel>
+        <Input
           placeholder="Password here..."
           type="password"
           name="contraseña"
           id="typePasswordX-2"
-          className={`form-control form-control-lg ${!error.contraseña ? "" : "is-invalid"}`}
           onChange={handleChange}
           onBlur={handleBlur}
-        />        
-        {error.contraseña && ( <span className="invalid-feedback">{`${error.contraseña}`}</span> )}
-      </div>
-       
+        />
+        {errors.contraseña && <FormErrorMessage>{errors.contraseña}</FormErrorMessage>}
+      </FormControl>
 
-      <div className="form-outline mb-4">
-      <label className="form-label" htmlFor="typeEmailX-2">
-          Name
-        </label>
-        <input
-          placeholder="Name here..."        
+      <FormControl mb={4} isInvalid={errors.nombre}>
+        <FormLabel htmlFor="typeNameX-2">Name</FormLabel>
+        <Input
+          placeholder="Name here..."
           type="text"
           name="nombre"
-          className={`form-control form-control-lg ${!error.nombre ? "" : "is-invalid"}`}
+          id="typeNameX-2"
           onChange={handleChange}
           onBlur={handleBlur}
-        />        
-        {error.nombre && ( <span className="invalid-feedback">{`${error.nombre}`}</span> )}
-      </div>
-      
-      <div className="form-outline mb-4">
-      <label className="form-label" htmlFor="typeEmailX-2">
-          SurName
-        </label>
-        <input
-          placeholder="Surname aqui..."
+        />
+        {errors.nombre && <FormErrorMessage>{errors.nombre}</FormErrorMessage>}
+      </FormControl>
+
+      <FormControl mb={4} isInvalid={errors.apellido}>
+        <FormLabel htmlFor="typeSurnameX-2">SurName</FormLabel>
+        <Input
+          placeholder="Surname here..."
           type="text"
           name="apellido"
-          className={`form-control form-control-lg ${!error.apellido ? "" : "is-invalid"}`}
+          id="typeSurnameX-2"
           onChange={handleChange}
           onBlur={handleBlur}
-        />        
-        {error.apellido && ( <span className="invalid-feedback">{`${error.apellido}`}</span> )}
-      </div>
-      
-      <div className="form-outline mb-4">
-      <label className="form-label" htmlFor="typeEmailX-2">
-          City
-        </label>
-        <input
-          placeholder="City aqui..."
+        />
+        {errors.apellido && <FormErrorMessage>{errors.apellido}</FormErrorMessage>}
+      </FormControl>
+
+      <FormControl mb={4} isInvalid={errors.ciudad}>
+        <FormLabel htmlFor="typeCityX-2">City</FormLabel>
+        <Input
+          placeholder="City here..."
           type="text"
           name="ciudad"
-          className={`form-control form-control-lg ${!error.ciudad ? "" : "is-invalid"}`}
+          id="typeCityX-2"
           onChange={handleChange}
           onBlur={handleBlur}
-        />        
-        {error.ciudad && ( <span className="invalid-feedback">{`${error.ciudad}`}</span> )}
-      </div>
-      
-      <div className="form-outline mb-4">
-      <label className="form-label" htmlFor="typeEmailX-2">
-          Address
-        </label>
-        <input
-          placeholder="Address aqui..."
+        />
+        {errors.ciudad && <FormErrorMessage>{errors.ciudad}</FormErrorMessage>}
+      </FormControl>
+
+      <FormControl mb={4} isInvalid={errors.direccion}>
+        <FormLabel htmlFor="typeAddressX-2">Address</FormLabel>
+        <Input
+          placeholder="Address here..."
           type="text"
           name="direccion"
-          className={`form-control form-control-lg ${!error.direccion ? "" : "is-invalid"}`}
+          id="typeAddressX-2"
           onChange={handleChange}
           onBlur={handleBlur}
-        />        
-        {error.direccion && ( <span className="invalid-feedback">{`${error.direccion}`}</span> )}
-      </div>
-      
-      <div className="form-outline mb-4">
-      <label className="form-label" htmlFor="typeEmailX-2">
-          Phone Number
-        </label>
-        <input
+        />
+        {errors.direccion && <FormErrorMessage>{errors.direccion}</FormErrorMessage>}
+      </FormControl>
+
+      <FormControl mb={4} isInvalid={errors.telefono}>
+        <FormLabel htmlFor="typePhoneX-2">Phone Number</FormLabel>
+        <Input
           placeholder="Phone here..."
           type="text"
           name="telefono"
-          className={`form-control form-control-lg ${!error.telefono ? "" : "is-invalid"}`}
+          id="typePhoneX-2"
           onChange={handleChange}
           onBlur={handleBlur}
-        />        
-        {error.telefono && ( <span className="invalid-feedback">{`${error.telefono}`}</span> )}
-      </div>
-      
-      <div className="form-outline mb-4">
-      <label className="form-label" htmlFor="typeEmailX-2">
-          Edad
-        </label>
-        <input
-          placeholder="Edad here..."
+        />
+        {errors.telefono && <FormErrorMessage>{errors.telefono}</FormErrorMessage>}
+      </FormControl>
+
+      <FormControl mb={4} isInvalid={errors.edad}>
+        <FormLabel htmlFor="typeAgeX-2">Age</FormLabel>
+        <Input
+          placeholder="Age here..."
           type="text"
           name="edad"
-          className={`form-control form-control-lg ${!error.edad ? "" : "is-invalid"}`}
+          id="typeAgeX-2"
           onChange={handleChange}
           onBlur={handleBlur}
-        />        
-        {error.edad && ( <span className="invalid-feedback">{`${error.edad}`}</span> )}
-      </div>
+        />
+        {errors.edad && <FormErrorMessage>{errors.edad}</FormErrorMessage>}
+      </FormControl>
 
       <hr className="my-4" />
-      <button class="button2" type="button" onClick={handleSubmit}>
+      <Button className="button2" type="button" onClick={handleSubmit}>
         Sign Up
-      </button>
-      
-    </div>
+      </Button>
+    </Box>
   );
 };
 

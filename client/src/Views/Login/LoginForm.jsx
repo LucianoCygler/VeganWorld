@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
-// import { Button } from "react-bootstrap";
+import {
+  Box,
+  FormControl,
+  Input,
+  FormErrorMessage,
+  Button,
+} from "@chakra-ui/react";
 import { auth, googleProvider } from "../../Firebase/firebase";
-import {
-  getIdToken,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-} from "firebase/auth";
-import {
-  getUserDataByEmail,
-  registerUser,
-  validateUserExistenceInDb,
-} from "../../redux/actions/actions";
+import { getIdToken, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { getUserDataByEmail, registerUser, validateUserExistenceInDb } from "../../redux/actions/actions";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./LoginForm.css";
@@ -39,20 +37,14 @@ const LoginForm = ({ handleCloseModal }) => {
 
     if (validEmail && validPassword) {
       setCanLogin(true);
-      // navigate("/");
     } else {
       setCanLogin(false);
     }
 
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Verificar si el inicio de sesión fue exitoso
       if (user) {
         const idToken = await user.getIdToken();
         console.log("Inicio de sesión exitoso");
@@ -67,11 +59,11 @@ const LoginForm = ({ handleCloseModal }) => {
         window.location.reload();
       }
     } catch (error) {
-      setPassError(true)      
+      setPassError(true);
       console.log(error);
     }
   };
-  
+
   const SignInWithGoogle = async () => {
     try {
       const userCredential = await signInWithPopup(auth, googleProvider);
@@ -81,12 +73,6 @@ const LoginForm = ({ handleCloseModal }) => {
       console.log(user);
 
       dispatch(validateUserExistenceInDb({ email: user.email }));
-      // if (!client) {
-      //   const form = {
-      //     email: user.email,
-      //   };
-      //   dispatch(registerUser(form));
-      // }
 
       localStorage.setItem("token", idToken);
       setToken(idToken);
@@ -95,7 +81,7 @@ const LoginForm = ({ handleCloseModal }) => {
       setValue(user.email);
       handleCloseModal();
       window.location.reload();
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const handleChange = (e) => {
@@ -106,6 +92,17 @@ const LoginForm = ({ handleCloseModal }) => {
     } else if (name === "password") {
       setPassword(value);
       setValidPassword(value.length >= 6);
+      setPassError(false); // Reset passError when changing password field
+    }
+
+    if (value === "") {
+      // Reset validation when value is empty
+      if (name === "email") {
+        setValidEmail(true);
+      } else if (name === "password") {
+        setValidPassword(true);
+        setPassError(false);
+      }
     }
   };
 
@@ -113,13 +110,12 @@ const LoginForm = ({ handleCloseModal }) => {
     setValue(localStorage.getItem("email"));
     setToken(localStorage.getItem("token"));
   }, []);
+
   useEffect(() => {
     if (user && value === "") {
       localStorage.setItem("user", JSON.stringify(user));
-    } 
+    }
   }, [user]);
-
-  console.log(passError);
 
   const validarEmail = (email) => {
     const patron = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -127,48 +123,32 @@ const LoginForm = ({ handleCloseModal }) => {
   };
 
   return (
-    <div>
-      <div className="form-outline mb-4">
-        <label className="form-label" htmlFor="typeEmailX-2">
-          Email
-        </label>
-        <input
+    <Box display="flex" flexDirection="column" alignItems="center">
+      <FormControl mb={4} isInvalid={!validEmail}>
+        <Input
           type="email"
           name="email"
-          id="typeEmailX-2"
-          className={`form-control form-control-lg ${
-            validEmail ? "" : "is-invalid"
-          }`}
+          placeholder="Email"
+          value={email}
           onChange={handleChange}
         />
+        <FormErrorMessage>Correo electrónico inválido</FormErrorMessage>
+      </FormControl>
 
-        {!validEmail && (
-          <div className="invalid-feedback">Correo electrónico inválido</div>
-        )}
-      </div>
-
-      <div className="form-outline mb-4">
-        <label className="form-label" htmlFor="typePasswordX-2">
-          Password
-        </label>
-        <input
+      <FormControl mb={4} isInvalid={!validPassword || passError}>
+        <Input
           type="password"
           name="password"
-          id="typePasswordX-2"
-          className={`form-control form-control-lg ${
-            validPassword && !passError ? "" : "is-invalid"
-          }`}
+          placeholder="Password"
+          value={password}
           onChange={handleChange}
         />
-        {passError && (<span className="invalid-feedback">Invalid Password</span>)}
-        {!validPassword && (
-          <div className="invalid-feedback">
-            La contraseña debe tener al menos 6 caracteres
-          </div>
-        )}
-      </div>
+        <FormErrorMessage>
+          {passError ? "Contraseña inválida" : "La contraseña debe tener al menos 6 caracteres"}
+        </FormErrorMessage>
+      </FormControl>
 
-      <div className="form-check d-flex justify-content-start mb-4">
+      <FormControl mb={4}>
         <input
           className="form-check-input"
           type="checkbox"
@@ -180,58 +160,20 @@ const LoginForm = ({ handleCloseModal }) => {
         <label className="form-check-label" htmlFor="form1Example3">
           Remember password
         </label>
-      </div>
+      </FormControl>
 
-      <button class="button2" type="button" onClick={handleSubmit}>
+      <button className="button2" type="button" onClick={handleSubmit}>
         Login
       </button>
-
-      {/* <NavLink to={"/Register"}>
-        <button class="button2" type="button">
-          Sign up
-        </button>
-      </NavLink> */}
+      <Box>or</Box>
+      <button className="button2" type="button" onClick={SignInWithGoogle}>
+        Login with Google
+      </button>
 
       <NavLink to={"/ResetPass"}>
-        <p class="pass">Olvide mi contraseña</p>
+        <p className="pass">I forgot my password</p>
       </NavLink>
-
-      <hr className="my-4" />
-
-      <button class="button3" onClick={SignInWithGoogle}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="xMidYMid"
-          viewBox="0 0 256 262"
-          class="logo"
-        >
-          <path
-            fill="#4285F4"
-            d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
-          ></path>
-          <path
-            fill="#34A853"
-            d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"
-          ></path>
-          <path
-            fill="#FBBC05"
-            d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782"
-          ></path>
-          <path
-            fill="#EB4335"
-            d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"
-          ></path>
-        </svg>
-        <span class="spanGoogle">Continue with Google</span>
-      </button>
-      {/* <button
-        className="btn btn-lg btn-block btn-primary"
-        style={{ backgroundColor: "#dd4b39" }}
-        type="submit"
-      > 
-        <i className="fab fa-google me-2"></i> Sign in with Google
-      </button> */}
-    </div>
+    </Box>
   );
 };
 
