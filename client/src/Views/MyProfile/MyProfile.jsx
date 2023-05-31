@@ -21,6 +21,7 @@ import {
   FileUpload,
   Image,
   EditButton,
+  Image as Img,
   InputGroup,
   Flex,
   Center,
@@ -161,22 +162,7 @@ const MyData = () => {
     setError(validations({ ...form, [property]: value }));
   };
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-    if (Object.keys(error).length === 0) {
-      dispatch(setEditMode(form, "contact"));
-      toast({
-        title: "Thanks for your time.",
-        description: "Good job!",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-      });
-      setForm(formMyProfile);
-    } else {
-      alert("Error, all fields must be validated in order to continue");
-    }
-  };
+ 
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -198,11 +184,13 @@ const MyData = () => {
   const handleSaveUser = async () => {
     try {
       if (profileImage) {
+        // Subir imagen a Cloudinary
         const url = await uploadImage(profileImage);
         if (url) {
           var imageUrl = url;
         }
       }
+
       setselectedUser(form);
       dispatch(updateClientData(id, form));
       alert("Client Data updated");
@@ -211,7 +199,6 @@ const MyData = () => {
       alert("Error al guardar los datos del cliente");
     }
   };
-  
   
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -423,7 +410,7 @@ const MyData = () => {
                     />
                     <FormErrorMessage>{error.direccion}</FormErrorMessage>
                   </FormControl>
-                </form>
+                  </form>
               </Box>
               <Input
                 isDisabled={false}
@@ -433,6 +420,7 @@ const MyData = () => {
                 borderWidth="1px"
                 borderColor="gray.200"
                 borderRadius="md"
+                value={form.imagen}
                 p={2}
                 mt={"1.5rem"}
               />
@@ -446,7 +434,7 @@ const MyData = () => {
                   color: "rgb(214, 187, 187)",
                 }}
                 onClick={handleSaveUser}
-              >
+                >
                 Save Data
               </Button>
             </Box>
@@ -499,7 +487,7 @@ const MyData = () => {
                     h={"220px"}
                     borderRadius={"50%"}
                     alt="Default Profile"
-                    src={profileImage}
+                    src={imagen}
                     margin={"auto"}
                     marginBottom={"3em"}
                   />
