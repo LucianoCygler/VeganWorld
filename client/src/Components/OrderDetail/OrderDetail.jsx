@@ -2,7 +2,9 @@ import {
   AccordionIcon,
   Box,
   Button,
+  Grid,
   Stack,
+  useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
 
@@ -69,15 +71,22 @@ const OrderDetail = ({ order, cancelRef }) => {
     index,
     count: steps.length,
   });
+  const stepperSize = useBreakpointValue({
+    base: "xs",
+    md: "xs",
+    lg: "xs",
+    xl: "sm",
+  });
 
   return (
-    <Box display={"flex"}>
+    <Box display={"flex"} justifyContent={"center"}>
       <AccordionItem
         textColor={"white"}
         fontWeight={"medium"}
         bg={"#1d5c51"}
         borderRadius={"2xl"}
         width={"100%"}
+        mb="1em"
       >
         <AccordionButton
           mb={2}
@@ -87,102 +96,105 @@ const OrderDetail = ({ order, cancelRef }) => {
           pt="1em"
         >
           {/* CABEZERA DE LA ORDEN */}
-          <Stack
-            flex
+          {/* <Stack
             direction={"row"}
-            justify={"space-around"}
             shouldWrapChildren={true}
             m={"auto"}
             marginLeft={2}
-            spacing={"40"}
             pt="0.5em"
-          >
-            <Box
-              as="span"
-              flex="1"
-              textAlign="left"
-              fontWeight={"bold"}
-              marginLeft={"3em"}
+          > */}
+          <Box>
+            <Grid
+              templateColumns={
+                estado !== "Cancelado" ? "repeat(2, 1fr)" : "1fr"
+              }
             >
-              Order {id}
-            </Box>
-            <Box as="span" flex="1" textAlign="left" fontWeight={"bold"}>
-              {fecha}
-            </Box>
-            <Box
-              // paddingLeft={"40em"}
-              as="span"
-              flex="1"
-              textAlign="left"
-              fontWeight={"bold"}
-            >
-              $ {importe}
-            </Box>
-            <Box>
-              <Stepper
-                size="sm"
-                index={activeStep}
-                w={"100%"}
-                gap={20}
-                colorScheme="teal"
-              >
-                {steps.map((step, index) => (
-                  <Step key={index}>
-                    <StepIndicator>
-                      <StepStatus
-                        complete={<StepIcon />}
-                        incomplete={<StepNumber />}
-                        active={<StepNumber />}
-                      />
-                    </StepIndicator>
+              {" "}
+              <Box mb="2em">
+                {" "}
+                <Box
+                  as="span"
+                  flex="1"
+                  textAlign="left"
+                  fontWeight={"bold"}
+                  marginRight={"3em"}
+                  marginLeft={"3em"}
+                >
+                  Order {id}
+                </Box>
+                <Box
+                  as="span"
+                  flex="1"
+                  textAlign="left"
+                  fontWeight={"bold"}
+                  marginRight={"3em"}
+                >
+                  {fecha}
+                </Box>
+                <Box
+                  // paddingLeft={"40em"}
+                  as="span"
+                  flex="1"
+                  textAlign="left"
+                  fontWeight={"bold"}
+                  marginRight={"3em"}
+                >
+                  $ {importe}
+                </Box>
+              </Box>
+              {estado === "Pendiente" && (
+                <Box display="flex" justifyContent={"right"}>
+                  <Button
+                    colorScheme="red"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      onOpen();
+                    }}
+                  >
+                    Cancel Order
+                  </Button>
+                </Box>
+              )}
+              <Box ml="2em">
+                <Stepper
+                  size={stepperSize}
+                  index={activeStep}
+                  colorScheme="teal"
+                >
+                  {steps.map((step, index) => (
+                    <Step key={index}>
+                      <StepIndicator>
+                        <StepStatus
+                          complete={<StepIcon />}
+                          incomplete={<StepNumber />}
+                          active={<StepNumber />}
+                        />
+                      </StepIndicator>
 
-                    <Box flexShrink="0">
-                      <StepTitle>{step.title}</StepTitle>
-                      <StepDescription>
-                        <Text color={"white"}>{step.description}</Text>
-                      </StepDescription>
-                    </Box>
+                      <Box flexShrink="0">
+                        <StepTitle>{step.title}</StepTitle>
+                        <StepDescription>
+                          <Text color={"white"}>{step.description}</Text>
+                        </StepDescription>
+                      </Box>
 
-                    <StepSeparator>
-                      <div
-                        style={{
-                          width: "50px",
+                      <StepSeparator mr="2em">
+                        <div
+                          style={{
+                            width: "50px",
 
-                          background: "white",
-                        }}
-                      />
-                    </StepSeparator>
-                  </Step>
-                ))}
-              </Stepper>
-            </Box>
-          </Stack>
+                            background: "white",
+                          }}
+                        />
+                      </StepSeparator>
+                    </Step>
+                  ))}
+                </Stepper>
+              </Box>
+            </Grid>
+          </Box>
+          {/* </Stack> */}
           {/* BOTON DE CANCELAR */}
-          {estado === "Pendiente" && (
-            <>
-              <Button
-                mx={2}
-                colorScheme="red"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  onOpen();
-                }}
-              >
-                Cancel Order
-              </Button>
-              {/* 
-              <Button
-                mx={2}
-                colorScheme="whatsapp"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  onOpen();
-                }}
-              >
-                Pay order
-              </Button> */}
-            </>
-          )}
           {/* BOTON DE DESPLEGAR */}
           <AccordionIcon />
         </AccordionButton>

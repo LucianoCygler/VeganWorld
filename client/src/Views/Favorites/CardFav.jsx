@@ -106,9 +106,9 @@ const CardFav = ({ product, favorites }) => {
       <Divider />
       <CardFooter justifyContent={"center"}>
         <ButtonGroup spacing="2" justifyContent={"center"}>
-          <Button variant="solid" colorScheme="green" onClick={handleMP}>
+          {/* <Button variant="solid" colorScheme="green" onClick={handleMP}>
             Buy now
-          </Button>
+          </Button> */}
           <Button
             variant="solid"
             colorScheme="blue"
