@@ -112,7 +112,7 @@ export default function Graficos() {
   const [sumImport, setSumImport] = useState(0);
   
   useEffect(() => {
-    dispatch(getOrders());git s
+    dispatch(getOrders());
   }, []);
   
   useEffect(() => {
