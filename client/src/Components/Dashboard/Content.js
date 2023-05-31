@@ -11,9 +11,10 @@ import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import DashOrders from "./OrdersClient";
 
 export default function Content() {
-	const { Graph, Clients, Products, Reviews, Orders } = useSelector(
-		(state) => state.labels
-	);
+  const { Graph, Clients, Products, Reviews, Orders } = useSelector(
+    (state) => state.labels
+  );
+
 
 	return (
 		<Grid>
