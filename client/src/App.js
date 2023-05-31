@@ -21,6 +21,7 @@ import OurProducts from "./Views/OurProducts/OurProducts";
 import { NavBar } from "./Components/index";
 import Dashboard from "./Views/Dashboard/Dashboard";
 import NotFound from "./Views/NotFound/NotFound";
+import LoginAdmin from "./Views/LoginAdmin/LoginAdmin";
 
 const ProtectedRoute = ({ element: Component, ...rest }) => {
   const isAuthenticated = localStorage.getItem("token");
@@ -32,6 +33,15 @@ const ProtectedRoute = ({ element: Component, ...rest }) => {
   );
 };
 
+const ProtectedAdminRoute = ({ element: Component, ...rest }) => {
+  const isAuthenticatedAdmin = localStorage.getItem("admin");
+
+  return isAuthenticatedAdmin ? (
+    <Component {...rest} />
+  ) : (
+    <Navigate to="/loginAdmin" state={{ showLogin: true }} />
+  );
+};
 function App() {
   const { pathname } = useLocation();
   return (
@@ -45,7 +55,7 @@ function App() {
         <Route path="/ResetPass" element={<Resetpass />} />
         <Route path="/About" element={<About />} />
         <Route path="/OurProducts" element={<OurProducts />} />
-        <Route path="/PageReview" element={<CreatePageReview />}/>
+        <Route path="/PageReview" element={<CreatePageReview />} />
         <Route path={"*"} element={<NotFound />} />
         <Route
           path="/MyOrders"
@@ -63,7 +73,12 @@ function App() {
           path="/MyReviews"
           element={<ProtectedRoute element={MyReviews} />}
         />
-        <Route path="/admin" element={<Dashboard />} />
+        <Route
+          path="/admin"
+          element={<ProtectedAdminRoute element={Dashboard} />}
+        />
+        <Route path="/loginAdmin" element={<LoginAdmin />} />
+        {/* <Route path="/admin" element={<Dashboard />} /> */}
       </Routes>
     </div>
   );

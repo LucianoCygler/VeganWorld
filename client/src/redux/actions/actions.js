@@ -53,7 +53,9 @@ import {
   GET_CLIENT_PAGE_REVIEW,
   GET_ALL_ADMIN_CLIENTS,
   GET_ALL_PRODUCTS_CLIENTS,
-  DELETE_PRODUCT_ADMIN
+  DELETE_PRODUCT_ADMIN,
+  VALIDATE_ADMIN_LOGIN,
+  ADMIN_LOG_OUT,
 } from "./Types/Types";
 import Pop_up from "../../Utils/Pop_up/Pop_up";
 
@@ -241,7 +243,27 @@ export const validateLogin = (user) => {
     }
   };
 };
+export const validateAdminLogin = (admin) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post(`/admin/checkadmin`, admin);
+      const adminDB = res.data;
+      return dispatch({ type: VALIDATE_ADMIN_LOGIN, payload: adminDB });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
 
+export const adminLogOut = () => {
+  return async function (dispatch) {
+    try {
+      return dispatch({ type: ADMIN_LOG_OUT });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
 export const getUserDataByEmail = (email) => {
   return async function (dispatch) {
     try {
@@ -627,7 +649,7 @@ export const getAllClientsAdmin = () => {
       alert(error.response.data);
     }
   };
-}
+};
 
 export const getAllProductsAdmin = () => {
   return async function (dispatch) {
@@ -638,7 +660,7 @@ export const getAllProductsAdmin = () => {
     } catch (error) {
       alert(error.response.data);
     }
-  }
+  };
 };
 
 export const deleteProductAdmin = (id) => {
@@ -650,5 +672,5 @@ export const deleteProductAdmin = (id) => {
     } catch (error) {
       alert(error.response.data);
     }
-  }
+  };
 };
