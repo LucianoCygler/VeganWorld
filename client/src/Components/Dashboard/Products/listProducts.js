@@ -28,43 +28,57 @@ function createData(name, price, stock, state, image, description, id, type) {
 		image,
 		description,
 		id,
-		type
+		type,
 	};
 }
 
 function Row(props) {
 	const { row } = props;
 	const [open, setOpen] = React.useState(false);
-	const dispatch = useDispatch()
-	const handleDelete = (id) =>{
-		dispatch(deleteProductAdmin(id))
-	}
-	const handleUpdate = (id) =>{
+	const dispatch = useDispatch();
+	const handleDelete = (id) => {
+		dispatch(deleteProductAdmin(id));
+	};
+	const handleUpdate = (id) => {
+
 		console.log(id);
+	};
+
+	const [hasChange, setHasChange] = React.useState(true)
+	const [newValue , setNewValue] = React.useState("")
+
+	const handleNewValue = (event) =>{
+		const { name, value } = event.target;
+    setNewValue({ ...newValue, [name]: value });
+		setHasChange(!hasChange)
 	}
 	return (
 		<React.Fragment>
-			<TableRow sx={{ "& > *": { borderBottom: "unset" } , bgcolor:"lightgrey"}}>
+			<TableRow
+				sx={{ "& > *": { borderBottom: "unset" }, bgcolor: "lightgrey" }}
+				onClick={() => setOpen(!open)}
+			>
 				<TableCell>
 					<IconButton
 						aria-label="expand row"
-						size="small"
-						onClick={() => setOpen(!open)}
+						size="large"
 					>
 						{open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
 					</IconButton>
 				</TableCell>
 				<TableCell component="th" scope="row">
-					{/* <Grid2>
-						{row.image}
-					</Grid2> */}
-					<Grid2>
-						{row.name}
+					<Grid2 container>
+						<Grid2 md={6}>
+							<img src={row.image} width={120} />
+						</Grid2>
+						<Grid2 md={6}>{row.name}</Grid2>
 					</Grid2>
 				</TableCell>
 				<TableCell align="right">{row.stock}</TableCell>
 				<TableCell align="right">{row.price}</TableCell>
-				<TableCell align="right">{!row.state ? 'active' : 'inactive'}</TableCell>
+				<TableCell align="right">
+					{!row.state ? "active" : "inactive"}
+				</TableCell>
 			</TableRow>
 			<TableRow>
 				<TableCell
@@ -79,8 +93,11 @@ function Row(props) {
 							<Grid2 container gap>
 								<Grid2>
 									<TextField
+										name="name"
 										label="Product name"
-										value={row.name}
+										defaultValue={row.name}
+										value={newValue.name || row.name}
+										onChange={handleNewValue}
 										InputLabelProps={{
 											shrink: true,
 										}}
@@ -88,8 +105,11 @@ function Row(props) {
 								</Grid2>
 								<Grid2>
 									<TextField
+										name="type"
 										label="Category"
-										value={row.type}
+										defaultValue={row.type}
+										value={newValue.type || row.type}
+										onChange={handleNewValue}
 										InputLabelProps={{
 											shrink: true,
 										}}
@@ -97,9 +117,14 @@ function Row(props) {
 								</Grid2>
 								<Grid2>
 									<TextField
+										
+										name="oldPrice"
 										type="number"
 										label="Old price"
-										value={row.price}
+										defaultValue={row.price}
+										InputProps={{
+											readOnly: true,
+										}}
 										InputLabelProps={{
 											shrink: true,
 										}}
@@ -107,8 +132,11 @@ function Row(props) {
 								</Grid2>
 								<Grid2>
 									<TextField
+										name="newPrice"
 										type="number"
 										label="New price"
+										value={newValue.newPrice || ''}
+										onChange={handleNewValue}
 										InputLabelProps={{
 											shrink: true,
 										}}
@@ -122,8 +150,13 @@ function Row(props) {
 											padding: "5",
 										}}
 									>
-										<Button onClick={()=>handleUpdate(row.id)}>Update</Button>
-										<Button onClick={()=>handleDelete(row.id)} sx={{ color: "red" }}>Delete</Button>
+										<Button onClick={() => handleUpdate(row.id)} disabled={hasChange}>Update</Button>
+										<Button
+											onClick={() => handleDelete(row.id)}
+											sx={{ color: "red" }}
+										>
+											Delete
+										</Button>
 									</Box>
 								</Grid2>
 							</Grid2>
@@ -145,7 +178,6 @@ Row.propTypes = {
 };
 
 export default function ListProducts({ products }) {
-console.log(products);
 	const rows = products.map((product) =>
 		createData(
 			product.nombre,
@@ -164,10 +196,10 @@ console.log(products);
 				<TableHead>
 					<TableRow sx={{ bgcolor: "#319795", color: "white" }}>
 						<TableCell />
-						<TableCell>NAME</TableCell>
-						<TableCell align="right">STOCK</TableCell>
-						<TableCell align="right">PRICE</TableCell>
-						<TableCell align="right">STATUS</TableCell>
+						<TableCell sx={{width:300}} align="center">NAME</TableCell>
+						<TableCell align="center">STOCK</TableCell>
+						<TableCell align="center">PRICE</TableCell>
+						<TableCell align="center">STATUS</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>

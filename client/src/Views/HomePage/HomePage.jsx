@@ -465,6 +465,8 @@ function HomePage() {
               <a href="/About">About</a>
 
               <a href="/ContactUs">Contact</a>
+
+              <a href="/loginAdmin">Admin</a>
             </p>
 
             <p class="footer-company-name">VeganWorld © 2023</p>
