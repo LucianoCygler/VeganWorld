@@ -16,6 +16,8 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { deleteProductAdmin } from "../../../redux/actions/actions";
 
 function createData(name, price, stock, state, image, description, id, type) {
 	return {
@@ -33,7 +35,13 @@ function createData(name, price, stock, state, image, description, id, type) {
 function Row(props) {
 	const { row } = props;
 	const [open, setOpen] = React.useState(false);
-
+	const dispatch = useDispatch()
+	const handleDelete = (id) =>{
+		dispatch(deleteProductAdmin(id))
+	}
+	const handleUpdate = (id) =>{
+		console.log(id);
+	}
 	return (
 		<React.Fragment>
 			<TableRow sx={{ "& > *": { borderBottom: "unset" } , bgcolor:"lightgrey"}}>
@@ -114,8 +122,8 @@ function Row(props) {
 											padding: "5",
 										}}
 									>
-										<Button>Update</Button>
-										<Button sx={{ color: "red" }}>Delete</Button>
+										<Button onClick={()=>handleUpdate(row.id)}>Update</Button>
+										<Button onClick={()=>handleDelete(row.id)} sx={{ color: "red" }}>Delete</Button>
 									</Box>
 								</Grid2>
 							</Grid2>
@@ -137,6 +145,7 @@ Row.propTypes = {
 };
 
 export default function ListProducts({ products }) {
+console.log(products);
 	const rows = products.map((product) =>
 		createData(
 			product.nombre,

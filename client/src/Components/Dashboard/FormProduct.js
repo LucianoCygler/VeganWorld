@@ -31,12 +31,12 @@ const uploadImage = async (file) => {
 export default function FormProducts() {
 	const fileInputRef = useRef(null);
 	const dispatch = useDispatch();
-	const { productsAdmin } = useSelector((state) => state);
+	const { productsAdmin , deleteProduct} = useSelector((state) => state);
 	const productsType = [...new Set(productsAdmin.map((product) => product.tipo))];
 
 	useEffect(() => {
 		dispatch(getAllProductsAdmin());
-	}, []);
+	}, [deleteProduct]);
 
 	const [product, setProduct] = useState({
 		nombre: "",
@@ -105,7 +105,6 @@ export default function FormProducts() {
 
 	]
 
-	const rows = [{id:1}]
 	return (
 		<>
 			<Paper>
