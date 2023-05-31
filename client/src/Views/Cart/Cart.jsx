@@ -99,12 +99,11 @@ function Cart() {
           dispatch(createOrder(order)).then((data) => {
             localStorage.setItem("orderId", data.id);
           });
-
+          //, an E-mail has been sent to your address with the order details.
           Pop_up(
             "success",
             "Order Ceated",
-            `You can find your orders in MyOrders!, 
-            an E-mail has been sent to your address with the order details.`,
+            `You can find your orders in MyOrders!`,
             "top"
           );
           setIsOrderGenerated(true);
@@ -332,11 +331,13 @@ function Cart() {
                                 name="increment"
                                 onClick={() => {
                                   const updatedCart = [...updateCart];
-                                  updatedCart[index].cantidad += 1;
-                                  updatedCart[index].importe =
-                                    updatedCart[index].precio *
-                                    updatedCart[index].cantidad;
-                                  setUpdateCart(updatedCart);
+                                  if (updatedCart[index].cantidad < 10) {
+                                    updatedCart[index].cantidad += 1;
+                                    updatedCart[index].importe =
+                                      updatedCart[index].precio *
+                                      updatedCart[index].cantidad;
+                                    setUpdateCart(updatedCart);
+                                  }
                                 }}
                               >
                                 +
@@ -350,13 +351,12 @@ function Cart() {
                               >
                                 subTotal:
                               </Text>
-                              $
                               <Text
                                 display="inline"
                                 fontWeight={"bold"}
                                 fontSize={"25px"}
                               >
-                                {product.importe}
+                                ${product.importe}
                               </Text>{" "}
                             </Box>
                             <Box display={"flex"} justifyContent={"center"}>
@@ -396,7 +396,7 @@ function Cart() {
                                     marginRight={1.5}
                                   />
                                   <Text display={"inline"} color={"red"}>
-                                    Complete your addres first
+                                    Complete your address first
                                   </Text>
                                 </>
                               ) : (
@@ -444,7 +444,16 @@ function Cart() {
                               )}
                             </Box>
                           ) : (
-                            ""
+                            <Box mt={"2em"}>
+                              {" "}
+                              <InfoOutlineIcon
+                                color={"red"}
+                                marginRight={1.5}
+                              />
+                              <Text display={"inline"} color={"red"}>
+                                You must be signed in to create your order{" "}
+                              </Text>
+                            </Box>
                           )}
                         </>
                       </Box>

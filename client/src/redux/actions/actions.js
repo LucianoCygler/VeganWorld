@@ -51,6 +51,11 @@ import {
   GET_ORDERS,
   CREATE_PAGE_REVIEW,
   GET_CLIENT_PAGE_REVIEW,
+  GET_ALL_ADMIN_CLIENTS,
+  GET_ALL_PRODUCTS_CLIENTS,
+  DELETE_PRODUCT_ADMIN,
+  VALIDATE_ADMIN_LOGIN,
+  ADMIN_LOG_OUT,
 } from "./Types/Types";
 import Pop_up from "../../Utils/Pop_up/Pop_up";
 
@@ -238,7 +243,27 @@ export const validateLogin = (user) => {
     }
   };
 };
+export const validateAdminLogin = (admin) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post(`/admin/checkadmin`, admin);
+      const adminDB = res.data;
+      return dispatch({ type: VALIDATE_ADMIN_LOGIN, payload: adminDB });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
 
+export const adminLogOut = () => {
+  return async function (dispatch) {
+    try {
+      return dispatch({ type: ADMIN_LOG_OUT });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
 export const getUserDataByEmail = (email) => {
   return async function (dispatch) {
     try {
@@ -612,4 +637,40 @@ export const sendEmail = (form, type) => {
 
 export const ChangeLabel = (id) => {
   return { type: CHANGE_LABEL, payload: id };
+};
+
+export const getAllClientsAdmin = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/getadmin/clients`);
+      const clients = res.data;
+      dispatch({ type: GET_ALL_ADMIN_CLIENTS, payload: clients });
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
+};
+
+export const getAllProductsAdmin = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/getadmin/products`);
+      const products = res.data;
+      dispatch({ type: GET_ALL_PRODUCTS_CLIENTS, payload: products });
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
+};
+
+export const deleteProductAdmin = (id) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.delete(`/product/${id}`);
+      const product = res.data;
+      dispatch({ type: DELETE_PRODUCT_ADMIN, payload: product });
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
 };

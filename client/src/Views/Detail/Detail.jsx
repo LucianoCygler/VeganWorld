@@ -63,7 +63,7 @@ function Detail() {
   };
 
   const handleIncrement = () => {
-    if (quantity < 100) {
+    if (quantity < 10) {
       setQuantity(quantity + 1);
     }
   };
@@ -146,14 +146,7 @@ function Detail() {
                     color="white"
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
                   >
-                    {product.descripcion}Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Donec vel egestas dolor, nec dignissim
-                    metus. Donec augue elit, rhoncus ac sodales id, porttitor
-                    vitae est. Donec laoreet rutrum libero sed pharetra. Donec
-                    vel egestas dolor, nec dignissim metus. Donec augue elit,
-                    rhoncus ac sodales id, porttitor vitae est. Donec laoreet
-                    rutrum libero sed pharetra. Duis a arcu convallis, gravida
-                    purus eget, mollis diam.
+                    {product.descripcion}
                   </Text>
                   <hr></hr>
                   <Text
@@ -288,7 +281,7 @@ function Detail() {
                               <Text fontSize={"15px"}>{review.titulo}</Text>
                             </Box>
                             <Box display={"flex"} justifyContent={"center"}>
-                              <Text fontSize={"15px"}>
+                              <Text fontSize={"15px"} wordBreak={"break-word"}>
                                 {review.descripcion}
                               </Text>
                             </Box>

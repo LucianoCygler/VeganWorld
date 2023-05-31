@@ -93,7 +93,10 @@ const CardFav = ({ product, favorites }) => {
           <Image
             src={product?.Product?.imagen}
             alt={product?.Product?.nombre}
-            borderRadius="lg"
+            borderRadius={"12%"}
+            ml="1.5em"
+            h={"150px"}
+            w={"150px"}
           />
           <Stack mt="6" spacing="3">
             <Heading size="md">{product?.Product?.nombre}</Heading>
@@ -106,9 +109,9 @@ const CardFav = ({ product, favorites }) => {
       <Divider />
       <CardFooter justifyContent={"center"}>
         <ButtonGroup spacing="2" justifyContent={"center"}>
-          <Button variant="solid" colorScheme="green" onClick={handleMP}>
+          {/* <Button variant="solid" colorScheme="green" onClick={handleMP}>
             Buy now
-          </Button>
+          </Button> */}
           <Button
             variant="solid"
             colorScheme="blue"

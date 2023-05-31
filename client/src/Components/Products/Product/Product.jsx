@@ -30,6 +30,7 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
 
   useEffect(() => {
     for (const item of favorites) {
+      console.log(item.Product.id);
       if (id == item.Product.id) setIsFav(true);
     }
   }, []);
@@ -104,7 +105,14 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
               <Grid templateRows={"repeat(3,80px)"}>
                 {" "}
                 <Box marginLeft="1em" marginRight="1em">
-                  <Image src={imagen} alt={nombre} w="100%" />
+                  <Image
+                    borderRadius={"12%"}
+                    h={"150px"}
+                    w={"150px"}
+                    marginLeft="0.6em"
+                    src={imagen}
+                    alt={nombre}
+                  />
                 </Box>
                 <Grid templateRows={"repeat(3,30px)"} marginTop={"6em"}>
                   {" "}

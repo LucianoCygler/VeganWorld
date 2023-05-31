@@ -83,7 +83,12 @@ const MyOrders = () => {
           mt={"8em"}
           // shadow={"lg"}
         >
-          <Box marginBottom={"5em"} display={"flex"} justifyContent={"center"}>
+          <Box
+            marginBottom={"5em"}
+            display={"flex"}
+            justifyContent={"center"}
+            mt="2em"
+          >
             <Text
               fontSize={"30px"}
               color="white"

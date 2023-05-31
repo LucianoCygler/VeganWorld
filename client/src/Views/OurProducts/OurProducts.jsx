@@ -62,9 +62,11 @@ function OurProducts() {
 
   const handleFilter = (e) => {
     setFilterByType(e.target.value);
+    setCurrentPage(0)
   };
   const handleSort = (e) => {
     setSort(e.target.value);
+    setCurrentPage(0)
   };
 
   return (

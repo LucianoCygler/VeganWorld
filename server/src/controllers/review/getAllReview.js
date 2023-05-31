@@ -1,7 +1,7 @@
 const { Review } = require("../../db");
 
 const getAllReview = async () => {
-  const allReview = await Review.findAll({ paranoid: false });
+  const allReview = await Review.findAll({ paranoid: true });
   return allReview;
 };
 

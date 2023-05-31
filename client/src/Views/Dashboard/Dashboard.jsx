@@ -34,8 +34,8 @@ let theme = createTheme({
 		},
 	},
 	typography: {
+		fontFamily: "Montserrat",
 		h5: {
-			fontFamily:"Montserrat",
 			fontWeight: 500,
 			fontSize: 26,
 			letterSpacing: 0.5,
@@ -45,6 +45,9 @@ let theme = createTheme({
 		borderRadius: 8,
 	},
 	components: {
+		MuiGrid: {
+			fontFamily: "Montserrat",
+		},
 		MuiTab: {
 			defaultProps: {
 				disableRipple: true,
@@ -64,7 +67,7 @@ theme = {
 		MuiDrawer: {
 			styleOverrides: {
 				paper: {
-					backgroundColor: "#081627",
+					backgroundColor: "#319795",
 				},
 			},
 		},
@@ -133,7 +136,7 @@ theme = {
 			styleOverrides: {
 				root: {
 					"&.Mui-selected": {
-						color: "#4fc3f7",
+						color: "#1d5c63", //azul hover click
 					},
 				},
 			},
@@ -173,20 +176,20 @@ const drawerWidth = 256;
 
 export default function Dashboard() {
 	const [drawerOpen, setDrawerOpen] = useState(false);
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 	const handleDrawerToggle = () => {
 		setDrawerOpen(!drawerOpen);
 	};
 
-	// useEffect(()=>{
-	// 	dispatch(ChangeLabel('Graph'));
-	// },[])
+	useEffect(()=>{
+		dispatch(ChangeLabel('Graph'));
+	},[])
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Box sx={{ display: "flex", minHeight: "100vh" }}>
+			<Box sx={{ display: "flex", minHeight: "100vh", bgcolor: "#319795" }}>
 				<CssBaseline />
-				<Box component="nav">
+				<Box component="nav" sx={{bgcolor:"Window"}}>
 					<Navigator
 						PaperProps={{ style: { width: drawerWidth, minWidth: 10 } }}
 						variant="temporary"
@@ -194,7 +197,14 @@ export default function Dashboard() {
 						onClose={handleDrawerToggle}
 					/>
 				</Box>
-				<Box sx={{ flex: 1, display: "flex", flexDirection: "column" , backgroundColor:"#1d5c63"}}>
+				<Box
+					sx={{
+						flex: 1,
+						display: "flex",
+						flexDirection: "column",
+						backgroundColor: "#319795",
+					}}
+				>
 					<Header onDrawerToggle={handleDrawerToggle} />
 					<Box
 						component="main"

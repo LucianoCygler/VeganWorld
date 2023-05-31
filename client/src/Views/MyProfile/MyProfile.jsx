@@ -227,9 +227,34 @@ const MyData = () => {
       minHeight={"100vh"}
       bgSize={"cover"}
       bgRepeat={"no-repeat"}
-      paddingTop={"10em"}
+      paddingTop={"8em"}
       paddingBottom={"10em"}
     >
+      {" "}
+      <Box
+        marginTop={"2em"}
+        marginBottom={"2em"}
+        display={"flex"}
+        justifyContent={"center"}
+      >
+        <Text
+          fontSize={"30px"}
+          color="white"
+          textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+          position="relative"
+        >
+          PROFILE
+          <Text
+            as="span"
+            position="absolute"
+            left={"1%"}
+            bottom={-5} // Ajusta este valor según el espaciado deseado
+            width="100%"
+            height="3px"
+            background="orange"
+          />
+        </Text>
+      </Box>
       {!emailCurrent ? (
         <Container>
           <Heading>
@@ -447,7 +472,7 @@ const MyData = () => {
               borderRadius={50}
               paddingBottom={"2em"}
             >
-              <Heading
+              {/* <Heading
                 padding={"0.5em"}
                 marginTop={"0.1em"}
                 fontSize={"4em"}
@@ -468,7 +493,7 @@ const MyData = () => {
                   Profile
                 </Text>
                 <small>🌱</small>
-              </Heading>
+              </Heading> */}
               {imagen ? (
                 <Image
                   w={"220px"}
@@ -478,6 +503,7 @@ const MyData = () => {
                   src={imagen}
                   margin={"auto"}
                   marginBottom={"3em"}
+                  mt="3em"
                 />
               ) : (
                 <Box w={"30%"} margin={"auto"} marginBottom={"3em"}>

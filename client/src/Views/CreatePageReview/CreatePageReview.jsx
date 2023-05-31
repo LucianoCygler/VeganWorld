@@ -14,11 +14,14 @@ import {
   FormControl,
   FormLabel,
   Grid,
+  Heading,
   Input,
   InputAddon,
   Text,
   Textarea,
 } from "@chakra-ui/react";
+import Pop_up from "../../Utils/Pop_up/Pop_up";
+import { Check } from "@mui/icons-material";
 
 const CreatePageReview = () => {
   const user = useSelector((state) => state.user);
@@ -32,8 +35,8 @@ const CreatePageReview = () => {
   };
 
   const [input, setInput] = useState({
-    titulo: "",
-    descripcion: "",
+    titulo: clientPageReview.titulo || "",
+    descripcion: clientPageReview.descripcion || "",
   });
   const [error, setError] = useState({
     titulo: "",
@@ -61,6 +64,8 @@ const CreatePageReview = () => {
     });
     setError(validate({ ...input, [e.target.name]: e.target.value }, error));
   };
+
+
   const submitHandler = (e) => {
     e.preventDefault();
     try {
@@ -69,15 +74,15 @@ const CreatePageReview = () => {
         cliente_id: user?.id,
       };
       dispatch(createPageReview(pageReview));
-      setInput({
-        titulo: "", // Corregir el nombre de la propiedad 'title'
-        descripcion: "", // Corregir el nombre de la propiedad 'desc'
-      });
+      Pop_up("success", "Congratulations", "Your review was added", "center", 2800)
+      window.location.reload();
     } catch (error) {
       alert(error.message);
     }
     return;
   };
+
+
 
   const handleSaveReview = () => {
     const newPageReview = {
@@ -89,18 +94,28 @@ const CreatePageReview = () => {
     setEditing(false);
     window.location.reload();
   };
+
+
+
   useEffect(() => {
     dispatch(getUserDataByEmail(emailCurrent));
   }, [emailCurrent]);
+
 
   useEffect(() => {
     if (user) {
       dispatch(getClientPageReviews(user?.nombre));
     }
   }, [user]);
+
+
   return (
-    <Box bgColor="#C6BA9F" width={"100%"} minHeight={"100vh"}>
-      <Box paddingTop={"8em"} display={"flex"} justifyContent={"center"}>
+    <Box
+      backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
+      width={"100%"}
+      minHeight={"100vh"}
+    >
+      <Box paddingTop={"10em"} display={"flex"} justifyContent={"center"}>
         <Text
           fontSize={"30px"}
           color="white"
@@ -159,9 +174,9 @@ const CreatePageReview = () => {
                     <Textarea
                       type="text"
                       name="descripcion"
+                      value={input.descripcion}
                       maxHeight="300px"
                       minHeight={"300px"}
-                      value={input.descripcion}
                       onChange={handleChange}
                       height={"6em"}
                     />
@@ -211,41 +226,73 @@ const CreatePageReview = () => {
           <Box> </Box>
         </Box>
       ) : (
-        <Box mt="15em" display={"flex"} justifyContent={"center"}>
-          <form onSubmit={submitHandler}>
-            <Box>
-              <FormLabel>Title: </FormLabel>
-              <Input
-                type="text"
-                name="titulo"
-                mb="2em"
-                onChange={handleChange}
-              ></Input>
-              <Text>{error.titulo}</Text>
-            </Box>
-            <Box>
-              {" "}
-              <FormLabel>Description: </FormLabel>{" "}
-              <Input
-                type="text"
-                name="descripcion"
-                height={"6em"}
-                onChange={handleChange}
-              ></Input>
-              <Text>{error.descripcion}</Text>
-            </Box>
-            {error.titulo || error.descripcion ? (
+        <Box mt="6em" display={"flex"} justifyContent={"center"}>
+          <Box
+            bg="rgba(216, 216, 216, 0.9)"
+            shadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+            w="25%"
+            borderRadius={50}
+            padding={"2em"}
+          >
+            <Heading
+              marginBottom={"2em"}
+              color="white"
+              textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+            >
+              Leave your review!
+            </Heading>
+            <form onSubmit={submitHandler}>
               <Box>
-                <Text>Please, complete all the fields.</Text>
+                <FormLabel
+                  color="white"
+                  textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+                >
+                  Title:{" "}
+                </FormLabel>
+                <Input
+                  bg={"whiteAlpha.800"}
+                  type="text"
+                  name="titulo"
+                  mb="2em"
+                  onChange={handleChange}
+                ></Input>
+                {/* <Text>{error.titulo}</Text> */}
               </Box>
-            ) : (
-              <Box marginTop={"3em"}>
-                <Button type="submit" colorScheme="teal">
-                  Create
-                </Button>
+              <Box>
+                {" "}
+                <FormLabel
+                  color="white"
+                  textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
+                >
+                  Description:{" "}
+                </FormLabel>{" "}
+                <Textarea
+                  bg={"whiteAlpha.800"}
+                  resize={"none"}
+                  type="text"
+                  name="descripcion"
+                  height={"6em"}
+                  maxHeight={"8em"}
+                  minHeight={"8em"}
+                  onChange={handleChange}
+                ></Textarea>
+                {/* <Text>{error.descripcion}</Text> */}
               </Box>
-            )}
-          </form>
+              {error.titulo || error.descripcion ? (
+                <Box marginTop={"1em"}>
+                  <Text fontSize={"12px"} color={"red"}>
+                    Please, complete all the fields.
+                  </Text>
+                </Box>
+              ) : (
+                <Box marginTop={"3em"}>
+                  <Button type="submit" colorScheme="teal">
+                    Create
+                  </Button>
+                </Box>
+              )}
+            </form>
+          </Box>
         </Box>
       )}
     </Box>

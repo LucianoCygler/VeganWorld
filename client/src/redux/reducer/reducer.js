@@ -38,6 +38,11 @@ import {
   GET_ORDERS,
   GET_PAGE_REVIEWS,
   GET_CLIENT_PAGE_REVIEW,
+  GET_ALL_ADMIN_CLIENTS,
+  GET_ALL_PRODUCTS_CLIENTS,
+  DELETE_PRODUCT_ADMIN,
+  VALIDATE_ADMIN_LOGIN,
+  ADMIN_LOG_OUT,
 } from "../actions/Types/Types";
 const carritoa = JSON.parse(localStorage.getItem("carrito")) || [];
 const productsa = JSON.parse(localStorage.getItem("products")) || [];
@@ -77,6 +82,10 @@ const initialState = {
     Orders: false,
   },
   address: address,
+  clientsAdmin: [],
+  productsAdmin: [],
+  deleteProduct: [],
+  admin: {},
   // createdOrderId: null,
 };
 
@@ -315,6 +324,31 @@ export default function rootReducer(state = initialState, action) {
           Orders: false,
           [action.payload]: true,
         },
+      };
+    case GET_ALL_ADMIN_CLIENTS:
+      return {
+        ...state,
+        clientsAdmin: action.payload,
+      };
+    case GET_ALL_PRODUCTS_CLIENTS:
+      return {
+        ...state,
+        productsAdmin: action.payload,
+      };
+    case DELETE_PRODUCT_ADMIN:
+      return {
+        ...state,
+        deleteProduct: action.payload,
+      };
+    case VALIDATE_ADMIN_LOGIN:
+      return {
+        ...state,
+        admin: action.payload,
+      };
+    case ADMIN_LOG_OUT:
+      return {
+        ...state,
+        admin: "",
       };
     default:
       return { ...state };
