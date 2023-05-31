@@ -96,7 +96,7 @@ const MyReviews = () => {
       ) : (
         <>
           <Divider />
-          <Box marginTop={"8em"} display={"flex"} justifyContent={"center"}>
+          <Box marginTop={"9em"} display={"flex"} justifyContent={"center"}>
             <Text
               fontSize={"30px"}
               color="white"
