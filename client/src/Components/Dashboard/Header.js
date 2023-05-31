@@ -23,7 +23,7 @@ function Header(props) {
 
 	return (
 		<React.Fragment>
-			<AppBar color="primary" position="sticky" elevation={0}>
+			<AppBar color="primary" position="sticky" elevation={0}  sx={{backgroundColor:"#1d5c63"}}>
 				<Toolbar>
 					<Grid container spacing={1} alignItems="center">
 						{/* <Grid sx={{ display: { sm: "none", xs: "block" } }} item></Grid> */}
@@ -73,10 +73,10 @@ function Header(props) {
 				color="primary"
 				position="static"
 				elevation={0}
-				sx={{ zIndex: 0 }}
+				sx={{zIndex: 0, backgroundColor:"#1d5c63"}}
 			>
 				<Toolbar>
-					<Grid container alignItems="center" spacing={1}>
+					<Grid container alignItems="center" spacing={1} >
 						<Grid item xs>
 							<Typography color="inherit" variant="h5" component="h1">
 								Dashboard

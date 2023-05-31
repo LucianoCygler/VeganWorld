@@ -56,15 +56,15 @@ export default function Navigator(props) {
 
 	return (
 		<>
-			<Drawer {...other}>
-				<List disablePadding>
+			<Drawer {...other}  >
+				<List disablePadding sx={{bgcolor:"#1d5c63"}}>
 					<ListItem
-						sx={{ ...item, ...itemCategory, fontSize: 22, color: "#fff" }}
+						sx={{ ...item, ...itemCategory, fontSize: 22, fontWeight:"bold", color: "#fff", bgcolor: "#1d5c63" }}
 					>
 						VeganWorld
 					</ListItem>
-					{categories.map(({ id, icon, active }) => (
-						<Box key={id} sx={{ bgcolor: "#101F33" }}>
+					{categories.map(({ id, icon }) => (
+						<Box key={id} sx={{ bgcolor: "#319795" }}>
 							<ListItem disablePadding key={id}>
 								<ListItemButton
 									selected={labels === id ? true : false}

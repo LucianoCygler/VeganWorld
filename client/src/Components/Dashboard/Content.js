@@ -1,14 +1,12 @@
 import React from "react";
-import AppBar from "@mui/material/AppBar";
-import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import TableClient from "./TableClient";
-import FormPropsTextFields from "./FormProduct";
 import { useSelector } from "react-redux";
 import ReviewsDashboard from "./Reviews";
 import Graficos from "../../Graficos/Graficos";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import DashOrders from "./OrdersClient";
+import FormProducts from "./FormProduct";
 
 export default function Content() {
   const { Graph, Clients, Products, Reviews, Orders } = useSelector(
@@ -21,15 +19,15 @@ export default function Content() {
 			<Paper
 				elevation={8}
 				sx={{
-					maxWidth: "90%",
+					maxWidth: "95%",
 					margin: "auto",
 					overflow: "hidden",
 					padding: 4,
-					backgroundColor: "InfoBackground",
+					backgroundColor: "#9799a6",
 				}}
 			>
 				{Clients && <TableClient />}
-				{Products && <FormPropsTextFields />}
+				{Products && <FormProducts />}
 				{Reviews && <ReviewsDashboard />}
 				{Graph && <Graficos />}
 				{Orders && <DashOrders />}

@@ -27,7 +27,7 @@ function OurProducts() {
 
   useEffect(() => {
     dispatch(getAllProducts());
-    // dispatch(getClientAllFavorites(user.id));
+    dispatch(getClientAllFavorites(user.id));
   }, []);
   useEffect(() => {
     dispatch(orderAndFilter(filterByType, sort));
