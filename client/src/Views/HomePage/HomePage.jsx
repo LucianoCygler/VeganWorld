@@ -163,7 +163,7 @@ function HomePage() {
           data-aos="fade-right"
           data-aos-offset="300"
           data-aos-easing="ease-in-sine"
-          data-aos-duration="1000"
+          data-aos-duration="2000"
         >
           <Card
             direction={{ base: "column", sm: "row" }}
@@ -341,7 +341,7 @@ function HomePage() {
         </>
       </Box>
       <Box overflowWrap={"wrap"}></Box>
-      <div data-aos="fade-left" data-aos-duration="2000">
+      <div data-aos="fade-left" data-aos-duration="3000">
         <Grid
           marginLeft={"5em"}
           templateColumns={{
