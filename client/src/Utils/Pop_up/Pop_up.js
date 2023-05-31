@@ -6,14 +6,15 @@ import styles from "./popup.module.css";
  * @param {*} title title alert
  * @param {*} text message
  * @param {*} position top | bottom | center | <position>-start | <position>-end | <position>-left | <position>-right
+ * @param {*} timer number
  */
-const Pop_up = (icon, title, text, position) => {
+const Pop_up = (icon, title, text, position, timer) => {
   // Corrección: "tittle" -> "title"
   const Toast = Swal.mixin({
     toast: true,
     position: position,
     showConfirmButton: false,
-    timer: 2200,
+    timer: timer || 2200,
     timerProgressBar: true,
     didOpen: (toast) => {
       toast.addEventListener("mouseenter", Swal.stopTimer);
