@@ -7,13 +7,14 @@ import {
 } from "../../redux/actions/actions";
 import ReviewDetail from "../../Components/ReviewDetail/ReviewDetail";
 import styles from "./MyReviews.module.css";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
 import LoginForm from "../Login/LoginForm";
 import {
   Box,
   Flex,
   Grid,
+  Image,
   GridItem,
   Heading,
   Img,
@@ -118,8 +119,7 @@ const MyReviews = () => {
           <Box
             paddingTop={10}
             minH="80vh"
-            w="80%"
-            bg="#d8d8d8  "
+            w="80%"            
             margin="auto"
             shadow="0px 4px 1000px rgba(0, 0, 0, 0.2)"
             bg={"rgba(216, 216, 216, 0.5)"}
@@ -127,7 +127,7 @@ const MyReviews = () => {
             borderRadius={"35px"}
           >
             <Box display="flex" justifyContent={"center"}>
-              {reviews ? (
+              {reviews.length > 0 ? (
                 reviews.map((review) => {
                   return (
                     <>
@@ -196,8 +196,18 @@ const MyReviews = () => {
                   );
                 })
               ) : (
-                <Box display={"flex"} alignItems={"center"}>
-                  <Heading color={"white"}>You don´t have reviews yet.</Heading>
+                <Box display={"flex"} flexDirection={"column"} alignItems={"center"} >
+                  <Heading m={"2em 0em"} color={"white"} fontSize={"5xl"} textShadow={"7px 3px 3px rgba(45,45,45,0.65)"}>You dont have reviews yet...</Heading>
+                  <Text color="white" fontSize="5xl" >
+                    Click <NavLink to="/products" style={{ color: 'yellow' }}>here</NavLink> to see our products</Text>
+                  
+                  <Image
+                    src="https://res.cloudinary.com/da6d9ru3s/image/upload/v1685459046/favorite-154758_1280_jruydu.png"
+                    className="img-fluid"
+                    style={{ width: "200px", height: "auto" }}
+                    alt="Imagen"
+                    mt={"5em"}
+                  ></Image>
                 </Box>
               )}
             </Box>

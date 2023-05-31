@@ -14,6 +14,7 @@ import "aos/dist/aos.css";
 import { Box, Button, Flex, Grid, Image, Text } from "@chakra-ui/react";
 import { addCartProduct, getProductById } from "../../../redux/actions/actions";
 import Pop_up from "../../../Utils/Pop_up/Pop_up";
+import { color } from "framer-motion";
 
 function Product({ nombre, imagen, precio, stock, descripcion, id }) {
   const [isFav, setIsFav] = useState(false);
@@ -81,17 +82,17 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
         {email ? (
           <Box>
             {!isFav ? (
-              <Box position={"relative"} left={"5.5em"} top={"-20px"}>
+              <Box position={"relative"} left={"10.5em"} top={"-20px"} backgroundColor={"#A4ABB4"} width={"30px"} borderRadius={"100%"}>
                 {/* <FontAwesomeIcon onClick={handleFavorite} icon={farHeart} /> */}
-                <Box onClick={handleFavorite} _hover={{ cursor: "pointer" }}>
+                <Box onClick={handleFavorite} fontSize={"20px"}  _hover={{ cursor: "pointer" }}>
                   🤍
                 </Box>
               </Box>
             ) : (
-              <Box position={"relative"} left={"5.5em"} top={"-20px"}>
+              <Box position={"relative"} left={"10.5em"} top={"-20px"} backgroundColor={"#A4ABB4"} width={"30px"} borderRadius={"100%"}>
                 {/* <FontAwesomeIcon onClick={handleFavorite} icon={fasHeart} /> */}
-                <Box onClick={handleFavorite} _hover={{ cursor: "pointer" }}>
-                  💗
+                <Box onClick={handleFavorite} fontSize={"20px"} _hover={{ cursor: "pointer" }}>
+                  ❤️
                 </Box>
               </Box>
             )}
@@ -104,8 +105,9 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
             <NavLink to={`/Detail/${id}`} style={{ textDecoration: "none" }}>
               <Grid templateRows={"repeat(3,80px)"}>
                 {" "}
-                <Box marginLeft="1em" marginRight="1em">
+                <Box marginLeft="1em" marginRight="1em" mt={"0,5em"}>
                   <Image
+                    mt={"-1em"}
                     borderRadius={"12%"}
                     h={"150px"}
                     w={"150px"}
@@ -119,14 +121,14 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
                   <Box>
                     <Text
                       fontWeight={"bold"}
-
+                      mt={"-1em"}
                       // fontSize={nombre.split("\n").length > 1 ? "10px" : "15px"}
                     >
                       {nombre}
                     </Text>
                   </Box>
-                  <Box marginTop={"1em"}>
-                    <Text>${parseInt(precio)}</Text>
+                  <Box marginTop={"0em"}>
+                    <Text>$ {parseInt(precio)}</Text>
                   </Box>
                 </Grid>
               </Grid>
@@ -135,6 +137,7 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
           <Box marginTop={"1em"}>
             {" "}
             <Button
+               
               variant="solid"
               colorScheme="teal"
               onClick={handleClick}
