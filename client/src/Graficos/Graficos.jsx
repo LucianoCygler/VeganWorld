@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Chart as ChartJs, CategoryScale, PointElement, RadialLinearScale, ArcElement, LineElement, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import { Line, PolarArea, Bar } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
@@ -32,8 +32,8 @@ export const dataLine = {
     {
       label: "Users",
       data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      borderColor: "rgb(55, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
+      borderColor: "rgb(255, 45, 143)",
+      backgroundColor: "rgb(81, 199, 26)",
     },
   ],
 };
@@ -83,7 +83,9 @@ export const optionsBox = {
     }
   }
 }
-const totalMonthAmount = [];
+
+const storedData = localStorage.getItem("datosGrafico");
+let totalMonthAmount = storedData ? JSON.parse(storedData) : [];
 
 export const dataBox = {
   labels,
@@ -91,35 +93,52 @@ export const dataBox = {
     {
       label: "Total profit",
       data: totalMonthAmount,
-      backgroundColor: "rgba(255, 99, 132, 0.5"
+      backgroundColor: "rgba(255, 99, 132, 0.5)"
     }
   ]
 }
 
-
 export default function Graficos() {
+
   const dispatch = useDispatch();
   const importe = useSelector((state) => state.allOrders);
-  const totalImport = importe.map((order) => Number(order.importe));
-  const sumImport = totalImport.reduce((total, imp) => total + imp, 0);
-
+  const [sumImport, setSumImport] = useState(0);
+  
   useEffect(() => {
     dispatch(getOrders());
   }, []);
+  
+  useEffect(() => {
+    const totalImport = importe.map((order) => Number(order.importe));
+    const newSumImport = totalImport.reduce((total, imp) => total + imp, 0);
+    setSumImport(newSumImport);
+  }, [importe]);
 
   const handleClick = () => {
+    const storedData = localStorage.getItem("datosGrafico");
+    const totalMonthAmount = storedData ? JSON.parse(storedData) : [];
+
     totalMonthAmount.push(sumImport);
+
+    localStorage.setItem("datosGrafico", JSON.stringify(totalMonthAmount));
+    setSumImport(0);
+  }
+
+  const handleReset = () => {
+    totalMonthAmount = [];
+    localStorage.removeItem("datosGrafico");
   }
 
   return (
     <Grid container spacing={2}>
       <Grid sm={12} xs={12} md={10} lg={10} sx={{ minHeight: [200, 300, 400, 600] }}>
-        <Box display={"flex"} justifyContent={"flex-end"} marginLeft={"50px"} sx={{ minHeight: [200, 300, 400, 600] }}>
-          <Bar options={optionsBox} data={dataBox} responsive={true} maintainAspectRatio={false} />
-          <Box display={"flex"} flexDirection={"column"} position={"relative"} left={"100px"}>
-            <Text>Actualy amount:</Text>
-            <Text display={"flex"}>${sumImport}</Text>
-            <Button onClick={handleClick}>Send Import</Button>
+        <Box display={"flex"} justifyContent={"flex-end"} marginLeft={"120px"} sx={{ minHeight: [200, 300, 400, 600] }}>
+        <Bar options={optionsBox} data={dataBox} responsive={true} maintainAspectRatio={false} />
+          <Box display={"flex"} flexDirection={"column"} position={"relative"} left={"100px"} gap={"15px"}>
+            <Text whiteSpace={"nowrap"} color={"rgba(255, 7, 7, 0.87)"}>Actualy amount:</Text>
+            <Text display={"flex"} fontSize={"30px"} whiteSpace={"nowrap"} color={"rgb(255, 99, 132)"}>${sumImport}</Text>
+            <Button onClick={handleClick} variant="contained" >Send amount!</Button>
+            <Button onClick={handleReset} variant="contained" color="error">Reset graph</Button>
           </Box>
         </Box>
       </Grid>
