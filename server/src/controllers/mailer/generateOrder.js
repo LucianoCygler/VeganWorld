@@ -2,34 +2,42 @@ require("dotenv").config();
 const {Product} = require('../../models/Product');
 const nodemailer = require ('nodemailer');
 const getOneProduct = require("../product/getOneProduct");
+const genOrderTemplate = require("../../utils/mailTemplates/genOrderTemplate");
 
 const {API_PASSWORD} = process.env;
 
 
 const mailerGenOrder = async (order, user)=>{
-    const {cliente_id, importe, productos} = order;
+    const cleanInfo = (products)=>{
+        const newArray = [];
+        products.forEach((e)=>{
+            if (!!newArray.find((obj)=> obj?.id == e)){
+                const index = newArray.findIndex((obj)=> obj?.id == e);
+                if (index !== -1){
+                    let aux = newArray[index];
+                    aux= {...aux, cant: aux.cant+1};
+                    newArray[index]= aux;
+                }
+            }else{
+                newArray.push({id: e, cant: 1});
+            }
+        });
+        return newArray;
+    }
+
+    const {cliente_id, monto, productos} = order;
     if (!user){
         throw new Error(`Client with id ${cliente_id} hasn't been found`);
     }else{
-        let counter = 1;
+        const array = cleanInfo(productos);
         const productsNames = await Promise.all(
-            productos.map(async (element) => {
-              const productDB = await getOneProduct(element);
-              return productDB.nombre;
+            array.map( async (element) => {
+              const productDB = await getOneProduct(element.id);
+              return ({nombre: productDB.nombre, cant: element.cant, precio: productDB.precio});
             })
           );
-        const htmlContent = `<div>
-        <h2>The order has been created sucessfully.</h2>
-        <h2>Thank you ${user.nombre} for your purchase. Make sure to review your products once you ate them.</h2>
-        <h3>The amount is $${importe}.</h3>
-        <h3>Here is a list of your items:</h3>
-        ${productsNames?.map( (element)=>{
-                return (`<h4>${counter++}: ${element}.</h4>`);
-            })
-        }
 
-    </div>`;
-        
+        const htmlContent = genOrderTemplate(productsNames, monto);
     const config = {
         host: "smtp.gmail.com",
         port: 587,
