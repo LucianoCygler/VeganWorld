@@ -331,11 +331,13 @@ function Cart() {
                                 name="increment"
                                 onClick={() => {
                                   const updatedCart = [...updateCart];
-                                  updatedCart[index].cantidad += 1;
-                                  updatedCart[index].importe =
-                                    updatedCart[index].precio *
-                                    updatedCart[index].cantidad;
-                                  setUpdateCart(updatedCart);
+                                  if (updatedCart[index].cantidad < 10) {
+                                    updatedCart[index].cantidad += 1;
+                                    updatedCart[index].importe =
+                                      updatedCart[index].precio *
+                                      updatedCart[index].cantidad;
+                                    setUpdateCart(updatedCart);
+                                  }
                                 }}
                               >
                                 +
