@@ -16,19 +16,28 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { deleteProductAdmin } from "../../../redux/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProductAdmin, updateProduct } from "../../../redux/actions/actions";
 
-function createData(name, price, stock, state, image, description, id, type) {
+function createData(
+	nombre,
+	precio,
+	stock,
+	state,
+	imagen,
+	descripcion,
+	id,
+	tipo
+) {
 	return {
-		name,
-		price,
+		nombre,
+		precio,
 		stock,
 		state,
-		image,
-		description,
+		imagen,
+		descripcion,
 		id,
-		type,
+		tipo,
 	};
 }
 
@@ -39,45 +48,56 @@ function Row(props) {
 	const handleDelete = (id) => {
 		dispatch(deleteProductAdmin(id));
 	};
-	const handleUpdate = (id) => {
+	const products = useSelector(state=>state.productsAdmin)
+	const [product, setProduct] = React.useState({});
 
-		console.log(id);
+	const handleUpdate = (id) => {
+		
+		const productExist = products.find((product) => product.id == id);
+		const updatedProduct = {
+			...productExist,
+			...product
+		}
+
+		dispatch(updateProduct(updatedProduct, id));
 	};
 
-	const [hasChange, setHasChange] = React.useState(true)
-	const [newValue , setNewValue] = React.useState("")
+	const [hasChange, setHasChange] = React.useState(true);
+	const [newValue, setNewValue] = React.useState("");
 
-	const handleNewValue = (event) =>{
+	const handleNewValue = (event) => {
 		const { name, value } = event.target;
-    setNewValue({ ...newValue, [name]: value });
-		setHasChange(!hasChange)
-	}
+		setNewValue({ ...newValue, [name]: value });
+		setProduct({ ...product, [name]: value });
+		setHasChange(false)
+	};
 	return (
 		<React.Fragment>
 			<TableRow
-				sx={{ "& > *": { borderBottom: "unset" }, bgcolor: "lightgrey" }}
+				sx={{ "& > *": { borderBottom: "unset" }, bgcolor: "aliceblue" }}
 				onClick={() => setOpen(!open)}
 			>
 				<TableCell>
-					<IconButton
-						aria-label="expand row"
-						size="large"
-					>
+					<IconButton aria-label="expand row" size="large">
 						{open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
 					</IconButton>
 				</TableCell>
 				<TableCell component="th" scope="row">
 					<Grid2 container>
 						<Grid2 md={6}>
-							<img src={row.image} width={120} />
+							<img src={row.imagen} width={120} />
 						</Grid2>
-						<Grid2 md={6}>{row.name}</Grid2>
+						<Grid2 md={6}>{row.nombre}</Grid2>
 					</Grid2>
 				</TableCell>
-				<TableCell align="right">{row.stock}</TableCell>
-				<TableCell align="right">{row.price}</TableCell>
-				<TableCell align="right">
-					{!row.state ? "active" : "inactive"}
+				<TableCell align="center">{row.stock}</TableCell>
+				<TableCell align="center">{row.precio}</TableCell>
+				<TableCell align="center">
+					{!row.state ? (
+						<Box sx={{ color: "green" }} children={"Active"} />
+					) : (
+						<Box sx={{ color: "red" }} children={"Inactive"} />
+					)}
 				</TableCell>
 			</TableRow>
 			<TableRow>
@@ -85,7 +105,7 @@ function Row(props) {
 					style={{ paddingBottom: 0, paddingTop: 0, width: "100%" }}
 					colSpan={6}
 				>
-					<Collapse in={open} timeout="auto" unmountOnExit>
+					<Collapse in={open} timeout="auto" unmountOnExit state={row.state}>
 						<Box sx={{ margin: 2, width: "100%" }}>
 							<Typography variant="h6" gutterBottom component="div">
 								Basic details
@@ -93,10 +113,11 @@ function Row(props) {
 							<Grid2 container gap>
 								<Grid2>
 									<TextField
-										name="name"
+										disabled={row.state}
+										name="nombre"
 										label="Product name"
-										defaultValue={row.name}
-										value={newValue.name || row.name}
+										defaultValue={row.nombre}
+										value={newValue.nombre || row.nombre}
 										onChange={handleNewValue}
 										InputLabelProps={{
 											shrink: true,
@@ -105,10 +126,11 @@ function Row(props) {
 								</Grid2>
 								<Grid2>
 									<TextField
-										name="type"
+										disabled={row.state}
+										name="tipo"
 										label="Category"
-										defaultValue={row.type}
-										value={newValue.type || row.type}
+										defaultValue={row.tipo}
+										value={newValue.tipo || row.tipo}
 										onChange={handleNewValue}
 										InputLabelProps={{
 											shrink: true,
@@ -117,11 +139,11 @@ function Row(props) {
 								</Grid2>
 								<Grid2>
 									<TextField
-										
-										name="oldPrice"
+										disabled={row.state}
+										name="precio"
 										type="number"
 										label="Old price"
-										defaultValue={row.price}
+										defaultValue={row.precio}
 										InputProps={{
 											readOnly: true,
 										}}
@@ -132,33 +154,41 @@ function Row(props) {
 								</Grid2>
 								<Grid2>
 									<TextField
-										name="newPrice"
+										disabled={row.state}
+										name="precio"
 										type="number"
 										label="New price"
-										value={newValue.newPrice || ''}
+										value={newValue.precio || ""}
 										onChange={handleNewValue}
 										InputLabelProps={{
 											shrink: true,
 										}}
 									></TextField>
 								</Grid2>
-								<Grid2 xs={12} px={8}>
-									<Box
-										sx={{
-											display: "flex",
-											justifyContent: "space-between",
-											padding: "5",
-										}}
-									>
-										<Button onClick={() => handleUpdate(row.id)} disabled={hasChange}>Update</Button>
-										<Button
-											onClick={() => handleDelete(row.id)}
-											sx={{ color: "red" }}
+								{!row.state && (
+									<Grid2 xs={12} px={8}>
+										<Box
+											sx={{
+												display: "flex",
+												justifyContent: "space-between",
+												padding: "5",
+											}}
 										>
-											Delete
-										</Button>
-									</Box>
-								</Grid2>
+											<Button
+												onClick={() => handleUpdate(row.id)}
+												disabled={hasChange}
+											>
+												Update
+											</Button>
+											<Button
+												onClick={() => handleDelete(row.id)}
+												sx={{ color: "red" }}
+											>
+												Delete
+											</Button>
+										</Box>
+									</Grid2>
+								)}
 							</Grid2>
 						</Box>
 					</Collapse>
@@ -196,10 +226,30 @@ export default function ListProducts({ products }) {
 				<TableHead>
 					<TableRow sx={{ bgcolor: "#319795", color: "white" }}>
 						<TableCell />
-						<TableCell sx={{width:300}} align="center">NAME</TableCell>
-						<TableCell align="center">STOCK</TableCell>
-						<TableCell align="center">PRICE</TableCell>
-						<TableCell align="center">STATUS</TableCell>
+						<TableCell
+							align="center"
+							sx={{ color: "whitesmoke", fontWeight: 900, fontSize: 18 }}
+						>
+							NAME
+						</TableCell>
+						<TableCell
+							align="center"
+							sx={{ color: "whitesmoke", fontWeight: 900, fontSize: 18 }}
+						>
+							STOCK
+						</TableCell>
+						<TableCell
+							align="center"
+							sx={{ color: "whitesmoke", fontWeight: 900, fontSize: 18 }}
+						>
+							PRICE
+						</TableCell>
+						<TableCell
+							align="center"
+							sx={{ color: "whitesmoke", fontWeight: 900, fontSize: 18 }}
+						>
+							STATUS
+						</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>

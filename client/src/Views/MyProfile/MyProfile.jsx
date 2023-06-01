@@ -449,7 +449,7 @@ const MyData = () => {
                     />
                     <FormErrorMessage>{error.direccion}</FormErrorMessage>
                   </FormControl>
-                </form>
+                  </form>
               </Box>
               <Input
                 isDisabled={false}
@@ -461,6 +461,7 @@ const MyData = () => {
                 borderRadius="md"
                 value={form.imagen}
                 fontFamily="Montserrat"
+
                 p={2}
                 mt={"1.5rem"}
               />
@@ -475,7 +476,7 @@ const MyData = () => {
                   color: "rgb(214, 187, 187)",
                 }}
                 onClick={handleSaveUser}
-              >
+                >
                 Save Data
               </Button>
             </Box>

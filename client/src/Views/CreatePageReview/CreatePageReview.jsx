@@ -28,6 +28,7 @@ const CreatePageReview = () => {
   const clientPageReview = useSelector((state) => state.clientPageReview);
   const emailCurrent = localStorage.getItem("email");
   const [editing, setEditing] = useState(false); // Nuevo estado para controlar la edición
+  const [selectedReview, setSelectedReview] = useState();
   const dispatch = useDispatch();
 
   const handleEdit = () => {
@@ -65,7 +66,6 @@ const CreatePageReview = () => {
     setError(validate({ ...input, [e.target.name]: e.target.value }, error));
   };
 
-
   const submitHandler = (e) => {
     e.preventDefault();
     try {
@@ -73,16 +73,23 @@ const CreatePageReview = () => {
         ...input,
         cliente_id: user?.id,
       };
+
       dispatch(createPageReview(pageReview));
-      Pop_up("success", "Congratulations", "Your review was added", "center", 2800)
-      window.location.reload();
+      Pop_up(
+        "success",
+        "Congratulations",
+        "Your review was added",
+        "center",
+        2000
+      );
+      setTimeout(() => {
+        window.location.reload();
+      }, 2100);
     } catch (error) {
       alert(error.message);
     }
     return;
   };
-
-
 
   const handleSaveReview = () => {
     const newPageReview = {
@@ -95,19 +102,15 @@ const CreatePageReview = () => {
     window.location.reload();
   };
 
-
-
   useEffect(() => {
     dispatch(getUserDataByEmail(emailCurrent));
   }, [emailCurrent]);
 
-
   useEffect(() => {
     if (user) {
-      dispatch(getClientPageReviews(user?.nombre));
+      dispatch(getClientPageReviews(user?.id));
     }
   }, [user]);
-
 
   return (
     <Box
