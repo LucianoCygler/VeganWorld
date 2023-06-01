@@ -28,6 +28,7 @@ const CreatePageReview = () => {
   const clientPageReview = useSelector((state) => state.clientPageReview);
   const emailCurrent = localStorage.getItem("email");
   const [editing, setEditing] = useState(false); // Nuevo estado para controlar la edición
+  const [selectedReview, setSelectedReview] = useState();
   const dispatch = useDispatch();
 
   const handleEdit = () => {
@@ -72,15 +73,18 @@ const CreatePageReview = () => {
         ...input,
         cliente_id: user?.id,
       };
+
       dispatch(createPageReview(pageReview));
       Pop_up(
         "success",
         "Congratulations",
         "Your review was added",
         "center",
-        2800
+        2000
       );
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 2100);
     } catch (error) {
       alert(error.message);
     }
@@ -104,7 +108,7 @@ const CreatePageReview = () => {
 
   useEffect(() => {
     if (user) {
-      dispatch(getClientPageReviews(user?.nombre));
+      dispatch(getClientPageReviews(user?.id));
     }
   }, [user]);
 
@@ -133,7 +137,7 @@ const CreatePageReview = () => {
           />
         </Text>
       </Box>
-      {clientPageReview > 0 ? (
+      {clientPageReview ? (
         <Box display="flex" justifyContent={"center"} paddingTop={"2em"}>
           <Card
             marginRight="2em"
