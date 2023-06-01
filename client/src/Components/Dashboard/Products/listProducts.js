@@ -49,8 +49,7 @@ function Row(props) {
 		dispatch(deleteProductAdmin(id));
 	};
 	const products = useSelector(state=>state.productsAdmin)
-	const [product, setProduct] = React.useState({
-	});
+	const [product, setProduct] = React.useState({});
 
 	const handleUpdate = (id) => {
 		
@@ -59,6 +58,7 @@ function Row(props) {
 			...productExist,
 			...product
 		}
+
 		dispatch(updateProduct(updatedProduct, id));
 	};
 
@@ -69,7 +69,7 @@ function Row(props) {
 		const { name, value } = event.target;
 		setNewValue({ ...newValue, [name]: value });
 		setProduct({ ...product, [name]: value });
-		setHasChange(!hasChange);
+		setHasChange(false)
 	};
 	return (
 		<React.Fragment>
