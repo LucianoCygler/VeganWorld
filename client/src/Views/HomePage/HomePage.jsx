@@ -164,7 +164,7 @@ function HomePage() {
           data-aos="fade-right"
           data-aos-offset="300"
           data-aos-easing="ease-in-sine"
-          data-aos-duration="2000"
+          data-aos-duration="1000"
         >
           <Card
             direction={{ base: "column", sm: "row" }}
@@ -269,8 +269,8 @@ function HomePage() {
         data-aos="flip-left"
         data-aos-easing="ease-out-cubic"
         data-aos-duration="1400"
-        marginTop={60}
-        marginBottom={180}
+        marginTop={"7em"}
+        marginBottom={150}
         display={"flex"}
         flexDirection={"column"}
         justifyContent={"center"}
