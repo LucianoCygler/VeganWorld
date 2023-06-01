@@ -5,9 +5,9 @@ const updateProduct = async (nombre, descripcion, precio, stock, id) => {
 
   if (!putProduct) throw Error(`The ID: ${id} does not exist`);
 
-  if (!nombre || !descripcion || !precio || !stock) {
-    throw Error(`Data is missing for updating `);
-  }
+  // if (!nombre || !descripcion || !precio || !stock) {
+  //   throw Error(`Data is missing for updating `);
+  // }
   await Product.update(
     {
       nombre,

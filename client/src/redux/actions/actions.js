@@ -572,16 +572,16 @@ export const updatePageReview = (review) => {
 	};
 };
 
-export const getClientPageReviews = (nombre) => {
-	return async function (dispatch) {
-		try {
-			const res = await axios.get(`/pagereview/client/${nombre}`);
-			const clientPageReview = res.data;
-			dispatch({ type: GET_CLIENT_PAGE_REVIEW, payload: clientPageReview });
-		} catch (error) {
-			console.log(error.response.data);
-		}
-	};
+export const getClientPageReviews = (id) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/pagereview/client/${id}`);
+      const clientPageReview = res.data;
+      dispatch({ type: GET_CLIENT_PAGE_REVIEW, payload: clientPageReview });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 };
 
 export const getAllClients = () => {
