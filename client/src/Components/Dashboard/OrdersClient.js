@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { CheckCircleOutline, CancelOutlined } from "@mui/icons-material";
 import TableContainer from "@mui/material/TableContainer";
@@ -139,7 +138,9 @@ const DashOrders = () => {
 
     useEffect(() => {
       const clientOrders = clients?.map((client) => {
-        const hasOrders = orders?.some((order) => order?.clientId === client?.id);
+        const hasOrders = orders?.some(
+          (order) => order?.clientId === client?.id
+        );
         return { ...client, hasOrders };
       });
       setClientOrders(clientOrders);
@@ -226,11 +227,7 @@ const DashOrders = () => {
     return clientsWithOrders;
   };
 
-
-
   const clientsWithOrders = getClientsWithOrders(clients, orders);
-
-
 
   const isClientWithOrders = (clientId) => {
     return clientsWithOrders?.some((client) => client?.id === clientId);
@@ -316,7 +313,6 @@ const DashOrders = () => {
       {showTable && (
         <Grid item xs={12} sm={12}>
           {" "}
-      
           <TextField
             label="Filter by name Food Order"
             variant="outlined"
@@ -327,7 +323,9 @@ const DashOrders = () => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <StyledTableCell>Quantity_______Food_______Food Price x U</StyledTableCell>
+                  <StyledTableCell>
+                    Quantity_______Food_______Food Price x U
+                  </StyledTableCell>
                   <StyledTableCell></StyledTableCell>
                   <StyledTableCell>Facture</StyledTableCell>
                   <StyledTableCell>Address</StyledTableCell>

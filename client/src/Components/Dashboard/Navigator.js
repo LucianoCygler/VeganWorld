@@ -26,8 +26,8 @@ export default function Navigator(props) {
     { id: "Clients", icon: <PeopleIcon />, active: false },
     { id: "Products", icon: <DnsRoundedIcon />, active: false },
     { id: "Reviews", icon: <ReviewsIcon />, active: false },
+    // { id: "Orders", icon: <WarehouseIcon />, active: false },
     { id: "Orders", icon: <WarehouseIcon />, active: false },
-    { id: "OrderTest", icon: <WarehouseIcon />, active: false },
   ];
 
   const item = {

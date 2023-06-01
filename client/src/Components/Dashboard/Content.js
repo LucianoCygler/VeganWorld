@@ -28,15 +28,14 @@ export default function Content() {
           // backgroundColor: "#9799a6",
 
           // backgroundColor: "#ffe6aa",
-
         }}
       >
         {Clients && <TableClient />}
         {Products && <FormProducts />}
         {Reviews && <ReviewsDashboard />}
         {Graph && <Graficos />}
-        {Orders && <DashOrders />}
-        {OrderTest && <OrderTestComponent />}
+        {/* {Orders && <DashOrders />} */}
+        {Orders && <OrderTestComponent />}
       </Paper>
     </Grid>
   );

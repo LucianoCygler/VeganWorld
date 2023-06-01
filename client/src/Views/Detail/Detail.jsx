@@ -83,6 +83,20 @@ function Detail() {
       {product?.nombre ? (
         <>
           <Box>
+            <Box display={"flex"} justifyContent={"left"} marginLeft={"2em"}>
+              {" "}
+              <Button
+                colorScheme="teal"
+                size="xs"
+                onClick={handleGoBack}
+                zIndex="1"
+                h={"50px"}
+                w={"50px"}
+              >
+                <FontAwesomeIcon icon={faArrowLeftLong} />{" "}
+              </Button>
+            </Box>
+
             <Grid
               margin="auto"
               position="relative"
@@ -91,45 +105,34 @@ function Detail() {
               align="center"
               maxWidth="80%"
             >
-              <Box>
-                <Button
-                  colorScheme="teal"
-                  size="xs"
-                  onClick={handleGoBack}
-                  position="absolute"
-                  left="370px"
-                  top="20px"
-                  zIndex="1"
-                  h={"50px"}
-                  w={"50px"}
-                >
-                  <FontAwesomeIcon icon={faArrowLeftLong} />{" "}
-                </Button>{" "}
-                <Box
-                  width="60%"
-                  margin="3em"
-                  marginTop={"9em"}
-                  display="inline-flex"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <Img
-                    src={product.imagen}
-                    alt={product.nombre}
-                    borderRadius={"10px"}
-                    shadow="0px 4px 10px rgba(0, 0, 0, 0.2)"
-                    width="100%"
-                  />
-                </Box>
-              </Box>
               <Box
+                display="inline-flex"
+                alignItems="center"
+                justifyContent="center"
+                padding="5em"
                 marginTop="5em"
                 marginLeft="4em"
+                boxShadow="0px 0px 10px rgba(0, 0, 0, 0.2)"
+                height={"700px"}
+              >
+                <Img
+                  src={product.imagen}
+                  alt={product.nombre}
+                  borderRadius={"10px"}
+                  shadow="0px 4px 10px rgba(0, 0, 0, 0.2)"
+                  w="500px"
+                  h="500px"
+                />
+              </Box>
+
+              <Box
+                marginTop="5em"
+                marginLeft="1em"
                 marginRight="2em"
                 boxShadow="0px 0px 10px rgba(0, 0, 0, 0.2)"
                 padding={"3em"}
                 paddingTop={0}
-                height={"fit-content"}
+                height={"700px"}
               >
                 {" "}
                 <Grid gridTemplateRows="3" gap="10" paddingTop="8em">
@@ -222,16 +225,22 @@ function Detail() {
 
       <Box paddingTop={"4em"}>
         <hr></hr>
-        <Box display={"flex"} justifyContent={"center"} paddingTop={"2em"}>
-          {" "}
-          <Heading
-            fontSize="3xl"
-            color="white"
-            textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
-          >
-            Product Reviews
-          </Heading>
-        </Box>
+        {productReviews > 0 && (
+          <Box>
+            {" "}
+            <Box display={"flex"} justifyContent={"center"} paddingTop={"2em"}>
+              {" "}
+              <Heading
+                fontSize="3xl"
+                color="white"
+                textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+              >
+                Product Reviews
+              </Heading>
+            </Box>
+          </Box>
+        )}
+
         <Box display="flex" justifyContent={"center"}>
           {productReviews
             ? productReviews.slice(0, 3).map((review) => {
@@ -245,8 +254,8 @@ function Detail() {
                         boxShadow={"0 20px 30px -20px rgba(5, 5, 5, 0.24);"}
                         marginBottom={"2em"}
                         w="380px"
-                        maxHeight={"300px"}
-                        minH={"300px"}
+                        maxHeight={"250px"}
+                        minH={"250px"}
                         mt="2em"
                       >
                         <div class="header">
@@ -278,10 +287,10 @@ function Detail() {
                               <p class="name">{review.cliente_nombre}</p>
                             </Box>
                             <Box>
-                              <Text fontSize={"15px"}>{review.titulo}</Text>
+                              <Text fontSize={"13px"}>{review.titulo}</Text>
                             </Box>
                             <Box display={"flex"} justifyContent={"center"}>
-                              <Text fontSize={"15px"} wordBreak={"break-word"}>
+                              <Text fontSize={"12px"} wordBreak={"break-word"}>
                                 {review.descripcion}
                               </Text>
                             </Box>
