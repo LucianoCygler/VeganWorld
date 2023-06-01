@@ -325,6 +325,7 @@ const MyData = () => {
                   <FormControl isInvalid={!!error.nombre}>
                     <FormLabel>First Name</FormLabel>
                     <Input
+                      mb="1em"
                       name="nombre"
                       type="text"
                       backgroundColor={"white"}
@@ -344,6 +345,7 @@ const MyData = () => {
                   <FormControl isInvalid={!!error.apellido}>
                     <FormLabel>Surname</FormLabel>
                     <Input
+                      mb="1em"
                       isDisabled={false}
                       name="apellido"
                       type="text"
@@ -362,7 +364,7 @@ const MyData = () => {
                     <FormErrorMessage>{error.apellido}</FormErrorMessage>
                   </FormControl>
 
-                  <FormControl isInvalid={!!error.email}>
+                  {/* <FormControl isInvalid={!!error.email}>
                     <FormLabel>Email</FormLabel>
                     <Input
                       isDisabled={false}
@@ -381,11 +383,12 @@ const MyData = () => {
                       placeholder="Email"
                     />
                     <FormErrorMessage>{error.email}</FormErrorMessage>
-                  </FormControl>
+                  </FormControl> */}
 
                   <FormControl isInvalid={!!error.telefono}>
                     <FormLabel>Phone</FormLabel>
                     <Input
+                      mb="1em"
                       isDisabled={false}
                       name="telefono"
                       type="number"
@@ -407,6 +410,7 @@ const MyData = () => {
                   <FormControl isInvalid={!!error.ciudad}>
                     <FormLabel>City</FormLabel>
                     <Input
+                      mb="1em"
                       isDisabled={false}
                       name="ciudad"
                       type="text"
@@ -428,6 +432,7 @@ const MyData = () => {
                   <FormControl isInvalid={!!error.direccion}>
                     <FormLabel>Address</FormLabel>
                     <Input
+                      mb="1em"
                       isDisabled={false}
                       name="direccion"
                       type="text"
@@ -448,6 +453,7 @@ const MyData = () => {
                 </form>
               </Box>
               <Input
+                mb="1em"
                 isDisabled={false}
                 type="file"
                 onChange={handleImageChange}
