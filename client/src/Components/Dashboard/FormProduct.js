@@ -42,9 +42,12 @@ export default function FormProducts() {
     ...new Set(productsAdmin.map((product) => product.tipo)),
   ];
 
-  useEffect(() => {
-    dispatch(getAllProductsAdmin());
-  }, [deleteProduct, updatedProduct]);
+	React.useEffect(() => {
+		dispatch(getAllProductsAdmin());
+	}, [deleteProduct]);	
+	React.useEffect(() => {
+		dispatch(getAllProductsAdmin());
+	}, [updatedProduct]);
 
   const [product, setProduct] = useState({
     nombre: "",
