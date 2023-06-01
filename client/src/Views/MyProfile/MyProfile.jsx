@@ -54,9 +54,12 @@ const MyData = () => {
   } = user;
   const displayName = localStorage.getItem("displayName");
   const [editMode, setEditMode] = useState(false);
-  const palabras = displayName.split(" ");
+
+  const palabras = displayName !== null && displayName.split(" ");
+
   const primera_palabra = palabras[0];
-  const segunda_palabra = palabras[1];
+  // const segunda_palabra = palabras[1];
+
   const [editedName, setEditedName] = useState(user?.nombre || "");
 
   const [editedSurname, setEditedSurname] = useState(user?.apellido || "");
@@ -89,10 +92,10 @@ const MyData = () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "ml_default");
+      formData.append("upload_preset", "my_upload_preset");
 
       const response = await axios.post(
-        "https://api.cloudinary.com/v1_1/dzv1xau8l/upload",
+        "https://api.cloudinary.com/v1_1/da6d9ru3s/upload",
         formData
       );
       console.log("Imagen subida:", response.data.secure_url);
@@ -197,7 +200,11 @@ const MyData = () => {
       }
 
       setselectedUser(form);
-      dispatch(updateClientData(id, form));
+      const newUser = {
+        ...form,
+        imagen: imageUrl,
+      };
+      dispatch(updateClientData(id, newUser));
       alert("Client Data updated");
       setEditMode(false);
     } catch (error) {
@@ -217,11 +224,13 @@ const MyData = () => {
   };
   const newData = {
     nombre: primera_palabra,
-    apellido: segunda_palabra,
+    // apellido: segunda_palabra,
   };
+  // || editedSurname === ""
   useEffect(() => {
-    if (editedName === "" || editedSurname === "")
-      dispatch(updateClientData(user.id, newData));
+    if (displayName !== null) {
+      if (editedName === "") dispatch(updateClientData(user.id, newData));
+    }
   }, []);
   useEffect(() => {
     dispatch(getUserDataByEmail(emailCurrent));
@@ -334,6 +343,7 @@ const MyData = () => {
                   <FormControl isInvalid={!!error.nombre}>
                     <FormLabel fontFamily="Montserrat">First Name</FormLabel>
                     <Input
+                      mb="1em"
                       name="nombre"
                       type="text"
                       backgroundColor={"white"}
@@ -354,6 +364,7 @@ const MyData = () => {
                   <FormControl isInvalid={!!error.apellido}>
                     <FormLabel fontFamily="Montserrat">Surname</FormLabel>
                     <Input
+                      mb="1em"
                       isDisabled={false}
                       name="apellido"
                       type="text"
@@ -375,29 +386,12 @@ const MyData = () => {
 
                   <FormControl isInvalid={!!error.email}>
                     <FormLabel fontFamily="Montserrat">Email</FormLabel>
-                    <Input
-                      isDisabled={false}
-                      name="email"
-                      type="text"
-                      backgroundColor={"white"}
-                      value={form.email}
-                      fontFamily="Montserrat"
-                      onChange={(e) => changeHandler(e)}
-                      borderColor={
-                        editedEmail.length
-                          ? error.email
-                            ? "#e74c3c"
-                            : "#2ecc71"
-                          : "#52b3d3"
-                      }
-                      placeholder="Email"
-                    />
-                    <FormErrorMessage>{error.email}</FormErrorMessage>
-                  </FormControl>
+
 
                   <FormControl isInvalid={!!error.telefono}>
                     <FormLabel fontFamily="Montserrat">Phone</FormLabel>
                     <Input
+                      mb="1em"
                       isDisabled={false}
                       name="telefono"
                       type="number"
@@ -420,6 +414,7 @@ const MyData = () => {
                   <FormControl isInvalid={!!error.ciudad}>
                     <FormLabel fontFamily="Montserrat">City</FormLabel>
                     <Input
+                      mb="1em"
                       isDisabled={false}
                       name="ciudad"
                       type="text"
@@ -442,6 +437,7 @@ const MyData = () => {
                   <FormControl isInvalid={!!error.direccion}>
                     <FormLabel fontFamily="Montserrat">Address</FormLabel>
                     <Input
+                      mb="1em"
                       isDisabled={false}
                       name="direccion"
                       type="text"
@@ -463,6 +459,7 @@ const MyData = () => {
                 </form>
               </Box>
               <Input
+                mb="1em"
                 isDisabled={false}
                 type="file"
                 onChange={handleImageChange}

@@ -83,17 +83,20 @@ const OrderDetail = ({ order, cancelRef }) => {
       <AccordionItem
         textColor={"white"}
         fontWeight={"medium"}
-        bg={"#1d5c51"}
+        bg={"rgba(69, 123, 85, 0.8)"}
         borderRadius={"2xl"}
-        width={"100%"}
+        width={"70%"}
+        minWidth={"70%"}
         mb="1em"
       >
         <AccordionButton
+          height={"120px"}
           mb={2}
           boxShadow={"dark-lg"}
           borderRadius={"2xl"}
-          bg={"#1d5c59"}
+          bg={"rgba(69, 123, 85, 0.8)"}
           pt="1em"
+          minWidth={"90%"}
         >
           {/* CABEZERA DE LA ORDEN */}
           {/* <Stack
@@ -106,56 +109,37 @@ const OrderDetail = ({ order, cancelRef }) => {
           <Box>
             <Grid
               templateColumns={
-                estado !== "Cancelado" ? "repeat(2, 1fr)" : "1fr"
+                estado !== "Cancelado" ? "repeat(2,1fr)" : "repeat(2,1fr)"
               }
             >
               {" "}
-              <Box mb="2em">
-                {" "}
-                <Box
-                  as="span"
-                  flex="1"
-                  textAlign="left"
-                  fontWeight={"bold"}
-                  marginRight={"3em"}
-                  marginLeft={"3em"}
-                >
-                  Order {id}
-                </Box>
-                <Box
-                  as="span"
-                  flex="1"
-                  textAlign="left"
-                  fontWeight={"bold"}
-                  marginRight={"3em"}
-                >
-                  {fecha}
-                </Box>
-                <Box
-                  // paddingLeft={"40em"}
-                  as="span"
-                  flex="1"
-                  textAlign="left"
-                  fontWeight={"bold"}
-                  marginRight={"3em"}
-                >
-                  $ {importe}
-                </Box>
-              </Box>
-              {estado === "Pendiente" && (
-                <Box display="flex" justifyContent={"right"}>
-                  <Button
-                    colorScheme="red"
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      onOpen();
-                    }}
+              <Box mb="2em" display={"flex"} justifyContent={"left"} mr="5em">
+                <Grid templateColumns={"repeat(3,1fr)"} gap={4}>
+                  {" "}
+                  <Box
+                    as="span"
+                    flex="1"
+                    textAlign="left"
+                    fontWeight={"bold"}
+                    marginLeft={"2em"}
                   >
-                    Cancel Order
-                  </Button>
-                </Box>
-              )}
-              <Box ml="2em">
+                    Order {id}
+                  </Box>
+                  <Box as="span" flex="1" textAlign="left" fontWeight={"bold"}>
+                    {fecha}
+                  </Box>
+                  <Box
+                    // paddingLeft={"40em"}
+                    as="span"
+                    flex="1"
+                    textAlign="left"
+                    fontWeight={"bold"}
+                  >
+                    $ {importe}
+                  </Box>
+                </Grid>{" "}
+              </Box>
+              <Box maxWidth="100%" textOverflow="ellipsis" whiteSpace="nowrap">
                 <Stepper
                   size={stepperSize}
                   index={activeStep}
@@ -178,7 +162,7 @@ const OrderDetail = ({ order, cancelRef }) => {
                         </StepDescription>
                       </Box>
 
-                      <StepSeparator mr="2em">
+                      <StepSeparator>
                         <div
                           style={{
                             width: "50px",
@@ -192,6 +176,19 @@ const OrderDetail = ({ order, cancelRef }) => {
                 </Stepper>
               </Box>
             </Grid>
+            {estado === "Pendiente" && (
+              <Box display="flex" justifyContent={"right"}>
+                <Button
+                  colorScheme="red"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    onOpen();
+                  }}
+                >
+                  Cancel Order
+                </Button>
+              </Box>
+            )}
           </Box>
           {/* </Stack> */}
           {/* BOTON DE CANCELAR */}
