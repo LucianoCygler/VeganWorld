@@ -24,7 +24,7 @@ import {
 } from "../../redux/actions/actions";
 import Switch from "@mui/material/Switch";
 import { Box, FormControlLabel } from "@mui/material";
-
+import { Text } from "@chakra-ui/react";
 const RenderActions = (row) => {
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -37,10 +37,11 @@ const RenderActions = (row) => {
     setAnchorEl(null);
   };
 
-  const handleStatusChange = (row, estado) => {
+  const handleStatusChange = async (row, estado) => {
     const newOrder = { id: row.id, estado };
-    dispatch(updateOrder(newOrder));
+    await dispatch(updateOrder(newOrder));
     handleClose();
+    dispatch(getOrders());
   };
   if (row.estado === "Cancelado") {
     return null; // No renderizar el botón si el estado es "Cancelado"
@@ -48,7 +49,7 @@ const RenderActions = (row) => {
 
   return (
     <div>
-      <Button onClick={handleClick}>State</Button>
+      <Button onClick={handleClick}>Update</Button>
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem onClick={() => handleStatusChange(row, "Pendiente")}>
           Pending

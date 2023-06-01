@@ -171,7 +171,6 @@ const MyData = () => {
     setError(validations({ ...form, [property]: value }));
   };
 
-
   const handleCloseModal = () => {
     setShowModal(false);
   };
@@ -279,9 +278,7 @@ const MyData = () => {
       </Box>
       {!emailCurrent ? (
         <Container>
-          <Heading
-            fontFamily="Montserrat"
-          >
+          <Heading fontFamily="Montserrat">
             Hey, I see that you are trying to access your Profile, but to do so,
             you must first be logged in.
           </Heading>
@@ -333,7 +330,11 @@ const MyData = () => {
                   {" "}
                   Edit
                 </Text>{" "}
-                <Text fontWeight={"hairline"} display="inline" fontFamily="Montserrat">
+                <Text
+                  fontWeight={"hairline"}
+                  display="inline"
+                  fontFamily="Montserrat"
+                >
                   User
                 </Text>
                 <small>👤</small>
@@ -383,10 +384,9 @@ const MyData = () => {
                     />
                     <FormErrorMessage>{error.apellido}</FormErrorMessage>
                   </FormControl>
-
+                  {/* 
                   <FormControl isInvalid={!!error.email}>
-                    <FormLabel fontFamily="Montserrat">Email</FormLabel>
-
+                    <FormLabel fontFamily="Montserrat">Email</FormLabel> */}
 
                   <FormControl isInvalid={!!error.telefono}>
                     <FormLabel fontFamily="Montserrat">Phone</FormLabel>
@@ -469,7 +469,6 @@ const MyData = () => {
                 borderRadius="md"
                 value={form.imagen}
                 fontFamily="Montserrat"
-
                 p={2}
                 mt={"1.5rem"}
               />
@@ -564,37 +563,69 @@ const MyData = () => {
                   {nombre} {apellido}
                 </Heading>
               </Text>
-              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0,12)" fontFamily="Montserrat">
-                <p
+              <Text
+                color="white"
+                textShadow="2px 2px 4px rgba(0, 0, 0,12)"
                 fontFamily="Montserrat"
-                >
-                  <span style={{ fontWeight: "bold", fontFamily:"Montserrat", color: grey }}> Email: </span>
+              >
+                <p fontFamily="Montserrat">
+                  <span
+                    style={{
+                      fontWeight: "bold",
+                      fontFamily: "Montserrat",
+                      color: grey,
+                    }}
+                  >
+                    {" "}
+                    Email:{" "}
+                  </span>
                   {email}
                 </p>
               </Text>
               <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
-                <p
-                fontFamily="Montserrat"
-                >
-                  <span style={{ fontWeight: "bold", fontFamily:"Montserrat", color: grey  }}> Phone Number: </span>
+                <p fontFamily="Montserrat">
+                  <span
+                    style={{
+                      fontWeight: "bold",
+                      fontFamily: "Montserrat",
+                      color: grey,
+                    }}
+                  >
+                    {" "}
+                    Phone Number:{" "}
+                  </span>
                   {telefono}
                 </p>
               </Text>
               <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
                 {" "}
-                <p
-                fontFamily="Montserrat"
-                >
-                  <span style={{ fontWeight: "bold", fontFamily:"Montserrat", color: grey  }}> City: </span>
+                <p fontFamily="Montserrat">
+                  <span
+                    style={{
+                      fontWeight: "bold",
+                      fontFamily: "Montserrat",
+                      color: grey,
+                    }}
+                  >
+                    {" "}
+                    City:{" "}
+                  </span>
                   {ciudad}
                 </p>
               </Text>
               <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
                 {" "}
-                <p
-                fontFamily="Montserrat"
-                >
-                  <span style={{ fontWeight: "bold", fontFamily:"Montserrat", color: grey  }}> Address: </span>
+                <p fontFamily="Montserrat">
+                  <span
+                    style={{
+                      fontWeight: "bold",
+                      fontFamily: "Montserrat",
+                      color: grey,
+                    }}
+                  >
+                    {" "}
+                    Address:{" "}
+                  </span>
                   {direccion}
                 </p>
               </Text>
