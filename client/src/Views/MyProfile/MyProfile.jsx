@@ -51,8 +51,13 @@ const MyData = () => {
     id,
     imagen,
   } = user;
+  const displayName = localStorage.getItem("displayName");
   const [editMode, setEditMode] = useState(false);
+  const palabras = displayName.split(" ");
+  const primera_palabra = palabras[0];
+  const segunda_palabra = palabras[1];
   const [editedName, setEditedName] = useState(user?.nombre || "");
+
   const [editedSurname, setEditedSurname] = useState(user?.apellido || "");
   const [editedEmail, setEditedEmail] = useState(user?.email || "");
   const [editedPhone, setEditedPhone] = useState(user?.telefono || "");
@@ -70,7 +75,7 @@ const MyData = () => {
     telefono: editedPhone,
     ciudad: editedCity,
     direccion: editedAddress,
-    imagen: profileImage
+    imagen: profileImage,
   };
 
   const emailCurrent = localStorage.getItem("email");
@@ -162,8 +167,6 @@ const MyData = () => {
     setError(validations({ ...form, [property]: value }));
   };
 
- 
-
   const handleCloseModal = () => {
     setShowModal(false);
   };
@@ -199,7 +202,7 @@ const MyData = () => {
       alert("Error al guardar los datos del cliente");
     }
   };
-  
+
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -210,7 +213,14 @@ const MyData = () => {
       reader.readAsDataURL(file);
     }
   };
-
+  const newData = {
+    nombre: primera_palabra,
+    apellido: segunda_palabra,
+  };
+  useEffect(() => {
+    if (editedName === "" || editedSurname === "")
+      dispatch(updateClientData(user.id, newData));
+  }, []);
   useEffect(() => {
     dispatch(getUserDataByEmail(emailCurrent));
   }, [emailCurrent]);
@@ -435,7 +445,7 @@ const MyData = () => {
                     />
                     <FormErrorMessage>{error.direccion}</FormErrorMessage>
                   </FormControl>
-                  </form>
+                </form>
               </Box>
               <Input
                 isDisabled={false}
@@ -459,7 +469,7 @@ const MyData = () => {
                   color: "rgb(214, 187, 187)",
                 }}
                 onClick={handleSaveUser}
-                >
+              >
                 Save Data
               </Button>
             </Box>
