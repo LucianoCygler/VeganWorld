@@ -53,9 +53,12 @@ const MyData = () => {
   } = user;
   const displayName = localStorage.getItem("displayName");
   const [editMode, setEditMode] = useState(false);
-  const palabras = displayName.split(" ");
+
+  const palabras = displayName !== null && displayName.split(" ");
+
   const primera_palabra = palabras[0];
-  const segunda_palabra = palabras[1];
+  // const segunda_palabra = palabras[1];
+
   const [editedName, setEditedName] = useState(user?.nombre || "");
 
   const [editedSurname, setEditedSurname] = useState(user?.apellido || "");
@@ -88,10 +91,10 @@ const MyData = () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "ml_default");
+      formData.append("upload_preset", "my_upload_preset");
 
       const response = await axios.post(
-        "https://api.cloudinary.com/v1_1/dzv1xau8l/upload",
+        "https://api.cloudinary.com/v1_1/da6d9ru3s/upload",
         formData
       );
       console.log("Imagen subida:", response.data.secure_url);
@@ -195,7 +198,11 @@ const MyData = () => {
       }
 
       setselectedUser(form);
-      dispatch(updateClientData(id, form));
+      const newUser = {
+        ...form,
+        imagen: imageUrl,
+      };
+      dispatch(updateClientData(id, newUser));
       alert("Client Data updated");
       setEditMode(false);
     } catch (error) {
@@ -215,11 +222,13 @@ const MyData = () => {
   };
   const newData = {
     nombre: primera_palabra,
-    apellido: segunda_palabra,
+    // apellido: segunda_palabra,
   };
+  // || editedSurname === ""
   useEffect(() => {
-    if (editedName === "" || editedSurname === "")
-      dispatch(updateClientData(user.id, newData));
+    if (displayName !== null) {
+      if (editedName === "") dispatch(updateClientData(user.id, newData));
+    }
   }, []);
   useEffect(() => {
     dispatch(getUserDataByEmail(emailCurrent));
