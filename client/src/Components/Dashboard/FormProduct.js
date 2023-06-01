@@ -35,14 +35,14 @@ const uploadImage = async (file) => {
 export default function FormProducts() {
 	const fileInputRef = useRef(null);
 	const dispatch = useDispatch();
-	const { productsAdmin, deleteProduct } = useSelector((state) => state);
+	const { productsAdmin, deleteProduct, updatedProduct } = useSelector((state) => state);
 	const productsType = [
 		...new Set(productsAdmin.map((product) => product.tipo)),
 	];
 
 	useEffect(() => {
 		dispatch(getAllProductsAdmin());
-	}, [deleteProduct]);
+	}, [deleteProduct,updatedProduct]);
 
 	const [product, setProduct] = useState({
 		nombre: "",
@@ -147,7 +147,10 @@ export default function FormProducts() {
 							textAlign: "left",
 							fontWeight: "bold",
 							padding: "1rem",
-							// color: "whitesmoke",
+							marginBottom:3,
+							color: "whitesmoke",
+							bgcolor: "#319795",
+							width:1
 						}}
 					>
 						<Typography variant="h5">Create a new product</Typography>
