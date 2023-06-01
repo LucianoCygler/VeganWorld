@@ -70,12 +70,13 @@ function NavBar() {
               fontWeight={"semibold"}
               display={"inline"}
               color={"lightseagreen"}
-              marginRight={-2}
+              marginRight={-3}
+              fontFamily="Montserrat"
             >
               {" "}
               Vegan
             </Text>{" "}
-            <Text display="inline">World!</Text>
+            <Text display="inline" fontFamily="Montserrat">World!</Text>
           </h1>
         </NavLink>
       </div>

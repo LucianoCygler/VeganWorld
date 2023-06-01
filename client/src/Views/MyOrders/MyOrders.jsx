@@ -74,6 +74,7 @@ const MyOrders = () => {
         bgPosition={"center"}
         minH={"100vh"}
         display={"flex"}
+        fontFamily="Montserrat"
         justifyContent={"center"}
       >
         {" "}
@@ -81,17 +82,20 @@ const MyOrders = () => {
           variant="enclosed-colored"
           w={"100%"}
           mt={"8em"}
+          fontFamily="Montserrat"
           // shadow={"lg"}
         >
           <Box
             marginBottom={"5em"}
             display={"flex"}
             justifyContent={"center"}
+            fontFamily="Montserrat"
             mt="2em"
           >
             <Text
               fontSize={"30px"}
               color="white"
+              fontFamily="Montserrat"
               textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
               position="relative"
             >
@@ -100,6 +104,7 @@ const MyOrders = () => {
                 as="span"
                 position="absolute"
                 left={"1%"}
+                fontFamily="Montserrat"
                 bottom={-5} // Ajusta este valor según el espaciado deseado
                 width="100%"
                 height="3px"
@@ -108,16 +113,16 @@ const MyOrders = () => {
             </Text>
           </Box>
           <TabList color={"green.800"}>
-            <Tab fontWeight={"extrabold"} color={"teal"}>
+            <Tab fontFamily="Montserrat" fontWeight={"extrabold"} color={"teal"}>
               Pending
             </Tab>
 
             {/* <Tab fontWeight={"extrabold"}>In Progress</Tab>
             <Tab fontWeight={"extrabold"}>Delivered</Tab> */}
-            <Tab fontWeight={"extrabold"} color={"teal"}>
+            <Tab fontFamily="Montserrat" fontWeight={"extrabold"} color={"teal"}>
               Cancelled
             </Tab>
-            <Tab fontWeight={"extrabold"} color={"teal"}>
+            <Tab fontFamily="Montserrat" fontWeight={"extrabold"} color={"teal"}>
               Finished
             </Tab>
           </TabList>
@@ -126,7 +131,7 @@ const MyOrders = () => {
             <TabPanel>
               {/* PENDING */}
               {/* Aca debajo se rendiza los TabPanels con un map de la cantidad de ordenes */}
-              <Accordion allowMultiple w={"100%"}>
+              <Accordion allowMultiple w={"100%"} fontFamily="Montserrat">
                 {clientOrders.map((order, index) => {
                   if (
                     order.estado === "Pendiente" ||
@@ -134,7 +139,7 @@ const MyOrders = () => {
                     order.estado === "Envío"
                   ) {
                     return (
-                      <Box key={index}>
+                      <Box fontFamily="Montserrat" key={index}>
                         <OrderDetail order={order} cancelRef={cancelRef} />
                       </Box>
                     );
@@ -207,6 +212,7 @@ const MyOrders = () => {
                     order.estado === "Cancelado" && (
                       <OrderDetail
                         order={order}
+                        fontFamily="Montserrat"
                         cancelRef={cancelRef}
                         state={order.estado}
                         //   client_id={client_id}
@@ -217,12 +223,13 @@ const MyOrders = () => {
               </Accordion>
             </TabPanel>{" "}
             <TabPanel>
-              <Accordion allowMultiple>
+              <Accordion allowMultiple fontFamily="Montserrat">
                 {clientOrders.map((order, index) => {
                   return (
                     order.estado === "Finalizado" && (
                       <OrderDetail
                         order={order}
+                        fontFamily="Montserrat"
                         cancelRef={cancelRef}
                         state={order.estado}
                         //   client_id={client_id}

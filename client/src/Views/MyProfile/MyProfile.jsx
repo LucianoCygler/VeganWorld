@@ -35,6 +35,7 @@ import { sendEmail } from "../../redux/actions/actions";
 
 import axios from "axios";
 import { Container } from "react-bootstrap";
+import { grey } from "@mui/material/colors";
 
 const MyData = () => {
   const dispatch = useDispatch();
@@ -162,7 +163,7 @@ const MyData = () => {
     setError(validations({ ...form, [property]: value }));
   };
 
- 
+
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -199,7 +200,7 @@ const MyData = () => {
       alert("Error al guardar los datos del cliente");
     }
   };
-  
+
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -242,13 +243,14 @@ const MyData = () => {
           color="white"
           textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
           position="relative"
+          fontFamily="Montserrat"
         >
           PROFILE
           <Text
             as="span"
             position="absolute"
             left={"1%"}
-            bottom={-5} // Ajusta este valor según el espaciado deseado
+            bottom={-5}
             width="100%"
             height="3px"
             background="orange"
@@ -257,7 +259,9 @@ const MyData = () => {
       </Box>
       {!emailCurrent ? (
         <Container>
-          <Heading>
+          <Heading
+            fontFamily="Montserrat"
+          >
             Hey, I see that you are trying to access your Profile, but to do so,
             you must first be logged in.
           </Heading>
@@ -266,6 +270,7 @@ const MyData = () => {
             shadow="2px 2px 4px rgba(0, 0, 0, 0.6)"
             type="submit"
             mt="1rem"
+            fontFamily="Montserrat"
             _hover={{
               backgroundColor: "#1c6758",
               color: "rgb(214, 187, 187)",
@@ -287,6 +292,7 @@ const MyData = () => {
               margin="auto"
               borderRadius={50}
               paddingBottom="2em"
+              fontFamily="Montserrat"
             >
               <Heading
                 padding={"0.5em"}
@@ -295,17 +301,19 @@ const MyData = () => {
                 mb="1rem"
                 color={"white"}
                 textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                fontFamily="Montserrat"
               >
                 <Text
                   fontWeight={"semibold"}
                   display={"inline"}
                   color={"lightseagreen"}
                   marginRight={-2}
+                  fontFamily="Montserrat"
                 >
                   {" "}
                   Edit
                 </Text>{" "}
-                <Text fontWeight={"hairline"} display="inline">
+                <Text fontWeight={"hairline"} display="inline" fontFamily="Montserrat">
                   User
                 </Text>
                 <small>👤</small>
@@ -313,12 +321,13 @@ const MyData = () => {
               <Box>
                 <form id="fm" onSubmit={handleSaveUser}>
                   <FormControl isInvalid={!!error.nombre}>
-                    <FormLabel>First Name</FormLabel>
+                    <FormLabel fontFamily="Montserrat">First Name</FormLabel>
                     <Input
                       name="nombre"
                       type="text"
                       backgroundColor={"white"}
                       value={form.nombre}
+                      fontFamily="Montserrat"
                       onChange={(e) => changeHandler(e)}
                       borderColor={
                         editedName.length
@@ -332,13 +341,14 @@ const MyData = () => {
                     <FormErrorMessage>{error.nombre}</FormErrorMessage>
                   </FormControl>
                   <FormControl isInvalid={!!error.apellido}>
-                    <FormLabel>Surname</FormLabel>
+                    <FormLabel fontFamily="Montserrat">Surname</FormLabel>
                     <Input
                       isDisabled={false}
                       name="apellido"
                       type="text"
                       backgroundColor={"white"}
                       value={form.apellido}
+                      fontFamily="Montserrat"
                       onChange={(e) => changeHandler(e)}
                       borderColor={
                         editedSurname.length
@@ -353,13 +363,14 @@ const MyData = () => {
                   </FormControl>
 
                   <FormControl isInvalid={!!error.email}>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel fontFamily="Montserrat">Email</FormLabel>
                     <Input
                       isDisabled={false}
                       name="email"
                       type="text"
                       backgroundColor={"white"}
                       value={form.email}
+                      fontFamily="Montserrat"
                       onChange={(e) => changeHandler(e)}
                       borderColor={
                         editedEmail.length
@@ -374,13 +385,14 @@ const MyData = () => {
                   </FormControl>
 
                   <FormControl isInvalid={!!error.telefono}>
-                    <FormLabel>Phone</FormLabel>
+                    <FormLabel fontFamily="Montserrat">Phone</FormLabel>
                     <Input
                       isDisabled={false}
                       name="telefono"
                       type="number"
                       backgroundColor={"white"}
                       value={form.telefono}
+                      fontFamily="Montserrat"
                       onChange={(e) => changeHandler(e)}
                       borderColor={
                         editedPhone.length
@@ -395,13 +407,14 @@ const MyData = () => {
                   </FormControl>
 
                   <FormControl isInvalid={!!error.ciudad}>
-                    <FormLabel>City</FormLabel>
+                    <FormLabel fontFamily="Montserrat">City</FormLabel>
                     <Input
                       isDisabled={false}
                       name="ciudad"
                       type="text"
                       backgroundColor={"white"}
                       value={form.ciudad}
+                      fontFamily="Montserrat"
                       onChange={(e) => changeHandler(e)}
                       borderColor={
                         editedCity.length
@@ -416,13 +429,14 @@ const MyData = () => {
                   </FormControl>
 
                   <FormControl isInvalid={!!error.direccion}>
-                    <FormLabel>Address</FormLabel>
+                    <FormLabel fontFamily="Montserrat">Address</FormLabel>
                     <Input
                       isDisabled={false}
                       name="direccion"
                       type="text"
                       backgroundColor={"white"}
                       value={form.direccion}
+                      fontFamily="Montserrat"
                       onChange={(e) => changeHandler(e)}
                       borderColor={
                         editedAddress.length
@@ -435,7 +449,7 @@ const MyData = () => {
                     />
                     <FormErrorMessage>{error.direccion}</FormErrorMessage>
                   </FormControl>
-                  </form>
+                </form>
               </Box>
               <Input
                 isDisabled={false}
@@ -446,6 +460,7 @@ const MyData = () => {
                 borderColor="gray.200"
                 borderRadius="md"
                 value={form.imagen}
+                fontFamily="Montserrat"
                 p={2}
                 mt={"1.5rem"}
               />
@@ -454,12 +469,13 @@ const MyData = () => {
                 shadow="2px 2px 4px rgba(0, 0, 0, 0.6)"
                 type="submit"
                 mt="1rem"
+                fontFamily="Montserrat"
                 _hover={{
                   backgroundColor: "#1c6758",
                   color: "rgb(214, 187, 187)",
                 }}
                 onClick={handleSaveUser}
-                >
+              >
                 Save Data
               </Button>
             </Box>
@@ -470,6 +486,7 @@ const MyData = () => {
               w="40%"
               margin="auto"
               borderRadius={50}
+              fontFamily="Montserrat"
               paddingBottom={"2em"}
             >
               {/* <Heading
@@ -504,6 +521,7 @@ const MyData = () => {
                   margin={"auto"}
                   marginBottom={"3em"}
                   mt="3em"
+                  fontFamily="Montserrat"
                 />
               ) : (
                 <Box w={"30%"} margin={"auto"} marginBottom={"3em"}>
@@ -516,6 +534,7 @@ const MyData = () => {
                     src={imagen}
                     margin={"auto"}
                     marginBottom={"3em"}
+                    fontFamily="Montserrat"
                   />
                 </Box>
               )}
@@ -523,6 +542,7 @@ const MyData = () => {
                 color="white"
                 textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
                 marginBottom={"2em"}
+                fontFamily="Montserrat"
               >
                 {" "}
                 <Heading
@@ -530,33 +550,42 @@ const MyData = () => {
                   as="h1"
                   color={"white"}
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                  fontFamily="Montserrat"
                 >
                   {nombre} {apellido}
                 </Heading>
               </Text>
-              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0,12)">
-                <p>
-                  <span style={{ fontWeight: "bold" }}> Email: </span>
+              <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0,12)" fontFamily="Montserrat">
+                <p
+                fontFamily="Montserrat"
+                >
+                  <span style={{ fontWeight: "bold", fontFamily:"Montserrat", color: grey }}> Email: </span>
                   {email}
                 </p>
               </Text>
               <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
-                <p>
-                  <span style={{ fontWeight: "bold" }}> Phone Number: </span>
+                <p
+                fontFamily="Montserrat"
+                >
+                  <span style={{ fontWeight: "bold", fontFamily:"Montserrat", color: grey  }}> Phone Number: </span>
                   {telefono}
                 </p>
               </Text>
               <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
                 {" "}
-                <p>
-                  <span style={{ fontWeight: "bold" }}> City: </span>
+                <p
+                fontFamily="Montserrat"
+                >
+                  <span style={{ fontWeight: "bold", fontFamily:"Montserrat", color: grey  }}> City: </span>
                   {ciudad}
                 </p>
               </Text>
               <Text color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 12)">
                 {" "}
-                <p>
-                  <span style={{ fontWeight: "bold" }}> Address: </span>
+                <p
+                fontFamily="Montserrat"
+                >
+                  <span style={{ fontWeight: "bold", fontFamily:"Montserrat", color: grey  }}> Address: </span>
                   {direccion}
                 </p>
               </Text>
@@ -565,6 +594,7 @@ const MyData = () => {
                 shadow="2px 2px 4px rgba(0, 0, 0, 0.6)"
                 type="submit"
                 mt="1rem"
+                fontFamily="Montserrat"
                 _hover={{
                   backgroundColor: "#1c6758",
                   color: "rgb(214, 187, 187)",

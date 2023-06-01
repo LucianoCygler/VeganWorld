@@ -135,11 +135,12 @@ const ContactUs = () => {
                 display={"inline"}
                 color={"lightseagreen"}
                 marginRight={-2}
+                fontFamily="Montserrat"
               >
                 {" "}
                 Visit
               </Text>{" "}
-              <Text fontWeight={"hairline"} display="inline">
+              <Text fontWeight={"hairline"} display="inline" fontFamily="Montserrat">
                 Us!
               </Text>
               <small>📍</small>
@@ -163,6 +164,7 @@ const ContactUs = () => {
               as="h1"
               color={"white"}
               textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+              fontFamily="Montserrat"
             >
               👇🏽 or send us an email below 👇🏽
             </Heading>
@@ -173,6 +175,7 @@ const ContactUs = () => {
                     htmlFor="name"
                     color={"black"}
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                    fontFamily="Montserrat"
                   >
                     Name:
                   </FormLabel>
@@ -181,6 +184,7 @@ const ContactUs = () => {
                     type="text"
                     backgroundColor={"white"}
                     value={form.name}
+                    fontFamily="Montserrat"
                     onChange={(e) => changeHandler(e)}
                     borderColor={
                       form.name.length
@@ -200,6 +204,7 @@ const ContactUs = () => {
                     htmlFor="email"
                     color={"black"}
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                    fontFamily="Montserrat"
                   >
                     Email:
                   </FormLabel>
@@ -208,6 +213,7 @@ const ContactUs = () => {
                     type="text"
                     backgroundColor={"white"}
                     value={form.email}
+                    fontFamily="Montserrat"
                     onChange={(e) => changeHandler(e)}
                     borderColor={
                       form.email.length
@@ -229,6 +235,7 @@ const ContactUs = () => {
                     htmlFor="textContainer"
                     color={"black"}
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                    fontFamily="Montserrat"
                   >
                     Comment:
                   </FormLabel>
@@ -238,6 +245,7 @@ const ContactUs = () => {
                     name="textContainer"
                     type="text"
                     value={form.textContainer}
+                    fontFamily="Montserrat"
                     onChange={(e) => changeHandler(e)}
                     borderColor={
                       form.textContainer.length
@@ -259,6 +267,7 @@ const ContactUs = () => {
               shadow="2px 2px 4px rgba(0, 0, 0, 0.6)"
               type="submit"
               mt="1rem"
+              fontFamily="Montserrat"
               _hover={{
                 backgroundColor: "#1c6758",
                 color: "rgb(214, 187, 187)",

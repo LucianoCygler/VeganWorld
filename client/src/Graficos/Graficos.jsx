@@ -9,9 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOrders } from "../redux/actions/actions";
 import axios from "axios";
 
-ChartJs.register( CategoryScale, PointElement, LineElement, RadialLinearScale, ArcElement, LinearScale, BarElement, Title, Tooltip, Legend );
+ChartJs.register(CategoryScale, PointElement, LineElement, RadialLinearScale, ArcElement, LinearScale, BarElement, Title, Tooltip, Legend);
 
-export const labels = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+export const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 //! USUARIOS !//
 
@@ -110,11 +110,11 @@ export default function Graficos() {
   const dispatch = useDispatch();
   const importe = useSelector((state) => state.allOrders);
   const [sumImport, setSumImport] = useState(0);
-  
+
   useEffect(() => {
     dispatch(getOrders());
   }, []);
-  
+
   useEffect(() => {
     const totalImport = importe.map((order) => Number(order.importe));
     const newSumImport = totalImport.reduce((total, imp) => total + imp, 0);
@@ -144,12 +144,12 @@ export default function Graficos() {
 
   useEffect(() => {
     axios.get("/client")
-    .then(response => {
-      setUserCount(response.data.length);
-    })
-    .catch(error => {
-      console.log(error);
-    });
+      .then(response => {
+        setUserCount(response.data.length);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }, []);
 
   const handleClickUsers = () => {
@@ -166,31 +166,31 @@ export default function Graficos() {
     totalUsersRegister = [];
     localStorage.removeItem("datosUsuarios");
   }
-  
+
   //! GRAFICO USUARIOS !//
 
   //? GRAFICO REVIEWS ?//
 
-  
+
 
   return (
     <Grid container spacing={2}>
       <Grid sm={12} xs={12} md={10} lg={10} sx={{ minHeight: [200, 300, 400, 600] }}>
-        <Box display={"flex"} justifyContent={"flex-end"} marginLeft={"120px"} sx={{ minHeight: [200, 300, 400, 600] }}>
-        <Bar options={optionsBox} data={dataBox} responsive={true} maintainAspectRatio={false} />
+        <Box display={"flex"} justifyContent={"flex-end"} marginLeft={"120px"} sx={{ minHeight: [200, 300, 400, 600], fontFamily: "Montserrat" }}>
+          <Bar options={optionsBox} data={dataBox} responsive={true} maintainAspectRatio={false} />
           <Box display={"flex"} flexDirection={"column"} position={"relative"} left={"100px"} gap={"15px"}>
-            <Text whiteSpace={"nowrap"} color={"rgba(255, 7, 7, 0.87)"}>Actualy amount:</Text>
-            <Text display={"flex"} fontSize={"30px"} whiteSpace={"nowrap"} color={"rgb(255, 99, 132)"}>${sumImport}</Text>
-            <Button onClick={handleClick} variant="contained" >Send amount!</Button>
-            <Button onClick={handleReset} variant="contained" color="error">Reset graph</Button>
+            <Text whiteSpace={"nowrap"} color={"rgba(255, 7, 7, 0.87)"} fontFamily="Montserrat">Current amount:</Text>
+            <Text display={"flex"} fontSize={"30px"} whiteSpace={"nowrap"} color={"rgb(255, 99, 132)"} fontFamily="Montserrat">${sumImport}</Text>
+            <Button onClick={handleClick} variant="contained" fontFamily="Montserrat">Send amount!</Button>
+            <Button onClick={handleReset} variant="contained" color="error" fontFamily="Montserrat">Reset graph</Button>
           </Box>
         </Box>
       </Grid>
       <Grid sm={12} xs={12} md={6} lg={6} sx={{ minHeight: [200, 300, 400, 600] }}>
-        <Box display={"flex"} flexDirection={"column"} gap={"15px"}>
+        <Box display={"flex"} flexDirection={"column"} gap={"15px"} fontFamily="Montserrat">
           <Line options={optionsLine} data={dataLine} responsive={true} maintainAspectRatio={false} height={"250px"} />
-          <Button onClick={handleClickUsers} variant="contained">Send clients!</Button>
-          <Button onClick={handleResetUsers} variant="contained" color="error">Reset graph</Button>
+          <Button onClick={handleClickUsers} variant="contained" fontFamily="Montserrat">Send clients!</Button>
+          <Button onClick={handleResetUsers} variant="contained" color="error" fontFamily="Montserrat">Reset graph</Button>
         </Box>
       </Grid>
       <Grid sm={12} xs={12} md={6} lg={6} sx={{ minHeight: [200, 300, 400, 600] }}>

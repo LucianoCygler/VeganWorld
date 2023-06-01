@@ -121,41 +121,44 @@ const CreatePageReview = () => {
           color="white"
           textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
           position="relative"
+          fontFamily="Montserrat"
         >
           MY PAGE REVIEW
           <Text
             as="span"
             position="absolute"
             left={"1%"}
-            bottom={-5} // Ajusta este valor según el espaciado deseado
+            bottom={-5} 
             width="100%"
             height="3px"
             background="orange"
+            fontFamily="Montserrat"
           />
         </Text>
       </Box>
       {clientPageReview ? (
-        <Box display="flex" justifyContent={"center"} paddingTop={"2em"}>
+        <Box display="flex" fontFamily="Montserrat" justifyContent={"center"} paddingTop={"2em"}>
           <Card
             marginRight="2em"
             marginTop={"2em"}
             padding={"2em"}
+            fontFamily="Montserrat"
             minWidth={"10%"}
             width={{ base: "30%", md: "30%", lg: "30%", xl: "20%" }}
             overflow={"hidden"}
           >
             <Grid templateColumns={"repeat(2,1fr)"}>
-              <Box marginBottom={"2em"} display="flex" justifyContent={"left"}>
+              <Box marginBottom={"2em"} display="flex" fontFamily="Montserrat" justifyContent={"left"}>
                 <Avatar src={clientPageReview.cliente_imagen} size="xl" />
               </Box>
               <Box>
                 {" "}
-                <Box display={"flex"} justifyContent={"center"}>
-                  <Text fontWeight={"semibold"} color={"#3eb86b"}>
+                <Box display={"flex"} fontFamily="Montserrat" justifyContent={"center"}>
+                  <Text fontFamily="Montserrat" fontWeight={"semibold"} color={"#3eb86b"}>
                     {clientPageReview.cliente_nombre}
                   </Text>
                 </Box>
-                <Box display={"flex"} justifyContent={"center"}>
+                <Box display={"flex"} fontFamily="Montserrat" justifyContent={"center"}>
                   {editing ? (
                     <Input
                       type="text"
@@ -169,7 +172,7 @@ const CreatePageReview = () => {
                     </Text>
                   )}
                 </Box>
-                <Box display={"flex"} justifyContent={"center"}>
+                <Box display={"flex"} fontFamily="Montserrat" justifyContent={"center"}>
                   {editing ? (
                     <Textarea
                       type="text"
@@ -177,6 +180,7 @@ const CreatePageReview = () => {
                       value={input.descripcion}
                       maxHeight="300px"
                       minHeight={"300px"}
+                      fontFamily="Montserrat"
                       onChange={handleChange}
                       height={"6em"}
                     />
@@ -185,6 +189,7 @@ const CreatePageReview = () => {
                       fontSize={"14px"}
                       whiteSpace="pre-wrap"
                       wordWrap="break-word"
+                      fontFamily="Montserrat"
                     >
                       {clientPageReview.descripcion}
                     </Text>
@@ -196,6 +201,7 @@ const CreatePageReview = () => {
                   position={"absolute"}
                   right="1em"
                   bottom={"-0.7em"}
+                  fontFamily="Montserrat"
                 >
                   <Text color="grey" fontSize={"10px"}>
                     {clientPageReview.fecha}
@@ -205,20 +211,21 @@ const CreatePageReview = () => {
             </Grid>
             {editing ? (
               <Box>
-                <Button ml={2} mt="1em" size="sm" onClick={handleSaveReview}>
+                <Button ml={2} mt="1em" fontFamily="Montserrat" size="sm" onClick={handleSaveReview}>
                   Save
                 </Button>
                 <Button
                   ml={2}
                   mt="1em"
                   size="sm"
+                  fontFamily="Montserrat"
                   onClick={() => setEditing(false)}
                 >
                   Cancel
                 </Button>{" "}
               </Box>
             ) : (
-              <Button ml={2} size="sm" onClick={handleEdit}>
+              <Button ml={2} size="sm" fontFamily="Montserrat" onClick={handleEdit}>
                 Edit Review
               </Button>
             )}
@@ -226,17 +233,19 @@ const CreatePageReview = () => {
           <Box> </Box>
         </Box>
       ) : (
-        <Box mt="6em" display={"flex"} justifyContent={"center"}>
+        <Box mt="6em" fontFamily="Montserrat" display={"flex"} justifyContent={"center"}>
           <Box
             bg="rgba(216, 216, 216, 0.9)"
             shadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
             w="25%"
             borderRadius={50}
             padding={"2em"}
+            fontFamily="Montserrat"
           >
             <Heading
               marginBottom={"2em"}
               color="white"
+              fontFamily="Montserrat"
               textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
             >
               Leave your review!
@@ -245,6 +254,7 @@ const CreatePageReview = () => {
               <Box>
                 <FormLabel
                   color="white"
+                  fontFamily="Montserrat"
                   textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
                 >
                   Title:{" "}
@@ -253,6 +263,7 @@ const CreatePageReview = () => {
                   bg={"whiteAlpha.800"}
                   type="text"
                   name="titulo"
+                  fontFamily="Montserrat"
                   mb="2em"
                   onChange={handleChange}
                 ></Input>
@@ -262,6 +273,7 @@ const CreatePageReview = () => {
                 {" "}
                 <FormLabel
                   color="white"
+                  fontFamily="Montserrat"
                   textShadow="2px 2px 4px rgba(0, 0, 0, 12)"
                 >
                   Description:{" "}
@@ -272,6 +284,7 @@ const CreatePageReview = () => {
                   type="text"
                   name="descripcion"
                   height={"6em"}
+                  fontFamily="Montserrat"
                   maxHeight={"8em"}
                   minHeight={"8em"}
                   onChange={handleChange}
@@ -279,14 +292,14 @@ const CreatePageReview = () => {
                 {/* <Text>{error.descripcion}</Text> */}
               </Box>
               {error.titulo || error.descripcion ? (
-                <Box marginTop={"1em"}>
-                  <Text fontSize={"12px"} color={"red"}>
+                <Box  fontFamily="Montserrat" marginTop={"1em"}>
+                  <Text fontSize={"12px"} fontFamily="Montserrat" color={"red"}>
                     Please, complete all the fields.
                   </Text>
                 </Box>
               ) : (
-                <Box marginTop={"3em"}>
-                  <Button type="submit" colorScheme="teal">
+                <Box fontFamily="Montserrat" marginTop={"3em"}>
+                  <Button type="submit" fontFamily="Montserrat" colorScheme="teal">
                     Create
                   </Button>
                 </Box>
