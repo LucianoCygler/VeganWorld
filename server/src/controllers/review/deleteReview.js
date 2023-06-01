@@ -6,7 +6,7 @@ const deleteReview = async (id, data) => {
     throw new Error(`No se encontró ningun review con el id ${id}`);
   }
   await review.update(data);
-  await review.destroy({ force: false });
+  await review.destroy({ force: true });
   return `El Review con el id ${id} fue eliminado correctamente `;
 };
 
