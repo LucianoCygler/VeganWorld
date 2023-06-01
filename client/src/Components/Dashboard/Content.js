@@ -23,6 +23,10 @@ export default function Content() {
           margin: "auto",
           overflow: "hidden",
           padding: 4,
+
+          fontFamily: "Montserrat",
+          // backgroundColor: "#9799a6",
+
           // backgroundColor: "#ffe6aa",
         }}
       >
@@ -30,8 +34,8 @@ export default function Content() {
         {Products && <FormProducts />}
         {Reviews && <ReviewsDashboard />}
         {Graph && <Graficos />}
-        {Orders && <DashOrders />}
-        {OrderTest && <OrderTestComponent />}
+        {/* {Orders && <DashOrders />} */}
+        {Orders && <OrderTestComponent />}
       </Paper>
     </Grid>
   );

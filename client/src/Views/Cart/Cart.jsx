@@ -102,7 +102,7 @@ function Cart() {
           //, an E-mail has been sent to your address with the order details.
           Pop_up(
             "success",
-            "Order Ceated",
+            "Order Created",
             `You can find your orders in MyOrders!`,
             "top"
           );
@@ -213,9 +213,10 @@ function Cart() {
       minH={"100vh"}
       display={"flex"}
       justifyContent={"center"}
+      fontFamily="Montserrat"
     >
       {isLoading ? (
-        <Box paddingTop={"30em"}>
+        <Box paddingTop={"30em"} fontFamily="Montserrat">
           <div class="loading">
             <div class="d1"></div>
             <div class="d2"></div>
@@ -243,25 +244,27 @@ function Cart() {
             </Text>
           </Box> */}
           {cart !== null && updateCart.length > 0 ? (
-            <Box w="100%" paddingTop={"10em"}>
+            <Box w="100%" paddingTop={"10em"} fontFamily="Montserrat">
               {updateCart.map((product, index) => {
                 return (
                   <Box>
-                    <Box display={"flex"} justifyContent={"center"}>
+                    <Box display={"flex"} justifyContent={"center"} fontFamily="Montserrat">
                       <Card
                         w={"90%"}
                         borderRadius={0}
                         borderBottom={"1px"}
                         borderColor={"grey"}
+                        fontFamily="Montserrat"
                       >
                         <CardBody>
                           <Grid
                             templateColumns={"repeat(6,1fr)"}
                             alignItems={"center"}
                             justifyContent={"space-around"}
+                            fontFamily="Montserrat"
                           >
                             {" "}
-                            <Box display={"flex"} justifyContent={"center"}>
+                            <Box display={"flex"} justifyContent={"center"} fontFamily="Montserrat">
                               <NavLink
                                 to={`/Detail/${product.id}`}
                                 style={{ textDecoration: "none" }}
@@ -272,10 +275,11 @@ function Cart() {
                                   w={"150px"}
                                   borderRadius={"5px"}
                                   src={product.imagen}
+                                  fontFamily="Montserrat"
                                 />
                               </NavLink>
                             </Box>
-                            <Box display={"flex"} justifyContent={"center"}>
+                            <Box display={"flex"} justifyContent={"center"} fontFamily="Montserrat">
                               <NavLink
                                 to={`/Detail/${product.id}`}
                                 style={{ textDecoration: "none" }}
@@ -284,6 +288,7 @@ function Cart() {
                                   fontWeight={"bold"}
                                   fontSize={"2xl"}
                                   marginTop={"1em"}
+                                  fontFamily="Montserrat"
                                 >
                                   {product.nombre}
                                 </Text>{" "}
@@ -294,6 +299,7 @@ function Cart() {
                                 marginRight={"1em"}
                                 display={"inline"}
                                 fontSize={"20px"}
+                                fontFamily="Montserrat"
                               >
                                 Quantity:
                               </Text>
@@ -301,6 +307,7 @@ function Cart() {
                                 display={"inline"}
                                 fontWeight={"bold"}
                                 fontSize={"25px"}
+                                fontFamily="Montserrat"
                               >
                                 {product.cantidad}
                               </Text>
@@ -312,6 +319,7 @@ function Cart() {
                                 bg="#F56565"
                                 color={"white"}
                                 name="decrement"
+                                fontFamily="Montserrat"
                                 onClick={() => {
                                   const updatedCart = [...updateCart];
                                   if (updatedCart[index].cantidad > 1) {
@@ -329,6 +337,7 @@ function Cart() {
                               <Button
                                 colorScheme="teal"
                                 name="increment"
+                                fontFamily="Montserrat"
                                 onClick={() => {
                                   const updatedCart = [...updateCart];
                                   if (updatedCart[index].cantidad < 10) {
@@ -348,6 +357,7 @@ function Cart() {
                                 display="inline"
                                 fontSize={"20px"}
                                 marginRight={"1em"}
+                                fontFamily="Montserrat"
                               >
                                 subTotal:
                               </Text>
@@ -355,16 +365,18 @@ function Cart() {
                                 display="inline"
                                 fontWeight={"bold"}
                                 fontSize={"25px"}
+                                fontFamily="Montserrat"
                               >
                                 ${product.importe}
                               </Text>{" "}
                             </Box>
-                            <Box display={"flex"} justifyContent={"center"}>
+                            <Box display={"flex"} justifyContent={"center"} fontFamily="Montserrat">
                               <Button
                                 class="buttonDelete"
                                 value={product.id}
                                 onClick={handleClick}
                                 name="delete"
+                                fontFamily="Montserrat"
                               >
                                 <svg viewBox="0 0 448 512" class="svgIcona">
                                   <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
@@ -378,8 +390,8 @@ function Cart() {
                   </Box>
                 );
               })}
-              <Box display={"flex"} justifyContent={"center"}>
-                <Card w={"90%"} borderRadius={"0px"}>
+              <Box display={"flex"} justifyContent={"center"} fontFamily="Montserrat">
+                <Card w={"90%"} borderRadius={"0px"} fontFamily="Montserrat">
                   <CardBody>
                     <Grid templateColumns={"repeat(2,1fr)"}>
                       {" "}
@@ -387,15 +399,16 @@ function Cart() {
                         <>
                           {" "}
                           {email ? (
-                            <Box marginBottom={"1em"}>
+                            <Box marginBottom={"1em"} fontFamily="Montserrat">
                               {address == "" ? (
                                 <>
                                   {" "}
                                   <InfoOutlineIcon
                                     color={"red"}
                                     marginRight={1.5}
+                                    fontFamily="Montserrat"
                                   />
-                                  <Text display={"inline"} color={"red"}>
+                                  <Text display={"inline"} color={"red"} fontFamily="Montserrat">
                                     Complete your address first
                                   </Text>
                                 </>
@@ -405,8 +418,9 @@ function Cart() {
                                   <InfoOutlineIcon
                                     color={"green"}
                                     marginRight={1.5}
+                                    fontFamily="Montserrat"
                                   />
-                                  <Text display={"inline"} color={"green"}>
+                                  <Text display={"inline"} color={"green"} fontFamily="Montserrat">
                                     Once the order is created, you will be
                                     reditected to the payment window.
                                   </Text>
@@ -426,6 +440,7 @@ function Cart() {
                                       color={"teal"}
                                       onClick={handleClick}
                                       name="generateOrder"
+                                      fontFamily="Montserrat"
                                     >
                                       Generate order
                                     </Button>
@@ -434,6 +449,7 @@ function Cart() {
                                       onClick={handleClick}
                                       name="pay"
                                       color={"teal"}
+                                      fontFamily="Montserrat"
                                     >
                                       Redirecting...
                                     </Button>
@@ -444,13 +460,14 @@ function Cart() {
                               )}
                             </Box>
                           ) : (
-                            <Box mt={"2em"}>
+                            <Box mt={"2em"} fontFamily="Montserrat">
                               {" "}
                               <InfoOutlineIcon
                                 color={"red"}
                                 marginRight={1.5}
+                                fontFamily="Montserrat"
                               />
-                              <Text display={"inline"} color={"red"}>
+                              <Text display={"inline"} color={"red"} fontFamily="Montserrat">
                                 You must be signed in to create your order{" "}
                               </Text>
                             </Box>
@@ -461,14 +478,15 @@ function Cart() {
                         display={"flex"}
                         justifyContent={"right"}
                         marginRight={"3em"}
+                        fontFamily="Montserrat"
                       >
                         <Box>
                           {" "}
                           <h2>Order Summary</h2>
-                          <Text fontSize={"20px"}>
+                          <Text fontSize={"20px"} fontFamily="Montserrat">
                             {" "}
                             Total . . . . . . . . . . . . . . . . . . . ${" "}
-                            <Text display="inline" fontWeight={"bold"}>
+                            <Text display="inline" fontWeight={"bold"} fontFamily="Montserrat">
                               {subTotal}
                             </Text>
                           </Text>
@@ -480,8 +498,8 @@ function Cart() {
               </Box>{" "}
             </Box>
           ) : (
-            <Box display={"flex"} alignItems={"center"}>
-              <Heading color={"white"}>
+            <Box display={"flex"} alignItems={"center"}  fontFamily="Montserrat">
+              <Heading color={"white"} fontFamily="Montserrat">
                 There is nothing in your cart...
               </Heading>
             </Box>

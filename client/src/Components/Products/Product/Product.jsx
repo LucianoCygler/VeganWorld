@@ -82,16 +82,38 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
         {email ? (
           <Box>
             {!isFav ? (
-              <Box position={"relative"} left={"10.5em"} top={"-20px"} backgroundColor={"#A4ABB4"} width={"30px"} borderRadius={"100%"}>
+              <Box
+                position={"relative"}
+                left={"10.5em"}
+                top={"-20px"}
+                backgroundColor={"#A4ABB4"}
+                width={"30px"}
+                borderRadius={"100%"}
+              >
                 {/* <FontAwesomeIcon onClick={handleFavorite} icon={farHeart} /> */}
-                <Box onClick={handleFavorite} fontSize={"20px"}  _hover={{ cursor: "pointer" }}>
+                <Box
+                  onClick={handleFavorite}
+                  fontSize={"20px"}
+                  _hover={{ cursor: "pointer" }}
+                >
                   🤍
                 </Box>
               </Box>
             ) : (
-              <Box position={"relative"} left={"10.5em"} top={"-20px"} backgroundColor={"#A4ABB4"} width={"30px"} borderRadius={"100%"}>
+              <Box
+                position={"relative"}
+                left={"10.5em"}
+                top={"-20px"}
+                backgroundColor={"#A4ABB4"}
+                width={"30px"}
+                borderRadius={"100%"}
+              >
                 {/* <FontAwesomeIcon onClick={handleFavorite} icon={fasHeart} /> */}
-                <Box onClick={handleFavorite} fontSize={"20px"} _hover={{ cursor: "pointer" }}>
+                <Box
+                  onClick={handleFavorite}
+                  fontSize={"20px"}
+                  _hover={{ cursor: "pointer" }}
+                >
                   ❤️
                 </Box>
               </Box>
@@ -127,17 +149,19 @@ function Product({ nombre, imagen, precio, stock, descripcion, id }) {
                       {nombre}
                     </Text>
                   </Box>
-                  <Box marginTop={"0em"}>
+                  <Box marginTop={-4} marginLeft={"0.3em"} w="100%">
+                    <hr></hr>
+                  </Box>
+                  <Box marginTop={-4}>
                     <Text>$ {parseInt(precio)}</Text>
                   </Box>
                 </Grid>
               </Grid>
             </NavLink>
           </Flex>
-          <Box marginTop={"1em"}>
+          <Box marginTop={"0.5em"}>
             {" "}
             <Button
-               
               variant="solid"
               colorScheme="teal"
               onClick={handleClick}

@@ -70,6 +70,7 @@ const CardFav = ({ product, favorites }) => {
       maxW="2xs"
       bg={"#d8d8d8"}
       transition={"0.3s"}
+      fontFamily="Montserrat"
       _hover={{
         transform: "scale(1.05)",
         transition: "transform 0.3s ease-in-out",
@@ -80,6 +81,7 @@ const CardFav = ({ product, favorites }) => {
         marginTop={1}
         width={"19%"}
         borderRadius={"50%"}
+        fontFamily="Montserrat"
         bg="none"
         onClick={() => dispatch(deleteFavoriteAction(product?.Product?.id))}
       >
@@ -88,6 +90,7 @@ const CardFav = ({ product, favorites }) => {
       <NavLink
         to={`/Detail/${product?.Product?.id}`}
         style={{ textDecoration: "none" }}
+        fontFamily="Montserrat"
       >
         <CardBody>
           <Image
@@ -97,24 +100,26 @@ const CardFav = ({ product, favorites }) => {
             ml="1.5em"
             h={"150px"}
             w={"150px"}
+            fontFamily="Montserrat"
           />
           <Stack mt="6" spacing="3">
-            <Heading size="md">{product?.Product?.nombre}</Heading>
-            <Text color="blue.600" fontSize="2xl">
+            <Heading size="md" fontFamily="Montserrat">{product?.Product?.nombre}</Heading>
+            <Text color="blue.600" fontSize="2xl" fontFamily="Montserrat">
               $ {parseInt(product?.Product?.precio)}
             </Text>
           </Stack>
         </CardBody>
       </NavLink>
       <Divider />
-      <CardFooter justifyContent={"center"}>
-        <ButtonGroup spacing="2" justifyContent={"center"}>
+      <CardFooter justifyContent={"center"} fontFamily="Montserrat">
+        <ButtonGroup spacing="2" justifyContent={"center"} fontFamily="Montserrat">
           {/* <Button variant="solid" colorScheme="green" onClick={handleMP}>
             Buy now
           </Button> */}
           <Button
             variant="solid"
             colorScheme="blue"
+            fontFamily="Montserrat"
             onClick={handleClick}
             isLoading={loading}
           >

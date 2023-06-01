@@ -16,33 +16,41 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+<<<<<<< HEAD
 	deleteProductAdmin,
 	getAllProductsAdmin,
 	updateProduct,
+=======
+  deleteProductAdmin,
+  getAllProducts,
+  getAllProductsAdmin,
+  updateProduct,
+>>>>>>> develop
 } from "../../../redux/actions/actions";
 
 function createData(
-	nombre,
-	precio,
-	stock,
-	state,
-	imagen,
-	descripcion,
-	id,
-	tipo
+  nombre,
+  precio,
+  stock,
+  state,
+  imagen,
+  descripcion,
+  id,
+  tipo
 ) {
-	return {
-		nombre,
-		precio,
-		stock,
-		state,
-		imagen,
-		descripcion,
-		id,
-		tipo,
-	};
+  return {
+    nombre,
+    precio,
+    stock,
+    state,
+    imagen,
+    descripcion,
+    id,
+    tipo,
+  };
 }
 
 function Row(props) {
@@ -68,8 +76,8 @@ function Row(props) {
 		dispatch(updateProduct(updatedProduct, id));
 	};
 
-	const [hasChange, setHasChange] = React.useState(true);
-	const [newValue, setNewValue] = React.useState("");
+  const [hasChange, setHasChange] = React.useState(true);
+  const [newValue, setNewValue] = React.useState("");
 
 	const handleNewValue = (event) => {
 		const { name, value } = event.target;
@@ -229,12 +237,13 @@ function Row(props) {
 }
 
 Row.propTypes = {
-	row: PropTypes.shape({
-		name: PropTypes.string.isRequired,
-		stock: PropTypes.number.isRequired,
-		price: PropTypes.number.isRequired,
-		status: PropTypes.string.isRequired,
-	}).isRequired,
+  row: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    tipo: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    stock: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default function ListProducts({ products }) {

@@ -24,7 +24,7 @@ import {
 } from "../../redux/actions/actions";
 import Switch from "@mui/material/Switch";
 import { Box, FormControlLabel } from "@mui/material";
-
+import { Text } from "@chakra-ui/react";
 const RenderActions = (row) => {
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -37,10 +37,11 @@ const RenderActions = (row) => {
     setAnchorEl(null);
   };
 
-  const handleStatusChange = (row, estado) => {
+  const handleStatusChange = async (row, estado) => {
     const newOrder = { id: row.id, estado };
-    dispatch(updateOrder(newOrder));
+    await dispatch(updateOrder(newOrder));
     handleClose();
+    dispatch(getOrders());
   };
   if (row.estado === "Cancelado") {
     return null; // No renderizar el botón si el estado es "Cancelado"
@@ -48,7 +49,7 @@ const RenderActions = (row) => {
 
   return (
     <div>
-      <Button onClick={handleClick}>State</Button>
+      <Button onClick={handleClick}>Update</Button>
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem onClick={() => handleStatusChange(row, "Pendiente")}>
           Pending
@@ -112,20 +113,23 @@ function ToolbarGrid() {
   const columns = [
     { field: "id", hide: true },
     { field: "estado", headerName: "Name" },
+    { field: "productos", headerName: "Products", width: 500 },
     {
       field: "direccion",
       headerName: "Direction",
-      width: 120,
+      width: 150,
       editable: false,
     },
     { field: "importe", headerName: "Total", editable: false },
     { field: "fecha", headerName: "Date", editable: false },
-    { field: "ClientId", headerName: "Client", editable: false },
+    // { field: "ClientId", headerName: "Client", editable: false },
     {
       field: "clientName",
       headerName: "Client Name",
+      width: 150,
       editable: false,
     },
+
     // {
     //   field: "state",
     //   headerName: "State",
@@ -142,6 +146,7 @@ function ToolbarGrid() {
   const rows = allOrders.map((order) => {
     const client = allClients.find((client) => client.id === order.ClientId);
     const clientName = client ? client.nombre : ""; // Obtén el nombre del cliente o establece una cadena vacía si no se encuentra el cliente
+    const clientSurname = client ? client.apellido : "";
     return {
       id: order.id,
       estado: order.estado,
@@ -150,7 +155,7 @@ function ToolbarGrid() {
       importe: order.importe,
       fecha: order.fecha,
       ClientId: order.ClientId,
-      clientName: clientName,
+      clientName: `${clientName} ${clientSurname}`,
       deleted: order.deleted,
       actions: "actions",
     };

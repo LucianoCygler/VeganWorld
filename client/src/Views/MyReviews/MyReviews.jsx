@@ -199,7 +199,7 @@ const MyReviews = () => {
                 <Box display={"flex"} flexDirection={"column"} alignItems={"center"} >
                   <Heading m={"2em 0em"} color={"white"} fontSize={"5xl"} textShadow={"7px 3px 3px rgba(45,45,45,0.65)"}>You dont have reviews yet...</Heading>
                   <Text color="white" fontSize="5xl" >
-                    Click <NavLink to="/products" style={{ color: 'yellow' }}>here</NavLink> to see our products</Text>
+                    Click <NavLink to="/ourproducts" style={{ color: 'yellow' }}>here</NavLink> to see our products</Text>
                   
                   <Image
                     src="https://res.cloudinary.com/da6d9ru3s/image/upload/v1685459046/favorite-154758_1280_jruydu.png"

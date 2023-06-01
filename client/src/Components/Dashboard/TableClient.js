@@ -8,19 +8,24 @@ import {
   GridToolbarExport,
 } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteClient, getAllClients, updateClient } from "../../redux/actions/actions";
+import {
+  deleteClient,
+  getAllClients,
+  getAllClientsAdmin,
+  updateClient,
+} from "../../redux/actions/actions";
 import Switch from "@mui/material/Switch";
 import { Box, FormControlLabel } from "@mui/material";
 
 function ToolbarGrid() {
   const dispatch = useDispatch();
 
-  const clients = useSelector((state) => state.allClients);
+  const clientsAdmin = useSelector((state) => state.clientsAdmin);
   const deletedClient = useSelector((state) => state.deletedClient);
 
   const [switchStates, setSwitchStates] = React.useState({});
 
-  const renderSwitch = (rowId, deleted) => {
+  const renderSwitch = (row, rowId, deleted) => {
     const handleChange = (event) => {
       const newState = event.target.checked;
       setSwitchStates((prevStates) => ({
@@ -29,7 +34,7 @@ function ToolbarGrid() {
       }));
 
       // Actualizar el estado en el backend
-      const client = clients.find((client) => client.id === rowId);
+      const client = clientsAdmin.find((client) => client.id === rowId);
       if (client) {
         // const updatedClient = { ...client, deleted: !newState };
         dispatch(deleteClient(client.id));
@@ -38,6 +43,9 @@ function ToolbarGrid() {
 
     const checked = switchStates[rowId] || !deleted;
 
+    if (row.deleted === true) {
+      return null; // No renderizar el botón si el estado es "Cancelado"
+    }
     return (
       <FormControlLabel
         control={
@@ -53,10 +61,16 @@ function ToolbarGrid() {
     { field: "id", hide: true },
     { field: "name", headerName: "Name" },
     { field: "surname", headerName: "Surname", editable: false },
-    { field: "city", headerName: "City", editable: false },
-    { field: "direction", headerName: "Direction", width: 120, editable: false },
-    { field: "email", headerName: "Email", editable: false },
-    { field: "phone", headerName: "Phone", editable: false },
+    { field: "city", headerName: "City", editable: false, width: 220 },
+    {
+      field: "direction",
+      headerName: "Direction",
+      width: 120,
+      editable: false,
+      width: 220,
+    },
+    { field: "email", headerName: "Email", editable: false, width: 280 },
+    { field: "phone", headerName: "Phone", editable: false, width: 120 },
     { field: "age", headerName: "Age", editable: false },
     { field: "dni", headerName: "DNI", editable: false },
     {
@@ -64,11 +78,11 @@ function ToolbarGrid() {
       headerName: "State",
       editable: false,
       renderCell: (params) =>
-        renderSwitch(params.row.id, params.row.deleted),
+        renderSwitch(params.row, params.row.id, params.row.deleted),
     },
   ];
 
-  const rows = clients.map((client) => ({
+  const rows = clientsAdmin.map((client) => ({
     id: client.id,
     name: client.nombre,
     surname: client.apellido,
@@ -93,14 +107,15 @@ function ToolbarGrid() {
   }
 
   useEffect(() => {
-    !clients && dispatch(getAllClients());
-  }, [deletedClient]);
+    dispatch(getAllClientsAdmin());
+  }, [switchStates]);
+  // useEffect(() => {
+  //   !clientsAdmin && dispatch(getAllClientsAdmin());
+  // }, [deletedClient]);
 
   return (
     <div style={{ height: 500, minWidth: "100%" }}>
-      <Box>
-        List Clients
-      </Box>
+      <Box>List Clients</Box>
       <DataGrid
         sx={{ justifySelf: "center" }}
         rows={rows}

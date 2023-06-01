@@ -31,7 +31,7 @@ function DrawerMenu() {
   const userON = localStorage.getItem("email");
   return (
     <>
-      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+      <Button ref={btnRef} colorScheme="teal" fontFamily="Montserrat" onClick={onOpen}>
         <HamburgerIcon />
       </Button>
       <Drawer
@@ -45,6 +45,7 @@ function DrawerMenu() {
           bg={" rgba(34, 34, 34, 0.8)"}
           color={"white"}
           minHeight={"100vh"}
+          fontFamily="Montserrat"
         >
           <DrawerCloseButton />
           <DrawerHeader
@@ -52,17 +53,19 @@ function DrawerMenu() {
             textShadow="2px 2px 114px rgba(0, 0, 0, 0.9)"
             fontSize={"25px"}
             fontWeight={"bold"}
+            fontFamily="Montserrat"
           >
             <Text
               fontWeight={"semibold"}
               display={"inline"}
               color={"lightseagreen"}
               marginRight={-2}
+              fontFamily="Montserrat"
             >
               {" "}
               Vegan
             </Text>{" "}
-            <Text display="inline">World!</Text>
+            <Text display="inline" fontFamily="Montserrat">World!</Text>
           </DrawerHeader>
 
           <DrawerBody textAlign={"left"}>
@@ -74,6 +77,7 @@ function DrawerMenu() {
                     color={selectedOption === "profile" ? "teal" : "white"}
                     fontWeight={"light"}
                     fontSize={"25PX"}
+                    fontFamily="Montserrat"
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                     _hover={{
                       color: "#22FF2C",
@@ -92,6 +96,7 @@ function DrawerMenu() {
                     fontWeight={"light"}
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                     fontSize={"25PX"}
+                    fontFamily="Montserrat"
                     _hover={{
                       color: "#22FF2C",
                       transition: "color 0.3s ease, text-shadow 0.3s ease",
@@ -109,6 +114,7 @@ function DrawerMenu() {
                     fontWeight={"light"}
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                     fontSize={"25PX"}
+                    fontFamily="Montserrat"
                     _hover={{
                       color: "#22FF2C",
                       transition: "color 0.3s ease, text-shadow 0.3s ease",
@@ -126,6 +132,7 @@ function DrawerMenu() {
                     fontWeight={"light"}
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                     fontSize={"25PX"}
+                    fontFamily="Montserrat"
                     _hover={{
                       color: "#22FF2C",
                       transition: "color 0.3s ease, text-shadow 0.3s ease",
@@ -143,6 +150,7 @@ function DrawerMenu() {
                     color={selectedOption === "pageReview" ? "teal" : "white"}
                     fontWeight={"light"}
                     fontSize={"25PX"}
+                    fontFamily="Montserrat"
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                     _hover={{
                       color: "#22FF2C",
@@ -152,7 +160,9 @@ function DrawerMenu() {
                     }}
                     onClick={handleSelected}
                   >
+                    <Box fontFamily="Montserrat">
                     My page review
+                    </Box>
                   </Heading>
                 </NavLink>{" "}
                 <NavLink to="/OurProducts">
@@ -162,6 +172,7 @@ function DrawerMenu() {
                     fontWeight={"light"}
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                     fontSize={"25PX"}
+                    fontFamily="Montserrat"
                     _hover={{
                       color: "yellow",
                       transition: "color 0.3s ease, text-shadow 0.3s ease",
@@ -184,6 +195,7 @@ function DrawerMenu() {
                     fontWeight={"light"}
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                     fontSize={"25PX"}
+                    fontFamily="Montserrat"
                     _hover={{
                       color: "yellow",
                       transition: "color 0.3s ease, text-shadow 0.3s ease",
@@ -207,6 +219,7 @@ function DrawerMenu() {
                 fontWeight={"light"}
                 textShadow="2px 2px 4px rgba(0, 0, 0, 0.9)"
                 fontSize={"15px"}
+                
                 _hover={{
                   color: "#22FF2C",
                   transition: "color 0.3s ease, text-shadow 0.3s ease",
