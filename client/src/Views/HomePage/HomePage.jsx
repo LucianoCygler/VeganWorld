@@ -16,6 +16,9 @@ import Carrusel from "../../Components/Carousel/Carrusel";
 import "./HomePage.css";
 import { SocialIcon } from "react-social-icons";
 import {
+  Avatar,
+  AvatarBadge,
+  AvatarGroup,
   Alert,
   AlertIcon,
   Box,
@@ -23,16 +26,30 @@ import {
   Grid,
   GridItem,
   Img,
-  StylesProvider,
+  Link,
+  Icon,
+  Text,
+  AddIcon,
+  WarningIcon,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Image,
+  Stack,
+  Heading,
+  Button
 } from "@chakra-ui/react";
-import { PhoneIcon, AddIcon, WarningIcon } from "@chakra-ui/icons";
-import { Divider } from "@chakra-ui/react";
-import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
-import { Image, Stack, Heading, Text, Button } from "@chakra-ui/react";
+
+import { FaMapMarker, FaEnvelope } from "react-icons/fa";
+
+import { PhoneIcon } from "@chakra-ui/icons";
+
+
 import { useNavigate, useLocation } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react";
+
 import { shuffle } from "lodash";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -85,7 +102,7 @@ const MySlider = () => {
               maxH="95vh"
               src={image}
               alt={`Slide ${index + 1}`}
-              // style={{ opacity: 0.7 }}
+            // style={{ opacity: 0.7 }}
             />{" "}
           </Box>
         </div>
@@ -181,8 +198,11 @@ function HomePage() {
                   marginTop={30}
                   color="white"
                   textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                  fontFamily="Montserrat"
                 >
-                  <Text> Welcome to your Vegan World!</Text>
+                  <Text
+                    fontFamily="Montserrat"
+                  > Welcome to your Vegan World!</Text>
                 </Heading>
                 <Box wordBreak="break-word" justify={"center"}>
                   <Text
@@ -191,6 +211,7 @@ function HomePage() {
                     fontSize="3xl"
                     color="white"
                     textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
+                    fontFamily="Montserrat"
                   >
                     We hope you can find what you need here, take a look to our
                     products and start shopping by clicking the button below.
@@ -211,8 +232,9 @@ function HomePage() {
                   onClick={() => {
                     navigate("/ourproducts");
                   }}
+                  fontFamily="Montserrat"
                 >
-                  <Text fontSize={"3xl"} margin={"10px"}>
+                  <Text fontSize={"3xl"} margin={"10px"} fontFamily="Montserrat">
                     Let's start
                   </Text>
                 </Button>
@@ -252,16 +274,16 @@ function HomePage() {
         lastPage={totalPages}
       /> */}
       {/* <Carrusel /> */}
-      <Box marginTop={200} w={"fit-content"} margin="3em auto ">
+      <Box marginTop={200} w={"fit-content"} margin="3em auto " fontFamily="Montserrat">
         <Text
           as="b"
-          fontSize="6xl"
+          fontSize="5xl"
           textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
           color="white"
-          padding={"0.3em"}
           borderRadius={70}
+          fontFamily="Montserrat"
         >
-          <span>Best Products</span>
+          <Box fontFamily="Montserrat">Best Products</Box>
         </Text>
       </Box>
       <CustomCarousel />
@@ -274,19 +296,21 @@ function HomePage() {
         display={"flex"}
         flexDirection={"column"}
         justifyContent={"center"}
+        fontFamily="Montserrat"
       >
-        <Box display={"flex"} justifyContent={"center"}>
+        <Box display={"flex"} justifyContent={"center"} fontFamily="Montserrat">
           {" "}
           <Text
             as={"b"}
             textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
             color="white"
+            fontFamily="Montserrat"
           >
             Our custommers
           </Text>{" "}
         </Box>
 
-        <Box display={"flex"} justifyContent={"center"}>
+        <Box display={"flex"} justifyContent={"center"} fontFamily="Montserrat">
           <Grid
             templateColumns={{
               base: "repeat(1, 1fr)",
@@ -295,63 +319,68 @@ function HomePage() {
               xl: "repeat(2 , 1fr)",
             }}
             gap={4}
+            fontFamily="Montserrat"
           >
             {pageReviews
               ? randomReviews.map((review) => (
-                  <Card
-                    key={review.id}
-                    marginRight="2em"
-                    marginTop="2em"
-                    padding="2em"
-                    width="400px"
-                    overflow="hidden"
-                  >
-                    <Grid templateColumns={"repeat(2, 1fr)"}>
-                      <Box
-                        marginBottom="2em"
-                        display="flex"
-                        justifyContent="left"
-                      >
-                        <Avatar src={review.cliente_imagen} size="xl" />
+                <Card
+                  key={review.id}
+                  marginRight="2em"
+                  marginTop="2em"
+                  padding="2em"
+                  width="400px"
+                  overflow="hidden"
+                  fontFamily="Montserrat"
+                >
+                  <Grid templateColumns={"repeat(2, 1fr)"}>
+                    <Box
+                      marginBottom="2em"
+                      display="flex"
+                      justifyContent="left"
+                      fontFamily="Montserrat"
+                    >
+                      <Avatar src={review.cliente_imagen} size="xl" />
+                    </Box>
+                    <Box>
+                      <Box display="flex" justifyContent="center" fontFamily="Montserrat">
+                        <Text fontWeight="semibold" color="#3eb86b" fontFamily="Montserrat">
+                          {review.cliente_nombre}
+                        </Text>
                       </Box>
-                      <Box>
-                        <Box display="flex" justifyContent="center">
-                          <Text fontWeight="semibold" color="#3eb86b">
-                            {review.cliente_nombre}
-                          </Text>
-                        </Box>
-                        <Box display="flex" justifyContent="center">
-                          <Text fontWeight="extrabold">{review.titulo}</Text>
-                        </Box>
-                        <Box display="flex" justifyContent="center">
-                          <Text
-                            fontSize="14px"
-                            whiteSpace="pre-wrap"
-                            wordWrap="break-word"
-                          >
-                            {review.descripcion}
-                          </Text>
-                        </Box>
-                        <Box
-                          display="flex"
-                          justifyContent="center"
-                          position="absolute"
-                          right="1em"
-                          bottom="0.5em"
+                      <Box display="flex" justifyContent="center" fontFamily="Montserrat">
+                        <Text fontWeight="extrabold" fontFamily="Montserrat">{review.titulo}</Text>
+                      </Box>
+                      <Box display="flex" justifyContent="center" fontFamily="Montserrat">
+                        <Text
+                          fontSize="14px"
+                          whiteSpace="pre-wrap"
+                          wordWrap="break-word"
+                          fontFamily="Montserrat"
                         >
-                          <Text color="grey" fontSize="10px">
-                            {review.fecha}
-                          </Text>
-                        </Box>
+                          {review.descripcion}
+                        </Text>
                       </Box>
-                    </Grid>
-                  </Card>
-                ))
+                      <Box
+                        display="flex"
+                        justifyContent="center"
+                        position="absolute"
+                        right="1em"
+                        bottom="0.5em"
+                        fontFamily="Montserrat"
+                      >
+                        <Text color="grey" fontSize="10px" fontFamily="Montserrat">
+                          {review.fecha}
+                        </Text>
+                      </Box>
+                    </Box>
+                  </Grid>
+                </Card>
+              ))
               : ""}
           </Grid>
         </Box>
       </Box>
-      <Box overflowWrap={"wrap"}></Box>
+      <Box overflowWrap={"wrap"} fontFamily="Montserrat"></Box>
       <div data-aos="fade-left" data-aos-duration="3000">
         <Grid
           marginLeft={"5em"}
@@ -365,6 +394,7 @@ function HomePage() {
           }}
           gap={4}
           marginBottom="3em"
+          fontFamily="Montserrat"
         >
           <Box
             bg="white"
@@ -373,15 +403,17 @@ function HomePage() {
             shadow="2px 2px 4px rgba(0, 0, 0, 1)"
             h={"350px"}
             w={"350px"}
+            fontFamily="Montserrat"
           >
             <Image
               marginTop={"1em"}
               padding="1em"
               marginLeft={20}
+              fontFamily="Montserrat"
               maxW={{ base: "100%", sm: "200px" }}
               src="https://static.vecteezy.com/system/resources/previews/004/542/032/non_2x/young-woman-sitting-on-floor-working-with-laptop-cartoon-style-illustration-isolated-on-white-background-vector.jpg"
             />
-            <Text fontSize="2xl" marginTop={15} fontWeight="bold">
+            <Text fontSize="2xl" marginTop={15} fontWeight="bold" fontFamily="Montserrat">
               Order Online
             </Text>
           </Box>
@@ -392,6 +424,7 @@ function HomePage() {
             shadow="2px 2px 4px rgba(0, 0, 0, 1)"
             h={"350px"}
             w={"350px"}
+            fontFamily="Montserrat"
           >
             <Image
               marginTop={"1em"}
@@ -400,8 +433,9 @@ function HomePage() {
               paddingTop={5}
               maxW={{ base: "100%", sm: "200px" }}
               src="https://img.freepik.com/vector-gratis/hombre-montando-scooter-sobre-fondo-blanco_1308-46379.jpg"
+              fontFamily="Montserrat"
             />
-            <Text fontSize="2xl" marginTop={4} fontWeight="bold">
+            <Text fontSize="2xl" marginTop={4} fontWeight="bold" fontFamily="Montserrat">
               Fast Shipping
             </Text>
           </Box>
@@ -412,14 +446,16 @@ function HomePage() {
             margin="2px"
             borderRadius="120px 20px"
             shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+            fontFamily="Montserrat"
           >
             <Image
               padding="2em"
               marginLeft={19.5}
+              fontFamily="Montserrat"
               maxW={{ base: "100%", sm: "300px" }}
               src="https://media.istockphoto.com/id/1152445566/es/vector/el-repartidor-est%C3%A1-sosteniendo-una-caja-de-paquetes.jpg?s=612x612&w=0&k=20&c=cUSmSP-hnxJSOTnGoNxstqDh9UGZyM2zE0OEebXt_UE="
             />
-            <Text fontSize="2xl" marginTop={-5} fontWeight="bold">
+            <Text fontSize="2xl" marginTop={-5} fontWeight="bold" fontFamily="Montserrat">
               Receive your order
             </Text>
           </Box>
@@ -430,20 +466,22 @@ function HomePage() {
             margin="2px"
             borderRadius="120px 20px"
             shadow="2px 2px 4px rgba(0, 0, 0, 1)"
+            fontFamily="Montserrat"
           >
             <Image
               padding="2em"
               marginLeft={19.5}
+              fontFamily="Montserrat"
               maxW={{ base: "100%", sm: "300px" }}
               src="https://media.istockphoto.com/id/1282103104/es/vector/ni%C3%B1a-comiendo-frutas-alimentos-saludables-mujer-aislada-en-dibujos-animados-planos-la.jpg?s=170667a&w=0&k=20&c=HpUGp0dItcE_lAzyYKe70xrm5xc0NnzyiGWy8el5Q4A="
             />
-            <Text fontSize="2xl" marginTop={-5} fontWeight="bold">
+            <Text fontSize="2xl" marginTop={-5} fontWeight="bold" fontFamily="Montserrat">
               Enjoy!
             </Text>
           </Box>
         </Grid>
       </div>
-      <footer class="footer-distributed">
+      <Box as="footer" className="footer-distributed">
         <Grid
           templateColumns={{
             base: "1fr",
@@ -453,78 +491,93 @@ function HomePage() {
             xl: "repeat(3, 42%)",
           }}
         >
-          <div class="footer-left">
-            <h3 className={style.h1footer}>
+          <Box className="footer-left">
+            <Text as="h3" fontSize="2xl" fontWeight="bold" fontFamily="Montserrat">
               <span>Vegan</span>World
-            </h3>
+            </Text>
 
-            <p class="footer-links">
-              <a href="#" class="link-1">
+            <Box className="footer-links">
+              <Link href="#" className="link-1" fontFamily="Montserrat">
                 Home
-              </a>
+              </Link>
 
-              <a href="/About">About</a>
+              <Link href="/About" fontFamily="Montserrat">
+                About
+              </Link>
 
-              <a href="/ContactUs">Contact</a>
+              <Link href="/ContactUs" fontFamily="Montserrat">
+                Contact
+              </Link>
 
-              <a href="/loginAdmin">Admin</a>
-            </p>
+              <Link href="/loginAdmin" fontFamily="Montserrat">
+                Admin
+              </Link>
+            </Box>
 
-            <p class="footer-company-name">VeganWorld © 2023</p>
-          </div>
+            <Text className="footer-company-name" fontFamily="Montserrat">
+              VeganWorld © 2023
+            </Text>
+          </Box>
 
-          <div class="footer-center">
-            <div>
-              <i class="fa fa-map-marker"></i>
-              <p>
-                <span>Av. Rivadavia 9423</span> Capital Federal, Buenos Aires
-              </p>
-            </div>
+          <Box className="footer-center">
+            <Box
+              fontFamily="Montserrat"
+            >
+              <Icon as={FaMapMarker} boxSize={5} />
+              <Text fontFamily="Montserrat">
+                <Box fontFamily="Montserrat">Av. Rivadavia 9423</Box> Capital Federal, Buenos Aires
+              </Text>
+            </Box>
 
-            <div className={style.divPhone}>
-              {/* <i class="fa fa-phone"></i> */}
-              <PhoneIcon marginRight="1em"></PhoneIcon>
-              <p className={style.phone}>+54 9 1122309876</p>
-            </div>
+            <Box fontFamily="Montserrat">
+              <PhoneIcon marginRight="1em" boxSize={5} />
+              <Text className="phone" fontFamily="Montserrat">
+                +54 9 1122309876
+              </Text>
+            </Box>
 
-            <div>
-              <i class="fa fa-envelope"></i>
-              <p>
-                <a href="mailto:support@company.com">veganworld36@gmail.com</a>
-              </p>
-            </div>
-          </div>
+            <Box>
+              <Icon as={FaEnvelope} boxSize={5} />
+              <Text>
+                <Link href="mailto:support@company.com" fontFamily="Montserrat">
+                  veganworld36@gmail.com
+                </Link>
+              </Text>
+            </Box>
+          </Box>
 
-          <div class="footer-right">
-            <p class="footer-company-about">
-              <span>About the company</span>
-              Making it easier to be Vegan and order food!
-            </p>
+          <Box className="footer-right">
+            <Text className="footer-company-about" fontSize="lg" fontFamily="Montserrat">
+              <Box fontSize="lg" fontFamily="Montserrat">About the company</Box>
+              <Box fontSize="md" fontFamily="Montserrat">Making it easier to be Vegan and order food!</Box>
+              
+            </Text>
 
-            <div class="footer-icons">
-              <a href="#">
+            <Box className="footer-icons">
+              <Link href="#" fontSize="lg" fontFamily="Montserrat">
                 <SocialIcon
                   url="https://facebook.com/VeganWorld"
                   style={{ height: 30, width: 30 }}
                 />
-              </a>
-              <a href="#">
+              </Link>
+              <Link href="#">
                 <SocialIcon
                   url="https://twitter.com/VeganWorld"
                   style={{ height: 30, width: 30 }}
                 />
-              </a>
-              <a href="#">
+              </Link>
+              <Link href="#">
                 <SocialIcon
                   url="https://github.com/LucianoCygler/VeganWorld"
                   style={{ height: 30, width: 30 }}
                 />
-              </a>
-            </div>
-          </div>
+              </Link>
+            </Box>
+          </Box>
         </Grid>
-      </footer>
+      </Box>
     </Box>
+
   );
 }
 

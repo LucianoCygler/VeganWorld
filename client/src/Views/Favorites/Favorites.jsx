@@ -54,7 +54,7 @@ const Favorites = () => {
   return (
     <>
       <div>
-        <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal show={showModal} onHide={handleCloseModal} fontFamily="Montserrat">
           <Modal.Header closeButton>
             <Modal.Title>Sign in</Modal.Title>
           </Modal.Header>
@@ -68,7 +68,7 @@ const Favorites = () => {
               Hey, I see that you are trying to access your Favorites, but to do
               so, you must first be logged in.
             </h2>
-            <Button variant="primary" onClick={handleShowModal}>
+            <Button variant="primary" onClick={handleShowModal} fontFamily="Montserrat">
               Click here to log in!{" "}
             </Button>
           </div>
@@ -77,17 +77,20 @@ const Favorites = () => {
             backgroundImage={"https://wallpaperaccess.com/full/1812875.jpg"}
             minH={"100vh"}
             pt={40}
+            fontFamily="Montserrat"
           >
             <Box
               marginBottom={"3em"}
               display={"flex"}
               justifyContent={"center"}
+              fontFamily="Montserrat"
             >
               <Text
                 fontSize={"30px"}
                 color="white"
                 textShadow="2px 2px 4px rgba(0, 0, 0, 0.4)"
                 position="relative"
+                fontFamily="Montserrat"
               >
                 FAVORITES
                 <Text
@@ -98,20 +101,21 @@ const Favorites = () => {
                   width="100%"
                   height="3px"
                   background="orange"
+                  fontFamily="Montserrat"
                 />
               </Text>
             </Box>
-            <Wrap py={5} spacing={"5"} justify={"center"}>
+            <Wrap py={5} spacing={"5"} justify={"center"} fontFamily="Montserrat">
               {favorites && favorites.length > 0 ? (
                 favorites?.map((product, index) => {
                   return (
-                    <WrapItem shadow={"dark-lg"}>
+                    <WrapItem shadow={"dark-lg"} fontFamily="Montserrat">
                       <CardFav product={product} favorites={favorites} />
                     </WrapItem>
                   );
                 })
               ) : (
-                <Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
+                <Box display={"flex"} flexDirection={"column"} alignItems={"center"} fontFamily="Montserrat">
                   {" "}
                   <Heading
                     marginBottom={"3em"}
@@ -120,10 +124,11 @@ const Favorites = () => {
                     as="b"
                     textShadow="2px 2px 4px rgba(0, 0, 0,
                     0.5)"
+                    fontFamily="Montserrat"
                   >
                     You don't have favorites
                   </Heading>
-                  <Image   src="https://res.cloudinary.com/da6d9ru3s/image/upload/v1685459046/favorite-154758_1280_jruydu.png" className="img-fluid" style={{ width: '200px', height: 'auto' }} alt="Imagen">
+                  <Image   src="https://res.cloudinary.com/da6d9ru3s/image/upload/v1685459046/favorite-154758_1280_jruydu.png" className="img-fluid" style={{ width: '200px', height: 'auto' }} alt="Imagen" fontFamily="Montserrat">
                   </Image>
                 </Box>
               )}

@@ -66,6 +66,7 @@ export default function Navigator(props) {
               fontWeight: "bold",
               color: "#fff",
               bgcolor: "#1d5c63",
+              fontFamily: "Montserrat",
             }}
           >
             VeganWorld

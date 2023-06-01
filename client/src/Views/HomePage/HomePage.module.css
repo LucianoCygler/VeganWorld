@@ -5,22 +5,23 @@
   font-size: medium;
   right: 0px;
   left: 0px;
+  font-family: "Montserrat";
 }
 
 .img {
   height: 20em;
   width: 20em;
   border-radius: 15px;
+  font-family: "Montserrat";
 }
 
 .h1 {
   font-size: 160px;
   text-shadow: 11px 10px 11px rgba(0, 0, 0, 0.88);
-  font-family: 'Caveat', cursive;
   font-weight: 700;
   color: #3eb86b;
   padding: 16px;
-  
+  font-family: "Caveat", cursive;
   text-align: center;
   display: block;
   margin: 16px;
@@ -48,6 +49,7 @@
   width: calc((100% - 30px) / 3);
   margin-bottom: 10px;
   padding: 2em 0;
+  font-family: "Montserrat";
 }
 
 .cardContainer {
@@ -64,12 +66,15 @@
   max-width: 90%;
   width: 90%;
   margin: auto;
+  font-family: "Montserrat";
 }
 
 .h1footer {
   white-space: nowrap;
+  font-family: "Montserrat";
 }
 
 .divPhone {
   margin-left: 30px;
+  font-family: "Montserrat";
 }
