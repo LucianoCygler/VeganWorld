@@ -7,8 +7,17 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { auth, googleProvider } from "../../Firebase/firebase";
-import { getIdToken, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { getUserDataByEmail, registerUser, validateUserExistenceInDb } from "../../redux/actions/actions";
+import {
+  getIdToken,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
+import {
+  getUserDataByEmail,
+  registerUser,
+  updateClientData,
+  validateUserExistenceInDb,
+} from "../../redux/actions/actions";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./LoginForm.css";
@@ -42,7 +51,11 @@ const LoginForm = ({ handleCloseModal }) => {
     }
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user = userCredential.user;
 
       if (user) {
@@ -69,19 +82,19 @@ const LoginForm = ({ handleCloseModal }) => {
       const userCredential = await signInWithPopup(auth, googleProvider);
 
       const user = userCredential.user;
+
       const idToken = await user.getIdToken();
-      console.log(user);
 
       dispatch(validateUserExistenceInDb({ email: user.email }));
+      localStorage.setItem("displayName", user.displayName);
 
       localStorage.setItem("token", idToken);
       setToken(idToken);
-
       localStorage.setItem("email", user.email);
       setValue(user.email);
       handleCloseModal();
       window.location.reload();
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const handleChange = (e) => {
@@ -144,7 +157,9 @@ const LoginForm = ({ handleCloseModal }) => {
           onChange={handleChange}
         />
         <FormErrorMessage>
-          {passError ? "Contraseña inválida" : "La contraseña debe tener al menos 6 caracteres"}
+          {passError
+            ? "Contraseña inválida"
+            : "La contraseña debe tener al menos 6 caracteres"}
         </FormErrorMessage>
       </FormControl>
 
