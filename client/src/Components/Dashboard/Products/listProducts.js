@@ -17,7 +17,11 @@ import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProductAdmin, updateProduct } from "../../../redux/actions/actions";
+import {
+	deleteProductAdmin,
+	getAllProductsAdmin,
+	updateProduct,
+} from "../../../redux/actions/actions";
 
 function createData(
 	nombre,
@@ -48,17 +52,19 @@ function Row(props) {
 	const handleDelete = (id) => {
 		dispatch(deleteProductAdmin(id));
 	};
-	const products = useSelector(state=>state.productsAdmin)
+	const products = useSelector((state) => state.productsAdmin);
 	const [product, setProduct] = React.useState({});
 
 	const handleUpdate = (id) => {
-		
 		const productExist = products.find((product) => product.id == id);
 		const updatedProduct = {
 			...productExist,
-			...product
-		}
-
+			...product,
+		};
+		setOpen(false);
+		setHasChange(true);
+		setNewValue({});
+		// handleNewValue()
 		dispatch(updateProduct(updatedProduct, id));
 	};
 
@@ -69,8 +75,31 @@ function Row(props) {
 		const { name, value } = event.target;
 		setNewValue({ ...newValue, [name]: value });
 		setProduct({ ...product, [name]: value });
-		setHasChange(false)
+		setHasChange(false);
 	};
+
+	const [newNombre, setNewNombre] = React.useState(row.nombre || "");
+	const [newTipo, setNewTipo] = React.useState(row.tipo || "");
+	const [newPrecio, setNewPrecio] = React.useState("");
+
+	const handleNewNombre = (event) => {
+		const { value } = event.target;
+		setNewNombre(value);
+		setHasChange(false);
+	};
+	
+	const handleNewTipo = (event) => {
+		const { value } = event.target;
+		setNewTipo(value);
+		setHasChange(false);
+	};
+	
+	const handleNewPrecio = (event) => {
+		const { value } = event.target;
+		setNewPrecio(value);
+		setHasChange(false);
+	};
+	
 	return (
 		<React.Fragment>
 			<TableRow
@@ -90,6 +119,7 @@ function Row(props) {
 						<Grid2 md={6}>{row.nombre}</Grid2>
 					</Grid2>
 				</TableCell>
+				<TableCell align="center">{row.tipo}</TableCell>
 				<TableCell align="center">{row.stock}</TableCell>
 				<TableCell align="center">{row.precio}</TableCell>
 				<TableCell align="center">
@@ -117,8 +147,8 @@ function Row(props) {
 										name="nombre"
 										label="Product name"
 										defaultValue={row.nombre}
-										value={newValue.nombre || row.nombre}
-										onChange={handleNewValue}
+										value={newNombre}
+										onChange={handleNewNombre}
 										InputLabelProps={{
 											shrink: true,
 										}}
@@ -130,8 +160,8 @@ function Row(props) {
 										name="tipo"
 										label="Category"
 										defaultValue={row.tipo}
-										value={newValue.tipo || row.tipo}
-										onChange={handleNewValue}
+										value={newTipo}
+										onChange={handleNewTipo}
 										InputLabelProps={{
 											shrink: true,
 										}}
@@ -158,8 +188,8 @@ function Row(props) {
 										name="precio"
 										type="number"
 										label="New price"
-										value={newValue.precio || ""}
-										onChange={handleNewValue}
+										value={newPrecio}
+										onChange={handleNewPrecio}
 										InputLabelProps={{
 											shrink: true,
 										}}
@@ -210,16 +240,28 @@ Row.propTypes = {
 export default function ListProducts({ products }) {
 	const rows = products.map((product) =>
 		createData(
-			product.nombre,
-			product.precio,
-			product.stock,
-			product.deleted,
-			product.imagen,
-			product.descripcion,
-			product.id,
-			product.tipo
+			product?.nombre,
+			product?.precio,
+			product?.stock,
+			product?.deleted,
+			product?.imagen,
+			product?.descripcion,
+			product?.id,
+			product?.tipo
 		)
 	);
+	const dispatch = useDispatch();
+
+	const { productsAdmin, deleteProduct, updatedProduct } = useSelector(
+		(state) => state
+	);
+
+	React.useEffect(() => {
+		dispatch(getAllProductsAdmin());
+	}, [deleteProduct]);
+	React.useEffect(() => {
+		dispatch(getAllProductsAdmin());
+	}, [updatedProduct]);
 	return (
 		<TableContainer component={Paper}>
 			<Table aria-label="collapsible table">
@@ -231,6 +273,12 @@ export default function ListProducts({ products }) {
 							sx={{ color: "whitesmoke", fontWeight: 900, fontSize: 18 }}
 						>
 							NAME
+						</TableCell>
+						<TableCell
+							align="center"
+							sx={{ color: "whitesmoke", fontWeight: 900, fontSize: 18 }}
+						>
+							TYPE
 						</TableCell>
 						<TableCell
 							align="center"
@@ -254,7 +302,7 @@ export default function ListProducts({ products }) {
 				</TableHead>
 				<TableBody>
 					{rows.map((row) => (
-						<Row key={row.name} row={row} />
+						<Row key={row?.name} row={row} />
 					))}
 				</TableBody>
 			</Table>
